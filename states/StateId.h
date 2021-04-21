@@ -8,16 +8,17 @@
 #include <string>
 
 #include "StateInstance.h"
-#include "constexpr_id.h"
 #include "../utils/comparable.h"
 
 namespace State {
     struct Id;
 }
 
+std::ostream& operator<<(std::ostream& t_os, const State::Id& t_id);
+
 struct State::Id : public Util::comparable<State::Id> {
     const std::string m_name;
-    const std::size_t m_id;
+    const std::size_t m_hash;
 protected:
     inline bool equals_to(const Id &t_rhs) const override;
 public:
@@ -29,13 +30,24 @@ public:
     Id& operator=(Id&&) = delete;
 
     inline const std::string& name() const;
-    inline std::size_t id() const;
+    inline std::size_t hash() const;
+    inline State::Instance operator[](unsigned int t_level) const;
 };
 
-const std::string &State::Id::name() const { return m_name; }
-std::size_t State::Id::id() const { return m_id; }
-bool State::Id::equals_to(const State::Id &t_rhs) const { return m_id == t_rhs.m_id; }
+const std::string &State::Id::name() const {
+    return m_name;
+}
 
-std::ostream& operator<<(std::ostream& t_os, const State::Id& t_id);
+std::size_t State::Id::hash() const {
+    return m_hash;
+}
+
+bool State::Id::equals_to(const State::Id &t_rhs) const {
+    return m_hash == t_rhs.m_hash;
+}
+
+State::Instance State::Id::operator[](unsigned int t_level) const {
+    return State::Instance(*this, t_level);
+}
 
 #endif //STATE_MACHINE_CPP_STATEID_H

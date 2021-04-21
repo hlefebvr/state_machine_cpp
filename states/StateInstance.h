@@ -10,6 +10,8 @@
 
 #include "../utils/comparable.h"
 
+template<class> class hash;
+
 namespace State {
     class Id;
     class Instance;
@@ -24,6 +26,7 @@ class State::Instance : public Util::comparable<State::Instance> {
     std::size_t m_hash = 0;
 
     void update_hash();
+    friend struct hash<State::Instance>;
 protected:
     bool equals_to(const Instance &t_rhs) const override;
 public:
@@ -34,13 +37,8 @@ public:
     Instance& operator=(const Instance&) = default;
 
     std::string name() const;
-    inline std::size_t hash() const;
     inline const State::Id& id() const;
 };
-
-std::size_t State::Instance::hash() const {
-    return m_hash;
-}
 
 const State::Id &State::Instance::id() const {
     if (!m_id) {

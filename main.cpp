@@ -5,7 +5,7 @@
 #include "builder/Builder.h"
 #include "builder/AlgorithmInstance.h"
 #include "builder/build.h"
-#include "context/Context.h"
+#include "context/InitialContext.h"
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id IF_TRUE("IF_TRUE");

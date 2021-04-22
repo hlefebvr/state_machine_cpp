@@ -5,9 +5,11 @@
 #ifndef STATE_MACHINE_CPP_TRANSITIONHANDLER_H
 #define STATE_MACHINE_CPP_TRANSITIONHANDLER_H
 
+class Context;
+
 namespace Transition {
-    using TrivialHandler = void();
-    using ConditionalHandler = bool();
+    using TrivialHandler = void(Context&);
+    using ConditionalHandler = bool(Context&);
 }
 
 #endif //STATE_MACHINE_CPP_TRANSITIONHANDLER_H

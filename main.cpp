@@ -5,17 +5,25 @@
 #include "builder/Builder.h"
 #include "builder/AlgorithmInstance.h"
 #include "builder/build.h"
+#include "context/Context.h"
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id IF_TRUE("IF_TRUE");
 static const State::Id IF_FALSE("IF_FALSE");
 static const State::Id FINAL_STATE("FINAL_STATE");
 
-void handler() {
-    std::cout << "HANDLE" << std::endl;
+struct CounterAttributes {
+    unsigned int n = 0;
+    std::string message = "Hey, this is my message";
+};
+
+void handler(Context& t_context) {
+    std::cout << t_context.get<CounterAttributes>().message << std::endl;
 }
 
-bool handler_if() { return true; }
+bool handler_if(Context& t_context) {
+    return t_context.get<CounterAttributes>().n < 10;
+}
 
 struct Counter final : public Algorithm::Builder {
 
@@ -40,6 +48,8 @@ int main() {
     Algorithm::Instance algorithm;
 
     Algorithm::build<Counter>(algorithm);
+
+    InitialContext<CounterAttributes> context;
 
     return 0;
 }

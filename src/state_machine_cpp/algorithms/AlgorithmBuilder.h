@@ -22,31 +22,28 @@ public:
     virtual void build(States& states, Transitions& transitions) = 0;
 private:
     class Indirection;
-    static State::Instance as_instance(const State::Any& t_state, unsigned int t_level_if_not_set);
 };
 
 class Algorithm::Builder::Indirection {
-    Algorithm::Instance& m_destination;
     const unsigned int m_level;
 public:
-    Indirection(Algorithm::Instance& t_destination, unsigned int t_level);
-    Algorithm::Instance& destination();
+    explicit Indirection(unsigned int t_level);
     unsigned int level() const;
 };
 
 class Algorithm::Builder::States : public Indirection {
 public:
-    States(Algorithm::Instance& t_destination, unsigned int t_level);
+    explicit States(unsigned int t_level);
 
-    void create(const State::Any& t_state);
-    void remove(const State::Any& t_state);
+    virtual void create(const State::Any& t_state) = 0;
+    virtual void remove(const State::Any& t_state) = 0;
 };
 
 class Algorithm::Builder::Transitions : public Indirection {
-    void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler);
-    void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler);
+    virtual void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler) = 0;
+    virtual void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler) = 0;
 public:
-    Transitions(Algorithm::Instance& t_destination, unsigned int t_level);
+    explicit Transitions(unsigned int t_level);
 
     // Trivial transitions
     void create(const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler);
@@ -57,7 +54,7 @@ public:
     void override_if(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler);
 
     // All
-    void remove(const State::Any& t_state);
+    virtual void remove(const State::Any& t_state) = 0;
 };
 
 #endif //STATE_MACHINE_CPP_BUILDER_H

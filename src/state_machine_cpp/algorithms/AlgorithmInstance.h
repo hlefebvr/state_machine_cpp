@@ -7,11 +7,17 @@
 
 #include <robin_hood/robin_hood.h>
 
-#include "Builder.h"
+#include "AlgorithmBuilder.h"
 #include "../transitions/TransitionAny.h"
 
 namespace Algorithm {
     class Instance;
+    namespace Impl {
+        namespace Build {
+            class States;
+            class Transitions;
+        }
+    }
 }
 
 class Algorithm::Instance {
@@ -23,11 +29,11 @@ class Algorithm::Instance {
     bool has(const State::Instance& t_instance) const;
     const State::Instance& apply_transition(const State::Instance& t_instance, Context& t_context) const;
 
-    friend class Algorithm::Builder::States;
+    friend class Algorithm::Impl::Build::States;
     void create_state(const State::Instance& t_instance);
     void remove_state(const State::Instance& t_instance);
 
-    friend class Algorithm::Builder::Transitions;
+    friend class Algorithm::Impl::Build::Transitions;
     void create_any_transition(const State::Instance& t_initial_instance,
                            const std::function<Transition::Handler::Any*()>& t_handler_creator,
                            bool t_should_already_exist);

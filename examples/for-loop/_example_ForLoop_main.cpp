@@ -5,10 +5,10 @@
 
 #include <state_machine_cpp/states/StateId.h>
 #include <state_machine_cpp/context/Context.h>
-#include <state_machine_cpp/builder/Builder.h>
-#include <state_machine_cpp/builder/build.h>
+#include <state_machine_cpp/algorithms/AlgorithmBuilder.h>
+#include <state_machine_cpp/algorithms/build.h>
 #include <state_machine_cpp/context/InitialContext.h>
-#include <state_machine_cpp/builder/AlgorithmInstance.h>
+#include <state_machine_cpp/algorithms/AlgorithmInstance.h>
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");

@@ -1,0 +1,39 @@
+//
+// Created by henri on 22/04/21.
+//
+
+#include "AlgorithmTransitionBuilder.h"
+#include "AlgorithmInstance.h"
+
+Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destination, unsigned int t_level)
+        : Algorithm::Builder::Transitions(t_level), m_destination(t_destination) {
+
+}
+
+
+void Algorithm::Impl::Build::Transitions::create_or_override(bool t_do_override,
+                                                             const State::Any &t_initial_state,
+                                                             const State::Any &t_next_state,
+                                                             Transition::TrivialHandler &t_handler) {
+    auto initial_instance = t_initial_state.as_instance(level());
+    auto next_instance = t_next_state.as_instance(level());
+    m_destination.create_transition(initial_instance, next_instance, t_handler, t_do_override);
+}
+
+void Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_override,
+                                                                const State::Any &t_initial_state,
+                                                                const State::Any &t_if_true,
+                                                                const State::Any &t_else,
+                                                                Transition::ConditionalHandler &t_handler) {
+
+    auto initial_instance = t_initial_state.as_instance(level());
+    auto if_instance = t_if_true.as_instance(level());
+    auto else_instance = t_else.as_instance(level());
+    m_destination.create_transition_if(initial_instance, if_instance, else_instance, t_handler, t_do_override);
+
+}
+
+void Algorithm::Impl::Build::Transitions::remove(const State::Any &t_state) {
+    auto instance = t_state.as_instance(level());
+    m_destination.remove_transition(instance);
+}

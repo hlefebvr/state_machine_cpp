@@ -1,11 +1,14 @@
+//
+// Created by henri on 22/04/21.
+//
 #include <iostream>
 
-#include "states/hash.h"
-#include "states/StateId.h"
-#include "builder/Builder.h"
-#include "builder/AlgorithmInstance.h"
-#include "builder/build.h"
-#include "context/InitialContext.h"
+#include <state_machine_cpp/states/StateId.h>
+#include <state_machine_cpp/context/Context.h>
+#include <state_machine_cpp/builder/Builder.h>
+#include <state_machine_cpp/builder/build.h>
+#include <state_machine_cpp/context/InitialContext.h>
+#include <state_machine_cpp/builder/AlgorithmInstance.h>
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");

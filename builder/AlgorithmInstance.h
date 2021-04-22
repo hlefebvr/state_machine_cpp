@@ -5,18 +5,32 @@
 #ifndef STATE_MACHINE_CPP_ALGORITHMINSTANCE_H
 #define STATE_MACHINE_CPP_ALGORITHMINSTANCE_H
 
+#include <robin_hood/robin_hood.h>
+
 #include "Builder.h"
+#include "../transitions/TransitionAny.h"
 
 namespace Algorithm {
     class Instance;
 }
 
 class Algorithm::Instance {
+
+    template<class T> using Set = robin_hood::unordered_set<T, typename T::by_hash, typename T::by_hash>;
+
+    Set<Transition::Any> m_transitions;
+
+    bool has(const State::Instance& t_instance) const;
+    const State::Instance& apply_transition(const State::Instance& t_instance, Context& t_context) const;
+
     friend class Algorithm::Builder::States;
     void create_state(const State::Instance& t_instance);
     void remove_state(const State::Instance& t_instance);
 
     friend class Algorithm::Builder::Transitions;
+    void create_any_transition(const State::Instance& t_initial_instance,
+                           const std::function<Transition::Handler::Any*()>& t_handler_creator,
+                           bool t_should_already_exist);
     void create_transition(const State::Instance& t_initial_instance,
                            const State::Instance& t_next_instance,
                            Transition::TrivialHandler& t_handler,
@@ -28,7 +42,7 @@ class Algorithm::Instance {
                            bool t_should_already_exist);
     void remove_transition(const State::Instance& t_instance);
 public:
-
+    void run(Context& t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const;
 };
 
 

@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "../states/StateAny.h"
-#include "../transitions/TransitionHandler.h"
+#include "../transitions/TransitionHandlerType.h"
 
 namespace Algorithm {
     class Builder;

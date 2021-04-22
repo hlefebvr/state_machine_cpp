@@ -8,36 +8,48 @@
 #include "context/InitialContext.h"
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
-static const State::Id IF_TRUE("IF_TRUE");
-static const State::Id IF_FALSE("IF_FALSE");
+static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");
+static const State::Id SHOW_COUNTER("SHOW_COUNTER");
+static const State::Id INCREMENT_COUNTER("INCREMENT_COUNTER");
 static const State::Id FINAL_STATE("FINAL_STATE");
 
 struct CounterAttributes {
     unsigned int n = 0;
-    std::string message = "Hey, this is my message";
 };
 
-void handler(Context& t_context) {
-    std::cout << t_context.get<CounterAttributes>().message << std::endl;
+void initialize_attributes(Context& context) {
+    context.get<CounterAttributes>().n = 0;
 }
 
-bool handler_if(Context& t_context) {
-    return t_context.get<CounterAttributes>().n < 10;
+bool check_convergence(Context& context) {
+    return context.get<CounterAttributes>().n == 10;
 }
+
+void show_counter(Context& context) {
+    std::cout << context.get<CounterAttributes>().n << std::endl;
+}
+
+void increment_counter(Context& context) {
+    ++context.get<CounterAttributes>().n;
+}
+
+void do_nothing(Context& context) {}
 
 struct Counter final : public Algorithm::Builder {
 
     void build(States& states, Transitions& transitions) override {
 
         states.create(INITIAL_STATE);
-        states.remove(INITIAL_STATE);
+        states.create(CHECK_IF_HAS_CONVERGED);
+        states.create(SHOW_COUNTER);
+        states.create(INCREMENT_COUNTER);
+        states.create(FINAL_STATE);
 
-        transitions.create(INITIAL_STATE, FINAL_STATE, handler);
-        transitions.override(INITIAL_STATE, FINAL_STATE, handler);
-        transitions.remove(INITIAL_STATE);
-
-        transitions.create_if(INITIAL_STATE, IF_TRUE, IF_FALSE, handler_if);
-        transitions.override_if(INITIAL_STATE, IF_TRUE, IF_FALSE, handler_if);
+        transitions.create(INITIAL_STATE, CHECK_IF_HAS_CONVERGED, initialize_attributes);
+        transitions.create_if(CHECK_IF_HAS_CONVERGED, FINAL_STATE, SHOW_COUNTER, check_convergence);
+        transitions.create(SHOW_COUNTER, INCREMENT_COUNTER, show_counter);
+        transitions.create(INCREMENT_COUNTER, CHECK_IF_HAS_CONVERGED, increment_counter);
+        transitions.create(FINAL_STATE, FINAL_STATE, do_nothing);
 
     }
 
@@ -46,10 +58,12 @@ struct Counter final : public Algorithm::Builder {
 int main() {
 
     Algorithm::Instance algorithm;
-
     Algorithm::build<Counter>(algorithm);
 
-    InitialContext<CounterAttributes> context;
+    CounterAttributes counter_attributes;
+    InitialContext<CounterAttributes> context(counter_attributes);
+
+    algorithm.run(context, INITIAL_STATE, FINAL_STATE);
 
     return 0;
 }

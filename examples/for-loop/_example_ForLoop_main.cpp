@@ -9,6 +9,7 @@
 #include <state_machine_cpp/algorithms/build.h>
 #include <state_machine_cpp/context/InitialContext.h>
 #include <state_machine_cpp/algorithms/AlgorithmInstance.h>
+#include <state_machine_cpp/algorithms/plot.h>
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");
@@ -62,6 +63,8 @@ int main() {
 
     Algorithm::Instance algorithm;
     Algorithm::build<Counter>(algorithm);
+
+    Algorithm::plot<Counter>();
 
     CounterAttributes counter_attributes;
     InitialContext<CounterAttributes> context(counter_attributes);

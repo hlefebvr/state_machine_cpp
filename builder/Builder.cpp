@@ -63,3 +63,22 @@ void Algorithm::Builder::Transitions::remove(const State::Any &t_state) {
     auto instance = Builder::as_instance(t_state, level());
     destination().remove_transition(instance);
 }
+
+void Algorithm::Builder::Transitions::create_or_override_if(bool t_do_override, const State::Any &t_initial_state,
+                                                            const State::Any &t_if_true, const State::Any &t_else,
+                                                            Transition::ConditionalHandler& t_handler) {
+    auto initial_instance = Builder::as_instance(t_initial_state, level());
+    auto if_instance = Builder::as_instance(t_if_true, level());
+    auto else_instance = Builder::as_instance(t_else, level());
+    destination().create_transition_if(initial_instance, if_instance, else_instance, t_handler, t_do_override);
+}
+
+void Algorithm::Builder::Transitions::create_if(const State::Any &t_initial_state, const State::Any &t_if_true,
+                                                const State::Any &t_else, Transition::ConditionalHandler &t_handler) {
+    create_or_override_if(false, t_initial_state, t_if_true, t_else, t_handler);
+}
+
+void Algorithm::Builder::Transitions::override_if(const State::Any &t_initial_state, const State::Any &t_if_true,
+                                                  const State::Any &t_else, Transition::ConditionalHandler& t_handler) {
+    create_or_override_if(true, t_initial_state, t_if_true, t_else, t_handler);
+}

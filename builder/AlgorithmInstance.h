@@ -21,6 +21,11 @@ class Algorithm::Instance {
                            const State::Instance& t_next_instance,
                            Transition::TrivialHandler& t_handler,
                            bool t_should_already_exist);
+    void create_transition_if(const State::Instance& t_initial_instance,
+                           const State::Instance& t_if_instance,
+                           const State::Instance& t_else_instance,
+                           Transition::ConditionalHandler& t_handler,
+                           bool t_should_already_exist);
     void remove_transition(const State::Instance& t_instance);
 public:
 

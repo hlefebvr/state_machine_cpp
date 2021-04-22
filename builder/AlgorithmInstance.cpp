@@ -29,3 +29,16 @@ void Algorithm::Instance::create_transition(const State::Instance &t_initial_ins
 void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     std::cout << "REMOVE TRANSITION " << t_instance << std::endl;
 }
+
+void Algorithm::Instance::create_transition_if(const State::Instance &t_initial_instance,
+                                               const State::Instance &t_if_instance,
+                                               const State::Instance &t_else_instance,
+                                               Transition::ConditionalHandler &t_handler,
+                                               bool t_should_already_exist) {
+    if (t_should_already_exist) {
+        std::cout << "OVERRIDE ";
+    } else {
+        std::cout << "CREATE ";
+    }
+    std::cout << "IF-TRANSITION FROM " << t_initial_instance << " TO " << t_if_instance << " / " << t_else_instance << std::endl;
+}

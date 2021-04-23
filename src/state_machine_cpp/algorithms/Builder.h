@@ -61,6 +61,7 @@ public:
 
     // All
     virtual void remove(const State::Any& t_state) = 0;
+    virtual void declare_as_final(const State::Any& t_state) = 0;
 };
 
 #endif //STATE_MACHINE_CPP_BUILDER_H

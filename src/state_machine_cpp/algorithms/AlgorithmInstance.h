@@ -48,6 +48,7 @@ class Algorithm::Instance {
                            Transition::ConditionalHandler* t_handler,
                            bool t_should_already_exist);
     void remove_transition(const State::Instance& t_instance);
+    void set_as_final(const State::Instance& t_instance);
 public:
     void run(Context& t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const;
 

@@ -55,6 +55,11 @@ void Algorithm::Instance::create_any_transition(const State::Instance &t_initial
                                      "Initial state: " + t_initial_instance.name());
         }
 
+        if (it->is_final()) {
+            throw std::runtime_error("Cannot override a final transition. "
+                                     "Initial state: " + t_initial_instance.name());
+        }
+
     }
 
     it->set_handler(std::move(t_next_states), std::move(t_handler));
@@ -91,7 +96,10 @@ void Algorithm::Instance::create_transition_if(const State::Instance &t_initial_
 void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     auto it = m_transitions.find(t_instance);
     if (it == m_transitions.end() || !it->has_handler()) {
-        throw std::runtime_error("Cannot remove a non-existing transition instance");
+        throw std::runtime_error("Cannot remove a non-existing transition instance.");
+    }
+    if (it->is_final()) {
+        throw std::runtime_error("Cannot remove a transition declared final.");
     }
     it->reset_handler();
 }
@@ -113,4 +121,15 @@ Algorithm::Instance::apply_transition(const State::Instance &t_instance, Context
 
 const Algorithm::Instance::Set<Transition::Any> &Algorithm::Instance::transitions() const {
     return m_transitions;
+}
+
+void Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
+    auto it = m_transitions.find(t_instance);
+    if (it == m_transitions.end()) {
+        throw std::runtime_error("Cannot declare a non-existing transition as final.");
+    }
+    if (!it->has_handler()) {
+        throw std::runtime_error("Cannot declare a virtual transition as final.");
+    }
+    it->set_as_final();
 }

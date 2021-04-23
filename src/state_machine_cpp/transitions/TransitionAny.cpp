@@ -36,3 +36,11 @@ Transition::Any::set_handler(std::vector<State::Instance> &&t_next_states, std::
     m_next_states = std::move(t_next_states);
     m_function = std::move(t_handler);
 }
+
+void Transition::Any::set_as_final() {
+    m_is_final = true;
+}
+
+bool Transition::Any::is_final() const {
+    return m_is_final;
+}

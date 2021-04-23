@@ -61,6 +61,8 @@ struct Counter final : public Algorithm::Builder {
         transitions.create(INCREMENT_COUNTER, CHECK_IF_HAS_CONVERGED, increment_counter);
         transitions.create(FINAL_STATE, FINAL_STATE, do_nothing);
 
+        transitions.declare_as_final(CHECK_IF_HAS_CONVERGED);
+
     }
 
 };

@@ -31,6 +31,8 @@ public:
     Transitions(Algorithm::Instance& t_destination, unsigned int t_level);
 
     void remove(const State::Any &t_state) override;
+
+    void declare_as_final(const State::Any &t_state) override;
 };
 
 

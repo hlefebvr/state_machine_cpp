@@ -40,3 +40,7 @@ void Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_overri
 void Algorithm::Impl::Build::Transitions::remove(const State::Any &t_state) {
     m_destination.remove_transition(as_instance(t_state));
 }
+
+void Algorithm::Impl::Build::Transitions::declare_as_final(const State::Any &t_state) {
+    m_destination.set_as_final(as_instance(t_state));
+}

@@ -23,6 +23,7 @@ class Transition::Any {
     const State::Instance m_initial_state;
     std::function<int(Context&)> m_function {};
     std::vector<State::Instance> m_next_states;
+    bool m_is_final = false;
 public:
     Any(const State::Instance& t_initial_state); // NOLINT(google-explicit-constructor)
 
@@ -32,7 +33,9 @@ public:
 
     void set_handler(std::vector<State::Instance>&& t_next_states, std::function<int(Context&)>&& t_handler);
     void reset_handler();
+    void set_as_final();
     bool has_handler() const;
+    bool is_final() const;
 
     struct by_hash {
 

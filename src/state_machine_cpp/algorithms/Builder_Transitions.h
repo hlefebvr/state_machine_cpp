@@ -21,12 +21,12 @@ class Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitio
     void create_or_override(bool t_do_override,
                             const State::Any &t_initial_state,
                             const State::Any &t_next_state,
-                            Transition::TrivialHandler &t_handler) override;
+                            Transition::TrivialHandler *t_handler) override;
     void create_or_override_if(bool t_do_override,
                                const State::Any &t_initial_state,
                                const State::Any &t_if_true,
                                const State::Any &t_else,
-                               Transition::ConditionalHandler &t_handler) override;
+                               Transition::ConditionalHandler *t_handler) override;
 public:
     Transitions(Algorithm::Instance& t_destination, unsigned int t_level);
 

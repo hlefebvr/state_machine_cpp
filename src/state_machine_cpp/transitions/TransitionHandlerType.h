@@ -9,7 +9,7 @@ class Context;
 
 namespace Transition {
     using TrivialHandler = void(Context&);
-    using ConditionalHandler = bool(Context&);
+    using ConditionalHandler = bool(const Context&);
 }
 
 #endif //STATE_MACHINE_CPP_TRANSITIONHANDLERTYPE_H

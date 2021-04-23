@@ -10,12 +10,15 @@
 #include <state_machine_cpp/context/InitialContext.h>
 #include <state_machine_cpp/algorithms/AlgorithmInstance.h>
 #include <state_machine_cpp/algorithms/plot.h>
+#include <state_machine_cpp/algorithms/sanity_check.h>
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");
 static const State::Id SHOW_COUNTER("SHOW_COUNTER");
 static const State::Id INCREMENT_COUNTER("INCREMENT_COUNTER");
 static const State::Id FINAL_STATE("FINAL_STATE");
+
+static const State::Id MY_STATE("MY_STATE");
 
 struct CounterAttributes {
     unsigned int n = 0;
@@ -25,7 +28,7 @@ void initialize_attributes(Context& context) {
     context.get<CounterAttributes>().n = 0;
 }
 
-bool check_convergence(Context& context) {
+bool check_convergence(const Context& context) {
     return context.get<CounterAttributes>().n == 10;
 }
 
@@ -49,6 +52,9 @@ struct Counter final : public Algorithm::Builder {
         states.create(INCREMENT_COUNTER);
         states.create(FINAL_STATE);
 
+        states.create(MY_STATE);
+        //transitions.create(MY_STATE, FINAL_STATE);
+
         transitions.create(INITIAL_STATE, CHECK_IF_HAS_CONVERGED, initialize_attributes);
         transitions.create_if(CHECK_IF_HAS_CONVERGED, FINAL_STATE, SHOW_COUNTER, check_convergence);
         transitions.create(SHOW_COUNTER, INCREMENT_COUNTER, show_counter);
@@ -62,8 +68,8 @@ struct Counter final : public Algorithm::Builder {
 int main() {
 
     Algorithm::Instance algorithm;
-    //Algorithm::sanity_check<Counter>(algorithm);
     Algorithm::build<Counter>(algorithm);
+    Algorithm::sanity_check(algorithm);
 
     Algorithm::plot<Counter>("my_file");
 

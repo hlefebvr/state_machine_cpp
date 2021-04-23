@@ -3,8 +3,6 @@
 //
 
 #include "AlgorithmInstance.h"
-#include "../transitions/TransitionHandlerTrivial.h"
-#include "../transitions/TransitionHandlerConditional.h"
 
 bool Algorithm::Instance::has(const State::Instance &t_instance) const {
     return m_transitions.find(t_instance) != m_transitions.end();
@@ -25,8 +23,22 @@ void Algorithm::Instance::remove_state(const State::Instance& t_instance) {
 }
 
 void Algorithm::Instance::create_any_transition(const State::Instance &t_initial_instance,
-                                                const std::function<Transition::Handler::Any *()> &t_handler_creator,
+                                                std::vector<State::Instance> &&t_next_states,
+                                                std::function<int(Context&)>&& t_handler,
                                                 bool t_should_already_exist) {
+
+    if (!has(t_initial_instance)) {
+        throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
+                                 + t_initial_instance.name());
+    }
+
+    for (const auto& instance : t_next_states) {
+        if (!has(instance)) {
+            throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
+                                     + instance.name());
+        }
+    }
+
     auto it = m_transitions.find(t_initial_instance);
 
     if (!it->has_handler()) {
@@ -35,7 +47,6 @@ void Algorithm::Instance::create_any_transition(const State::Instance &t_initial
             throw std::runtime_error("Cannot override a non-existing transition. Use create. "
                                      "Initial state: " + t_initial_instance.name());
         }
-        it->set_handler(t_handler_creator());
 
     } else {
 
@@ -43,61 +54,37 @@ void Algorithm::Instance::create_any_transition(const State::Instance &t_initial
             throw std::runtime_error("Cannot create twice the same transition. Use override. "
                                      "Initial state: " + t_initial_instance.name());
         }
-        it->set_handler(t_handler_creator());
 
     }
+
+    it->set_handler(std::move(t_next_states), std::move(t_handler));
 }
 
 
 void Algorithm::Instance::create_transition(const State::Instance &t_initial_instance,
                                             const State::Instance &t_next_instance,
-                                            Transition::TrivialHandler &t_handler,
+                                            Transition::TrivialHandler *t_handler,
                                             bool t_should_already_exist) {
 
-    if (!has(t_initial_instance)) {
-        throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
-                                 + t_initial_instance.name());
-    }
+    auto handler = t_handler ?
+            [t_handler](Context& t_context){ (*t_handler)(t_context); return 0; } :
+            std::function<int(Context&)>();
 
-    if (!has(t_next_instance)) {
-        throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
-                                 + t_next_instance.name());
-    }
-
-    create_any_transition(
-            t_initial_instance,
-            [&](){ return new Transition::Handler::Trivial(t_next_instance, t_handler); },
-            t_should_already_exist
-            );
+    create_any_transition(t_initial_instance,{ t_next_instance }, std::move(handler), t_should_already_exist);
 
 }
 
 void Algorithm::Instance::create_transition_if(const State::Instance &t_initial_instance,
                                                const State::Instance &t_if_instance,
                                                const State::Instance &t_else_instance,
-                                               Transition::ConditionalHandler &t_handler,
+                                               Transition::ConditionalHandler *t_handler,
                                                bool t_should_already_exist) {
 
-    if (!has(t_initial_instance)) {
-        throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
-                                 + t_initial_instance.name());
-    }
+    auto handler = t_handler ?
+            [t_handler](Context& t_context){ return (*t_handler)(t_context); } :
+            std::function<int(Context&)>();
 
-    if (!has(t_if_instance)) {
-        throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
-                                 + t_if_instance.name());
-    }
-
-    if (!has(t_else_instance)) {
-        throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
-                                 + t_else_instance.name());
-    }
-
-    create_any_transition(
-            t_initial_instance,
-            [&](){ return new Transition::Handler::Conditional(t_if_instance, t_else_instance, t_handler); },
-            t_should_already_exist
-    );
+    create_any_transition(t_initial_instance,{ t_else_instance, t_if_instance }, std::move(handler), t_should_already_exist);
 
 }
 
@@ -106,7 +93,7 @@ void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     if (it == m_transitions.end() || !it->has_handler()) {
         throw std::runtime_error("Cannot remove a non-existing transition instance");
     }
-    it->set_handler(nullptr);
+    it->reset_handler();
 }
 
 void Algorithm::Instance::run(Context &t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const {
@@ -122,4 +109,8 @@ void Algorithm::Instance::run(Context &t_context, const State::Id& t_initial_sta
 const State::Instance &
 Algorithm::Instance::apply_transition(const State::Instance &t_instance, Context &t_context) const {
     return m_transitions.find(t_instance)->operator()(t_context);
+}
+
+const Algorithm::Instance::Set<Transition::Any> &Algorithm::Instance::transitions() const {
+    return m_transitions;
 }

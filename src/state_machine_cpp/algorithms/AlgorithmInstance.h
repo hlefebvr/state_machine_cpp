@@ -35,20 +35,23 @@ class Algorithm::Instance {
 
     friend class Algorithm::Impl::Build::Transitions;
     void create_any_transition(const State::Instance& t_initial_instance,
-                           const std::function<Transition::Handler::Any*()>& t_handler_creator,
-                           bool t_should_already_exist);
+                               std::vector<State::Instance> &&t_next_states,
+                               std::function<int(Context&)>&& t_handler,
+                               bool t_should_already_exist);
     void create_transition(const State::Instance& t_initial_instance,
                            const State::Instance& t_next_instance,
-                           Transition::TrivialHandler& t_handler,
+                           Transition::TrivialHandler* t_handler,
                            bool t_should_already_exist);
     void create_transition_if(const State::Instance& t_initial_instance,
                            const State::Instance& t_if_instance,
                            const State::Instance& t_else_instance,
-                           Transition::ConditionalHandler& t_handler,
+                           Transition::ConditionalHandler* t_handler,
                            bool t_should_already_exist);
     void remove_transition(const State::Instance& t_instance);
 public:
     void run(Context& t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const;
+
+    const Set<Transition::Any>& transitions() const;
 };
 
 

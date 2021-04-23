@@ -42,18 +42,22 @@ public:
 };
 
 class Algorithm::Builder::Transitions : public Indirection {
-    virtual void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler) = 0;
-    virtual void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler) = 0;
+    virtual void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler* t_handler) = 0;
+    virtual void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler* t_handler) = 0;
 public:
     explicit Transitions(unsigned int t_level);
 
     // Trivial transitions
     void create(const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler);
+    void create(const State::Any& t_initial_state, const State::Any& t_next_state);
     void override(const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler);
+    void override(const State::Any& t_initial_state, const State::Any& t_next_state);
 
     // Conditional transitions
     void create_if(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler);
+    void create_if(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else);
     void override_if(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler);
+    void override_if(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else);
 
     // All
     virtual void remove(const State::Any& t_state) = 0;

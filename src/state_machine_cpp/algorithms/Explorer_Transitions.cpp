@@ -50,7 +50,7 @@ void Algorithm::Impl::Explorer::Transitions::create_any_transition(const State::
 void Algorithm::Impl::Explorer::Transitions::create_or_override(bool t_do_override,
                                                             const State::Any &t_initial_state,
                                                             const State::Any &t_next_state,
-                                                            Transition::TrivialHandler &t_handler) {
+                                                            Transition::TrivialHandler *t_handler) {
 
     if (!has(as_instance(t_initial_state))) {
         throw std::runtime_error("Cannot create a transition on a non-existing state. State: "
@@ -74,7 +74,7 @@ void Algorithm::Impl::Explorer::Transitions::create_or_override_if(bool t_do_ove
                                                                const State::Any &t_initial_state,
                                                                const State::Any &t_if_true,
                                                                const State::Any &t_else,
-                                                               Transition::ConditionalHandler &t_handler) {
+                                                               Transition::ConditionalHandler *t_handler) {
 
     if (!has(as_instance(t_initial_state))) {
         throw std::runtime_error("Cannot create a transition on a non-existing state. State: "

@@ -14,7 +14,7 @@ Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destinat
 void Algorithm::Impl::Build::Transitions::create_or_override(bool t_do_override,
                                                              const State::Any &t_initial_state,
                                                              const State::Any &t_next_state,
-                                                             Transition::TrivialHandler &t_handler) {
+                                                             Transition::TrivialHandler *t_handler) {
     m_destination.create_transition(
             as_instance(t_initial_state),
             as_instance(t_next_state),
@@ -26,7 +26,7 @@ void Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_overri
                                                                 const State::Any &t_initial_state,
                                                                 const State::Any &t_if_true,
                                                                 const State::Any &t_else,
-                                                                Transition::ConditionalHandler &t_handler) {
+                                                                Transition::ConditionalHandler *t_handler) {
 
     m_destination.create_transition_if(
             as_instance(t_initial_state),

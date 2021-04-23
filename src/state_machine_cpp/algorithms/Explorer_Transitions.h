@@ -33,13 +33,13 @@ private:
     void create_or_override(bool t_do_override,
                             const State::Any &t_initial_state,
                             const State::Any &t_next_state,
-                            Transition::TrivialHandler & t_handler) override;
+                            Transition::TrivialHandler * t_handler) override;
 
     void create_or_override_if(bool t_do_override,
                                const State::Any &t_initial_state,
                                const State::Any &t_if_true,
                                const State::Any &t_else,
-                               Transition::ConditionalHandler & t_handler) override;
+                               Transition::ConditionalHandler * t_handler) override;
 
     bool has(const State::Instance& t_instance) const;
 };

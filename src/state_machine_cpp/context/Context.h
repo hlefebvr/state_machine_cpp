@@ -19,6 +19,14 @@ public:
         return **ptr;
     }
 
+    template<class T> const T& get() const {
+        auto* ptr = dynamic_cast<const Pointer<T>*>(this);
+        if (ptr == nullptr) {
+            throw std::runtime_error("Context could not be casted so as to return the desired type");
+        }
+        return **ptr;
+    }
+
 };
 
 #endif //STATE_MACHINE_CPP_CONTEXT_H

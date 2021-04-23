@@ -2,7 +2,7 @@
 // Created by henri on 22/04/21.
 //
 
-#include "AlgorithmStateBuilder.h"
+#include "Builder_States.h"
 #include "AlgorithmInstance.h"
 
 Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, unsigned int t_level)

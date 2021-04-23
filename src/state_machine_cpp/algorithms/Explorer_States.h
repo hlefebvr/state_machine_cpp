@@ -2,10 +2,10 @@
 // Created by henri on 22/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_LIB_ALGORITHMSTATEPLOTTER_H
-#define STATE_MACHINE_CPP_LIB_ALGORITHMSTATEPLOTTER_H
+#ifndef STATE_MACHINE_CPP_LIB_EXPLORER_STATES_H
+#define STATE_MACHINE_CPP_LIB_EXPLORER_STATES_H
 
-#include "AlgorithmBuilder.h"
+#include "Builder.h"
 #include <robin_hood/robin_hood.h>
 #include <list>
 
@@ -28,4 +28,4 @@ public:
 };
 
 
-#endif //STATE_MACHINE_CPP_LIB_ALGORITHMSTATEPLOTTER_H
+#endif //STATE_MACHINE_CPP_LIB_EXPLORER_STATES_H

@@ -5,7 +5,7 @@
 
 #include <state_machine_cpp/states/StateId.h>
 #include <state_machine_cpp/context/Context.h>
-#include <state_machine_cpp/algorithms/AlgorithmBuilder.h>
+#include <state_machine_cpp/algorithms/Builder.h>
 #include <state_machine_cpp/algorithms/build.h>
 #include <state_machine_cpp/context/InitialContext.h>
 #include <state_machine_cpp/algorithms/AlgorithmInstance.h>
@@ -62,6 +62,7 @@ struct Counter final : public Algorithm::Builder {
 int main() {
 
     Algorithm::Instance algorithm;
+    //Algorithm::sanity_check<Counter>(algorithm);
     Algorithm::build<Counter>(algorithm);
 
     Algorithm::plot<Counter>("my_file");

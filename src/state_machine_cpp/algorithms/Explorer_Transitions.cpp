@@ -2,7 +2,7 @@
 // Created by henri on 22/04/21.
 //
 
-#include "AlgorithmTransitionsPlotter.h"
+#include "Explorer_Transitions.h"
 
 Algorithm::Impl::Explorer::Transitions::Transitions(
         robin_hood::unordered_map<std::string, std::list<std::string>>& t_transitions,

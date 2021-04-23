@@ -5,8 +5,8 @@
 #ifndef STATE_MACHINE_CPP_BUILD_H
 #define STATE_MACHINE_CPP_BUILD_H
 
-#include "AlgorithmTransitionBuilder.h"
-#include "AlgorithmStateBuilder.h"
+#include "Builder_States.h"
+#include "Builder_Transitions.h"
 
 namespace Algorithm {
     template<class T> void build(Algorithm::Instance& t_destination);

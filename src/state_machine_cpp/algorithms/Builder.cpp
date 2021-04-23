@@ -2,7 +2,7 @@
 // Created by henri on 21/04/21.
 //
 
-#include "AlgorithmBuilder.h"
+#include "Builder.h"
 
 Algorithm::Builder::Indirection::Indirection(unsigned int t_level) : m_level(t_level) {
 

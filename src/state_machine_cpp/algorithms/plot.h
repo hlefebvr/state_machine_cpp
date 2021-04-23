@@ -8,8 +8,8 @@
 #include <fstream>
 #include <list>
 #include <sstream>
-#include "AlgorithmTransitionsPlotter.h"
-#include "AlgorithmStatePlotter.h"
+#include "Explorer_Transitions.h"
+#include "Explorer_States.h"
 
 namespace Algorithm {
     template<class T> void plot(const std::string& t_filename, bool t_run_command = true);

@@ -2,10 +2,10 @@
 // Created by henri on 22/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_LIB_ALGORITHMTRANSITIONSPLOTTER_H
-#define STATE_MACHINE_CPP_LIB_ALGORITHMTRANSITIONSPLOTTER_H
+#ifndef STATE_MACHINE_CPP_LIB_EXPLORER_TRANSITIONS_H
+#define STATE_MACHINE_CPP_LIB_EXPLORER_TRANSITIONS_H
 
-#include "AlgorithmBuilder.h"
+#include "Builder.h"
 #include <robin_hood/robin_hood.h>
 #include <list>
 
@@ -45,4 +45,4 @@ private:
 };
 
 
-#endif //STATE_MACHINE_CPP_LIB_ALGORITHMTRANSITIONSPLOTTER_H
+#endif //STATE_MACHINE_CPP_LIB_EXPLORER_TRANSITIONS_H

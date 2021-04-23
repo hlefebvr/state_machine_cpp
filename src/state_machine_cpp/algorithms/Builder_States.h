@@ -2,10 +2,10 @@
 // Created by henri on 22/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_LIB_ALGORITHMSTATEBUILDER_H
-#define STATE_MACHINE_CPP_LIB_ALGORITHMSTATEBUILDER_H
+#ifndef STATE_MACHINE_CPP_LIB_BUILDER_STATES_H
+#define STATE_MACHINE_CPP_LIB_BUILDER_STATES_H
 
-#include "AlgorithmBuilder.h"
+#include "Builder.h"
 
 namespace Algorithm {
     namespace Impl {
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif //STATE_MACHINE_CPP_LIB_ALGORITHMSTATEBUILDER_H
+#endif //STATE_MACHINE_CPP_LIB_BUILDER_STATES_H

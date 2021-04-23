@@ -7,7 +7,7 @@
 
 #include <robin_hood/robin_hood.h>
 
-#include "AlgorithmBuilder.h"
+#include "Builder.h"
 #include "../transitions/TransitionAny.h"
 
 namespace Algorithm {

@@ -2,7 +2,7 @@
 // Created by henri on 22/04/21.
 //
 
-#include "AlgorithmTransitionBuilder.h"
+#include "Builder_Transitions.h"
 #include "AlgorithmInstance.h"
 
 Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destination, unsigned int t_level)

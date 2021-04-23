@@ -2,7 +2,7 @@
 // Created by henri on 22/04/21.
 //
 
-#include "AlgorithmStatePlotter.h"
+#include "Explorer_States.h"
 
 Algorithm::Impl::Explorer::States::States(robin_hood::unordered_map<std::string, std::list<std::string>>& t_transitions,
                                       unsigned int t_level)

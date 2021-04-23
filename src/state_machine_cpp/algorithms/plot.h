@@ -10,6 +10,7 @@
 #include <sstream>
 #include "Explorer_Transitions.h"
 #include "Explorer_States.h"
+#include "explore.h"
 
 namespace Algorithm {
     template<class T> void plot(const std::string& t_filename, bool t_run_command = true);
@@ -17,13 +18,8 @@ namespace Algorithm {
 
 template<class T>
 void Algorithm::plot(const std::string& t_filename, bool t_run_command) {
-    robin_hood::unordered_map<std::string, std::list<std::string>> store;
 
-    Impl::Explorer::States states(store, 0);
-    Impl::Explorer::Transitions transitions(store, 0);
-
-    T builder;
-    builder.build(states, transitions);
+    auto transitions = Algorithm::explore<T>();
 
     const auto name = [](const std::string& t_org_name) {
         std::string result = t_org_name;
@@ -48,7 +44,7 @@ void Algorithm::plot(const std::string& t_filename, bool t_run_command) {
     file << "digraph G {";
 
     file << "\n\n\t// state definitions\n";
-    for (const auto& state_and_successors : store) {
+    for (const auto& state_and_successors : transitions) {
         file << "\t"
              << name(state_and_successors.first)
              << node_style(state_and_successors.second.size() <= 1)
@@ -56,7 +52,7 @@ void Algorithm::plot(const std::string& t_filename, bool t_run_command) {
     }
 
     file << "\n\n\t// transition definition\n";
-    for (const auto& state_and_successors : store) {
+    for (const auto& state_and_successors : transitions) {
         for (const auto& next_state : state_and_successors.second) {
             file << "\t"
                  << name(state_and_successors.first)

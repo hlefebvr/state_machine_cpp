@@ -5,8 +5,6 @@
 #ifndef STATE_MACHINE_CPP_LIB_SANITY_CHECK_H
 #define STATE_MACHINE_CPP_LIB_SANITY_CHECK_H
 
-#include "explore.h"
-
 namespace Algorithm {
     void sanity_check(const Algorithm::Instance& t_algorithm);
 }

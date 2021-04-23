@@ -8,21 +8,15 @@
 #include <fstream>
 #include <list>
 #include <sstream>
-#include "Explorer_Transitions.h"
-#include "Explorer_States.h"
-#include "explore.h"
 
 namespace Algorithm {
-    template<class T> void plot(const std::string& t_filename, bool t_run_command = true);
+    void plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command = true);
 }
 
-template<class T>
-void Algorithm::plot(const std::string& t_filename, bool t_run_command) {
+void Algorithm::plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command) {
 
-    auto transitions = Algorithm::explore<T>();
-
-    const auto name = [](const std::string& t_org_name) {
-        std::string result = t_org_name;
+    const auto name = [](const State::Instance& t_x) {
+        std::string result = t_x.name();
         std::replace(result.begin(), result.end(), '[', '_');
         std::replace(result.begin(), result.end(), ']', ' ');
         return result;
@@ -35,6 +29,13 @@ void Algorithm::plot(const std::string& t_filename, bool t_run_command) {
         return "[shape=\"diamond\"]";
     };
 
+    const auto transition_style = [](const Transition::Any& t_transition) {
+        if (!t_transition.has_handler()) {
+            return "[color=\"blue\",label=\"virtual\"]";
+        }
+        return "";
+    };
+
     std::ofstream file(t_filename + ".dot");
 
     if (!file.is_open()) {
@@ -44,20 +45,21 @@ void Algorithm::plot(const std::string& t_filename, bool t_run_command) {
     file << "digraph G {";
 
     file << "\n\n\t// state definitions\n";
-    for (const auto& state_and_successors : transitions) {
+    for (const auto& transition : t_algorithm.transitions()) {
         file << "\t"
-             << name(state_and_successors.first)
-             << node_style(state_and_successors.second.size() <= 1)
+             << name(transition.initial_state())
+             << node_style(transition.next_states().size() <= 1)
              << ";\n";
     }
 
     file << "\n\n\t// transition definition\n";
-    for (const auto& state_and_successors : transitions) {
-        for (const auto& next_state : state_and_successors.second) {
+    for (const auto& transition : t_algorithm.transitions()) {
+        for (const auto& next_state : transition.next_states()) {
             file << "\t"
-                 << name(state_and_successors.first)
+                 << name(transition.initial_state())
                  << " -> "
                  << name(next_state)
+                 << transition_style(transition)
                  << ";\n";
         }
     }

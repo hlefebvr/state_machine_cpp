@@ -44,7 +44,7 @@ void Algorithm::Builder::Transitions::override_if(const State::Any &t_initial_st
     create_or_override_if(true, t_initial_state, t_if_true, t_else, &t_handler);
 }
 
-void Algorithm::Builder::Transitions::create(const State::Any &t_initial_state, const State::Any &t_next_state) {
+void Algorithm::Builder::Transitions::create_virtual(const State::Any &t_initial_state, const State::Any &t_next_state) {
     create_or_override(false, t_initial_state, t_next_state, nullptr);
 }
 
@@ -52,12 +52,11 @@ void Algorithm::Builder::Transitions::override(const State::Any &t_initial_state
     create_or_override(true, t_initial_state, t_next_state, nullptr);
 }
 
-void Algorithm::Builder::Transitions::create_if(const State::Any &t_initial_state, const State::Any &t_if_true,
-                                                const State::Any &t_else) {
+void Algorithm::Builder::Transitions::create_if_virtual(const State::Any &t_initial_state, const State::Any &t_if_true,
+                                                        const State::Any &t_else) {
     create_or_override_if(false, t_initial_state, t_if_true, t_else, nullptr);
 }
 
-void Algorithm::Builder::Transitions::override_if(const State::Any &t_initial_state, const State::Any &t_if_true,
-                                                  const State::Any &t_else) {
-    create_or_override_if(true, t_initial_state, t_if_true, t_else, nullptr);
+void Algorithm::Builder::Transitions::create(const State::Any &t_initial_state, const State::Any &t_next_state) {
+    create_or_override(false, t_initial_state, t_next_state, &Transition::DO_NOTHING);
 }

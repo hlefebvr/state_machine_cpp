@@ -11,7 +11,7 @@
 
 #include "../states/StateInstance.h"
 #include "../states/hash.h"
-#include "TransitionHandlerType.h"
+#include "TransitionHandler.h"
 
 #include <vector>
 

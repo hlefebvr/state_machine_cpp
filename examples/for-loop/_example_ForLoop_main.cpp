@@ -53,7 +53,7 @@ struct Counter final : public Algorithm::Builder {
         states.create(FINAL_STATE);
 
         states.create(MY_STATE);
-        //transitions.create(MY_STATE, FINAL_STATE);
+        transitions.create_virtual(MY_STATE, FINAL_STATE);
 
         transitions.create(INITIAL_STATE, CHECK_IF_HAS_CONVERGED, initialize_attributes);
         transitions.create_if(CHECK_IF_HAS_CONVERGED, FINAL_STATE, SHOW_COUNTER, check_convergence);
@@ -69,9 +69,9 @@ int main() {
 
     Algorithm::Instance algorithm;
     Algorithm::build<Counter>(algorithm);
-    Algorithm::sanity_check(algorithm);
 
-    Algorithm::plot<Counter>("my_file");
+    Algorithm::sanity_check(algorithm);
+    Algorithm::plot(algorithm, "my_file");
 
     CounterAttributes counter_attributes;
     InitialContext<CounterAttributes> context(counter_attributes);

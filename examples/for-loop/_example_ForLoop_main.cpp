@@ -64,7 +64,7 @@ int main() {
     Algorithm::Instance algorithm;
     Algorithm::build<Counter>(algorithm);
 
-    Algorithm::plot<Counter>();
+    Algorithm::plot<Counter>("my_file");
 
     CounterAttributes counter_attributes;
     InitialContext<CounterAttributes> context(counter_attributes);

@@ -35,7 +35,7 @@ void Algorithm::Instance::create_any_transition(const State::Instance &t_initial
             throw std::runtime_error("Cannot override a non-existing transition. Use create. "
                                      "Initial state: " + t_initial_instance.name());
         }
-        m_transitions.emplace(t_initial_instance).first->set_handler(t_handler_creator());
+        it->set_handler(t_handler_creator());
 
     } else {
 
@@ -43,7 +43,7 @@ void Algorithm::Instance::create_any_transition(const State::Instance &t_initial
             throw std::runtime_error("Cannot create twice the same transition. Use override. "
                                      "Initial state: " + t_initial_instance.name());
         }
-        m_transitions.find(t_initial_instance)->set_handler(t_handler_creator());
+        it->set_handler(t_handler_creator());
 
     }
 }
@@ -102,10 +102,11 @@ void Algorithm::Instance::create_transition_if(const State::Instance &t_initial_
 }
 
 void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
-    if (!has(t_instance)) {
+    auto it = m_transitions.find(t_instance);
+    if (it == m_transitions.end() || !it->has_handler()) {
         throw std::runtime_error("Cannot remove a non-existing transition instance");
     }
-    m_transitions.find(t_instance)->set_handler(nullptr);
+    it->set_handler(nullptr);
 }
 
 void Algorithm::Instance::run(Context &t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const {

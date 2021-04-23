@@ -26,6 +26,8 @@ private:
 
 class Algorithm::Builder::Indirection {
     const unsigned int m_level;
+protected:
+    State::Instance as_instance(const State::Any& t_state) const;
 public:
     explicit Indirection(unsigned int t_level);
     unsigned int level() const;

@@ -12,6 +12,10 @@ unsigned int Algorithm::Builder::Indirection::level() const {
     return m_level;
 }
 
+State::Instance Algorithm::Builder::Indirection::as_instance(const State::Any &t_any) const {
+    return t_any.as_instance(m_level);
+}
+
 Algorithm::Builder::States::States(unsigned int t_level) : Indirection(t_level) {
 
 }

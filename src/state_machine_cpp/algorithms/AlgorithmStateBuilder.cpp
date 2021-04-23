@@ -11,11 +11,9 @@ Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, unsig
 }
 
 void Algorithm::Impl::Build::States::create(const State::Any &t_state) {
-    auto instance = t_state.as_instance(level());
-    m_destination.create_state(instance);
+    m_destination.create_state(as_instance(t_state));
 }
 
 void Algorithm::Impl::Build::States::remove(const State::Any &t_state) {
-    auto instance = t_state.as_instance(level());
-    m_destination.remove_state(instance);
+    m_destination.remove_state(as_instance(t_state));
 }

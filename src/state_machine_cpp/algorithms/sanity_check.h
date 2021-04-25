@@ -6,11 +6,18 @@
 #define STATE_MACHINE_CPP_LIB_SANITY_CHECK_H
 
 namespace Algorithm {
-    void sanity_check(const Algorithm::Instance& t_algorithm);
+    bool sanity_check(const Algorithm::Instance& t_algorithm);
 }
 
-void Algorithm::sanity_check(const Algorithm::Instance& t_algorithm) {
+bool Algorithm::sanity_check(const Algorithm::Instance& t_algorithm) {
+
+    bool result = true;
     const auto& transitions = t_algorithm.transitions();
+
+    if (transitions.empty()) {
+        std::cout << "WARNING(EMPTY_ALGORITHM), the algorithm instance is empty" << std::endl;
+        result = false;
+    }
 
     for (const auto& transition : transitions) {
 
@@ -19,12 +26,15 @@ void Algorithm::sanity_check(const Algorithm::Instance& t_algorithm) {
 
         if (successors.empty()) {
             std::cout << "WARNING(STATE_WITHOUT_ANY_SUCCESSOR), " << state << " has no successor" << std::endl;
+            result = false;
         } else if (!transition.has_handler()) {
             std::cout << "WARNING(VIRTUAL_TRANSITION), " << state << " has a virtual transition" << std::endl;
+            result = false;
         }
 
     }
 
+    return result;
 }
 
 #endif //STATE_MACHINE_CPP_LIB_SANITY_CHECK_H

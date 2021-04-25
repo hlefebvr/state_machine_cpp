@@ -34,7 +34,7 @@ void Algorithm::plot(const Algorithm::Instance& t_algorithm, const std::string& 
             return "[color=\"blue\",label=\"virtual\"]";
         }
         if (t_transition.is_final()) {
-            return "[penwidth=2]";
+            return "[color=\"red\"]";
         }
         return "";
     };

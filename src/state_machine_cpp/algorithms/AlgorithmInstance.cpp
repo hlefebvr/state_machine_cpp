@@ -116,7 +116,11 @@ void Algorithm::Instance::run(Context &t_context, const State::Id& t_initial_sta
 
 const State::Instance &
 Algorithm::Instance::apply_transition(const State::Instance &t_instance, Context &t_context) const {
-    return m_transitions.find(t_instance)->operator()(t_context);
+    auto it = m_transitions.find(t_instance);
+    if (it == m_transitions.end()) {
+        throw std::runtime_error("Algorithm execution failed: called an undefined transition.");
+    }
+    return it->operator()(t_context);
 }
 
 const Algorithm::Instance::Set<Transition::Any> &Algorithm::Instance::transitions() const {

@@ -12,7 +12,7 @@ Transition::Any::Any(const State::Instance &t_initial_state) : m_initial_state(t
 }
 
 const State::Instance &Transition::Any::operator()(Context &t_context) const {
-    assert(!!m_function);
+    assert(bool(m_function));
     int result = m_function(t_context);
     assert(result < m_next_states.size());
     return m_next_states[result];

@@ -14,12 +14,20 @@ namespace Algorithm {
     class Instance;
 }
 
+namespace Algorithm {
+    template<class T> void build(Algorithm::Instance& t_destination);
+}
+
 class Algorithm::Builder {
 public:
     class States;
     class Transitions;
 
+    template<class T> friend void ::Algorithm::build(Algorithm::Instance& t_destination);
+
     virtual void build(States& states, Transitions& transitions) = 0;
+protected:
+    template<class T> static void inherit(States& states, Transitions& transitions);
 private:
     class Indirection;
 };
@@ -63,5 +71,11 @@ public:
     virtual void remove(const State::Any& t_state) = 0;
     virtual void declare_as_final(const State::Any& t_state) = 0;
 };
+
+template<class T>
+void Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions) {
+    T builder;
+    builder.build(states, transitions);
+}
 
 #endif //STATE_MACHINE_CPP_BUILDER_H

@@ -42,8 +42,8 @@ set_target_properties(state_machine_cpp PROPERTIES VERSION ${PROJECT_VERSION})
 
 # configures version file
 string(TOUPPER ${LIBRARY_NAME} CAPITAL_LIBRARY_NAME)
-configure_file(version.h.in version.h)
-list(APPEND ${PUBLIC_FILES} ${PROJECT_BINARY_DIR}/version.h)
+configure_file(version.h.in ../version.h @ONLY)
+list(APPEND PUBLIC_FILES ${PROJECT_BINARY_DIR}/version.h)
 
 # define API
 set_target_properties(${LIBRARY_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_FILES}")
@@ -56,3 +56,11 @@ install(TARGETS ${LIBRARY_NAME}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_NAME}
     )
+
+# define custom target
+add_custom_target(install_${LIBRARY_NAME}
+                    sudo "${CMAKE_COMMAND}" --build "${CMAKE_BINARY_DIR}" --target install
+                    COMMENT "Installing ${LIBRARY_NAME}")
+
+# define target
+add_executable(state_machine_cpp_main main.cpp)

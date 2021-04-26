@@ -77,3 +77,9 @@ To build the documentation, use doxygen as follows:
 cd docs
 doxygen Doxyfile
 ```
+
+## TODO
+
+- implement levels
+- double loop example
+- move library in namespace

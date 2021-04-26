@@ -74,6 +74,9 @@ public:
 
 template<class T>
 void Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions) {
+    if (states.level() != transitions.level()) {
+        throw std::runtime_error("Cannot inherit from an algorithm with states and transitions not at the same level.");
+    }
     T builder;
     builder.build(states, transitions);
 }

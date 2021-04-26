@@ -14,16 +14,18 @@ struct PowerLoopAttributes {
 void compute_power(Context& context) {
     const unsigned int i = context.get<CounterAttributes>().iteration;
     const double power = context.get<PowerLoopAttributes>().power;
-    std::cout << std::pow(i, power) << std::endl;
+    std::cout << i << "^" << power << " = " << std::pow(i, power) << std::endl;
 }
 
 class PowerLoop : public Algorithm::Builder {
 public:
 
     void build(States &states, Transitions &transitions) override {
+
         inherit<Counter>(states, transitions);
 
         transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, compute_power);
+
     }
 };
 

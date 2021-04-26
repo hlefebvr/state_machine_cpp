@@ -14,7 +14,6 @@ void Algorithm::build(Algorithm::Instance& t_destination) {
 
     Impl::Build::States states(t_destination, 0);
     Impl::Build::Transitions transitions(t_destination, 0);
-
     Algorithm::Builder::inherit<T>(states, transitions);
 
 }

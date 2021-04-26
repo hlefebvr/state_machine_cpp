@@ -1,5 +1,9 @@
 # state_machine_cpp library
 
+![releases](https://img.shields.io/github/v/release/hlefebvr/state_machine_cpp)
+![open_issues](https://img.shields.io/github/issues-raw/hlefebvr/state_machine_cpp)
+![closed_issues](https://img.shields.io/github/issues-closed-raw/hlefebvr/state_machine_cpp)
+
 ## Installation
 
 ### Dependencies

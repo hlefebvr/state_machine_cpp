@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.19)
-project(state_machine_cpp_lib)
+cmake_minimum_required(VERSION 3.9)
+project(state_machine_cpp VERSION 0.1 DESCRIPTION "State machine algorithms in C++")
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
-add_subdirectory(src)
+add_subdirectory(lib)
 add_subdirectory(examples)

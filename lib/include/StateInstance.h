@@ -8,7 +8,7 @@
 #include <string>
 #include <stdexcept>
 
-#include "../utils/comparable.h"
+#include "comparable.h"
 
 template<class> class hash;
 

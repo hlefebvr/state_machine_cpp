@@ -8,7 +8,7 @@
 #include <string>
 
 #include "StateInstance.h"
-#include "../utils/comparable.h"
+#include "comparable.h"
 
 namespace State {
     struct Id;

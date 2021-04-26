@@ -8,7 +8,7 @@
 #include <robin_hood/robin_hood.h>
 
 #include "Builder.h"
-#include "../transitions/TransitionAny.h"
+#include "TransitionAny.h"
 
 namespace Algorithm {
     class Instance;

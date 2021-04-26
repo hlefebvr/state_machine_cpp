@@ -5,7 +5,7 @@
 #ifndef STATE_MACHINE_CPP_CONTEXT_H
 #define STATE_MACHINE_CPP_CONTEXT_H
 
-#include "../utils/Pointer.h"
+#include "Pointer.h"
 
 class Context {
 public:

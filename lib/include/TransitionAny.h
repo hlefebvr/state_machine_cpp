@@ -9,8 +9,8 @@
 #include <list>
 #include <functional>
 
-#include "../states/StateInstance.h"
-#include "../states/hash.h"
+#include "StateInstance.h"
+#include "hash.h"
 #include "TransitionHandler.h"
 
 #include <vector>

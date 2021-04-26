@@ -5,14 +5,14 @@
 #ifndef STATE_MACHINE_CPP_LIB__EXAMPLE_FOR_LOOP_H
 #define STATE_MACHINE_CPP_LIB__EXAMPLE_FOR_LOOP_H
 
-#include <state_machine_cpp/states/StateId.h>
-#include <state_machine_cpp/context/Context.h>
-#include <state_machine_cpp/algorithms/Builder.h>
-#include <state_machine_cpp/algorithms/build.h>
-#include <state_machine_cpp/context/InitialContext.h>
-#include <state_machine_cpp/algorithms/AlgorithmInstance.h>
-#include <state_machine_cpp/algorithms/plot.h>
-#include <state_machine_cpp/algorithms/sanity_check.h>
+#include <state_machine_cpp/StateId.h>
+#include <state_machine_cpp/Context.h>
+#include <state_machine_cpp/Builder.h>
+#include <state_machine_cpp/build.h>
+#include <state_machine_cpp/InitialContext.h>
+#include <state_machine_cpp/AlgorithmInstance.h>
+#include <state_machine_cpp/plot.h>
+#include <state_machine_cpp/sanity_check.h>
 
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");

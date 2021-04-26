@@ -2,13 +2,13 @@
 // Created by henri on 22/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_ALGORITHMINSTANCE_H
-#define STATE_MACHINE_CPP_ALGORITHMINSTANCE_H
+#ifndef STATE_MACHINE_CPP_ALGORITHM_H
+#define STATE_MACHINE_CPP_ALGORITHM_H
 
 #include <robin_hood/robin_hood.h>
 
-#include "Builder.h"
-#include "TransitionAny.h"
+#include "builder.h"
+#include "transitions.h"
 
 namespace Algorithm {
     class Instance;
@@ -55,5 +55,33 @@ public:
     const Set<Transition::Any>& transitions() const;
 };
 
+class Algorithm::Impl::Build::States : public Algorithm::Builder::States {
+    Algorithm::Instance& m_destination;
+public:
+    States(Algorithm::Instance& t_destination, unsigned int t_level);
 
-#endif //STATE_MACHINE_CPP_ALGORITHMINSTANCE_H
+    void create(const State::Any& t_state) override;
+    void remove(const State::Any& t_state) override;
+};
+
+class Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitions {
+    Algorithm::Instance& m_destination;
+
+    void create_or_override(bool t_do_override,
+                            const State::Any &t_initial_state,
+                            const State::Any &t_next_state,
+                            Transition::TrivialHandler *t_handler) override;
+    void create_or_override_if(bool t_do_override,
+                               const State::Any &t_initial_state,
+                               const State::Any &t_if_true,
+                               const State::Any &t_else,
+                               Transition::ConditionalHandler *t_handler) override;
+public:
+    Transitions(Algorithm::Instance& t_destination, unsigned int t_level);
+
+    void remove(const State::Any &t_state) override;
+
+    void declare_as_final(const State::Any &t_state) override;
+};
+
+#endif //STATE_MACHINE_CPP_ALGORITHM_H

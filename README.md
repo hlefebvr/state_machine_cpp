@@ -22,6 +22,7 @@ The following commands will install the library as a shared library.
 mkdir build
 cd build
 cmake -DBUILD_SHARED_LIBS=ON .. # to install as a static library, simply use: cmake ..
+make
 sudo make install
 ```
 

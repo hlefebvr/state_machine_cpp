@@ -2,8 +2,8 @@
 // Created by henri on 21/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_HASH_H
-#define STATE_MACHINE_CPP_HASH_H
+#ifndef STATE_MACHINE_CPP___HASH_H
+#define STATE_MACHINE_CPP___HASH_H
 
 template<class T>
 struct hash {
@@ -12,4 +12,4 @@ struct hash {
     }
 };
 
-#endif //STATE_MACHINE_CPP_HASH_H
+#endif //STATE_MACHINE_CPP___HASH_H

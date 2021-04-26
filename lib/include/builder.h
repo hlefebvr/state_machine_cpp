@@ -6,8 +6,8 @@
 #define STATE_MACHINE_CPP_BUILDER_H
 
 #include <iostream>
-#include "StateAny.h"
-#include "TransitionHandler.h"
+#include "states.h"
+#include "transitions.h"
 
 namespace Algorithm {
     class Builder;

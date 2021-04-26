@@ -5,36 +5,30 @@ set(LIBRARY_NAME state_machine_cpp)
 
 # define API files
 set(PUBLIC_FILES
-        include/AlgorithmInstance.h
-        include/Builder_States.h
+        include/__comparable.h
+        include/__hash.h
+        include/__pointer.h
+        include/algorithm.h
+        include/context.h
+        include/builder.h
         include/build.h
-        include/Context.h
-        include/InitialContext.h
-        include/Pointer.h
-        include/StateAny.h
-        include/StateInstance.h
-        include/TransitionHandler.h
-        include/Builder.h
-        include/Builder_Transitions.h
-        include/comparable.h
-        include/hash.h
         include/plot.h
         include/sanity_check.h
-        include/StateId.h
-        include/TransitionAny.h
+        include/states.h
+        include/transitions.h
+        include/basics.h
 )
 
 # define to-be-compiled files
 set(PRIVATE_FILES
-        src/AlgorithmInstance.cpp
-        src/Builder.cpp
-        src/Builder_States.cpp
-        src/Builder_Transitions.cpp
-        src/StateAny.cpp
-        src/StateId.cpp
-        src/StateInstance.cpp
-        src/TransitionAny.cpp
-        src/TransitionHandler.cpp
+        src/algorithm.cpp
+        src/builder.cpp
+        src/builder_states.cpp
+        src/builder_transitions.cpp
+        src/states_any.cpp
+        src/states.cpp
+        src/transitions.cpp
+        src/transition_handlers.cpp
 )
 
 # defines library target

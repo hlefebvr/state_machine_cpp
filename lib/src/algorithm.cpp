@@ -2,7 +2,7 @@
 // Created by henri on 22/04/21.
 //
 
-#include "AlgorithmInstance.h"
+#include "algorithm.h"
 
 bool Algorithm::Instance::has(const State::Instance &t_instance) const {
     return m_transitions.find(t_instance) != m_transitions.end();

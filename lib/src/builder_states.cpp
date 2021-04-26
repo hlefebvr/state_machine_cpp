@@ -2,8 +2,7 @@
 // Created by henri on 22/04/21.
 //
 
-#include "Builder_States.h"
-#include "AlgorithmInstance.h"
+#include "algorithm.h"
 
 Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, unsigned int t_level)
     : Algorithm::Builder::States(t_level), m_destination(t_destination) {

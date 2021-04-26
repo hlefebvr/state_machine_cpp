@@ -1,13 +1,15 @@
 //
-// Created by henri on 22/04/21.
+// Created by henri on 26/04/21.
 //
 
 #ifndef STATE_MACHINE_CPP_BUILD_H
 #define STATE_MACHINE_CPP_BUILD_H
 
-#include "Builder.h"
-#include "Builder_States.h"
-#include "Builder_Transitions.h"
+#include "algorithm.h"
+
+namespace Algorithm {
+    class Instance;
+}
 
 template<class T>
 void Algorithm::build(Algorithm::Instance& t_destination) {

@@ -2,8 +2,15 @@
 // Created by henri on 21/04/21.
 //
 
-#include "StateInstance.h"
-#include "StateId.h"
+#include "states.h"
+
+#include <iostream>
+
+State::Id::Id(const char *t_name) noexcept : m_name(t_name), m_hash(std::hash<std::string>()(t_name)) {}
+
+std::ostream& operator<<(std::ostream& t_os, const State::Id& t_id) {
+    return t_os << t_id.name();
+}
 
 std::ostream& operator<<(std::ostream& t_os, const State::Instance& t_id) {
     return t_os << t_id.name();
@@ -38,4 +45,3 @@ std::string State::Instance::name() const {
     }
     return m_id->m_name + '[' + std::to_string(m_level) + ']';
 }
-

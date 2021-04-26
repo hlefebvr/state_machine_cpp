@@ -2,21 +2,27 @@
 // Created by henri on 22/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_TRANSITIONANY_H
-#define STATE_MACHINE_CPP_TRANSITIONANY_H
+#ifndef STATE_MACHINE_CPP_TRANSITIONS_H
+#define STATE_MACHINE_CPP_TRANSITIONS_H
 
 #include <memory>
 #include <list>
 #include <functional>
 
-#include "StateInstance.h"
-#include "hash.h"
-#include "TransitionHandler.h"
+#include "states.h"
+#include "__hash.h"
 
 #include <vector>
 
+class Context;
+
 namespace Transition {
     class Any;
+
+    using TrivialHandler = void(Context&);
+    using ConditionalHandler = bool(const Context&);
+
+    void DO_NOTHING(Context&);
 }
 
 class Transition::Any {
@@ -50,4 +56,4 @@ public:
 };
 
 
-#endif //STATE_MACHINE_CPP_TRANSITIONANY_H
+#endif //STATE_MACHINE_CPP_TRANSITIONS_H

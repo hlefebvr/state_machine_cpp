@@ -2,28 +2,22 @@
 // Created by henri on 22/04/21.
 //
 
-#ifndef STATE_MACHINE_CPP_TRANSITIONS_H
-#define STATE_MACHINE_CPP_TRANSITIONS_H
+#ifndef STATE_MACHINE_CPP_TRANSITION_ANY_H
+#define STATE_MACHINE_CPP_TRANSITION_ANY_H
 
 #include <memory>
 #include <list>
 #include <functional>
 
-#include "states.h"
+#include "state.h"
 #include "__hash.h"
 
 #include <vector>
 
 namespace state_machine_cpp {
     class Context;
-
     namespace Transition {
         class Any;
-
-        using TrivialHandler = void(Context &);
-        using ConditionalHandler = bool(const Context &);
-
-        void DO_NOTHING(Context &);
     }
 }
 
@@ -58,4 +52,4 @@ public:
 };
 
 
-#endif //STATE_MACHINE_CPP_TRANSITIONS_H
+#endif //STATE_MACHINE_CPP_TRANSITION_ANY_H

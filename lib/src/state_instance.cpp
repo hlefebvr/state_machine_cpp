@@ -1,16 +1,9 @@
 //
-// Created by henri on 21/04/21.
+// Created by henri on 27/04/21.
 //
 
-#include "states.h"
-
-#include <iostream>
-
-state_machine_cpp::State::Id::Id(const char *t_name) noexcept : m_name(t_name), m_hash(std::hash<std::string>()(t_name)) {}
-
-std::ostream& operator<<(std::ostream& t_os, const state_machine_cpp::State::Id& t_id) {
-    return t_os << t_id.name();
-}
+#include "state_instance.h"
+#include "state_id.h"
 
 std::ostream& operator<<(std::ostream& t_os, const state_machine_cpp::State::Instance& t_id) {
     return t_os << t_id.name();

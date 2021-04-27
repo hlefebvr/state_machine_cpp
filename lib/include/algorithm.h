@@ -9,7 +9,7 @@
 #include <stack>
 
 #include "builder.h"
-#include "transitions.h"
+#include "transition.h"
 
 namespace state_machine_cpp {
     namespace Algorithm {
@@ -54,45 +54,6 @@ class state_machine_cpp::Algorithm::Instance {
     void set_as_final(const State::Instance& t_instance);
 public:
     const Set<Transition::Any>& transitions() const;
-};
-
-class state_machine_cpp::Algorithm::Impl::Build::Layers : public Algorithm::Builder::Layers {
-    std::stack<unsigned int> m_layers;
-    unsigned int m_max_layer = 0;
-public:
-    unsigned int current() const override;
-    unsigned int create() override;
-    unsigned int use(unsigned int t_layer) override;
-    void close() override;
-};
-
-class state_machine_cpp::Algorithm::Impl::Build::States : public Algorithm::Builder::States {
-    Algorithm::Instance& m_destination;
-public:
-    States(Algorithm::Instance& t_destination, const Layers* t_layer);
-
-    void create(const State::Any& t_state) override;
-    void remove(const State::Any& t_state) override;
-};
-
-class state_machine_cpp::Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitions {
-    Algorithm::Instance& m_destination;
-
-    void create_or_override(bool t_do_override,
-                            const State::Any &t_initial_state,
-                            const State::Any &t_next_state,
-                            Transition::TrivialHandler *t_handler) override;
-    void create_or_override_if(bool t_do_override,
-                               const State::Any &t_initial_state,
-                               const State::Any &t_if_true,
-                               const State::Any &t_else,
-                               Transition::ConditionalHandler *t_handler) override;
-public:
-    Transitions(Algorithm::Instance& t_destination, const Layers* t_layer);
-
-    void remove(const State::Any &t_state) override;
-
-    void declare_as_final(const State::Any &t_state) override;
 };
 
 #endif //STATE_MACHINE_CPP_ALGORITHM_H

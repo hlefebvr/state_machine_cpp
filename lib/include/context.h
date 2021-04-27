@@ -6,12 +6,10 @@
 #define STATE_MACHINE_CPP_CONTEXT_H
 
 #include "__pointer.h"
-#include "states.h"
+#include "state.h"
 
 namespace state_machine_cpp {
     class Context;
-    template<class ...Args> class SimpleContext;
-    template<unsigned int N_LAYER> class LayeredContext;
     namespace Algorithm {
         void run(const Algorithm::Instance &t_instance,
                  Context &t_context,
@@ -59,33 +57,5 @@ public:
 
 };
 
-template<class ...Args>
-class state_machine_cpp::SimpleContext : public Context, public Pointer<Args>... {
-public:
-    SimpleContext() : Pointer<Args>()... {} // NOLINT(modernize-use-equals-default)
-    explicit SimpleContext(Args& ...t_args) : Pointer<Args>(&t_args)... {}
-
-    template<class T> void set(T& t_value) { Pointer<T>::operator=(&t_value); }
-    using Context::get;
-protected:
-    Context *operator[](unsigned int t_index) override { return this; }
-    const Context *operator[](unsigned int t_index) const override { return this; }
-};
-
-template<unsigned int N_LAYER>
-class state_machine_cpp::LayeredContext : public Context {
-    std::array<Context*, N_LAYER> m_layers;
-protected:
-    Context *operator[](unsigned int t_index) override {
-        return m_layers[t_index];
-    }
-    const Context *operator[](unsigned int t_index) const override {
-        return m_layers[t_index];
-    }
-public:
-    LayeredContext() = default;
-    template<class ...Args> explicit LayeredContext(Args& ...t_args) : Context(), m_layers({&t_args...}) {}
-    void set(unsigned int t_layer, Context& t_value) { m_layers[t_layer] = &t_value; }
-};
 
 #endif //STATE_MACHINE_CPP_CONTEXT_H

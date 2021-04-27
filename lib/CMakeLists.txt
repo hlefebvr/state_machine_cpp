@@ -8,26 +8,59 @@ set(PUBLIC_FILES
         include/__comparable.h
         include/__hash.h
         include/__pointer.h
+
+        include/state.h
+        include/state_id.h
+        include/state_instance.h
+        include/state_any.h
+
+        include/transition.h
+        include/transition_any.h
+        include/transition_handlers.h
+
         include/algorithm.h
-        include/context.h
+
         include/builder.h
+        include/builder_layers.h
+        include/builder_indirection.h
+        include/builder_states.h
+        include/builder_transitions.h
+        include/builder_impl_layers.h
+        include/builder_impl_states.h
+        include/builder_impl_transitions.h
+
+        include/context.h
+        include/context_simple.h
+        include/context_layered.h
+
         include/build.h
         include/plot.h
         include/sanity_check.h
-        include/states.h
-        include/transitions.h
-        include/basics.h
         include/run.h
+
+        include/basics.h
 )
 
 # define to-be-compiled files
 set(PRIVATE_FILES
-        src/algorithm.cpp
-        src/builder.cpp
-        src/states_any.cpp
-        src/states.cpp
-        src/transitions.cpp
+        src/state.cpp
+        src/state_any.cpp
+        src/state_id.cpp
+        src/state_instance.cpp
+
+        src/transition_any.cpp
         src/transition_handlers.cpp
+
+        src/algorithm.cpp
+
+        src/builder.cpp
+        src/builder_layers.cpp
+        src/builder_indirection.cpp
+        src/builder_states.cpp
+        src/builder_transitions.cpp
+        src/builder_impl_layers.cpp
+        src/builder_impl_states.cpp
+        src/builder_impl_transitions.cpp
 )
 list(APPEND PRIVATE_FILES "${PUBLIC_FILES}") # this is for CLion to enable code insight features...
 

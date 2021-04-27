@@ -13,9 +13,9 @@ int main() {
     Algorithm::plot(algorithm, "my_file");
 
     CounterAttributes counter_attributes(10);
-    InitialContext<CounterAttributes> context(counter_attributes);
+    SimpleContext<CounterAttributes> context(counter_attributes);
 
-    algorithm.run(context, INITIAL_STATE, FINAL_STATE);
+    Algorithm::run(algorithm, context, INITIAL_STATE, FINAL_STATE);
 
     return 0;
 }

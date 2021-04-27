@@ -29,7 +29,6 @@ class Algorithm::Instance {
     Set<Transition::Any> m_transitions;
 
     bool has(const State::Instance& t_instance) const;
-    const State::Instance& apply_transition(const State::Instance& t_instance, Context& t_context) const;
 
     friend class Algorithm::Impl::Build::States;
     void create_state(const State::Instance& t_instance);
@@ -52,8 +51,6 @@ class Algorithm::Instance {
     void remove_transition(const State::Instance& t_instance);
     void set_as_final(const State::Instance& t_instance);
 public:
-    void run(Context& t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const;
-
     const Set<Transition::Any>& transitions() const;
 };
 

@@ -19,6 +19,10 @@ void Algorithm::build(Algorithm::Instance& t_destination) {
     Impl::Build::Transitions transitions(t_destination, &layers);
     Algorithm::Builder::inherit<T>(states, transitions, layers);
 
+    if (layers.current() != 0) {
+        throw std::runtime_error("There were some opened layers which failed to be closed.");
+    }
+
 }
 
 #endif //STATE_MACHINE_CPP_BUILD_H

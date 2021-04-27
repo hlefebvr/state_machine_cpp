@@ -104,25 +104,6 @@ void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     it->reset_handler();
 }
 
-void Algorithm::Instance::run(Context &t_context, const State::Id& t_initial_state, const State::Id& t_final_state) const {
-
-    State::Instance current_state = t_initial_state;
-    do {
-        current_state = apply_transition(current_state, t_context);
-    } while (current_state != t_final_state);
-    current_state = apply_transition(current_state, t_context);
-
-}
-
-const State::Instance &
-Algorithm::Instance::apply_transition(const State::Instance &t_instance, Context &t_context) const {
-    auto it = m_transitions.find(t_instance);
-    if (it == m_transitions.end()) {
-        throw std::runtime_error("Algorithm execution failed: called an undefined transition.");
-    }
-    return it->operator()(t_context);
-}
-
 const Algorithm::Instance::Set<Transition::Any> &Algorithm::Instance::transitions() const {
     return m_transitions;
 }

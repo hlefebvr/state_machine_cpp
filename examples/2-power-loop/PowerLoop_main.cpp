@@ -35,14 +35,14 @@ int main(int argc, const char** argv) {
 
     CounterAttributes counter_attributes(6);
     PowerLoopAttributes power_attributes(2);
-    InitialContext<CounterAttributes, PowerLoopAttributes> context(counter_attributes, power_attributes);
+    SimpleContext<CounterAttributes, PowerLoopAttributes> context(counter_attributes, power_attributes);
 
     Algorithm::build<PowerLoop>(algorithm);
     Algorithm::sanity_check(algorithm);
 
     Algorithm::plot(algorithm, "power_loop");
 
-    algorithm.run(context, INITIAL_STATE, FINAL_STATE);
+    Algorithm::run(algorithm, context, INITIAL_STATE, FINAL_STATE);
 
     return 0;
 }

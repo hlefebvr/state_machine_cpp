@@ -17,6 +17,7 @@ set(PUBLIC_FILES
         include/states.h
         include/transitions.h
         include/basics.h
+        include/run.h
 )
 
 # define to-be-compiled files

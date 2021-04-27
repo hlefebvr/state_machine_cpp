@@ -1,0 +1,2 @@
+add_executable(3_DoubleLoop DoubleLoop_main.cpp)
+target_link_libraries(3_DoubleLoop state_machine_cpp)

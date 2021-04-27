@@ -39,6 +39,7 @@ public:
 
     std::string name() const;
     inline const State::Id& id() const;
+    inline unsigned int layer() const;
 };
 
 struct State::Id : public Util::comparable<State::Id> {
@@ -78,6 +79,11 @@ const State::Id &State::Instance::id() const {
     }
     return *m_id;
 }
+
+unsigned int State::Instance::layer() const {
+    return m_level;
+}
+
 
 class State::Any {
     State::Instance m_instance;

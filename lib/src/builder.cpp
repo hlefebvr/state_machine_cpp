@@ -45,7 +45,7 @@ void Algorithm::Builder::Transitions::create_virtual(const State::Any &t_initial
 }
 
 void Algorithm::Builder::Transitions::override(const State::Any &t_initial_state, const State::Any &t_next_state) {
-    create_or_override(true, t_initial_state, t_next_state, nullptr);
+    create_or_override(true, t_initial_state, t_next_state, &Transition::DO_NOTHING);
 }
 
 void Algorithm::Builder::Transitions::create_if_virtual(const State::Any &t_initial_state, const State::Any &t_if_true,

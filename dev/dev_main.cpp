@@ -54,18 +54,32 @@ struct Counter final : public Algorithm::Builder {
 
 };
 
+void show_double_counter(Context& context) {
+    std::cout << context.get_relative<CounterAttributes>(-1).iteration
+              << ", "
+              << context.get<CounterAttributes>().iteration
+              << std::endl;
+}
+
+class DoubleLoop : public Algorithm::Builder {
+public:
+    void build(States &states, Transitions &transitions, Layers &layers) override {
+        inherit<Counter>(states, transitions, layers);
+
+        unsigned int A = layers.create();
+            inherit<Counter>(states, transitions, layers);
+            transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, show_double_counter);
+        layers.close();
+
+        transitions.override(SHOW_COUNTER, INITIAL_STATE[A]);
+        transitions.override(FINAL_STATE[A], INCREMENT_COUNTER);
+
+    }
+};
+
 int main(int argc, const char** argv) {
 
-    Algorithm::Instance algorithm;
-    Algorithm::build<Counter>(algorithm);
 
-    Algorithm::sanity_check(algorithm);
-    //Algorithm::plot(algorithm, "my_file");
-
-    CounterAttributes counter_attributes(10);
-    InitialContext<CounterAttributes> context(counter_attributes);
-
-    algorithm.run(context, INITIAL_STATE, FINAL_STATE);
 
     return 0;
 }

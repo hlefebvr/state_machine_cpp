@@ -12,6 +12,8 @@
 #include "builder.h"
 #include "build.h"
 
+#include "run.h"
+
 #include "plot.h"
 
 #include "sanity_check.h"

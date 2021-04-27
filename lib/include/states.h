@@ -9,18 +9,20 @@
 #include <string>
 #include "__comparable.h"
 
-template<class> class hash;
+namespace state_machine_cpp {
+    template<class> class hash;
 
-namespace State {
-    struct Id;
-    class Instance;
-    class Any;
+    namespace State {
+        struct Id;
+        class Instance;
+        class Any;
+    }
 }
 
-std::ostream& operator<<(std::ostream& t_os, const State::Id& t_id);
-std::ostream& operator<<(std::ostream& t_os, const State::Instance& t_id);
+std::ostream& operator<<(std::ostream& t_os, const state_machine_cpp::State::Id& t_id);
+std::ostream& operator<<(std::ostream& t_os, const state_machine_cpp::State::Instance& t_id);
 
-class State::Instance : public Util::comparable<State::Instance> {
+class state_machine_cpp::State::Instance : public Util::comparable<State::Instance> {
 
     const State::Id* m_id = nullptr;
     unsigned int m_layer = 0;
@@ -42,7 +44,7 @@ public:
     inline unsigned int layer() const;
 };
 
-struct State::Id : public Util::comparable<State::Id> {
+struct state_machine_cpp::State::Id : public Util::comparable<State::Id> {
     const std::string m_name;
     const std::size_t m_hash;
 
@@ -61,31 +63,31 @@ public:
     inline State::Instance operator[](unsigned int t_layer) const;
 };
 
-const std::string &State::Id::name() const {
+const std::string &state_machine_cpp::State::Id::name() const {
     return m_name;
 }
 
-bool State::Id::equals_to(const State::Id &t_rhs) const {
+bool state_machine_cpp::State::Id::equals_to(const State::Id &t_rhs) const {
     return m_hash == t_rhs.m_hash;
 }
 
-State::Instance State::Id::operator[](unsigned int t_layer) const {
+state_machine_cpp::State::Instance state_machine_cpp::State::Id::operator[](unsigned int t_layer) const {
     return State::Instance(*this, t_layer);
 }
 
-const State::Id &State::Instance::id() const {
+const state_machine_cpp::State::Id &state_machine_cpp::State::Instance::id() const {
     if (!m_id) {
         throw std::runtime_error("Trying to get State::Id on an undefined state.");
     }
     return *m_id;
 }
 
-unsigned int State::Instance::layer() const {
+unsigned int state_machine_cpp::State::Instance::layer() const {
     return m_layer;
 }
 
 
-class State::Any {
+class state_machine_cpp::State::Any {
     State::Instance m_instance;
     bool m_is_instantiated;
 

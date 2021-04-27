@@ -5,6 +5,8 @@
 #include <iostream>
 #include "../lib/include/basics.h"
 
+using namespace state_machine_cpp;
+
 static const State::Id INITIAL_STATE("INITIAL_STATE");
 static const State::Id CHECK_IF_HAS_CONVERGED("CHECK_IF_HAS_CONVERGED");
 static const State::Id SHOW_COUNTER("SHOW_COUNTER");

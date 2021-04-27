@@ -7,12 +7,14 @@
 
 #include "algorithm.h"
 
-namespace Algorithm {
-    class Instance;
+namespace state_machine_cpp {
+    namespace Algorithm {
+        class Instance;
+    }
 }
 
 template<class T>
-void Algorithm::build(Algorithm::Instance& t_destination) {
+void state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination) {
 
     Impl::Build::Layers layers;
     Impl::Build::States states(t_destination, &layers);

@@ -31,16 +31,16 @@ and include files will be placed in `/usr/local/include/state_machine_cpp/`.
 
 ### Compiling and running examples
 
-**Once the library is installed**, you can compile example *example_ForLoop* (for instance)
+**Once the library is installed**, you can compile example *1_ForLoop* (for instance)
 as follows:
 ```shell
 cd build
 cmake ..
-make example_ForLoop # for instance
+make 1_ForLoop # for instance
 ```
 Then execute it with
 ```shell
-./examples/1-for-loop/example_ForLoop
+./examples/1-for-loop/1_ForLoop
 ```
 
 ### Linking with cmake
@@ -60,9 +60,8 @@ Then, your `main.cpp` may look like the following:
 int main(int argc, const char** argv) {
 
     std::cout 
-             << "Successfully linked with state_machine_cpp, "
-             "0-version " << STATE_MACHINE_CPP_VERSION_MAJOR
-             << '.' << STATE_MACHINE_CPP_VERSION_MINOR 
+             << "Successfully installed and linked with state_machine_cpp, "
+             "version " << STATE_MACHINE_CPP_VERSION
              << std::endl;
     
     return 0;

@@ -7,17 +7,19 @@
 
 #include "context.h"
 
-namespace Algorithm {
-    void run(const Algorithm::Instance& t_instance,
-             Context& t_context,
-             const State::Id& t_initial_state,
-             const State::Id& t_final_state);
+namespace state_machine_cpp {
+    namespace Algorithm {
+        void run(const Algorithm::Instance &t_instance,
+                 Context &t_context,
+                 const State::Id &t_initial_state,
+                 const State::Id &t_final_state);
+    }
 }
 
-void Algorithm::run(const Algorithm::Instance& t_algorithm,
-         Context& t_context,
-         const State::Id& t_initial_state,
-         const State::Id& t_final_state) {
+void state_machine_cpp::Algorithm::run(const state_machine_cpp::Algorithm::Instance& t_algorithm,
+         state_machine_cpp::Context& t_context,
+         const state_machine_cpp::State::Id& t_initial_state,
+         const state_machine_cpp::State::Id& t_final_state) {
 
     const auto& transitions = t_algorithm.transitions();
 

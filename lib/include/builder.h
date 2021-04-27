@@ -9,22 +9,21 @@
 #include "states.h"
 #include "transitions.h"
 
-namespace Algorithm {
-    class Builder;
-    class Instance;
+namespace state_machine_cpp {
+    namespace Algorithm {
+        class Builder;
+        class Instance;
+        template<class T> void build(Algorithm::Instance& t_destination);
+    }
 }
 
-namespace Algorithm {
-    template<class T> void build(Algorithm::Instance& t_destination);
-}
-
-class Algorithm::Builder {
+class state_machine_cpp::Algorithm::Builder {
 public:
     class States;
     class Transitions;
     class Layers;
 
-    template<class T> friend void ::Algorithm::build(Algorithm::Instance& t_destination);
+    template<class T> friend void ::state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination);
 
     virtual void build(States& states, Transitions& transitions, Layers& layers) = 0;
 protected:
@@ -33,7 +32,7 @@ private:
     class Indirection;
 };
 
-class Algorithm::Builder::Layers {
+class state_machine_cpp::Algorithm::Builder::Layers {
 public:
     virtual unsigned int current() const = 0;
     virtual unsigned int create() = 0;
@@ -41,7 +40,7 @@ public:
     virtual void close() = 0;
 };
 
-class Algorithm::Builder::Indirection {
+class state_machine_cpp::Algorithm::Builder::Indirection {
     const Layers* m_layers;
 protected:
     State::Instance as_instance(const State::Any& t_state) const;
@@ -49,7 +48,7 @@ public:
     explicit Indirection(const Layers* t_layer);
 };
 
-class Algorithm::Builder::States : public Indirection {
+class state_machine_cpp::Algorithm::Builder::States : public Indirection {
 public:
     explicit States(const Layers* t_layer);
 
@@ -57,7 +56,7 @@ public:
     virtual void remove(const State::Any& t_state) = 0;
 };
 
-class Algorithm::Builder::Transitions : public Indirection {
+class state_machine_cpp::Algorithm::Builder::Transitions : public Indirection {
     virtual void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler* t_handler) = 0;
     virtual void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler* t_handler) = 0;
 public:
@@ -81,7 +80,7 @@ public:
 };
 
 template<class T>
-void Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions, Layers& layers) {
+void state_machine_cpp::Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions, Layers& layers) {
     T builder;
     builder.build(states, transitions, layers);
 }

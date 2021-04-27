@@ -5,8 +5,12 @@
 #ifndef STATE_MACHINE_CPP_POINTER_H
 #define STATE_MACHINE_CPP_POINTER_H
 
+namespace state_machine_cpp {
+    template<class T> class Pointer;
+}
+
 template<class T>
-class Pointer {
+class state_machine_cpp::Pointer {
     T* m_value = nullptr;
 public:
     Pointer() = default;

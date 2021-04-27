@@ -11,18 +11,20 @@
 #include "builder.h"
 #include "transitions.h"
 
-namespace Algorithm {
-    class Instance;
-    namespace Impl {
-        namespace Build {
-            class States;
-            class Transitions;
-            class Layers;
+namespace state_machine_cpp {
+    namespace Algorithm {
+        class Instance;
+        namespace Impl {
+            namespace Build {
+                class States;
+                class Transitions;
+                class Layers;
+            }
         }
     }
 }
 
-class Algorithm::Instance {
+class state_machine_cpp::Algorithm::Instance {
 
     template<class T> using Set = robin_hood::unordered_set<T, typename T::by_hash, typename T::by_hash>;
 
@@ -54,7 +56,7 @@ public:
     const Set<Transition::Any>& transitions() const;
 };
 
-class Algorithm::Impl::Build::Layers : public Algorithm::Builder::Layers {
+class state_machine_cpp::Algorithm::Impl::Build::Layers : public Algorithm::Builder::Layers {
     std::stack<unsigned int> m_layers;
     unsigned int m_max_layer = 0;
 public:
@@ -64,7 +66,7 @@ public:
     void close() override;
 };
 
-class Algorithm::Impl::Build::States : public Algorithm::Builder::States {
+class state_machine_cpp::Algorithm::Impl::Build::States : public Algorithm::Builder::States {
     Algorithm::Instance& m_destination;
 public:
     States(Algorithm::Instance& t_destination, const Layers* t_layer);
@@ -73,7 +75,7 @@ public:
     void remove(const State::Any& t_state) override;
 };
 
-class Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitions {
+class state_machine_cpp::Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitions {
     Algorithm::Instance& m_destination;
 
     void create_or_override(bool t_do_override,

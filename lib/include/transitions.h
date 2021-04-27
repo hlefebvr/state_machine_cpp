@@ -14,18 +14,20 @@
 
 #include <vector>
 
-class Context;
+namespace state_machine_cpp {
+    class Context;
 
-namespace Transition {
-    class Any;
+    namespace Transition {
+        class Any;
 
-    using TrivialHandler = void(Context&);
-    using ConditionalHandler = bool(const Context&);
+        using TrivialHandler = void(Context &);
+        using ConditionalHandler = bool(const Context &);
 
-    void DO_NOTHING(Context&);
+        void DO_NOTHING(Context &);
+    }
 }
 
-class Transition::Any {
+class state_machine_cpp::Transition::Any {
     const State::Instance m_initial_state;
     std::function<int(Context&)> m_function {};
     std::vector<State::Instance> m_next_states;

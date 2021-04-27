@@ -5,11 +5,13 @@
 #ifndef STATE_MACHINE_CPP_LIB_SANITY_CHECK_H
 #define STATE_MACHINE_CPP_LIB_SANITY_CHECK_H
 
-namespace Algorithm {
-    bool sanity_check(const Algorithm::Instance& t_algorithm);
+namespace state_machine_cpp {
+    namespace Algorithm {
+        bool sanity_check(const Algorithm::Instance &t_algorithm);
+    }
 }
 
-bool Algorithm::sanity_check(const Algorithm::Instance& t_algorithm) {
+bool state_machine_cpp::Algorithm::sanity_check(const Algorithm::Instance& t_algorithm) {
 
     bool result = true;
     const auto& transitions = t_algorithm.transitions();

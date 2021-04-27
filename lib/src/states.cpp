@@ -6,40 +6,40 @@
 
 #include <iostream>
 
-State::Id::Id(const char *t_name) noexcept : m_name(t_name), m_hash(std::hash<std::string>()(t_name)) {}
+state_machine_cpp::State::Id::Id(const char *t_name) noexcept : m_name(t_name), m_hash(std::hash<std::string>()(t_name)) {}
 
-std::ostream& operator<<(std::ostream& t_os, const State::Id& t_id) {
+std::ostream& operator<<(std::ostream& t_os, const state_machine_cpp::State::Id& t_id) {
     return t_os << t_id.name();
 }
 
-std::ostream& operator<<(std::ostream& t_os, const State::Instance& t_id) {
+std::ostream& operator<<(std::ostream& t_os, const state_machine_cpp::State::Instance& t_id) {
     return t_os << t_id.name();
 }
 
-State::Instance::Instance(const State::Id &t_id) : m_id {&t_id} {
+state_machine_cpp::State::Instance::Instance(const State::Id &t_id) : m_id {&t_id} {
     update_hash();
 }
 
-State::Instance::Instance(const State::Id &t_id, unsigned int t_layer) : m_id{&t_id}, m_layer{t_layer} {
+state_machine_cpp::State::Instance::Instance(const State::Id &t_id, unsigned int t_layer) : m_id{&t_id}, m_layer{t_layer} {
     update_hash();
 }
 
-State::Instance &State::Instance::operator=(const State::Id &t_rhs)  {
+state_machine_cpp::State::Instance &state_machine_cpp::State::Instance::operator=(const State::Id &t_rhs)  {
     m_id = &t_rhs;
     m_layer = 0;
     update_hash();
     return *this;
 }
 
-void State::Instance::update_hash() {
+void state_machine_cpp::State::Instance::update_hash() {
     m_hash = std::hash<std::string>()(name());
 }
 
-bool State::Instance::equals_to(const State::Instance &t_rhs) const {
+bool state_machine_cpp::State::Instance::equals_to(const State::Instance &t_rhs) const {
     return m_hash == t_rhs.m_hash;
 }
 
-std::string State::Instance::name() const {
+std::string state_machine_cpp::State::Instance::name() const {
     if (!m_id) {
         return "UNDEFINED_STATE";
     }

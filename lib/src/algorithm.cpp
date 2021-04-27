@@ -4,25 +4,25 @@
 
 #include "algorithm.h"
 
-bool Algorithm::Instance::has(const State::Instance &t_instance) const {
+bool state_machine_cpp::Algorithm::Instance::has(const State::Instance &t_instance) const {
     return m_transitions.find(t_instance) != m_transitions.end();
 }
 
-void Algorithm::Instance::create_state(const State::Instance& t_instance) {
+void state_machine_cpp::Algorithm::Instance::create_state(const State::Instance& t_instance) {
     if (has(t_instance)) {
         throw std::runtime_error("Cannot create twice the same state instance.");
     }
     m_transitions.emplace(t_instance);
 }
 
-void Algorithm::Instance::remove_state(const State::Instance& t_instance) {
+void state_machine_cpp::Algorithm::Instance::remove_state(const State::Instance& t_instance) {
     if (!has(t_instance)) {
         throw std::runtime_error("Cannot remove a non-existing state instance");
     }
     m_transitions.erase(t_instance);
 }
 
-void Algorithm::Instance::create_any_transition(const State::Instance &t_initial_instance,
+void state_machine_cpp::Algorithm::Instance::create_any_transition(const State::Instance &t_initial_instance,
                                                 std::vector<State::Instance> &&t_next_states,
                                                 std::function<int(Context&)>&& t_handler,
                                                 bool t_should_already_exist) {
@@ -66,7 +66,7 @@ void Algorithm::Instance::create_any_transition(const State::Instance &t_initial
 }
 
 
-void Algorithm::Instance::create_transition(const State::Instance &t_initial_instance,
+void state_machine_cpp::Algorithm::Instance::create_transition(const State::Instance &t_initial_instance,
                                             const State::Instance &t_next_instance,
                                             Transition::TrivialHandler *t_handler,
                                             bool t_should_already_exist) {
@@ -79,7 +79,7 @@ void Algorithm::Instance::create_transition(const State::Instance &t_initial_ins
 
 }
 
-void Algorithm::Instance::create_transition_if(const State::Instance &t_initial_instance,
+void state_machine_cpp::Algorithm::Instance::create_transition_if(const State::Instance &t_initial_instance,
                                                const State::Instance &t_if_instance,
                                                const State::Instance &t_else_instance,
                                                Transition::ConditionalHandler *t_handler,
@@ -93,7 +93,7 @@ void Algorithm::Instance::create_transition_if(const State::Instance &t_initial_
 
 }
 
-void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
+void state_machine_cpp::Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     auto it = m_transitions.find(t_instance);
     if (it == m_transitions.end() || !it->has_handler()) {
         throw std::runtime_error("Cannot remove a non-existing transition instance.");
@@ -104,11 +104,11 @@ void Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     it->reset_handler();
 }
 
-const Algorithm::Instance::Set<Transition::Any> &Algorithm::Instance::transitions() const {
+const state_machine_cpp::Algorithm::Instance::Set<state_machine_cpp::Transition::Any> &state_machine_cpp::Algorithm::Instance::transitions() const {
     return m_transitions;
 }
 
-void Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
+void state_machine_cpp::Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
     auto it = m_transitions.find(t_instance);
     if (it == m_transitions.end()) {
         throw std::runtime_error("Cannot declare a non-existing transition as final.");
@@ -119,17 +119,17 @@ void Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
     it->set_as_final();
 }
 
-unsigned int Algorithm::Impl::Build::Layers::current() const {
+unsigned int state_machine_cpp::Algorithm::Impl::Build::Layers::current() const {
     return m_layers.empty() ? 0 : m_layers.top();
 }
 
-unsigned int Algorithm::Impl::Build::Layers::create() {
+unsigned int state_machine_cpp::Algorithm::Impl::Build::Layers::create() {
     ++m_max_layer;
     m_layers.emplace(m_max_layer);
     return current();
 }
 
-unsigned int Algorithm::Impl::Build::Layers::use(unsigned int t_layer) {
+unsigned int state_machine_cpp::Algorithm::Impl::Build::Layers::use(unsigned int t_layer) {
     if (t_layer > m_max_layer) {
         throw std::runtime_error("The level you are trying to use has not been created. Use create first.");
     }
@@ -137,7 +137,7 @@ unsigned int Algorithm::Impl::Build::Layers::use(unsigned int t_layer) {
     return current();
 }
 
-void Algorithm::Impl::Build::Layers::close() {
+void state_machine_cpp::Algorithm::Impl::Build::Layers::close() {
     if (m_layers.empty()) {
         throw std::runtime_error("Cannot close root layer");
     }
@@ -145,27 +145,27 @@ void Algorithm::Impl::Build::Layers::close() {
 }
 
 
-Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, const Layers* t_layer)
-        : Algorithm::Builder::States(t_layer), m_destination(t_destination) {
+state_machine_cpp::Algorithm::Impl::Build::States::States(state_machine_cpp::Algorithm::Instance &t_destination, const Layers* t_layer)
+        : state_machine_cpp::Algorithm::Builder::States(t_layer), m_destination(t_destination) {
 
 }
 
-void Algorithm::Impl::Build::States::create(const State::Any &t_state) {
+void state_machine_cpp::Algorithm::Impl::Build::States::create(const State::Any &t_state) {
     m_destination.create_state(as_instance(t_state));
 }
 
-void Algorithm::Impl::Build::States::remove(const State::Any &t_state) {
+void state_machine_cpp::Algorithm::Impl::Build::States::remove(const State::Any &t_state) {
     m_destination.remove_state(as_instance(t_state));
 }
 
 
-Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destination, const Layers* t_layer)
-        : Algorithm::Builder::Transitions(t_layer), m_destination(t_destination) {
+state_machine_cpp::Algorithm::Impl::Build::Transitions::Transitions(state_machine_cpp::Algorithm::Instance &t_destination, const Layers* t_layer)
+        : state_machine_cpp::Algorithm::Builder::Transitions(t_layer), m_destination(t_destination) {
 
 }
 
 
-void Algorithm::Impl::Build::Transitions::create_or_override(bool t_do_override,
+void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override(bool t_do_override,
                                                              const State::Any &t_initial_state,
                                                              const State::Any &t_next_state,
                                                              Transition::TrivialHandler *t_handler) {
@@ -176,7 +176,7 @@ void Algorithm::Impl::Build::Transitions::create_or_override(bool t_do_override,
             t_do_override);
 }
 
-void Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_override,
+void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_override,
                                                                 const State::Any &t_initial_state,
                                                                 const State::Any &t_if_true,
                                                                 const State::Any &t_else,
@@ -191,10 +191,10 @@ void Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_overri
 
 }
 
-void Algorithm::Impl::Build::Transitions::remove(const State::Any &t_state) {
+void state_machine_cpp::Algorithm::Impl::Build::Transitions::remove(const State::Any &t_state) {
     m_destination.remove_transition(as_instance(t_state));
 }
 
-void Algorithm::Impl::Build::Transitions::declare_as_final(const State::Any &t_state) {
+void state_machine_cpp::Algorithm::Impl::Build::Transitions::declare_as_final(const State::Any &t_state) {
     m_destination.set_as_final(as_instance(t_state));
 }

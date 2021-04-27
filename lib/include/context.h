@@ -8,17 +8,22 @@
 #include "__pointer.h"
 #include "states.h"
 
-namespace Algorithm {
-    void run(const Algorithm::Instance& t_instance,
-             Context& t_context,
-             const State::Id& t_initial_state,
-             const State::Id& t_final_state);
+namespace state_machine_cpp {
+    class Context;
+    template<class ...Args> class SimpleContext;
+    template<unsigned int N_LAYER> class LayeredContext;
+    namespace Algorithm {
+        void run(const Algorithm::Instance &t_instance,
+                 Context &t_context,
+                 const State::Id &t_initial_state,
+                 const State::Id &t_final_state);
+    }
 }
 
-class Context {
+class state_machine_cpp::Context {
     State::Instance m_state;
 
-    friend void Algorithm::run(const Algorithm::Instance& t_instance,
+    friend void ::state_machine_cpp::Algorithm::run(const Algorithm::Instance& t_instance,
                                Context& t_context,
                                const State::Id& t_initial_state,
                                const State::Id& t_final_state);
@@ -55,8 +60,8 @@ public:
 };
 
 template<class ...Args>
-struct SimpleContext : public Context, public Pointer<Args>... {
-
+class state_machine_cpp::SimpleContext : public Context, public Pointer<Args>... {
+public:
     SimpleContext() : Pointer<Args>()... {} // NOLINT(modernize-use-equals-default)
     explicit SimpleContext(Args& ...t_args) : Pointer<Args>(&t_args)... {}
 
@@ -68,7 +73,7 @@ protected:
 };
 
 template<unsigned int N_LAYER>
-struct LayeredContext : public Context {
+class state_machine_cpp::LayeredContext : public Context {
     std::array<Context*, N_LAYER> m_layers;
 protected:
     Context *operator[](unsigned int t_index) override {

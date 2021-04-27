@@ -4,4 +4,4 @@
 
 #include "transitions.h"
 
-void Transition::DO_NOTHING(Context &) {}
+void state_machine_cpp::Transition::DO_NOTHING(Context &) {}

@@ -9,11 +9,13 @@
 #include <list>
 #include <sstream>
 
-namespace Algorithm {
-    void plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command = true);
+namespace state_machine_cpp {
+    namespace Algorithm {
+        void plot(const Algorithm::Instance &t_algorithm, const std::string &t_filename, bool t_run_command = true);
+    }
 }
 
-void Algorithm::plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command) {
+void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command) {
 
     const auto name = [](const State::Instance& t_x) {
         std::string result = t_x.name();

@@ -60,6 +60,3 @@ install(TARGETS ${LIBRARY_NAME}
 add_custom_target(install_${LIBRARY_NAME}
                     sudo "${CMAKE_COMMAND}" --build "${CMAKE_BINARY_DIR}" --target install
                     COMMENT "Installing ${LIBRARY_NAME}")
-
-# define target
-add_executable(state_machine_cpp_main main.cpp)

@@ -20,9 +20,9 @@ void compute_power(Context& context) {
 class PowerLoop : public Algorithm::Builder {
 public:
 
-    void build(States &states, Transitions &transitions) override {
+    void build(States &states, Transitions &transitions, Layers& layers) override {
 
-        inherit<Counter>(states, transitions);
+        inherit<Counter>(states, transitions, layers);
 
         transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, compute_power);
 

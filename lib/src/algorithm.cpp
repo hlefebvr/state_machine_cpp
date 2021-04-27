@@ -149,6 +149,9 @@ unsigned int Algorithm::Impl::Build::Layers::create() {
 }
 
 unsigned int Algorithm::Impl::Build::Layers::use(unsigned int t_level) {
+    if (t_level > m_max_layer) {
+        throw std::runtime_error("The level you are trying to use has not been created. Use create first.");
+    }
     m_layers.emplace(t_level);
     return current();
 }

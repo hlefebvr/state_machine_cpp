@@ -38,7 +38,7 @@ void increment_counter(Context& context) {
 
 struct Counter final : public Algorithm::Builder {
 
-    void build(States& states, Transitions& transitions) override {
+    void build(States& states, Transitions& transitions, Layers& layers) override {
 
         states.create(INITIAL_STATE);
         states.create(CHECK_IF_HAS_CONVERGED);

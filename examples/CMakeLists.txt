@@ -3,12 +3,8 @@ project(state_machine_cpp_examples)
 
 set(CMAKE_CXX_STANDARD 11)
 
-find_library(STATE_MACHINE_LIB state_machine_cpp)
+find_library(STATE_MACHINE_LIB state_machine_cpp REQUIRED)
 
-if (STATE_MACHINE_LIB)
-    add_subdirectory(version)
-    add_subdirectory(for-loop)
-    add_subdirectory(square-loop)
-else()
-    message(STATUS "state_machine_cpp is not installed, example targets are therefore not generated...")
-endif()
+add_subdirectory(0-version)
+add_subdirectory(1-for-loop)
+add_subdirectory(2-power-loop)

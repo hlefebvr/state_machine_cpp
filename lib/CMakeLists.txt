@@ -33,13 +33,13 @@ list(APPEND PRIVATE_FILES "${PUBLIC_FILES}") # this is for CLion to enable code 
 # defines library target
 add_library(${LIBRARY_NAME} ${PRIVATE_FILES})
 
-# define C++ version
+# define C++ 0-version
 set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 11)
 
-# define libray version as project's version
+# define libray 0-version as project's 0-version
 set_target_properties(state_machine_cpp PROPERTIES VERSION ${PROJECT_VERSION})
 
-# configures version file
+# configures 0-version file
 string(TOUPPER ${LIBRARY_NAME} CAPITAL_LIBRARY_NAME)
 configure_file(version.h.in ../version.h @ONLY)
 list(APPEND PUBLIC_FILES ${PROJECT_BINARY_DIR}/version.h)

@@ -40,7 +40,7 @@ make example_ForLoop # for instance
 ```
 Then execute it with
 ```shell
-./examples/for-loop/example_ForLoop
+./examples/1-for-loop/example_ForLoop
 ```
 
 ### Linking with cmake
@@ -61,7 +61,7 @@ int main(int argc, const char** argv) {
 
     std::cout 
              << "Successfully linked with state_machine_cpp, "
-             "version " << STATE_MACHINE_CPP_VERSION_MAJOR
+             "0-version " << STATE_MACHINE_CPP_VERSION_MAJOR
              << '.' << STATE_MACHINE_CPP_VERSION_MINOR 
              << std::endl;
     

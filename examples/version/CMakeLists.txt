@@ -1,2 +1,0 @@
-add_executable(example_version _example_version_main.cpp)
-target_link_libraries(example_version state_machine_cpp)

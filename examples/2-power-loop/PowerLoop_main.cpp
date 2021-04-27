@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <complex>
-#include "../for-loop/_example_for_loop.h"
+#include "../1-for-loop/ForLoop_algorithm.h"
 
 struct PowerLoopAttributes {
     unsigned int power;

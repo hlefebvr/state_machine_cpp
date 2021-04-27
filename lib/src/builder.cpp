@@ -4,23 +4,19 @@
 
 #include "builder.h"
 
-Algorithm::Builder::Indirection::Indirection(unsigned int t_level) : m_level(t_level) {
+Algorithm::Builder::Indirection::Indirection(const Layers* t_layers) : m_layers(t_layers) {
 
-}
-
-unsigned int Algorithm::Builder::Indirection::level() const {
-    return m_level;
 }
 
 State::Instance Algorithm::Builder::Indirection::as_instance(const State::Any &t_any) const {
-    return t_any.as_instance(m_level);
+    return t_any.as_instance(m_layers->current());
 }
 
-Algorithm::Builder::States::States(unsigned int t_level) : Indirection(t_level) {
+Algorithm::Builder::States::States(const Layers* t_level) : Indirection(t_level) {
 
 }
 
-Algorithm::Builder::Transitions::Transitions(unsigned int t_level) : Indirection(t_level) {
+Algorithm::Builder::Transitions::Transitions(const Layers* t_level) : Indirection(t_level) {
 
 }
 

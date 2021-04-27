@@ -23,13 +23,12 @@ set(PUBLIC_FILES
 set(PRIVATE_FILES
         src/algorithm.cpp
         src/builder.cpp
-        src/builder_states.cpp
-        src/builder_transitions.cpp
         src/states_any.cpp
         src/states.cpp
         src/transitions.cpp
         src/transition_handlers.cpp
 )
+list(APPEND PRIVATE_FILES "${PUBLIC_FILES}") # this is for CLion to enable code insight features...
 
 # defines library target
 add_library(${LIBRARY_NAME} ${PRIVATE_FILES})

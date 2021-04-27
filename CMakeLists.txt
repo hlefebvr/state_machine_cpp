@@ -5,3 +5,4 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(lib)
 add_subdirectory(examples)
+add_subdirectory(dev)

@@ -137,3 +137,80 @@ void Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
     }
     it->set_as_final();
 }
+
+unsigned int Algorithm::Impl::Build::Layers::current() const {
+    return m_layers.empty() ? 0 : m_layers.top();
+}
+
+unsigned int Algorithm::Impl::Build::Layers::create() {
+    ++m_max_layer;
+    m_layers.emplace(m_max_layer);
+    return current();
+}
+
+unsigned int Algorithm::Impl::Build::Layers::use(unsigned int t_level) {
+    m_layers.emplace(t_level);
+    return current();
+}
+
+void Algorithm::Impl::Build::Layers::close() {
+    if (m_layers.empty()) {
+        throw std::runtime_error("Cannot close root layer");
+    }
+    m_layers.pop();
+}
+
+
+Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, const Layers* t_level)
+        : Algorithm::Builder::States(t_level), m_destination(t_destination) {
+
+}
+
+void Algorithm::Impl::Build::States::create(const State::Any &t_state) {
+    m_destination.create_state(as_instance(t_state));
+}
+
+void Algorithm::Impl::Build::States::remove(const State::Any &t_state) {
+    m_destination.remove_state(as_instance(t_state));
+}
+
+
+Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destination, const Layers* t_level)
+        : Algorithm::Builder::Transitions(t_level), m_destination(t_destination) {
+
+}
+
+
+void Algorithm::Impl::Build::Transitions::create_or_override(bool t_do_override,
+                                                             const State::Any &t_initial_state,
+                                                             const State::Any &t_next_state,
+                                                             Transition::TrivialHandler *t_handler) {
+    m_destination.create_transition(
+            as_instance(t_initial_state),
+            as_instance(t_next_state),
+            t_handler,
+            t_do_override);
+}
+
+void Algorithm::Impl::Build::Transitions::create_or_override_if(bool t_do_override,
+                                                                const State::Any &t_initial_state,
+                                                                const State::Any &t_if_true,
+                                                                const State::Any &t_else,
+                                                                Transition::ConditionalHandler *t_handler) {
+
+    m_destination.create_transition_if(
+            as_instance(t_initial_state),
+            as_instance(t_if_true),
+            as_instance(t_else),
+            t_handler,
+            t_do_override);
+
+}
+
+void Algorithm::Impl::Build::Transitions::remove(const State::Any &t_state) {
+    m_destination.remove_transition(as_instance(t_state));
+}
+
+void Algorithm::Impl::Build::Transitions::declare_as_final(const State::Any &t_state) {
+    m_destination.set_as_final(as_instance(t_state));
+}

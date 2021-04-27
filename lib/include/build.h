@@ -14,9 +14,10 @@ namespace Algorithm {
 template<class T>
 void Algorithm::build(Algorithm::Instance& t_destination) {
 
-    Impl::Build::States states(t_destination, 0);
-    Impl::Build::Transitions transitions(t_destination, 0);
-    Algorithm::Builder::inherit<T>(states, transitions);
+    Impl::Build::Layers layers;
+    Impl::Build::States states(t_destination, &layers);
+    Impl::Build::Transitions transitions(t_destination, &layers);
+    Algorithm::Builder::inherit<T>(states, transitions, layers);
 
 }
 

@@ -22,28 +22,36 @@ class Algorithm::Builder {
 public:
     class States;
     class Transitions;
+    class Layers;
 
     template<class T> friend void ::Algorithm::build(Algorithm::Instance& t_destination);
 
-    virtual void build(States& states, Transitions& transitions) = 0;
+    virtual void build(States& states, Transitions& transitions, Layers& layers) = 0;
 protected:
-    template<class T> static void inherit(States& states, Transitions& transitions);
+    template<class T> static void inherit(States& states, Transitions& transitions, Layers& layers);
 private:
     class Indirection;
 };
 
+class Algorithm::Builder::Layers {
+public:
+    virtual unsigned int current() const = 0;
+    virtual unsigned int create() = 0;
+    virtual unsigned int use(unsigned int t_level) = 0;
+    virtual void close() = 0;
+};
+
 class Algorithm::Builder::Indirection {
-    const unsigned int m_level;
+    const Layers* m_layers;
 protected:
     State::Instance as_instance(const State::Any& t_state) const;
 public:
-    explicit Indirection(unsigned int t_level);
-    unsigned int level() const;
+    explicit Indirection(const Layers* t_level);
 };
 
 class Algorithm::Builder::States : public Indirection {
 public:
-    explicit States(unsigned int t_level);
+    explicit States(const Layers* t_level);
 
     virtual void create(const State::Any& t_state) = 0;
     virtual void remove(const State::Any& t_state) = 0;
@@ -53,7 +61,7 @@ class Algorithm::Builder::Transitions : public Indirection {
     virtual void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler* t_handler) = 0;
     virtual void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler* t_handler) = 0;
 public:
-    explicit Transitions(unsigned int t_level);
+    explicit Transitions(const Layers* t_level);
 
     // Trivial transitions
     void create(const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler);
@@ -73,12 +81,9 @@ public:
 };
 
 template<class T>
-void Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions) {
-    if (states.level() != transitions.level()) {
-        throw std::runtime_error("Cannot inherit from an algorithm with states and transitions not at the same level.");
-    }
+void Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions, Layers& layers) {
     T builder;
-    builder.build(states, transitions);
+    builder.build(states, transitions, layers);
 }
 
 #endif //STATE_MACHINE_CPP_BUILDER_H

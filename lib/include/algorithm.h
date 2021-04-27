@@ -6,6 +6,7 @@
 #define STATE_MACHINE_CPP_ALGORITHM_H
 
 #include <robin_hood/robin_hood.h>
+#include <stack>
 
 #include "builder.h"
 #include "transitions.h"
@@ -16,6 +17,7 @@ namespace Algorithm {
         namespace Build {
             class States;
             class Transitions;
+            class Layers;
         }
     }
 }
@@ -55,10 +57,20 @@ public:
     const Set<Transition::Any>& transitions() const;
 };
 
+class Algorithm::Impl::Build::Layers : public Algorithm::Builder::Layers {
+    std::stack<unsigned int> m_layers;
+    unsigned int m_max_layer = 0;
+public:
+    unsigned int current() const override;
+    unsigned int create() override;
+    unsigned int use(unsigned int t_level) override;
+    void close() override;
+};
+
 class Algorithm::Impl::Build::States : public Algorithm::Builder::States {
     Algorithm::Instance& m_destination;
 public:
-    States(Algorithm::Instance& t_destination, unsigned int t_level);
+    States(Algorithm::Instance& t_destination, const Layers* t_level);
 
     void create(const State::Any& t_state) override;
     void remove(const State::Any& t_state) override;
@@ -77,7 +89,7 @@ class Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitio
                                const State::Any &t_else,
                                Transition::ConditionalHandler *t_handler) override;
 public:
-    Transitions(Algorithm::Instance& t_destination, unsigned int t_level);
+    Transitions(Algorithm::Instance& t_destination, const Layers* t_level);
 
     void remove(const State::Any &t_state) override;
 

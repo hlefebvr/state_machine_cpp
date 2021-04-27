@@ -2,6 +2,7 @@
 // Created by henri on 22/04/21.
 //
 #include <iostream>
+#define USE_ROBIN_HOOD_UNORDERED_MAP
 #include "ForLoop_algorithm.h"
 
 int main() {
@@ -16,6 +17,7 @@ int main() {
     SimpleContext<CounterAttributes> context(counter_attributes);
 
     Algorithm::run(algorithm, context, INITIAL_STATE, FINAL_STATE);
+
 
     return 0;
 }

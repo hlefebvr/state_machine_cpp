@@ -15,7 +15,7 @@ bool state_machine_cpp::Algorithm::sanity_check(const Algorithm::Instance& t_alg
         result = false;
     }
 
-    for (const auto& transition : transitions) {
+    for (const auto& [hash, transition] : transitions) {
 
         const auto& state = transition.initial_state();
         const auto& successors = transition.next_states();

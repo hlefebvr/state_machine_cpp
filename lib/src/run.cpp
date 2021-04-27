@@ -14,11 +14,11 @@ void ::state_machine_cpp::Algorithm::run(const ::state_machine_cpp::Algorithm::I
     const auto& transitions = t_algorithm.transitions();
 
     const auto apply_transition = [&](const State::Instance &t_instance, Context &t_context) {
-        auto it = transitions.find(t_instance);
+        auto it = transitions.find(hash<State::Instance>::get(t_instance));
         if (it == transitions.end()) {
             throw std::runtime_error("Algorithm execution failed: called an undefined transition.");
         }
-        return it->operator()(t_context);
+        return it->second(t_context);
     };
 
     State::Instance current_state = t_initial_state;

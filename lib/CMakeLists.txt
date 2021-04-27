@@ -8,6 +8,7 @@ set(PUBLIC_FILES
         include/__comparable.h
         include/__hash.h
         include/__pointer.h
+        include/__unordered_map.h
 
         include/state.h
         include/state_id.h
@@ -73,13 +74,13 @@ list(APPEND PRIVATE_FILES "${PUBLIC_FILES}") # this is for CLion to enable code 
 # defines library target
 add_library(${LIBRARY_NAME} ${PRIVATE_FILES})
 
-# define C++ 0-version
-set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 11)
+# define C++ version
+set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 17)
 
-# define libray 0-version as project's 0-version
+# define libray version as project's 0-version
 set_target_properties(state_machine_cpp PROPERTIES VERSION ${PROJECT_VERSION})
 
-# configures 0-version file
+# configures version file
 string(TOUPPER ${LIBRARY_NAME} CAPITAL_LIBRARY_NAME)
 configure_file(version.h.in ../version.h @ONLY)
 list(APPEND PUBLIC_FILES ${PROJECT_BINARY_DIR}/version.h)
@@ -89,6 +90,15 @@ set_target_properties(${LIBRARY_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_FILES}"
 
 # define a private include
 target_include_directories(${LIBRARY_NAME} PRIVATE include)
+
+# define option to use robin_hood
+option(USE_ROBIN_HOOD_UNORDERED_MAP "use robin_hood::unordered_map instead std::unordered_map")
+
+if (USE_ROBIN_HOOD_UNORDERED_MAP)
+    message(STATUS "Using robin_hood::unordered_map")
+    add_compile_definitions(USE_ROBIN_HOOD_UNORDERED_MAP)
+endif()
+
 
 # define install target
 install(TARGETS ${LIBRARY_NAME}

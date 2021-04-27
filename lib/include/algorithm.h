@@ -5,9 +5,9 @@
 #ifndef STATE_MACHINE_CPP_ALGORITHM_H
 #define STATE_MACHINE_CPP_ALGORITHM_H
 
-#include <robin_hood/robin_hood.h>
 #include <stack>
 
+#include "__unordered_map.h"
 #include "transition_any.h"
 #include "transition_handlers.h"
 
@@ -26,7 +26,7 @@ namespace state_machine_cpp {
 
 class state_machine_cpp::Algorithm::Instance {
 
-    template<class T> using Set = robin_hood::unordered_set<T, typename T::by_hash, typename T::by_hash>;
+    template<class T> using Set = unordered::unordered_map<std::size_t , T>;
 
     Set<Transition::Any> m_transitions;
 

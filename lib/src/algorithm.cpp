@@ -5,21 +5,21 @@
 #include "algorithm.h"
 
 bool state_machine_cpp::Algorithm::Instance::has(const State::Instance &t_instance) const {
-    return m_transitions.find(t_instance) != m_transitions.end();
+    return m_transitions.find(hash<State::Instance>::get(t_instance)) != m_transitions.end();
 }
 
 void state_machine_cpp::Algorithm::Instance::create_state(const State::Instance& t_instance) {
     if (has(t_instance)) {
         throw std::runtime_error("Cannot create twice the same state instance.");
     }
-    m_transitions.emplace(t_instance);
+    m_transitions.emplace(hash<State::Instance>::get(t_instance), t_instance);
 }
 
 void state_machine_cpp::Algorithm::Instance::remove_state(const State::Instance& t_instance) {
     if (!has(t_instance)) {
         throw std::runtime_error("Cannot remove a non-existing state instance");
     }
-    m_transitions.erase(t_instance);
+    m_transitions.erase(hash<State::Instance>::get(t_instance));
 }
 
 void state_machine_cpp::Algorithm::Instance::create_any_transition(const State::Instance &t_initial_instance,
@@ -39,9 +39,9 @@ void state_machine_cpp::Algorithm::Instance::create_any_transition(const State::
         }
     }
 
-    auto it = m_transitions.find(t_initial_instance);
+    auto it = m_transitions.find(hash<State::Instance>::get(t_initial_instance));
 
-    if (!it->has_handler()) {
+    if (!it->second.has_handler()) {
 
         if (t_should_already_exist) {
             throw std::runtime_error("Cannot override a non-existing transition. Use create. "
@@ -55,14 +55,14 @@ void state_machine_cpp::Algorithm::Instance::create_any_transition(const State::
                                      "Initial state: " + t_initial_instance.name());
         }
 
-        if (it->is_final()) {
+        if (it->second.is_final()) {
             throw std::runtime_error("Cannot override a final transition. "
                                      "Initial state: " + t_initial_instance.name());
         }
 
     }
 
-    it->set_handler(std::move(t_next_states), std::move(t_handler));
+    it->second.set_handler(std::move(t_next_states), std::move(t_handler));
 }
 
 
@@ -94,14 +94,14 @@ void state_machine_cpp::Algorithm::Instance::create_transition_if(const State::I
 }
 
 void state_machine_cpp::Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
-    auto it = m_transitions.find(t_instance);
-    if (it == m_transitions.end() || !it->has_handler()) {
+    auto it = m_transitions.find(hash<State::Instance>::get(t_instance));
+    if (it == m_transitions.end() || !it->second.has_handler()) {
         throw std::runtime_error("Cannot remove a non-existing transition instance.");
     }
-    if (it->is_final()) {
+    if (it->second.is_final()) {
         throw std::runtime_error("Cannot remove a transition declared final.");
     }
-    it->reset_handler();
+    it->second.reset_handler();
 }
 
 const state_machine_cpp::Algorithm::Instance::Set<state_machine_cpp::Transition::Any> &state_machine_cpp::Algorithm::Instance::transitions() const {
@@ -109,12 +109,12 @@ const state_machine_cpp::Algorithm::Instance::Set<state_machine_cpp::Transition:
 }
 
 void state_machine_cpp::Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
-    auto it = m_transitions.find(t_instance);
+    auto it = m_transitions.find(hash<State::Instance>::get(t_instance));
     if (it == m_transitions.end()) {
         throw std::runtime_error("Cannot declare a non-existing transition as final.");
     }
-    if (!it->has_handler()) {
+    if (!it->second.has_handler()) {
         throw std::runtime_error("Cannot declare a virtual transition as final.");
     }
-    it->set_as_final();
+    it->second.set_as_final();
 }

@@ -61,6 +61,12 @@ set(PRIVATE_FILES
         src/builder_impl_layers.cpp
         src/builder_impl_states.cpp
         src/builder_impl_transitions.cpp
+
+        src/run.cpp
+
+        src/plot.cpp
+
+        src/sanity_check.cpp
 )
 list(APPEND PRIVATE_FILES "${PUBLIC_FILES}") # this is for CLion to enable code insight features...
 

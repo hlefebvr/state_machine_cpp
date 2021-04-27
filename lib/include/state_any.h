@@ -22,7 +22,7 @@ class state_machine_cpp::State::Any {
 
     bool is_instantiated() const { return m_is_instantiated; }
     const State::Instance& as_provided() const { return m_instance; }
-    State::Instance instantiate(unsigned int t_layer) const { return m_instance.id()[t_layer]; }
+    State::Instance instantiate(unsigned int t_layer) const;
 public:
     Any(const State::Id& t_id) // NOLINT(google-explicit-constructor)
             : m_instance(t_id), m_is_instantiated(false) {}

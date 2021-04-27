@@ -5,14 +5,12 @@
 #ifndef STATE_MACHINE_CPP_TRANSITION_ANY_H
 #define STATE_MACHINE_CPP_TRANSITION_ANY_H
 
-#include <memory>
 #include <list>
 #include <functional>
-
-#include "state.h"
-#include "__hash.h"
-
 #include <vector>
+
+#include "state_any.h"
+#include "__hash.h"
 
 namespace state_machine_cpp {
     class Context;

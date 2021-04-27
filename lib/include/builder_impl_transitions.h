@@ -6,7 +6,6 @@
 #define STATE_MACHINE_CPP_BUILDER_IMPL_TRANSITIONS_H
 
 #include "builder_transitions.h"
-#include "builder_impl_layers.h"
 
 namespace state_machine_cpp {
     namespace Algorithm {

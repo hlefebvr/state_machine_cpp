@@ -5,6 +5,7 @@
 #ifndef STATE_MACHINE_CPP_CONTEXT_LAYERED_H
 #define STATE_MACHINE_CPP_CONTEXT_LAYERED_H
 
+#include <array>
 #include "context.h"
 
 namespace state_machine_cpp {

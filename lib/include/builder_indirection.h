@@ -6,6 +6,7 @@
 #define STATE_MACHINE_CPP_BUILDER_INDIRECTION_H
 
 #include "builder.h"
+#include "state_any.h"
 
 class state_machine_cpp::Algorithm::Builder::Indirection {
     const Layers* m_layers;

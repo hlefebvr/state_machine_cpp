@@ -5,10 +5,9 @@
 #ifndef STATE_MACHINE_CPP_BUILD_H
 #define STATE_MACHINE_CPP_BUILD_H
 
-#include "algorithm.h"
-#include "builder_impl_layers.h"
 #include "builder_impl_states.h"
 #include "builder_impl_transitions.h"
+#include "builder_impl_layers.h"
 
 namespace state_machine_cpp {
     namespace Algorithm {

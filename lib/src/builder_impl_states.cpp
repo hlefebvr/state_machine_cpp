@@ -3,6 +3,7 @@
 //
 
 #include "builder_impl_states.h"
+#include "algorithm.h"
 
 state_machine_cpp::Algorithm::Impl::Build::States::States(state_machine_cpp::Algorithm::Instance &t_destination,
                                                           const state_machine_cpp::Algorithm::Builder::Layers* t_layer)

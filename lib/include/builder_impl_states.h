@@ -5,7 +5,6 @@
 #ifndef STATE_MACHINE_CPP_BUILDER_IMPL_STATES_H
 #define STATE_MACHINE_CPP_BUILDER_IMPL_STATES_H
 
-#include "algorithm.h"
 #include "builder_states.h"
 
 namespace state_machine_cpp {

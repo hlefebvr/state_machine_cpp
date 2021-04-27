@@ -8,8 +8,8 @@
 #include <robin_hood/robin_hood.h>
 #include <stack>
 
-#include "builder.h"
-#include "transition.h"
+#include "transition_any.h"
+#include "transition_handlers.h"
 
 namespace state_machine_cpp {
     namespace Algorithm {

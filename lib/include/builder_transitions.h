@@ -5,7 +5,6 @@
 #ifndef STATE_MACHINE_CPP_BUILDER_TRANSITIONS_H
 #define STATE_MACHINE_CPP_BUILDER_TRANSITIONS_H
 
-#include "builder.h"
 #include "builder_indirection.h"
 #include "transition_handlers.h"
 

@@ -6,25 +6,26 @@
 #define STATE_MACHINE_CPP_CONTEXT_H
 
 #include "__pointer.h"
-#include "state.h"
+#include "state_id.h"
 
 namespace state_machine_cpp {
     class Context;
     namespace Algorithm {
+        class Instance;
         void run(const Algorithm::Instance &t_instance,
-                 Context &t_context,
-                 const State::Id &t_initial_state,
-                 const State::Id &t_final_state);
+                 ::state_machine_cpp::Context &t_context,
+                 const ::state_machine_cpp::State::Id &t_initial_state,
+                 const ::state_machine_cpp::State::Id &t_final_state);
     }
 }
 
 class state_machine_cpp::Context {
     State::Instance m_state;
 
-    friend void ::state_machine_cpp::Algorithm::run(const Algorithm::Instance& t_instance,
-                               Context& t_context,
-                               const State::Id& t_initial_state,
-                               const State::Id& t_final_state);
+    friend void ::state_machine_cpp::Algorithm::run(const ::state_machine_cpp::Algorithm::Instance& t_instance,
+                                                    ::state_machine_cpp::Context& t_context,
+                                                     const ::state_machine_cpp::State::Id& t_initial_state,
+                                                     const ::state_machine_cpp::State::Id& t_final_state);
     void set_state(State::Any t_state) { m_state = t_state.as_instance(0); }
 protected:
     virtual Context* operator[](unsigned int t_index) = 0;

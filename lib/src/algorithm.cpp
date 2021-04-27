@@ -129,11 +129,11 @@ unsigned int Algorithm::Impl::Build::Layers::create() {
     return current();
 }
 
-unsigned int Algorithm::Impl::Build::Layers::use(unsigned int t_level) {
-    if (t_level > m_max_layer) {
+unsigned int Algorithm::Impl::Build::Layers::use(unsigned int t_layer) {
+    if (t_layer > m_max_layer) {
         throw std::runtime_error("The level you are trying to use has not been created. Use create first.");
     }
-    m_layers.emplace(t_level);
+    m_layers.emplace(t_layer);
     return current();
 }
 
@@ -145,8 +145,8 @@ void Algorithm::Impl::Build::Layers::close() {
 }
 
 
-Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, const Layers* t_level)
-        : Algorithm::Builder::States(t_level), m_destination(t_destination) {
+Algorithm::Impl::Build::States::States(Algorithm::Instance &t_destination, const Layers* t_layer)
+        : Algorithm::Builder::States(t_layer), m_destination(t_destination) {
 
 }
 
@@ -159,8 +159,8 @@ void Algorithm::Impl::Build::States::remove(const State::Any &t_state) {
 }
 
 
-Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destination, const Layers* t_level)
-        : Algorithm::Builder::Transitions(t_level), m_destination(t_destination) {
+Algorithm::Impl::Build::Transitions::Transitions(Algorithm::Instance &t_destination, const Layers* t_layer)
+        : Algorithm::Builder::Transitions(t_layer), m_destination(t_destination) {
 
 }
 

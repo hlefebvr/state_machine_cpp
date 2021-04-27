@@ -37,7 +37,7 @@ class Algorithm::Builder::Layers {
 public:
     virtual unsigned int current() const = 0;
     virtual unsigned int create() = 0;
-    virtual unsigned int use(unsigned int t_level) = 0;
+    virtual unsigned int use(unsigned int t_layer) = 0;
     virtual void close() = 0;
 };
 
@@ -46,12 +46,12 @@ class Algorithm::Builder::Indirection {
 protected:
     State::Instance as_instance(const State::Any& t_state) const;
 public:
-    explicit Indirection(const Layers* t_level);
+    explicit Indirection(const Layers* t_layer);
 };
 
 class Algorithm::Builder::States : public Indirection {
 public:
-    explicit States(const Layers* t_level);
+    explicit States(const Layers* t_layer);
 
     virtual void create(const State::Any& t_state) = 0;
     virtual void remove(const State::Any& t_state) = 0;
@@ -61,7 +61,7 @@ class Algorithm::Builder::Transitions : public Indirection {
     virtual void create_or_override(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler* t_handler) = 0;
     virtual void create_or_override_if(bool t_do_override, const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler* t_handler) = 0;
 public:
-    explicit Transitions(const Layers* t_level);
+    explicit Transitions(const Layers* t_layer);
 
     // Trivial transitions
     void create(const State::Any& t_initial_state, const State::Any& t_next_state, Transition::TrivialHandler& t_handler);

@@ -4,6 +4,6 @@
 
 #include "states.h"
 
-State::Instance State::Any::as_instance(unsigned int t_level_if_not_set) const {
-    return is_instantiated() ? as_provided() : instantiate(t_level_if_not_set);
+State::Instance State::Any::as_instance(unsigned int t_layer_if_not_set) const {
+    return is_instantiated() ? as_provided() : instantiate(t_layer_if_not_set);
 }

@@ -60,14 +60,14 @@ class Algorithm::Impl::Build::Layers : public Algorithm::Builder::Layers {
 public:
     unsigned int current() const override;
     unsigned int create() override;
-    unsigned int use(unsigned int t_level) override;
+    unsigned int use(unsigned int t_layer) override;
     void close() override;
 };
 
 class Algorithm::Impl::Build::States : public Algorithm::Builder::States {
     Algorithm::Instance& m_destination;
 public:
-    States(Algorithm::Instance& t_destination, const Layers* t_level);
+    States(Algorithm::Instance& t_destination, const Layers* t_layer);
 
     void create(const State::Any& t_state) override;
     void remove(const State::Any& t_state) override;
@@ -86,7 +86,7 @@ class Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitio
                                const State::Any &t_else,
                                Transition::ConditionalHandler *t_handler) override;
 public:
-    Transitions(Algorithm::Instance& t_destination, const Layers* t_level);
+    Transitions(Algorithm::Instance& t_destination, const Layers* t_layer);
 
     void remove(const State::Any &t_state) override;
 

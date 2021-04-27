@@ -20,13 +20,13 @@ State::Instance::Instance(const State::Id &t_id) : m_id {&t_id} {
     update_hash();
 }
 
-State::Instance::Instance(const State::Id &t_id, unsigned int t_level) : m_id{&t_id}, m_level{t_level} {
+State::Instance::Instance(const State::Id &t_id, unsigned int t_layer) : m_id{&t_id}, m_layer{t_layer} {
     update_hash();
 }
 
 State::Instance &State::Instance::operator=(const State::Id &t_rhs)  {
     m_id = &t_rhs;
-    m_level = 0;
+    m_layer = 0;
     update_hash();
     return *this;
 }
@@ -43,5 +43,5 @@ std::string State::Instance::name() const {
     if (!m_id) {
         return "UNDEFINED_STATE";
     }
-    return m_id->m_name + '[' + std::to_string(m_level) + ']';
+    return m_id->m_name + '[' + std::to_string(m_layer) + ']';
 }

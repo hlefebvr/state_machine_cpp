@@ -12,11 +12,11 @@ State::Instance Algorithm::Builder::Indirection::as_instance(const State::Any &t
     return t_any.as_instance(m_layers->current());
 }
 
-Algorithm::Builder::States::States(const Layers* t_level) : Indirection(t_level) {
+Algorithm::Builder::States::States(const Layers* t_layer) : Indirection(t_layer) {
 
 }
 
-Algorithm::Builder::Transitions::Transitions(const Layers* t_level) : Indirection(t_level) {
+Algorithm::Builder::Transitions::Transitions(const Layers* t_layer) : Indirection(t_layer) {
 
 }
 

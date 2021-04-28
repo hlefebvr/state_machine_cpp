@@ -40,7 +40,10 @@ class Builder3 final : public Algorithm::Builder {
 public:
     void build(States& states, Transitions& transitions, Layers& layers) override {
         inherit<Builder1>(states, transitions, layers);
+        inherit<Builder2>(states, transitions, layers);
 
+        transitions.override(A, C);
+        transitions.override(E, B);
     }
 };
 
@@ -54,7 +57,7 @@ int main(int argc, const char** argv) {
 
     SimpleContext<bool> context;
 
-    Algorithm::run(algorithm, context, A, B);
+    Algorithm::run_with_logs(algorithm, context, A, B);
 
     return 0;
 }

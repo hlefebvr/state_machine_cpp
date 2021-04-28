@@ -10,7 +10,7 @@ In this tutorial we'll be implementing a very simple example. It consists in a f
 iteration number. As you know, every thing here is nothing but states and transitions between states.
 In fact, I'll give you right away the overall shape of the algorithm we are trying to implement:
 
-![For loop](../images/ForLoop.png)
+![For loop](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/ForLoop.png)
 
 Simply put, the algorithm execution will start at the INITIAL_STATE and the corresponding transition
 will apply a baby step to go from INITIAL_STATE to the LOOP_HAS_STARTED state. The corresponding transition,
@@ -115,7 +115,7 @@ algorithm you are building. DOT files can be rendered as PNG images using [graph
 Indeed, if you set the last parameter to true, the function will also automatically generate a PNG image
 by calling graphviz. The expected output is as follows:
 
-![my_algorithm.png](../images/my_algorithm.png)
+![my_algorithm.png](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm.png)
 
 As you can see, all our states have been added. Yet they are not connected. Trying to run this algorithm
 will result in an exception to be thrown. For the time being, you may also want to analyze the sanity
@@ -227,7 +227,7 @@ from the first argument to the second argument if the handler returns true and t
 
 Trying to visualize our algorithm will yield the following:
 
-![my_algorithm.png](../images/my_algorithm_tx.png)
+![my_algorithm.png](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_tx.png)
 
 The sanity check should also not complain anymore as our algorithm is well-defined.
 

@@ -6,6 +6,7 @@
 #define STATE_MACHINE_CPP_BUILDER_H
 
 #include <iostream>
+#include "state_instance.h"
 
 namespace state_machine_cpp {
     namespace Algorithm {

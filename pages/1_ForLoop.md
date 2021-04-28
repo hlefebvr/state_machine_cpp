@@ -1,4 +1,4 @@
-# [Tutorial] ForLoop: you're first state machine
+# [Tutorial] Builder1: you're first state machine
 
 Hey! Ready to implement your first algorithm with state_machine_cpp ? Great! I hope 
 you have already installed it, if not, please check the [README.md](https://github.com/hlefebvr/state_machine_cpp) file
@@ -10,7 +10,7 @@ In this tutorial we'll be implementing a very simple example. It consists in a f
 iteration number. As you know, every thing here is nothing but states and transitions between states.
 In fact, I'll give you right away the overall shape of the algorithm we are trying to implement:
 
-![For loop](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/ForLoop.png)
+![For loop](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/Builder1.png)
 
 Simply put, the algorithm execution will start at the INITIAL_STATE and the corresponding transition
 will apply a baby step to go from INITIAL_STATE to the LOOP_HAS_STARTED state. The corresponding transition,
@@ -51,7 +51,7 @@ static const State::Id AFTER_LOOP_ITERATION("AFTER_LOOP_ITERATION");
 In state_machine_cpp, algorithms are built dynamically by means of an algorithm builder. To create your own
 algorithm, you therefore need to create a child class of the Algorithm::Builder class. Let's see:
 ```cpp
-class ForLoop final : public Algorithm::Builder {
+class Builder1 final : public Algorithm::Builder {
 public:
     
     void build(States& states, Transitions& transitions, Layers& layers) override {
@@ -75,7 +75,7 @@ Now let's add our new states to our algorithm.
 
 Adding a state to an algorithm is rather easy and is done as follows:
 ```cpp
-class ForLoop final : public Algorithm::Builder {
+class Builder1 final : public Algorithm::Builder {
 public:
     
     void build(States& states, Transitions& transitions, Layers& layers) override {
@@ -102,7 +102,7 @@ the function Algorithm::build on it. See rather:
 ```cpp
 // inside int main(int argc, const char argv**)
 Algorithm::Instance algorithm;
-Algorithm::build<ForLoop>(algorithm);
+Algorithm::build<Builder1>(algorithm);
 ```
 You may now run your code! If you've done things right, your code should compile, yet, it seems to be
 doing nothing. Actually, this is not quite true. What happens is that you're algorithm has been created

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>state_machine_cpp library: [Tutorial] ForLoop: you&#39;re first state machine</title>
+<title>state_machine_cpp library: [Tutorial] Builder1: you&#39;re first state machine</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,14 +82,14 @@ $(document).ready(function(){initNavTree('md_pages_1_ForLoop.html',''); initResi
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">[Tutorial] ForLoop: you're first state machine </div>  </div>
+<div class="title">[Tutorial] Builder1: you're first state machine </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Hey! Ready to implement you're first algorithm with <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a> ? Great! I hope you have already installed it, if not, please check the <a href="https://github.com/hlefebvr/state_machine_cpp">README.md</a> file to see how it's easily done. Otherwise, let's dive in!</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Introduction</h1>
 <p>In this tutorial we'll be implementing a very simple example. It consists in a for loop printing out each iteration number. As you know, every thing here is nothing but states and transitions between states. In fact, I'll give you right away the overall shape of the algorithm we are trying to implement:</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/ForLoop.png" alt="For loop" class="inline"/></p>
+<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/Builder1.png" alt="For loop" class="inline"/></p>
 <p>Simply put, the algorithm execution will start at the INITIAL_STATE and the corresponding transition will apply a baby step to go from INITIAL_STATE to the LOOP_HAS_STARTED state. The corresponding transition, in this case, will simply initialize the counter to 0. Then the algorithm will be in the LOOP_HAS_STARTED state. Again, the corresponding transition will be applied! This transition can be viewed as an "if" in C++. The action associated to this transition is therefore only to evaluate whether the iteration counter is less or greater than the maximum iteration count. If it is less then the LOOP_ITERATION state will be the next state of the algorithm. If not, FINAL_STATE will be the next state. I believe you can understand what follows in our story. Let's rather go straight on implementing it!</p>
 <blockquote class="doxtable">
 <p>Be sure to be <code>using namespace <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>;</code> and include #include&lt;state_machine_cpp/basics.h&gt; ;) </p>
@@ -104,7 +104,7 @@ Defining states</h1>
 <div class="line"><span class="keyword">static</span> <span class="keyword">const</span> State::Id AFTER_LOOP_ITERATION(<span class="stringliteral">&quot;AFTER_LOOP_ITERATION&quot;</span>);</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Defining an algorithm builder</h1>
-<p>In <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>, algorithms are built dynamically by means of an algorithm builder. To create your own algorithm, you therefore need to create a child class of the Algorithm::Builder class. Let's see: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ForLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<p>In <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>, algorithms are built dynamically by means of an algorithm builder. To create your own algorithm, you therefore need to create a child class of the Algorithm::Builder class. Let's see: </p><div class="fragment"><div class="line"><span class="keyword">class </span>Builder1 final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    </div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
@@ -117,7 +117,7 @@ Defining an algorithm builder</h1>
 <p>Now let's add our new states to our algorithm.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Adding states</h1>
-<p>Adding a state to an algorithm is rather easy and is done as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ForLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<p>Adding a state to an algorithm is rather easy and is done as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>Builder1 final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    </div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
@@ -135,7 +135,7 @@ Adding states</h1>
 <p>We will now try to instantiate our algorithm so as to be able to run it. Clearly, it is not finished though as it is just a collection of states without any transition. However, you'll see that we can visualize it easily.</p>
 <p>To instantiate our algorithm, we need an algorithm instance from the class Algorithm::Instance and to call the function Algorithm::build on it. See rather: </p><div class="fragment"><div class="line"><span class="comment">// inside int main(int argc, const char argv**)</span></div>
 <div class="line">Algorithm::Instance algorithm;</div>
-<div class="line">Algorithm::build&lt;ForLoop&gt;(algorithm);</div>
+<div class="line">Algorithm::build&lt;Builder1&gt;(algorithm);</div>
 </div><!-- fragment --><p>You may now run your code! If you've done things right, your code should compile, yet, it seems to be doing nothing. Actually, this is not quite true. What happens is that you're algorithm has been created but we did not ask to run it or plot it or do anything with it. Let's visualize it with Algorithm::plot! </p><div class="fragment"><div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#afcfafb9a0586f5d4530ad3a24e287179">Algorithm::plot</a>(algorithm, <span class="stringliteral">&quot;my_algorithm&quot;</span>, <span class="keyword">false</span>);</div>
 </div><!-- fragment --><p>This function will create a file entitled "my_algorithm.dot" which contains a representation of the algorithm you are building. DOT files can be rendered as PNG images using <a href="https://graphviz.org/">graphviz</a>. Indeed, if you set the last parameter to true, the function will also automatically generate a PNG image by calling graphviz. The expected output is as follows:</p>
 <p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm.png" alt="my_algorithm.png" class="inline"/></p>

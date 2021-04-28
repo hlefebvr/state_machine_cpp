@@ -2,7 +2,6 @@
 // Created by henri on 22/04/21.
 //
 #include <iostream>
-#define USE_ROBIN_HOOD_UNORDERED_MAP
 #include "ForLoop_algorithm.h"
 
 int main() {

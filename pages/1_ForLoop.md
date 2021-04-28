@@ -1,6 +1,6 @@
 # [Tutorial] ForLoop: you're first state machine
 
-Hey! Ready to implement you're first algorithm with state_machine_cpp ? Great! I hope 
+Hey! Ready to implement your first algorithm with state_machine_cpp ? Great! I hope 
 you have already installed it, if not, please check the [README.md](https://github.com/hlefebvr/state_machine_cpp) file
 to see how it's easily done. Otherwise, let's dive in!
 

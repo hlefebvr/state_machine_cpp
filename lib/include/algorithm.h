@@ -7,9 +7,9 @@
 
 #include <stack>
 
-#include "__unordered_map.h"
 #include "transition_any.h"
 #include "transition_handlers.h"
+#include "__map.h"
 
 namespace state_machine_cpp {
     namespace Algorithm {
@@ -26,9 +26,7 @@ namespace state_machine_cpp {
 
 class state_machine_cpp::Algorithm::Instance {
 
-    template<class T> using Set = unordered::unordered_map<std::size_t , T>;
-
-    Set<Transition::Any> m_transitions;
+    TransitionSet m_transitions;
 
     bool has(const State::Instance& t_instance) const;
 
@@ -53,7 +51,7 @@ class state_machine_cpp::Algorithm::Instance {
     void remove_transition(const State::Instance& t_instance);
     void set_as_final(const State::Instance& t_instance);
 public:
-    const Set<Transition::Any>& transitions() const;
+    const TransitionSet& transitions() const;
 };
 
 #endif //STATE_MACHINE_CPP_ALGORITHM_H

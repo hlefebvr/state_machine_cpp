@@ -46,7 +46,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
     file << "digraph G {";
 
     file << "\n\n\t// state definitions\n";
-    for (const auto& [hash, transition] : t_algorithm.transitions()) {
+    for (const auto& transition : t_algorithm.transitions()) {
         file << "\t"
              << name(transition.initial_state())
              << node_style(transition.next_states().size() <= 1)
@@ -54,7 +54,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
     }
 
     file << "\n\n\t// transition definition\n";
-    for (const auto& [hash, transition] : t_algorithm.transitions()) {
+    for (const auto& transition : t_algorithm.transitions()) {
         for (const auto& next_state : transition.next_states()) {
             file << "\t"
                  << name(transition.initial_state())

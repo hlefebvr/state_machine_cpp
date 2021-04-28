@@ -9,6 +9,7 @@ set(PUBLIC_FILES
         include/__hash.h
         include/__pointer.h
         include/__unordered_map.h
+        include/__map.h
 
         include/state.h
         include/state_id.h
@@ -44,6 +45,8 @@ set(PUBLIC_FILES
 
 # define to-be-compiled files
 set(PRIVATE_FILES
+        src/__map.cpp
+
         src/state.cpp
         src/state_any.cpp
         src/state_id.cpp
@@ -78,7 +81,7 @@ add_library(${LIBRARY_NAME} ${PRIVATE_FILES})
 set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 17)
 
 # define libray version as project's 0-version
-set_target_properties(state_machine_cpp PROPERTIES VERSION ${PROJECT_VERSION})
+set_target_properties(${LIBRARY_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 # configures version file
 string(TOUPPER ${LIBRARY_NAME} CAPITAL_LIBRARY_NAME)
@@ -90,9 +93,6 @@ set_target_properties(${LIBRARY_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_FILES}"
 
 # define a private include
 target_include_directories(${LIBRARY_NAME} PRIVATE include)
-
-# define option to use robin_hood
-option(USE_ROBIN_HOOD_UNORDERED_MAP "use robin_hood::unordered_map instead std::unordered_map")
 
 if (USE_ROBIN_HOOD_UNORDERED_MAP)
     message(STATUS "Using robin_hood::unordered_map")

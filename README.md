@@ -8,11 +8,16 @@
 
 ### Dependencies
 
-This library has no dependency other than, at least, C++11. You will need cmake
-to install it, though. Doxygen has to be used to build the documentation.
+- C++17 (at least)
+- cmake and make (for installation)
+- doxygen (to build the documentation)
 
-By default, the library uses the `std::unordered_map` as hash table. **TODO, configure
-to use robin_hood implementation**.
+#### Map implementation
+
+When installing the library (see below), the compiler will evaluate the directive `#if __has_include(<robin_hood/robin_hood.h>)`.
+If it evaluates to true, then the [robin hood](https://github.com/martinus/robin-hood-hashing) implementation of unordered_map will be used.
+Otherwise, the STL will be used (i.e., `std::unordered_map`). (robin_hood is a header-only library that provides a fast implementation
+of hash tables.)
 
 ### Installation
 

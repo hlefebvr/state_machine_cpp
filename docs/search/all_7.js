@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['get_48',['get',['../structstate__machine__cpp_1_1hash.html#af94ff1f7b1a2f87527125524968d8a9e',1,'state_machine_cpp::hash::get()'],['../classstate__machine__cpp_1_1Context.html#a6b9ee1a24d5abe136ab55ce3cff2b4cb',1,'state_machine_cpp::Context::get(int t_index=-1)'],['../classstate__machine__cpp_1_1Context.html#a991ce7454af4a54ee801f7f97d869527',1,'state_machine_cpp::Context::get(int t_index=-1) const']]],
-  ['get_5frelative_49',['get_relative',['../classstate__machine__cpp_1_1Context.html#a98c48281f8e2ec6a1f4aa96a11438bed',1,'state_machine_cpp::Context::get_relative(int t_offset)'],['../classstate__machine__cpp_1_1Context.html#adf7d32f1212cb3d0a254695ee4f5ca6b',1,'state_machine_cpp::Context::get_relative(int t_offset) const']]]
+  ['find_48',['find',['../classstate__machine__cpp_1_1TransitionSet.html#a6f868d17f7e82011ea2699abff9c5d46',1,'state_machine_cpp::TransitionSet::find(const State::Instance &amp;t_instance)'],['../classstate__machine__cpp_1_1TransitionSet.html#a34ca617ef25816c86034301e4671e2b4',1,'state_machine_cpp::TransitionSet::find(const State::Instance &amp;t_instance) const']]]
 ];

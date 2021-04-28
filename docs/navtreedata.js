@@ -23,16 +23,28 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "state_machine_cpp library", "index.html", [
-    [ "Installation", "index.html#autotoc_md1", [
-      [ "Dependencies", "index.html#autotoc_md2", [
-        [ "Map implementation", "index.html#autotoc_md3", null ]
+    [ "Installation", "index.html#autotoc_md12", [
+      [ "Dependencies", "index.html#autotoc_md13", [
+        [ "Map implementation", "index.html#autotoc_md14", null ]
       ] ],
-      [ "Installation", "index.html#autotoc_md4", null ],
-      [ "Compiling and running examples", "index.html#autotoc_md5", null ],
-      [ "Linking with cmake", "index.html#autotoc_md6", null ],
-      [ "Building the documentation", "index.html#autotoc_md7", null ]
+      [ "Installation", "index.html#autotoc_md15", null ],
+      [ "Compiling and running examples", "index.html#autotoc_md16", null ],
+      [ "Linking with cmake", "index.html#autotoc_md17", null ],
+      [ "Building the documentation", "index.html#autotoc_md18", null ]
     ] ],
-    [ "main", "md_pages_main.html", null ],
+    [ "[Tutorial] ForLoop: you're first state machine", "md_pages_1_ForLoop.html", [
+      [ "Introduction", "md_pages_1_ForLoop.html#autotoc_md1", null ],
+      [ "Defining states", "md_pages_1_ForLoop.html#autotoc_md2", null ],
+      [ "Defining an algorithm builder", "md_pages_1_ForLoop.html#autotoc_md3", null ],
+      [ "Adding states", "md_pages_1_ForLoop.html#autotoc_md4", null ],
+      [ "Defining transition handlers", "md_pages_1_ForLoop.html#autotoc_md5", [
+        [ "Transitions handlers", "md_pages_1_ForLoop.html#autotoc_md6", null ],
+        [ "Attributes", "md_pages_1_ForLoop.html#autotoc_md7", null ],
+        [ "Defining all our transition handlers", "md_pages_1_ForLoop.html#autotoc_md8", null ],
+        [ "Adding transitions", "md_pages_1_ForLoop.html#autotoc_md9", null ]
+      ] ],
+      [ "Running our first algorithm!", "md_pages_1_ForLoop.html#autotoc_md10", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -66,7 +78,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"structstate__machine__cpp_1_1State_1_1Id.html#a9f0b2e1392e518e7510afd32fe6fc483"
+"state__id_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

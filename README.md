@@ -17,7 +17,7 @@ algorithm and to be able to rewrite any part of the algorithm which comprises: s
 transition action overriding, transition flow overriding, algorithmic combination (i.e., sub-routines), etc.
 
 Here is an example of the implementation of a for loop within the state-machine-like framework:
-![for_loop](docs/images/ForLoop.png)
+![for_loop](images/ForLoop.png)
 
 ## Installation
 

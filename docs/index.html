@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -92,13 +93,13 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </ul>
 <p>To achieve these goals, algorithms are decomposed in a succession of states while the algorithmic flow is enforced by so-called transitions from one state to another. This decomposition of algorithms makes it possible to insert new states and new transitions to an existing algorithm without breaking the original algorithm and to be able to rewrite any part of the algorithm which comprises: state or transition removal, transition action overriding, transition flow overriding, algorithmic combination (i.e., sub-routines), etc.</p>
 <p>Here is an example of the implementation of a for loop within the state-machine-like framework:</p>
-<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/ForLoop.png" alt="for_loop" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/ForLoop.png" alt="for_loop" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md24"></a>
 Tutorials</h1>
-<p>Be sure to check out our amazing [tutorials](pages)!</p><ul>
-<li><a class="el" href="md_pages_1_ForLoop.html">Creating algorithms, states and transitions - creating a for loop</a></li>
-<li><a class="el" href="md_pages_2_PowerLoop.html">Inheriting and modifying algorithms - creating a power loop based on for loop</a></li>
-<li><a class="el" href="md_pages_3_DoubleLoop.html">Inheriting multiple times from an algorithm and the concept of layers - creating a double loop</a></li>
+<p>Be sure to check out our amazing <a href="src/tutorials">tutorials</a>!</p><ul>
+<li><a class="el" href="md_src_tutorials_1_ForLoop.html">Creating algorithms, states and transitions - creating a for loop</a></li>
+<li><a class="el" href="md_src_tutorials_2_PowerLoop.html">Inheriting and modifying algorithms - creating a power loop based on for loop</a></li>
+<li><a class="el" href="md_src_tutorials_3_DoubleLoop.html">Inheriting multiple times from an algorithm and the concept of layers - creating a double loop</a></li>
 </ul>
 <h1><a class="anchor" id="autotoc_md25"></a>
 Installation</h1>
@@ -133,17 +134,16 @@ Linking with cmake</h2>
 <div class="line"> </div>
 <div class="line">find_library(STATE_MACHINE_LIBRARY state_machine_cpp)</div>
 <div class="line">target_link_libraries(&lt;MY_TARGET&gt; ${STATE_MACHINE_LIBRARY})</div>
-</div><!-- fragment --><p>Then, your <code>main.cpp</code> may look like the following: </p><div class="fragment"><div class="line"> {c++}</div>
-<div class="line">#include &lt;iostream&gt;</div>
+</div><!-- fragment --><p>Then, your <code>main.cpp</code> may look like the following: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
-<div class="line">int main(int argc, const char** argv) {</div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span>** argv) {</div>
 <div class="line"> </div>
 <div class="line">    std::cout </div>
-<div class="line">             &lt;&lt; &quot;Successfully installed and linked with state_machine_cpp, &quot;</div>
-<div class="line">             &quot;version &quot; &lt;&lt; STATE_MACHINE_CPP_VERSION</div>
+<div class="line">             &lt;&lt; <span class="stringliteral">&quot;Successfully installed and linked with state_machine_cpp, &quot;</span></div>
+<div class="line">             <span class="stringliteral">&quot;version &quot;</span> &lt;&lt; STATE_MACHINE_CPP_VERSION</div>
 <div class="line">             &lt;&lt; std::endl;</div>
 <div class="line">    </div>
-<div class="line">    return 0;</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
 Building the documentation</h2>

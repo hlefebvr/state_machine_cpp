@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"plot_8h.html#afcfafb9a0586f5d4530ad3a24e287179":[7,0,0,0,19,0],
 "plot_8h_source.html":[7,0,0,0,19],
 "run_8h.html":[7,0,0,0,20],
 "run_8h.html#a18969e324d30617adcd781bba02e96bf":[7,0,0,0,20,2],

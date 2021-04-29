@@ -18,14 +18,14 @@ transition action overriding, transition flow overriding, algorithmic combinatio
 
 Here is an example of the implementation of a for loop within the state-machine-like framework:
 
-![for_loop](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/ForLoop.png)
+![for_loop](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/ForLoop.png)
 
 ## Tutorials
 
-Be sure to check out our amazing [tutorials](pages)!
-- [Creating algorithms, states and transitions - creating a for loop](pages/1_ForLoop.md)
-- [Inheriting and modifying algorithms - creating a power loop based on for loop](pages/2_PowerLoop.md)
-- [Inheriting multiple times from an algorithm and the concept of layers - creating a double loop](pages/3_DoubleLoop.md)
+Be sure to check out our amazing [tutorials](src/tutorials)!
+- [Creating algorithms, states and transitions - creating a for loop](src/tutorials/1_ForLoop.md)
+- [Inheriting and modifying algorithms - creating a power loop based on for loop](src/tutorials/2_PowerLoop.md)
+- [Inheriting multiple times from an algorithm and the concept of layers - creating a double loop](src/tutorials/3_DoubleLoop.md)
 
 ## Installation
 
@@ -82,7 +82,7 @@ target_link_libraries(<MY_TARGET> ${STATE_MACHINE_LIBRARY})
 ```
 
 Then, your `main.cpp` may look like the following:
-```c++
+```cpp
 #include <iostream>
 
 int main(int argc, const char** argv) {

@@ -33,32 +33,32 @@ var NAVTREE =
       [ "Linking with cmake", "index.html#autotoc_md30", null ],
       [ "Building the documentation", "index.html#autotoc_md31", null ]
     ] ],
-    [ "[Tutorial] ForLoop: you're first state machine", "md_pages_1_ForLoop.html", [
-      [ "Introduction", "md_pages_1_ForLoop.html#autotoc_md1", null ],
-      [ "Defining states", "md_pages_1_ForLoop.html#autotoc_md2", null ],
-      [ "Defining an algorithm builder", "md_pages_1_ForLoop.html#autotoc_md3", null ],
-      [ "Adding states", "md_pages_1_ForLoop.html#autotoc_md4", null ],
-      [ "Defining transition handlers", "md_pages_1_ForLoop.html#autotoc_md5", [
-        [ "Transitions handlers", "md_pages_1_ForLoop.html#autotoc_md6", null ],
-        [ "Attributes", "md_pages_1_ForLoop.html#autotoc_md7", null ],
-        [ "Defining all our transition handlers", "md_pages_1_ForLoop.html#autotoc_md8", null ],
-        [ "Adding transitions", "md_pages_1_ForLoop.html#autotoc_md9", null ]
+    [ "[Tutorial] ForLoop: Your first state machine", "md_src_tutorials_1_ForLoop.html", [
+      [ "Introduction", "md_src_tutorials_1_ForLoop.html#autotoc_md1", null ],
+      [ "Defining states", "md_src_tutorials_1_ForLoop.html#autotoc_md2", null ],
+      [ "Defining an algorithm builder", "md_src_tutorials_1_ForLoop.html#autotoc_md3", null ],
+      [ "Adding states", "md_src_tutorials_1_ForLoop.html#autotoc_md4", null ],
+      [ "Defining transition handlers", "md_src_tutorials_1_ForLoop.html#autotoc_md5", [
+        [ "Transitions handlers", "md_src_tutorials_1_ForLoop.html#autotoc_md6", null ],
+        [ "Attributes", "md_src_tutorials_1_ForLoop.html#autotoc_md7", null ],
+        [ "Defining all our transition handlers", "md_src_tutorials_1_ForLoop.html#autotoc_md8", null ],
+        [ "Adding transitions", "md_src_tutorials_1_ForLoop.html#autotoc_md9", null ]
       ] ],
-      [ "Running our first algorithm!", "md_pages_1_ForLoop.html#autotoc_md10", null ]
+      [ "Running our first algorithm!", "md_src_tutorials_1_ForLoop.html#autotoc_md10", null ]
     ] ],
-    [ "[Tutorial] PowerLoop: inheriting and modifying existing algorithms", "md_pages_2_PowerLoop.html", [
-      [ "Introduction", "md_pages_2_PowerLoop.html#autotoc_md12", null ],
-      [ "New algorithm = new builder", "md_pages_2_PowerLoop.html#autotoc_md13", null ],
-      [ "Inheriting states and transitions", "md_pages_2_PowerLoop.html#autotoc_md14", null ],
-      [ "Applying modifications", "md_pages_2_PowerLoop.html#autotoc_md15", null ],
-      [ "Advanced notions regarding inheritance", "md_pages_2_PowerLoop.html#autotoc_md16", null ]
+    [ "[Tutorial] PowerLoop: Inheriting algorithms", "md_src_tutorials_2_PowerLoop.html", [
+      [ "Introduction", "md_src_tutorials_2_PowerLoop.html#autotoc_md12", null ],
+      [ "New algorithm = new builder", "md_src_tutorials_2_PowerLoop.html#autotoc_md13", null ],
+      [ "Inheriting states and transitions", "md_src_tutorials_2_PowerLoop.html#autotoc_md14", null ],
+      [ "Applying modifications", "md_src_tutorials_2_PowerLoop.html#autotoc_md15", null ],
+      [ "Advanced notions regarding inheritance", "md_src_tutorials_2_PowerLoop.html#autotoc_md16", null ]
     ] ],
-    [ "[Tutorial] Layers and multiple inheritance of the same algorithm", "md_pages_3_DoubleLoop.html", [
-      [ "Introduction", "md_pages_3_DoubleLoop.html#autotoc_md18", null ],
-      [ "Inheriting twice", "md_pages_3_DoubleLoop.html#autotoc_md19", null ],
-      [ "Playing with layers", "md_pages_3_DoubleLoop.html#autotoc_md20", null ],
-      [ "Routing between layers", "md_pages_3_DoubleLoop.html#autotoc_md21", null ],
-      [ "Accessing layered context", "md_pages_3_DoubleLoop.html#autotoc_md22", null ]
+    [ "[Tutorial] DoubleLoop: The layer concept", "md_src_tutorials_3_DoubleLoop.html", [
+      [ "Introduction", "md_src_tutorials_3_DoubleLoop.html#autotoc_md18", null ],
+      [ "Inheriting twice", "md_src_tutorials_3_DoubleLoop.html#autotoc_md19", null ],
+      [ "Playing with layers", "md_src_tutorials_3_DoubleLoop.html#autotoc_md20", null ],
+      [ "Routing between layers", "md_src_tutorials_3_DoubleLoop.html#autotoc_md21", null ],
+      [ "Accessing layered context", "md_src_tutorials_3_DoubleLoop.html#autotoc_md22", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -93,7 +93,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"plot_8h_source.html"
+"plot_8h.html#afcfafb9a0586f5d4530ad3a24e287179"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

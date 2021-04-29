@@ -23,14 +23,14 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "state_machine_cpp library", "index.html", [
-    [ "Installation", "index.html#autotoc_md12", [
-      [ "Dependencies", "index.html#autotoc_md13", [
-        [ "Map implementation", "index.html#autotoc_md14", null ]
+    [ "Installation", "index.html#autotoc_md18", [
+      [ "Dependencies", "index.html#autotoc_md19", [
+        [ "Map implementation", "index.html#autotoc_md20", null ]
       ] ],
-      [ "Installation", "index.html#autotoc_md15", null ],
-      [ "Compiling and running examples", "index.html#autotoc_md16", null ],
-      [ "Linking with cmake", "index.html#autotoc_md17", null ],
-      [ "Building the documentation", "index.html#autotoc_md18", null ]
+      [ "Installation", "index.html#autotoc_md21", null ],
+      [ "Compiling and running examples", "index.html#autotoc_md22", null ],
+      [ "Linking with cmake", "index.html#autotoc_md23", null ],
+      [ "Building the documentation", "index.html#autotoc_md24", null ]
     ] ],
     [ "[Tutorial] ForLoop: you're first state machine", "md_pages_1_ForLoop.html", [
       [ "Introduction", "md_pages_1_ForLoop.html#autotoc_md1", null ],
@@ -44,6 +44,13 @@ var NAVTREE =
         [ "Adding transitions", "md_pages_1_ForLoop.html#autotoc_md9", null ]
       ] ],
       [ "Running our first algorithm!", "md_pages_1_ForLoop.html#autotoc_md10", null ]
+    ] ],
+    [ "[Tutorial] PowerLoop: inheriting and modifying existing algorithms", "md_pages_2_PowerLoop.html", [
+      [ "Introduction", "md_pages_2_PowerLoop.html#autotoc_md12", null ],
+      [ "New algorithm = new builder", "md_pages_2_PowerLoop.html#autotoc_md13", null ],
+      [ "Inheriting states and transitions", "md_pages_2_PowerLoop.html#autotoc_md14", null ],
+      [ "Applying modifications", "md_pages_2_PowerLoop.html#autotoc_md15", null ],
+      [ "Advanced notions regarding inheritance", "md_pages_2_PowerLoop.html#autotoc_md16", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -78,7 +85,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"state__id_8h_source.html"
+"sanity__check_8h.html#aaad835bb89148ae5557bd849e5ec5c03"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

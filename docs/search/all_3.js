@@ -1,17 +1,9 @@
 var searchData=
 [
-  ['basics_2eh_12',['basics.h',['../basics_8h.html',1,'']]],
-  ['begin_13',['begin',['../classstate__machine__cpp_1_1TransitionSet.html#a2569f33f706daa9d9289712c39e6fcde',1,'state_machine_cpp::TransitionSet::begin()'],['../classstate__machine__cpp_1_1TransitionSet.html#aabab902755866a77de24f1a1d9dee6b4',1,'state_machine_cpp::TransitionSet::begin() const']]],
-  ['build_14',['build',['../classstate__machine__cpp_1_1Algorithm_1_1Builder.html#a97323c8230ff127864173aab7723ec1d',1,'state_machine_cpp::Algorithm::Builder::build()'],['../namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f',1,'state_machine_cpp::Algorithm::build()']]],
-  ['build_2eh_15',['build.h',['../build_8h.html',1,'']]],
-  ['builder_16',['Builder',['../classstate__machine__cpp_1_1Algorithm_1_1Builder.html',1,'state_machine_cpp::Algorithm']]],
-  ['builder_2eh_17',['builder.h',['../builder_8h.html',1,'']]],
-  ['builder_5fimpl_5flayers_2eh_18',['builder_impl_layers.h',['../builder__impl__layers_8h.html',1,'']]],
-  ['builder_5fimpl_5fstates_2eh_19',['builder_impl_states.h',['../builder__impl__states_8h.html',1,'']]],
-  ['builder_5fimpl_5ftransitions_2eh_20',['builder_impl_transitions.h',['../builder__impl__transitions_8h.html',1,'']]],
-  ['builder_5findirection_2eh_21',['builder_indirection.h',['../builder__indirection_8h.html',1,'']]],
-  ['builder_5flayers_2eh_22',['builder_layers.h',['../builder__layers_8h.html',1,'']]],
-  ['builder_5fstates_2eh_23',['builder_states.h',['../builder__states_8h.html',1,'']]],
-  ['builder_5ftransitions_2eh_24',['builder_transitions.h',['../builder__transitions_8h.html',1,'']]],
-  ['by_5fhash_25',['by_hash',['../structstate__machine__cpp_1_1Transition_1_1Any_1_1by__hash.html',1,'state_machine_cpp::Transition::Any']]]
+  ['add_7',['add',['../classstate__machine__cpp_1_1TransitionSet.html#a781610c84ccffbf8cecd31d7e861a895',1,'state_machine_cpp::TransitionSet']]],
+  ['algorithm_2eh_8',['algorithm.h',['../algorithm_8h.html',1,'']]],
+  ['any_9',['Any',['../classstate__machine__cpp_1_1State_1_1Any.html',1,'state_machine_cpp::State::Any'],['../classstate__machine__cpp_1_1Transition_1_1Any.html',1,'state_machine_cpp::Transition::Any'],['../classstate__machine__cpp_1_1State_1_1Any.html#a0e1bc70b6634b85a474466accd1cd8d7',1,'state_machine_cpp::State::Any::Any(const State::Id &amp;t_id)'],['../classstate__machine__cpp_1_1State_1_1Any.html#a19511f306023208c3de38067f83c9d64',1,'state_machine_cpp::State::Any::Any(const State::Instance &amp;t_instance)'],['../classstate__machine__cpp_1_1Transition_1_1Any.html#a77c07f67e78089657440cb07aa1f25ad',1,'state_machine_cpp::Transition::Any::Any()']]],
+  ['as_5finstance_10',['as_instance',['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Indirection.html#ae8535de24e823a85c7062351408f6758',1,'state_machine_cpp::Algorithm::Builder::Indirection::as_instance()'],['../classstate__machine__cpp_1_1State_1_1Any.html#ae45eb4a777a3a7bef38df326bedc90e0',1,'state_machine_cpp::State::Any::as_instance()']]],
+  ['states_11',['States',['../classstate__machine__cpp_1_1Algorithm_1_1Instance.html#ae9703c25c6885b1baa0e6fa804882e8f',1,'state_machine_cpp::Algorithm::Instance']]],
+  ['transitions_12',['Transitions',['../classstate__machine__cpp_1_1Algorithm_1_1Instance.html#ae5dc929dc74897b6698c2c57793e774f',1,'state_machine_cpp::Algorithm::Instance']]]
 ];

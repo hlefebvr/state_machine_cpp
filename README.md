@@ -27,6 +27,8 @@ Be sure to check out our amazing tutorials!
 - [Inheriting and modifying algorithms - creating a power loop based on for loop](src/tutorials/2_PowerLoop.md)
 - [Inheriting multiple times from an algorithm and the concept of layers - creating a double loop](src/tutorials/3_DoubleLoop.md)
 
+You may also check our [documentation](https://hlefebvr.github.io/state_machine_cpp/)!
+
 ## Installation
 
 ### Dependencies

@@ -36,8 +36,8 @@ int main(int argc, const char** argv) {
     Algorithm::sanity_check(algorithm);
     Algorithm::plot(algorithm, "my_file");
 
-    CounterAttributes counter_attributes(10);
-    CounterAttributes counter_attributes_2(30);
+    CounterAttributes counter_attributes(3);
+    CounterAttributes counter_attributes_2(5);
     SimpleContext<CounterAttributes> context(counter_attributes);
     SimpleContext<CounterAttributes> context_2(counter_attributes_2);
     LayeredContext<2> layered_context(context, context_2);

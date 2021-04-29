@@ -23,14 +23,15 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "state_machine_cpp library", "index.html", [
-    [ "Installation", "index.html#autotoc_md18", [
-      [ "Dependencies", "index.html#autotoc_md19", [
-        [ "Map implementation", "index.html#autotoc_md20", null ]
+    [ "Tutorials", "index.html#autotoc_md24", null ],
+    [ "Installation", "index.html#autotoc_md25", [
+      [ "Dependencies", "index.html#autotoc_md26", [
+        [ "Map implementation", "index.html#autotoc_md27", null ]
       ] ],
-      [ "Installation", "index.html#autotoc_md21", null ],
-      [ "Compiling and running examples", "index.html#autotoc_md22", null ],
-      [ "Linking with cmake", "index.html#autotoc_md23", null ],
-      [ "Building the documentation", "index.html#autotoc_md24", null ]
+      [ "Installation", "index.html#autotoc_md28", null ],
+      [ "Compiling and running examples", "index.html#autotoc_md29", null ],
+      [ "Linking with cmake", "index.html#autotoc_md30", null ],
+      [ "Building the documentation", "index.html#autotoc_md31", null ]
     ] ],
     [ "[Tutorial] ForLoop: you're first state machine", "md_pages_1_ForLoop.html", [
       [ "Introduction", "md_pages_1_ForLoop.html#autotoc_md1", null ],
@@ -51,6 +52,13 @@ var NAVTREE =
       [ "Inheriting states and transitions", "md_pages_2_PowerLoop.html#autotoc_md14", null ],
       [ "Applying modifications", "md_pages_2_PowerLoop.html#autotoc_md15", null ],
       [ "Advanced notions regarding inheritance", "md_pages_2_PowerLoop.html#autotoc_md16", null ]
+    ] ],
+    [ "[Tutorial] Layers and multiple inheritance of the same algorithm", "md_pages_3_DoubleLoop.html", [
+      [ "Introduction", "md_pages_3_DoubleLoop.html#autotoc_md18", null ],
+      [ "Inheriting twice", "md_pages_3_DoubleLoop.html#autotoc_md19", null ],
+      [ "Playing with layers", "md_pages_3_DoubleLoop.html#autotoc_md20", null ],
+      [ "Routing between layers", "md_pages_3_DoubleLoop.html#autotoc_md21", null ],
+      [ "Accessing layered context", "md_pages_3_DoubleLoop.html#autotoc_md22", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -85,7 +93,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"sanity__check_8h.html#aaad835bb89148ae5557bd849e5ec5c03"
+"plot_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

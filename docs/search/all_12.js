@@ -1,22 +1,9 @@
 var searchData=
 [
-  ['algorithm_92',['Algorithm',['../namespacestate__machine__cpp_1_1Algorithm.html',1,'state_machine_cpp']]],
-  ['build_93',['Build',['../namespacestate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build.html',1,'state_machine_cpp::Algorithm::Impl']]],
-  ['impl_94',['Impl',['../namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html',1,'state_machine_cpp::Algorithm']]],
-  ['state_5fmachine_5fcpp_20library_95',['state_machine_cpp library',['../index.html',1,'']]],
-  ['sanity_5fcheck_96',['sanity_check',['../namespacestate__machine__cpp_1_1Algorithm.html#aaad835bb89148ae5557bd849e5ec5c03',1,'state_machine_cpp::Algorithm']]],
-  ['sanity_5fcheck_2eh_97',['sanity_check.h',['../sanity__check_8h.html',1,'']]],
-  ['set_98',['set',['../classstate__machine__cpp_1_1LayeredContext.html#a3e7f151fc8d3d15822706e295b72b2cd',1,'state_machine_cpp::LayeredContext::set()'],['../classstate__machine__cpp_1_1SimpleContext.html#ac6ad512b8e30cee9f2cab0f2ee475dcb',1,'state_machine_cpp::SimpleContext::set()'],['../classstate__machine__cpp_1_1TransitionSet.html#afdf698221350dc62ac2ba66c14cc3d87',1,'state_machine_cpp::TransitionSet::Set()']]],
-  ['set_5fas_5ffinal_99',['set_as_final',['../classstate__machine__cpp_1_1Transition_1_1Any.html#a31eabb64eb0e92151c9c785f449d10f4',1,'state_machine_cpp::Transition::Any']]],
-  ['set_5fhandler_100',['set_handler',['../classstate__machine__cpp_1_1Transition_1_1Any.html#a90e6a9f98ff795dc05b3fd942ab2691b',1,'state_machine_cpp::Transition::Any']]],
-  ['simplecontext_101',['SimpleContext',['../classstate__machine__cpp_1_1SimpleContext.html',1,'state_machine_cpp::SimpleContext&lt; Args &gt;'],['../classstate__machine__cpp_1_1SimpleContext.html#a0668c2308929c585dda89eac3d32cefa',1,'state_machine_cpp::SimpleContext::SimpleContext()'],['../classstate__machine__cpp_1_1SimpleContext.html#a6e862903062fce5053b0d1214c3ac383',1,'state_machine_cpp::SimpleContext::SimpleContext(Args &amp;...t_args)']]],
-  ['state_102',['State',['../namespacestate__machine__cpp_1_1State.html',1,'state_machine_cpp']]],
-  ['state_2eh_103',['state.h',['../state_8h.html',1,'']]],
-  ['state_5fany_2eh_104',['state_any.h',['../state__any_8h.html',1,'']]],
-  ['state_5fid_2eh_105',['state_id.h',['../state__id_8h.html',1,'']]],
-  ['state_5finstance_2eh_106',['state_instance.h',['../state__instance_8h.html',1,'']]],
-  ['state_5fmachine_5fcpp_107',['state_machine_cpp',['../namespacestate__machine__cpp.html',1,'']]],
-  ['states_108',['States',['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html',1,'state_machine_cpp::Algorithm::Builder::States'],['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1States.html',1,'state_machine_cpp::Algorithm::Impl::Build::States'],['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1States.html#ad039b63cfd0c01478cd0ebfdf8e45c61',1,'state_machine_cpp::Algorithm::Impl::Build::States::States()'],['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html#a246ab102f99d68aa69856c0e5140c631',1,'state_machine_cpp::Algorithm::Builder::States::States()']]],
-  ['transition_109',['Transition',['../namespacestate__machine__cpp_1_1Transition.html',1,'state_machine_cpp']]],
-  ['util_110',['Util',['../namespacestate__machine__cpp_1_1Util.html',1,'state_machine_cpp']]]
+  ['readme_2emd_87',['README.md',['../README_8md.html',1,'']]],
+  ['remove_88',['remove',['../classstate__machine__cpp_1_1TransitionSet.html#adb07a9fb962cc338c0b7c15301176d59',1,'state_machine_cpp::TransitionSet::remove()'],['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1States.html#adbbaaf1dc43794717d86c81cef3b5b22',1,'state_machine_cpp::Algorithm::Impl::Build::States::remove()'],['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1Transitions.html#a31a91f2edd4f04941522625df97def68',1,'state_machine_cpp::Algorithm::Impl::Build::Transitions::remove()'],['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html#aec00d068771524122c0e979a06da9d11',1,'state_machine_cpp::Algorithm::Builder::States::remove()'],['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Transitions.html#a6dd8fd73fb0bf5eb205bbe43a45c4f57',1,'state_machine_cpp::Algorithm::Builder::Transitions::remove()']]],
+  ['reset_5fhandler_89',['reset_handler',['../classstate__machine__cpp_1_1Transition_1_1Any.html#a531d42bc2e3cdd3438f1e3ed02547db6',1,'state_machine_cpp::Transition::Any']]],
+  ['run_90',['run',['../namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a7e72e2565b9da5dba77fae4f7ae5c00e',1,'state_machine_cpp::Algorithm::Impl::run(::state_machine_cpp::Context &amp;t_context, const ::state_machine_cpp::State::Id &amp;t_initial_state, const ::state_machine_cpp::State::Id &amp;t_final_state, const std::function&lt; State::Instance(const Algorithm::Instance &amp;t_instance, const State::Instance &amp;t_state, Context &amp;t_context)&gt; &amp;t_apply_transition)'],['../namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6',1,'state_machine_cpp::Algorithm::Impl::run(Context &amp;t_context, const State::Id &amp;t_initial_state, const State::Id &amp;t_final_state, const std::function&lt; State::Instance(const State::Instance &amp;t_state, Context &amp;t_context)&gt; &amp;t_apply_transition)'],['../namespacestate__machine__cpp_1_1Algorithm.html#aae43f7a6dd99e76c28b04ff1d912d859',1,'state_machine_cpp::Algorithm::run()']]],
+  ['run_2eh_91',['run.h',['../run_8h.html',1,'']]],
+  ['run_5fwith_5flogs_92',['run_with_logs',['../namespacestate__machine__cpp_1_1Algorithm.html#a18969e324d30617adcd781bba02e96bf',1,'state_machine_cpp::Algorithm']]]
 ];

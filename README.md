@@ -17,7 +17,15 @@ algorithm and to be able to rewrite any part of the algorithm which comprises: s
 transition action overriding, transition flow overriding, algorithmic combination (i.e., sub-routines), etc.
 
 Here is an example of the implementation of a for loop within the state-machine-like framework:
-![for_loop](images/Builder1.png)
+
+![for_loop](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/ForLoop.png)
+
+## Tutorials
+
+Be sure to check out our amazing [tutorials](pages)!
+- [Creating algorithms, states and transitions - creating a for loop](pages/1_ForLoop.md)
+- [Inheriting and modifying algorithms - creating a power loop based on for loop](pages/2_PowerLoop.md)
+- [Inheriting multiple times from an algorithm and the concept of layers - creating a double loop](pages/3_DoubleLoop.md)
 
 ## Installation
 
@@ -93,6 +101,5 @@ int main(int argc, const char** argv) {
 
 To build the documentation, use doxygen as follows:
 ```shell
-cd docs
 doxygen Doxyfile
 ```

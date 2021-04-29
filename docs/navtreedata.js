@@ -22,16 +22,18 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "state_machine_cpp library", "index.html", [
-    [ "Tutorials", "index.html#autotoc_md24", null ],
-    [ "Installation", "index.html#autotoc_md25", [
-      [ "Dependencies", "index.html#autotoc_md26", [
-        [ "Map implementation", "index.html#autotoc_md27", null ]
-      ] ],
-      [ "Installation", "index.html#autotoc_md28", null ],
-      [ "Compiling and running examples", "index.html#autotoc_md29", null ],
-      [ "Linking with cmake", "index.html#autotoc_md30", null ],
-      [ "Building the documentation", "index.html#autotoc_md31", null ]
+  [ "state_machine_cpp", "index.html", [
+    [ "state_machine_cpp library", "index.html", [
+      [ "Tutorials", "index.html#autotoc_md24", null ],
+      [ "Installation", "index.html#autotoc_md25", [
+        [ "Dependencies", "index.html#autotoc_md26", [
+          [ "Map implementation", "index.html#autotoc_md27", null ]
+        ] ],
+        [ "Installation", "index.html#autotoc_md28", null ],
+        [ "Compiling and running examples", "index.html#autotoc_md29", null ],
+        [ "Linking with cmake", "index.html#autotoc_md30", null ],
+        [ "Building the documentation", "index.html#autotoc_md31", null ]
+      ] ]
     ] ],
     [ "[Tutorial] ForLoop: Your first state machine", "md_src_tutorials_1_ForLoop.html", [
       [ "Introduction", "md_src_tutorials_1_ForLoop.html#autotoc_md1", null ],
@@ -93,7 +95,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"plot_8h.html#afcfafb9a0586f5d4530ad3a24e287179"
+"plot_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

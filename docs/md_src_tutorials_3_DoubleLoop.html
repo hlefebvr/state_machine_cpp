@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>state_machine_cpp library: [Tutorial] DoubleLoop: The layer concept</title>
+<title>state_machine_cpp: [Tutorial] DoubleLoop: The layer concept</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">state_machine_cpp library
+   <div id="projectname">state_machine_cpp
    </div>
   </td>
  </tr>
@@ -167,7 +167,7 @@ Playing with layers</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md21"></a>
 Routing between layers</h1>
-<p>Back to our double for loop example! We now want to insert one algorithm inside the other. In other words, if we want to override the transition from <code>LOOP_ITERATION[0]</code> to <code>INITIAL_STATE[1]</code> and to override the transition from <code>FINAL_STATE[1]</code> to <code>AFTER_LOOP_ITERATION[1]</code>.</p>
+<p>Back to our double for loop example! We now want to insert one algorithm inside the other. In other words, we want to override the transition from <code>LOOP_ITERATION[0]</code> to <code>INITIAL_STATE[1]</code> and to override the transition from <code>FINAL_STATE[1]</code> to <code>AFTER_LOOP_ITERATION[1]</code>.</p>
 <p>This can be done as follows. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    </div>
 <div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>

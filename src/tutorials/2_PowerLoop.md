@@ -81,7 +81,7 @@ Note that we cannot use `transitions.create(LOOP_ITERATION, AFTER_LOOP_ITERATION
 anymore since a transition of this kind already exists. Though it is possible to remove a
 state or a transition and to re-create it in another form, it is more convenient to simply
 override it. To do so, simply use the function `transitions.override`. This is done as follows:
-```c++
+```cpp
 struct PowerLoopAttributes {
     unsigned int power;
     explicit PowerLoopAttributes(unsigned int t_power) : power(t_power) {}

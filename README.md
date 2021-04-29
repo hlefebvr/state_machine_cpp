@@ -22,7 +22,7 @@ Here is an example of the implementation of a for loop within the state-machine-
 
 ## Tutorials
 
-Be sure to check out our amazing [tutorials](src/tutorials)!
+Be sure to check out our amazing tutorials!
 - [Creating algorithms, states and transitions - creating a for loop](src/tutorials/1_ForLoop.md)
 - [Inheriting and modifying algorithms - creating a power loop based on for loop](src/tutorials/2_PowerLoop.md)
 - [Inheriting multiple times from an algorithm and the concept of layers - creating a double loop](src/tutorials/3_DoubleLoop.md)

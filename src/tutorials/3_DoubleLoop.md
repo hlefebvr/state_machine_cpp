@@ -142,7 +142,7 @@ of "more modular" to act upon layers using variables rather than explicit values
 ## Routing between layers
 
 Back to our double for loop example! We now want to insert one algorithm inside the other.
-In other words, if we want to override the transition from `LOOP_ITERATION[0]` to `INITIAL_STATE[1]`
+In other words, we want to override the transition from `LOOP_ITERATION[0]` to `INITIAL_STATE[1]`
 and to override the transition from `FINAL_STATE[1]` to `AFTER_LOOP_ITERATION[1]`.
 
 This can be done as follows.

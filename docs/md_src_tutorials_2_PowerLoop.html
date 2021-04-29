@@ -119,21 +119,20 @@ Inheriting states and transitions</h1>
 <h1><a class="anchor" id="autotoc_md15"></a>
 Applying modifications</h1>
 <p>At this stage, we are totally free to write in our build function and are free to use the same functions as we did in the previous tutorial. For instance, we can use <code>states.create</code> to add new states or <code>transitions.create_if</code> to create a new conditional transition! Actually, we can totally re-route the whole algorithm and modify its flow!</p>
-<p>For our purpose though, we only need to change the action associated to the transition LOOP_ITERATION -&gt; AFTER_LOOP_ITERATION since this is where the message is being printed. Note that we cannot use <code>transitions.create(LOOP_ITERATION, AFTER_LOOP_ITERATION, ...</code> anymore since a transition of this kind already exists. Though it is possible to remove a state or a transition and to re-create it in another form, it is more convenient to simply override it. To do so, simply use the function <code>transitions.override</code>. This is done as follows: </p><div class="fragment"><div class="line"> {c++}</div>
-<div class="line">struct PowerLoopAttributes {</div>
-<div class="line">    unsigned int power;</div>
-<div class="line">    explicit PowerLoopAttributes(unsigned int t_power) : power(t_power) {}</div>
+<p>For our purpose though, we only need to change the action associated to the transition LOOP_ITERATION -&gt; AFTER_LOOP_ITERATION since this is where the message is being printed. Note that we cannot use <code>transitions.create(LOOP_ITERATION, AFTER_LOOP_ITERATION, ...</code> anymore since a transition of this kind already exists. Though it is possible to remove a state or a transition and to re-create it in another form, it is more convenient to simply override it. To do so, simply use the function <code>transitions.override</code>. This is done as follows: </p><div class="fragment"><div class="line"><span class="keyword">struct </span>PowerLoopAttributes {</div>
+<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> power;</div>
+<div class="line">    <span class="keyword">explicit</span> PowerLoopAttributes(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> t_power) : power(t_power) {}</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line">void handle_LOOP_ITERATION_with_power(Context&amp; context) {</div>
-<div class="line">    auto&amp; power_loop_attribtues = context.get&lt;PowerLoopAttributes&gt;();</div>
-<div class="line">    auto&amp; for_loop_attributes = context.get&lt;ForLoopAttributes&gt;();</div>
-<div class="line">    std::cout &lt;&lt; for_loop_attributes.iteration &lt;&lt; &quot; = &quot; &lt;&lt; std::pow(for_loop_attributes.iteration, power_loop_attributes.power) &lt;&lt; std::endl;</div>
+<div class="line"><span class="keywordtype">void</span> handle_LOOP_ITERATION_with_power(Context&amp; context) {</div>
+<div class="line">    <span class="keyword">auto</span>&amp; power_loop_attribtues = context.get&lt;PowerLoopAttributes&gt;();</div>
+<div class="line">    <span class="keyword">auto</span>&amp; for_loop_attributes = context.get&lt;ForLoopAttributes&gt;();</div>
+<div class="line">    std::cout &lt;&lt; for_loop_attributes.iteration &lt;&lt; <span class="stringliteral">&quot; = &quot;</span> &lt;&lt; std::pow(for_loop_attributes.iteration, power_loop_attributes.power) &lt;&lt; std::endl;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line">class PowerLoop final : public Algorithm::Builder {</div>
-<div class="line">public:</div>
-<div class="line">    void build(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line"><span class="keyword">class </span>PowerLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">        </div>
 <div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">        </div>

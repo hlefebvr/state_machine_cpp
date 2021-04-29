@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('md_pages_1_ForLoop.html',''); initResi
 <h1><a class="anchor" id="autotoc_md1"></a>
 Introduction</h1>
 <p>In this tutorial we'll be implementing a very simple example. It consists in a for loop printing out each iteration number. As you know, every thing here is nothing but states and transitions between states. In fact, I'll give you right away the overall shape of the algorithm we are trying to implement:</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/ForLoop.png" alt="For loop" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/ForLoop.png" alt="For loop" class="inline"/></p>
 <p>Simply put, the algorithm execution will start at the INITIAL_STATE and the corresponding transition will apply a baby step to go from INITIAL_STATE to the LOOP_HAS_STARTED state. The corresponding transition, in this case, will simply initialize the counter to 0. Then the algorithm will be in the LOOP_HAS_STARTED state. Again, the corresponding transition will be applied! This transition can be viewed as an "if" in C++. The action associated to this transition is therefore only to evaluate whether the iteration counter is less or greater than the maximum iteration count. If it is less then the LOOP_ITERATION state will be the next state of the algorithm. If not, FINAL_STATE will be the next state. I believe you can understand what follows in our story. Let's rather go straight on implementing it!</p>
 <blockquote class="doxtable">
 <p>Be sure to be <code>using namespace <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>;</code> and include #include&lt;state_machine_cpp/basics.h&gt; ;) </p>
@@ -138,7 +138,7 @@ Adding states</h1>
 <div class="line">Algorithm::build&lt;ForLoop&gt;(algorithm);</div>
 </div><!-- fragment --><p>You may now run your code! If you've done things right, your code should compile, yet, it seems to be doing nothing. Actually, this is not quite true. What happens is that you're algorithm has been created but we did not ask to run it or plot it or do anything with it. Let's visualize it with Algorithm::plot! </p><div class="fragment"><div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#afcfafb9a0586f5d4530ad3a24e287179">Algorithm::plot</a>(algorithm, <span class="stringliteral">&quot;my_algorithm&quot;</span>, <span class="keyword">false</span>);</div>
 </div><!-- fragment --><p>This function will create a file entitled "my_algorithm.dot" which contains a representation of the algorithm you are building. DOT files can be rendered as PNG images using <a href="https://graphviz.org/">graphviz</a>. Indeed, if you set the last parameter to true, the function will also automatically generate a PNG image by calling graphviz. The expected output is as follows:</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm.png" alt="my_algorithm.png" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm.png" alt="my_algorithm.png" class="inline"/></p>
 <p>As you can see, all our states have been added. Yet they are not connected. Trying to run this algorithm will result in an exception to be thrown. For the time being, you may also want to analyze the sanity of your algorithm. That is, check for errors or inconsistent behaviors. To do so, you may use the function <code>Algorithm::sanity_check</code> as follows: </p><div class="fragment"><div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#aaad835bb89148ae5557bd849e5ec5c03">Algorihtm::sanity_check</a>(algorithm);</div>
 </div><!-- fragment --><p>Doing so and executing your code will print out the following report: </p><div class="fragment"><div class="line">WARNING(STATE_WITHOUT_ANY_SUCCESSOR), AFTER_LOOP_ITERATION[0] has no successor</div>
 <div class="line">WARNING(STATE_WITHOUT_ANY_SUCCESSOR), LOOP_HAS_STARTED[0] has no successor</div>
@@ -198,7 +198,7 @@ Adding transitions</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>As you can see, Algorithm::Builder::Transitions::create_if is used as follows: it creates a transitions from the first argument to the second argument if the handler returns true and to the third otherwise.</p>
 <p>Trying to visualize our algorithm will yield the following:</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_tx.png" alt="my_algorithm.png" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_tx.png" alt="my_algorithm.png" class="inline"/></p>
 <p>The sanity check should also not complain anymore as our algorithm is well-defined.</p>
 <p>Well, now is time to run our algorithm!</p>
 <h1><a class="anchor" id="autotoc_md10"></a>

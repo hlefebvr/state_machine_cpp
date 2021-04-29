@@ -51,7 +51,7 @@ class DoubleLoop final : public Algorithm::Builder {
 ```
 Up to there, nothing new. Visualizing our algorithm yields the expected followng result:
 
-![my_algorithm.png](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_tx.png)
+![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_tx.png)
 
 Now let's try to inherit twice algorithm ForLoop, as follows:
 ```cpp
@@ -90,7 +90,7 @@ void build(States& states, Transitions& transitions, Layers& layers) {
 
 Now, building this algorithm works! Let's visualize it so that it becomes clear what happened.
 
-![my_algorithm.png](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_copied.png)
+![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_copied.png)
 
 You can see that our ForLoop algorithm has been imported twice! Yet, it has been "instantiated"
 on two different layers: 0 and 1. Note that, at any time, it is possible to know the current
@@ -163,7 +163,7 @@ void build(States& states, Transitions& transitions, Layers& layers) {
 
 Visualizing the resulting algorithm, one obtains the following.
 
-![my_algorithm.png](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_merged.png)
+![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_merged.png)
 
 We therefore have successfully inserted our copied version of ForLoop inside another copied version of ForLoop.
 

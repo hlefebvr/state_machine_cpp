@@ -61,7 +61,7 @@ Thus, the obtained algorithm is well-defined. Note that you can also visualize i
 the Algorithm::plot function like we did in the previous tutorial. Doing so trivially yields
 the following image.
 
-![my_algorithm.png](https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_tx.png)
+![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_tx.png)
 
 > IMPORTANT: note that to inherit from an algorithm, we did not use C++ inheritance. The
 > use of C++ inheritance is heavily discourage regarding algorithm builders.

@@ -117,7 +117,7 @@ Inheriting twice</h1>
 <div class="line">    }</div>
 <div class="line">};</div>
 </div><!-- fragment --><p>Up to there, nothing new. Visualizing our algorithm yields the expected followng result:</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_tx.png" alt="my_algorithm.png" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_tx.png" alt="my_algorithm.png" class="inline"/></p>
 <p>Now let's try to inherit twice algorithm ForLoop, as follows: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
@@ -135,7 +135,7 @@ Inheriting twice</h1>
 <div class="line">    </div>
 <div class="line">}</div>
 </div><!-- fragment --><p>Now, building this algorithm works! Let's visualize it so that it becomes clear what happened.</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_copied.png" alt="my_algorithm.png" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_copied.png" alt="my_algorithm.png" class="inline"/></p>
 <p>You can see that our ForLoop algorithm has been imported twice! Yet, it has been "instantiated" on two different layers: 0 and 1. Note that, at any time, it is possible to know the current layer by calling the <code>layers.current</code> method.</p>
 <p>Now that we have copied our algorithm twice, let's insert it to obtain one single algorithmic flow!</p>
 <h1><a class="anchor" id="autotoc_md20"></a>
@@ -180,7 +180,7 @@ Routing between layers</h1>
 <div class="line">    </div>
 <div class="line">}</div>
 </div><!-- fragment --><p>Visualizing the resulting algorithm, one obtains the following.</p>
-<p><img src="https://github.com/hlefebvr/state_machine_cpp/blob/main/images/my_algorithm_merged.png" alt="my_algorithm.png" class="inline"/></p>
+<p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_merged.png" alt="my_algorithm.png" class="inline"/></p>
 <p>We therefore have successfully inserted our copied version of ForLoop inside another copied version of ForLoop.</p>
 <p>To run our algorithm though, we need to define a new context called <code>LayredContext</code>. The following piece of code speaks for iteself. </p><div class="fragment"><div class="line">ForLoopAttributes for_loop_attributes_1(3);</div>
 <div class="line">ForLoopAttributes for_loop_attributes_2(5);</div>

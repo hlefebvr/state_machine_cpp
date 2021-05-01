@@ -7,57 +7,40 @@
 
 using namespace state_machine_cpp;
 
-static const State::Id A("A");
-static const State::Id B("B");
-static const State::Id C("C");
-static const State::Id D("D");
-static const State::Id E("E");
-
-
-class Builder1 final : public Algorithm::Builder {
+class MyAlgorithm : public Algorithm::Builder {
 public:
-    void build(States& states, Transitions& transitions, Layers& layers) override {
-        states.create(A);
-        states.create(B);
-        transitions.create(A, B);
-        transitions.create(B, B);
+    static const State::Id INITIAL_STATE;
+    static const State::Id FINAL_STATE;
+
+    static void handle_transition(Context& context) {
+        std::cout << "HANDLED" << std::endl;
+    }
+
+    void build(States &states, Transitions &transitions, Layers &layers) override {
+
+        states.create(INITIAL_STATE);
+        states.create(FINAL_STATE);
+
+        transitions.create(INITIAL_STATE, FINAL_STATE, handle_transition);
+        transitions.create(FINAL_STATE, FINAL_STATE);
+
     }
 };
 
-class Builder2 final : public Algorithm::Builder {
-public:
-    void build(States& states, Transitions& transitions, Layers& layers) override {
-        states.create(C);
-        states.create(D);
-        states.create(E);
-        transitions.create(C, D);
-        transitions.create(D, E);
-        transitions.create(E, E);
-    }
-};
-
-class Builder3 final : public Algorithm::Builder {
-public:
-    void build(States& states, Transitions& transitions, Layers& layers) override {
-        inherit<Builder1>(states, transitions, layers);
-        inherit<Builder2>(states, transitions, layers);
-
-        transitions.override(A, C);
-        transitions.override(E, B);
-    }
-};
+const State::Id MyAlgorithm::INITIAL_STATE = State::Id("INITIAL_STATE");
+const State::Id MyAlgorithm::FINAL_STATE = State::Id("FINAL_STATE");
 
 int main(int argc, const char** argv) {
 
 
     Algorithm::Instance algorithm;
-    Algorithm::build<Builder3>(algorithm);
+    Algorithm::build<MyAlgorithm>(algorithm);
     Algorithm::plot(algorithm, "my_algorithm_tx");
     Algorithm::sanity_check(algorithm);
 
     SimpleContext<bool> context;
 
-    Algorithm::run_with_logs(algorithm, context, A, B);
+    Algorithm::run_with_logs(algorithm, context, MyAlgorithm::INITIAL_STATE, MyAlgorithm::FINAL_STATE);
 
     return 0;
 }

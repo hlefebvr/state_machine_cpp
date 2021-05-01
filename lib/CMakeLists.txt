@@ -77,6 +77,9 @@ list(APPEND PRIVATE_FILES "${PUBLIC_FILES}") # this is for CLion to enable code 
 # defines library target
 add_library(${LIBRARY_NAME} ${PRIVATE_FILES})
 
+# set POSITION_INDEPENDENT_CODE
+set_property(TARGET ${LIBRARY_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
+
 # define C++ version
 set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 17)
 

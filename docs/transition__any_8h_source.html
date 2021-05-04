@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>state_machine_cpp: lib/include/transition_any.h Source File</title>
+<title>state_machine_cpp: state_machine_cpp/include/transitions/transition_any.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,8 +97,8 @@ $(document).ready(function(){initNavTree('transition__any_8h_source.html',''); i
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="state__any_8h.html">state_any.h</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____hash_8h.html">__hash.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="state__any_8h.html">states/state_any.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____hash_8h.html">impl/__hash.h</a>&quot;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestate__machine__cpp.html">state_machine_cpp</a> {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">class </span>Context;</div>
@@ -149,7 +149,7 @@ $(document).ready(function(){initNavTree('transition__any_8h_source.html',''); i
 <div class="ttc" id="astate__any_8h_html"><div class="ttname"><a href="state__any_8h.html">state_any.h</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Transition_1_1Any_html_a77c07f67e78089657440cb07aa1f25ad"><div class="ttname"><a href="classstate__machine__cpp_1_1Transition_1_1Any.html#a77c07f67e78089657440cb07aa1f25ad">state_machine_cpp::Transition::Any::Any</a></div><div class="ttdeci">Any(const State::Instance &amp;t_initial_state)</div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1State_1_1Instance_html"><div class="ttname"><a href="classstate__machine__cpp_1_1State_1_1Instance.html">state_machine_cpp::State::Instance</a></div><div class="ttdef"><b>Definition:</b> <a href="state__instance_8h_source.html#l00023">state_instance.h:23</a></div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_html"><div class="ttname"><a href="namespacestate__machine__cpp.html">state_machine_cpp</a></div><div class="ttdef"><b>Definition:</b> <a href="____comparable_8h_source.html#l00008">__comparable.h:8</a></div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_html"><div class="ttname"><a href="namespacestate__machine__cpp.html">state_machine_cpp</a></div><div class="ttdef"><b>Definition:</b> <a href="algorithm_8h_source.html#l00014">algorithm.h:14</a></div></div>
 <div class="ttc" id="astructstate__machine__cpp_1_1Transition_1_1Any_1_1by__hash_html_a8c35039ce8e6b15717ec96576d53fdcb"><div class="ttname"><a href="structstate__machine__cpp_1_1Transition_1_1Any_1_1by__hash.html#a8c35039ce8e6b15717ec96576d53fdcb">state_machine_cpp::Transition::Any::by_hash::operator()</a></div><div class="ttdeci">long unsigned int operator()(const Any &amp;t_x) const</div><div class="ttdef"><b>Definition:</b> <a href="transition__any_8h_source.html#l00042">transition_any.h:42</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Transition_1_1Any_html_a188d0ceb8b5fd940884ad1e826d9898f"><div class="ttname"><a href="classstate__machine__cpp_1_1Transition_1_1Any.html#a188d0ceb8b5fd940884ad1e826d9898f">state_machine_cpp::Transition::Any::is_final</a></div><div class="ttdeci">bool is_final() const</div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Transition_1_1Any_html_a211b2b93ab0c350c17f7ea7371f879df"><div class="ttname"><a href="classstate__machine__cpp_1_1Transition_1_1Any.html#a211b2b93ab0c350c17f7ea7371f879df">state_machine_cpp::Transition::Any::next_states</a></div><div class="ttdeci">std::vector&lt; State::Instance &gt; next_states() const</div></div>
@@ -163,7 +163,7 @@ $(document).ready(function(){initNavTree('transition__any_8h_source.html',''); i
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_5a30104352ef4255dc24354b02eb2d20.html">include</a></li><li class="navelem"><a class="el" href="transition__any_8h.html">transition_any.h</a></li>
+    <li class="navelem"><a class="el" href="dir_52f06d812e0fe7a1df9fb83708895f78.html">state_machine_cpp</a></li><li class="navelem"><a class="el" href="dir_c89b31bf2fae02b1dd53ae3af05cc2d2.html">include</a></li><li class="navelem"><a class="el" href="dir_d939a8bb2784a61aa093713d5d39ee8c.html">transitions</a></li><li class="navelem"><a class="el" href="transition__any_8h.html">transition_any.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

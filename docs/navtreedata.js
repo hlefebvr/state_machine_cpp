@@ -30,9 +30,8 @@ var NAVTREE =
           [ "Map implementation", "index.html#autotoc_md27", null ]
         ] ],
         [ "Installation", "index.html#autotoc_md28", null ],
-        [ "Compiling and running examples", "index.html#autotoc_md29", null ],
-        [ "Linking with cmake", "index.html#autotoc_md30", null ],
-        [ "Building the documentation", "index.html#autotoc_md31", null ]
+        [ "Linking with cmake", "index.html#autotoc_md29", null ],
+        [ "Building the documentation", "index.html#autotoc_md30", null ]
       ] ]
     ] ],
     [ "[Tutorial] ForLoop: Your first state machine", "md_src_tutorials_1_ForLoop.html", [
@@ -95,7 +94,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"plot_8h.html"
+"namespacestate__machine__cpp_1_1Transition.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

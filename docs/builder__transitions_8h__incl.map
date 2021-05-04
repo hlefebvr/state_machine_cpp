@@ -1,10 +1,10 @@
-<map id="lib/include/builder_transitions.h" name="lib/include/builder_transitions.h">
-<area shape="rect" id="node1" title=" " alt="" coords="123,5,261,47"/>
-<area shape="rect" id="node2" href="$builder__indirection_8h.html" title=" " alt="" coords="24,95,179,121"/>
-<area shape="rect" id="node8" href="$transition__handlers_8h.html" title=" " alt="" coords="203,95,362,121"/>
-<area shape="rect" id="node3" href="$builder_8h.html" title=" " alt="" coords="6,169,85,196"/>
-<area shape="rect" id="node7" href="$state__any_8h.html" title=" " alt="" coords="109,169,205,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,319,85,345"/>
-<area shape="rect" id="node5" href="$state__instance_8h.html" title=" " alt="" coords="87,244,217,271"/>
-<area shape="rect" id="node6" href="$____comparable_8h.html" title=" " alt="" coords="109,319,235,345"/>
+<map id="state_machine_cpp/include/builder/builder_transitions.h" name="state_machine_cpp/include/builder/builder_transitions.h">
+<area shape="rect" id="node1" title=" " alt="" coords="97,5,305,47"/>
+<area shape="rect" id="node2" href="$builder__indirection_8h.html" title=" " alt="" coords="35,102,189,129"/>
+<area shape="rect" id="node8" href="$transition__handlers_8h.html" title=" " alt="" coords="213,95,371,136"/>
+<area shape="rect" id="node3" href="$builder_8h.html" title=" " alt="" coords="6,184,85,211"/>
+<area shape="rect" id="node7" href="$state__any_8h.html" title=" " alt="" coords="109,184,249,211"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,333,85,360"/>
+<area shape="rect" id="node5" href="$state__instance_8h.html" title=" " alt="" coords="87,259,260,285"/>
+<area shape="rect" id="node6" href="$____comparable_8h.html" title=" " alt="" coords="110,333,269,360"/>
 </map>

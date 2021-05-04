@@ -71,7 +71,7 @@ target_link_libraries(<MY_TARGET> state_machine_cpp::state_machine_cpp)
 
 ### Building the documentation
 
-To build the documentation, use doxygen as follows:
+To build the documentation, use doxygen from the root folder:
 ```shell
-doxygen Doxyfile
+doxygen
 ```

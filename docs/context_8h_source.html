@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>state_machine_cpp: lib/include/context.h Source File</title>
+<title>state_machine_cpp: state_machine_cpp/include/context/context.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,15 +93,15 @@ $(document).ready(function(){initNavTree('context_8h_source.html',''); initResiz
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef STATE_MACHINE_CPP_CONTEXT_H</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define STATE_MACHINE_CPP_CONTEXT_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____pointer_8h.html">__pointer.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="state__id_8h.html">state_id.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="____pointer_8h.html">impl/__pointer.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="state__id_8h.html">states/state_id.h</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestate__machine__cpp.html">state_machine_cpp</a> {</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">class </span>Context;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">namespace </span>Algorithm {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">class </span>Instance;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">namespace </span>Impl {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a7e72e2565b9da5dba77fae4f7ae5c00e">run</a>(::<a class="code" href="classstate__machine__cpp_1_1Context.html">state_machine_cpp::Context</a> &amp;t_context,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6">run</a>(::<a class="code" href="classstate__machine__cpp_1_1Context.html">state_machine_cpp::Context</a> &amp;t_context,</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                     const ::state_machine_cpp::State::Id &amp;t_initial_state,</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                     const ::state_machine_cpp::State::Id &amp;t_final_state,</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                     <span class="keyword">const</span> std::function&lt;State::Instance(<span class="keyword">const</span> Algorithm::Instance &amp;t_instance,</div>
@@ -157,10 +157,11 @@ $(document).ready(function(){initNavTree('context_8h_source.html',''); initResiz
 <div class="ttc" id="aclassstate__machine__cpp_1_1State_1_1Any_html"><div class="ttname"><a href="classstate__machine__cpp_1_1State_1_1Any.html">state_machine_cpp::State::Any</a></div><div class="ttdef"><b>Definition:</b> <a href="state__any_8h_source.html#l00019">state_any.h:19</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Context_html_a6b9ee1a24d5abe136ab55ce3cff2b4cb"><div class="ttname"><a href="classstate__machine__cpp_1_1Context.html#a6b9ee1a24d5abe136ab55ce3cff2b4cb">state_machine_cpp::Context::get</a></div><div class="ttdeci">T &amp; get(int t_index=-1)</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00042">context.h:42</a></div></div>
 <div class="ttc" id="astate__id_8h_html"><div class="ttname"><a href="state__id_8h.html">state_id.h</a></div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_1_1Impl_html_a882597b42e60f4c46cee1580611249d6"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6">state_machine_cpp::Algorithm::Impl::run</a></div><div class="ttdeci">void run(Context &amp;t_context, const State::Id &amp;t_initial_state, const State::Id &amp;t_final_state, const std::function&lt; State::Instance(const State::Instance &amp;t_state, Context &amp;t_context)&gt; &amp;t_apply_transition)</div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1State_1_1Instance_html"><div class="ttname"><a href="classstate__machine__cpp_1_1State_1_1Instance.html">state_machine_cpp::State::Instance</a></div><div class="ttdef"><b>Definition:</b> <a href="state__instance_8h_source.html#l00023">state_instance.h:23</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Context_html_a426a73ba89ae44b9eb647578e5460143"><div class="ttname"><a href="classstate__machine__cpp_1_1Context.html#a426a73ba89ae44b9eb647578e5460143">state_machine_cpp::Context::layer</a></div><div class="ttdeci">unsigned int layer() const</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00040">context.h:40</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Context_html_adf7d32f1212cb3d0a254695ee4f5ca6b"><div class="ttname"><a href="classstate__machine__cpp_1_1Context.html#adf7d32f1212cb3d0a254695ee4f5ca6b">state_machine_cpp::Context::get_relative</a></div><div class="ttdeci">const T &amp; get_relative(int t_offset) const</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00061">context.h:61</a></div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_html"><div class="ttname"><a href="namespacestate__machine__cpp.html">state_machine_cpp</a></div><div class="ttdef"><b>Definition:</b> <a href="____comparable_8h_source.html#l00008">__comparable.h:8</a></div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_html"><div class="ttname"><a href="namespacestate__machine__cpp.html">state_machine_cpp</a></div><div class="ttdef"><b>Definition:</b> <a href="algorithm_8h_source.html#l00014">algorithm.h:14</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Context_html_a35f06aeee315fbb19ad3f05ff64f9097"><div class="ttname"><a href="classstate__machine__cpp_1_1Context.html#a35f06aeee315fbb19ad3f05ff64f9097">state_machine_cpp::Context::~Context</a></div><div class="ttdeci">virtual ~Context()=default</div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1State_1_1Instance_html_a8c90df0b732824bf7794013f6b19a260"><div class="ttname"><a href="classstate__machine__cpp_1_1State_1_1Instance.html#a8c90df0b732824bf7794013f6b19a260">state_machine_cpp::State::Instance::layer</a></div><div class="ttdeci">unsigned int layer() const</div><div class="ttdef"><b>Definition:</b> <a href="state__instance_8h_source.html#l00052">state_instance.h:52</a></div></div>
 <div class="ttc" id="aclassstate__machine__cpp_1_1Context_html_a98c48281f8e2ec6a1f4aa96a11438bed"><div class="ttname"><a href="classstate__machine__cpp_1_1Context.html#a98c48281f8e2ec6a1f4aa96a11438bed">state_machine_cpp::Context::get_relative</a></div><div class="ttdeci">T &amp; get_relative(int t_offset)</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00060">context.h:60</a></div></div>
@@ -174,7 +175,7 @@ $(document).ready(function(){initNavTree('context_8h_source.html',''); initResiz
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_5a30104352ef4255dc24354b02eb2d20.html">include</a></li><li class="navelem"><a class="el" href="context_8h.html">context.h</a></li>
+    <li class="navelem"><a class="el" href="dir_52f06d812e0fe7a1df9fb83708895f78.html">state_machine_cpp</a></li><li class="navelem"><a class="el" href="dir_c89b31bf2fae02b1dd53ae3af05cc2d2.html">include</a></li><li class="navelem"><a class="el" href="dir_7bfe616e643461046b6508ec388aa353.html">context</a></li><li class="navelem"><a class="el" href="context_8h.html">context.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

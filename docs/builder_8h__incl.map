@@ -1,6 +1,6 @@
-<map id="lib/include/builder.h" name="lib/include/builder.h">
-<area shape="rect" id="node1" title=" " alt="" coords="21,5,171,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,85,181"/>
-<area shape="rect" id="node3" href="$state__instance_8h.html" title=" " alt="" coords="83,80,213,107"/>
-<area shape="rect" id="node4" href="$____comparable_8h.html" title=" " alt="" coords="109,155,235,181"/>
+<map id="state_machine_cpp/include/builder/builder.h" name="state_machine_cpp/include/builder/builder.h">
+<area shape="rect" id="node1" title=" " alt="" coords="7,5,206,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,85,196"/>
+<area shape="rect" id="node3" href="$state__instance_8h.html" title=" " alt="" coords="83,95,256,121"/>
+<area shape="rect" id="node4" href="$____comparable_8h.html" title=" " alt="" coords="110,169,269,196"/>
 </map>

@@ -108,7 +108,7 @@ Installation</h1>
 Dependencies</h2>
 <ul>
 <li>C++17 (at least)</li>
-<li>cmake and make (for installation)</li>
+<li>cmake (&gt;= 3.19) and make (for installation)</li>
 <li>doxygen (to build the documentation)</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md27"></a>
@@ -122,31 +122,14 @@ Installation</h2>
 <div class="line">cmake -DBUILD_SHARED_LIBS=ON .. # to install as a static library, simply use: cmake ..</div>
 <div class="line">make</div>
 <div class="line">sudo make install</div>
-</div><!-- fragment --><p>By default, on linux, this will install the library in <code>/usr/local/lib/state_machine_cpp.so</code> and include files will be placed in <code>/usr/local/include/state_machine_cpp/</code>.</p>
-<h2><a class="anchor" id="autotoc_md29"></a>
-Compiling and running examples</h2>
-<p><b>Once the library is installed</b>, you can compile example <em>1_ForLoop</em> (for instance) as follows: </p><div class="fragment"><div class="line">cd build</div>
-<div class="line">cmake ..</div>
-<div class="line">make 1_ForLoop # for instance</div>
-</div><!-- fragment --><p>Then execute it with </p><div class="fragment"><div class="line">./examples/1-for-loop/1_ForLoop</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+<div class="line">cat install_manifest.txt</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
 Linking with cmake</h2>
-<p>Use the following cmake code, </p><div class="fragment"><div class="line">add_executable(&lt;MY_TARGET&gt; main.cpp)</div>
+<p>The <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a> installs a cmake configuration file so that it can be easily imported. Simply use the cmake function <code>find_package</code> to retrieve all imported targets. Thus, you can use the following code to import <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>: </p><div class="fragment"><div class="line">add_executable(&lt;MY_TARGET&gt; main.cpp)</div>
 <div class="line"> </div>
-<div class="line">find_library(STATE_MACHINE_LIBRARY state_machine_cpp)</div>
-<div class="line">target_link_libraries(&lt;MY_TARGET&gt; ${STATE_MACHINE_LIBRARY})</div>
-</div><!-- fragment --><p>Then, your <code>main.cpp</code> may look like the following: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span>** argv) {</div>
-<div class="line"> </div>
-<div class="line">    std::cout </div>
-<div class="line">             &lt;&lt; <span class="stringliteral">&quot;Successfully installed and linked with state_machine_cpp, &quot;</span></div>
-<div class="line">             <span class="stringliteral">&quot;version &quot;</span> &lt;&lt; STATE_MACHINE_CPP_VERSION</div>
-<div class="line">             &lt;&lt; std::endl;</div>
-<div class="line">    </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
-<div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
+<div class="line">find_package(state_machine_cpp REQUIRED)</div>
+<div class="line">target_link_libraries(&lt;MY_TARGET&gt; state_machine_cpp::state_machine_cpp)</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
 Building the documentation</h2>
 <p>To build the documentation, use doxygen as follows: </p><div class="fragment"><div class="line">doxygen Doxyfile</div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->

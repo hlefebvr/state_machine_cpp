@@ -1,9 +1,11 @@
 <map id="state_machine_cpp/include/context/context_layered.h" name="state_machine_cpp/include/context/context_layered.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="30,95,86,121"/>
-<area shape="rect" id="node3" href="$context_8h.html" title=" " alt="" coords="110,95,193,121"/>
-<area shape="rect" id="node4" href="$____pointer_8h.html" title=" " alt="" coords="11,169,137,196"/>
-<area shape="rect" id="node5" href="$state__id_8h.html" title=" " alt="" coords="162,169,293,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="115,244,195,271"/>
-<area shape="rect" id="node7" href="$____comparable_8h.html" title=" " alt="" coords="220,244,379,271"/>
+<area shape="rect" id="node1" title=" " alt="" coords="84,5,283,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="109,95,165,121"/>
+<area shape="rect" id="node3" href="$context_8h.html" title=" " alt="" coords="189,95,271,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,169,92,196"/>
+<area shape="rect" id="node5" href="$____pointer_8h.html" title=" " alt="" coords="116,169,243,196"/>
+<area shape="rect" id="node6" href="$state__instance_8h.html" title=" " alt="" coords="247,244,421,271"/>
+<area shape="rect" id="node9" href="$state__any_8h.html" title=" " alt="" coords="319,169,459,196"/>
+<area shape="rect" id="node7" title=" " alt="" coords="222,319,302,345"/>
+<area shape="rect" id="node8" href="$____comparable_8h.html" title=" " alt="" coords="327,319,485,345"/>
 </map>

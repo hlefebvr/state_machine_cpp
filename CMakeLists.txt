@@ -72,6 +72,8 @@ set(PRIVATE_FILES
         state_machine_cpp/src/builder/builder_impl_states.cpp
         state_machine_cpp/src/builder/builder_impl_transitions.cpp
 
+        state_machine_cpp/src/context/context_auto.cpp
+
         state_machine_cpp/src/algorithms/run.cpp
 
         state_machine_cpp/src/algorithms/plot.cpp

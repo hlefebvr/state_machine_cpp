@@ -5,8 +5,10 @@
 #ifndef STATE_MACHINE_CPP_CONTEXT_H
 #define STATE_MACHINE_CPP_CONTEXT_H
 
+#include <functional>
 #include "impl/__pointer.h"
-#include "states/state_id.h"
+#include "states/state_instance.h"
+#include "states/state_any.h"
 
 namespace state_machine_cpp {
     class Context;
@@ -16,8 +18,7 @@ namespace state_machine_cpp {
             void run(::state_machine_cpp::Context &t_context,
                      const ::state_machine_cpp::State::Id &t_initial_state,
                      const ::state_machine_cpp::State::Id &t_final_state,
-                     const std::function<State::Instance(const Algorithm::Instance &t_instance,
-                                                         const State::Instance &t_state,
+                     const std::function<State::Instance(const State::Instance &t_state,
                                                          Context &t_context)> &t_apply_transition);
         }
     }

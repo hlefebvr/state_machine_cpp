@@ -34,10 +34,13 @@ class state_machine_cpp::Context {
 protected:
     virtual Context* operator[](unsigned int t_index) = 0;
     virtual const Context* operator[](unsigned int t_index) const = 0;
+
+    static Context* call_square_bracket_operator_on(Context* t_context, unsigned int t_index) { return t_context->operator[](t_index); }
+    static const Context* call_square_bracket_operator_on(const Context* t_context, unsigned int t_index) { return t_context->operator[](t_index); }
 public:
     virtual ~Context() = default;
 
-    unsigned int layer() const { return m_state.layer(); }
+    [[nodiscard]] unsigned int layer() const { return m_state.layer(); }
 
     template<class T> T& get(int t_index = -1) {
         const unsigned int index = t_index == -1 ? layer() : t_index;

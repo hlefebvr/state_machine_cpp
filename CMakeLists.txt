@@ -39,6 +39,7 @@ set(PUBLIC_FILES
         state_machine_cpp/include/context/context.h
         state_machine_cpp/include/context/context_simple.h
         state_machine_cpp/include/context/context_layered.h
+        state_machine_cpp/include/context/context_auto.h
 
         state_machine_cpp/include/algorithms/build.h
         state_machine_cpp/include/algorithms/plot.h

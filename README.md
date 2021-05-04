@@ -34,7 +34,7 @@ You may also check our [documentation](https://hlefebvr.github.io/state_machine_
 ### Dependencies
 
 - C++17 (at least)
-- cmake and make (for installation)
+- cmake (>= 3.19) and make (for installation)
 - doxygen (to build the documentation)
 
 #### Map implementation
@@ -54,49 +54,19 @@ cd build
 cmake -DBUILD_SHARED_LIBS=ON .. # to install as a static library, simply use: cmake ..
 make
 sudo make install
-```
-
-By default, on linux, this will install the library in `/usr/local/lib/state_machine_cpp.so`
-and include files will be placed in `/usr/local/include/state_machine_cpp/`.
-
-### Compiling and running examples
-
-**Once the library is installed**, you can compile example *1_ForLoop* (for instance)
-as follows:
-```shell
-cd build
-cmake ..
-make 1_ForLoop # for instance
-```
-Then execute it with
-```shell
-./examples/1-for-loop/1_ForLoop
+cat install_manifest.txt
 ```
 
 ### Linking with cmake
 
-Use the following cmake code,
+The state_machine_cpp installs a cmake configuration file so that it can be easily 
+imported. Simply use the cmake function `find_package` to retrieve all imported targets.
+Thus, you can use the following code to import state_machine_cpp:
 ```cmake
 add_executable(<MY_TARGET> main.cpp)
 
-find_library(STATE_MACHINE_LIBRARY state_machine_cpp)
-target_link_libraries(<MY_TARGET> ${STATE_MACHINE_LIBRARY})
-```
-
-Then, your `main.cpp` may look like the following:
-```cpp
-#include <iostream>
-
-int main(int argc, const char** argv) {
-
-    std::cout 
-             << "Successfully installed and linked with state_machine_cpp, "
-             "version " << STATE_MACHINE_CPP_VERSION
-             << std::endl;
-    
-    return 0;
-}
-
+find_package(state_machine_cpp REQUIRED)
+target_link_libraries(<MY_TARGET> state_machine_cpp::state_machine_cpp)
 ```
 
 ### Building the documentation

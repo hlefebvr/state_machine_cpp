@@ -1,0 +1,10 @@
+@PACKAGE_INIT@
+
+# Imports functions
+include(CMakeFindDependencyMacro)
+
+if(NOT TARGET state_machine_cpp::state_machine_cpp)
+    include(@STATE_MACHINE_CPP_TARGETS_FILE@)
+endif()
+
+check_required_components("state_machine_cpp")

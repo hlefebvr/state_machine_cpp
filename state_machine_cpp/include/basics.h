@@ -17,5 +17,6 @@
 
 #include "context/context_simple.h"
 #include "context/context_layered.h"
+#include "context/context_auto.h"
 
 #endif //STATE_MACHINE_CPP_BASICS_H

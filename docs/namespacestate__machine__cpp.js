@@ -4,6 +4,7 @@ var namespacestate__machine__cpp =
     [ "State", "namespacestate__machine__cpp_1_1State.html", "namespacestate__machine__cpp_1_1State" ],
     [ "Transition", "namespacestate__machine__cpp_1_1Transition.html", "namespacestate__machine__cpp_1_1Transition" ],
     [ "Util", "namespacestate__machine__cpp_1_1Util.html", "namespacestate__machine__cpp_1_1Util" ],
+    [ "AutoContext", "classstate__machine__cpp_1_1AutoContext.html", "classstate__machine__cpp_1_1AutoContext" ],
     [ "Context", "classstate__machine__cpp_1_1Context.html", "classstate__machine__cpp_1_1Context" ],
     [ "hash", "structstate__machine__cpp_1_1hash.html", "structstate__machine__cpp_1_1hash" ],
     [ "LayeredContext", "classstate__machine__cpp_1_1LayeredContext.html", "classstate__machine__cpp_1_1LayeredContext" ],

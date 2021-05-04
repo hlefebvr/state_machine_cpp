@@ -1,6 +1,7 @@
 <map id="state_machine_cpp/include/context/context.h" name="state_machine_cpp/include/context/context.h">
-<area shape="rect" id="node1" title=" " alt="" coords="116,5,315,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="228,5,427,47"/>
 <area shape="rect" id="node2" href="$context__simple_8h.html" title=" " alt="" coords="5,95,204,136"/>
 <area shape="rect" id="node4" href="$context__layered_8h.html" title=" " alt="" coords="228,95,427,136"/>
+<area shape="rect" id="node5" href="$context__auto_8h.html" title=" " alt="" coords="451,95,649,136"/>
 <area shape="rect" id="node3" href="$basics_8h.html" title=" " alt="" coords="116,184,315,225"/>
 </map>

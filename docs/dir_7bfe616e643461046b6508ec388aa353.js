@@ -1,6 +1,10 @@
 var dir_7bfe616e643461046b6508ec388aa353 =
 [
     [ "context.h", "context_8h.html", "context_8h" ],
+    [ "context_auto.h", "context__auto_8h.html", [
+      [ "AutoContext", "classstate__machine__cpp_1_1AutoContext.html", "classstate__machine__cpp_1_1AutoContext" ],
+      [ "AutoContext", "classstate__machine__cpp_1_1AutoContext.html", "classstate__machine__cpp_1_1AutoContext" ]
+    ] ],
     [ "context_layered.h", "context__layered_8h.html", [
       [ "LayeredContext", "classstate__machine__cpp_1_1LayeredContext.html", "classstate__machine__cpp_1_1LayeredContext" ],
       [ "LayeredContext", "classstate__machine__cpp_1_1LayeredContext.html", "classstate__machine__cpp_1_1LayeredContext" ]

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7econtext_242',['~Context',['../classstate__machine__cpp_1_1Context.html#a35f06aeee315fbb19ad3f05ff64f9097',1,'state_machine_cpp::Context']]]
+  ['_7eautocontext_250',['~AutoContext',['../classstate__machine__cpp_1_1AutoContext.html#a59f7492c98358e91e988ca6c8bd92c7b',1,'state_machine_cpp::AutoContext']]],
+  ['_7econtext_251',['~Context',['../classstate__machine__cpp_1_1Context.html#a35f06aeee315fbb19ad3f05ff64f9097',1,'state_machine_cpp::Context']]]
 ];

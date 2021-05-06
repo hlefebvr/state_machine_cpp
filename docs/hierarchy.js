@@ -4,6 +4,8 @@ var hierarchy =
     [ "state_machine_cpp::Transition::Any", "classstate__machine__cpp_1_1Transition_1_1Any.html", null ],
     [ "state_machine_cpp::Algorithm::Builder", "classstate__machine__cpp_1_1Algorithm_1_1Builder.html", null ],
     [ "state_machine_cpp::Transition::Any::by_hash", "structstate__machine__cpp_1_1Transition_1_1Any_1_1by__hash.html", null ],
+    [ "state_machine_cpp::Algorithm::Impl::has_FINAL_STATE< T >::checker< class, class >", "classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__FINAL__STATE_1_1checker.html", null ],
+    [ "state_machine_cpp::Algorithm::Impl::has_INITIAL_STATE< T >::checker< class, class >", "classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__INITIAL__STATE_1_1checker.html", null ],
     [ "state_machine_cpp::Util::comparable< T >", "classstate__machine__cpp_1_1Util_1_1comparable.html", null ],
     [ "state_machine_cpp::Util::comparable< State::Id >", "classstate__machine__cpp_1_1Util_1_1comparable.html", [
       [ "state_machine_cpp::State::Id", "structstate__machine__cpp_1_1State_1_1Id.html", null ]
@@ -15,6 +17,8 @@ var hierarchy =
     [ "state_machine_cpp::Context", "classstate__machine__cpp_1_1Context.html", [
       [ "state_machine_cpp::AutoContext", "classstate__machine__cpp_1_1AutoContext.html", null ]
     ] ],
+    [ "state_machine_cpp::Algorithm::Impl::has_FINAL_STATE< T >", "structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__FINAL__STATE.html", null ],
+    [ "state_machine_cpp::Algorithm::Impl::has_INITIAL_STATE< T >", "structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__INITIAL__STATE.html", null ],
     [ "state_machine_cpp::hash< T >", "structstate__machine__cpp_1_1hash.html", null ],
     [ "state_machine_cpp::Algorithm::Builder::Indirection", "classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Indirection.html", [
       [ "state_machine_cpp::Algorithm::Builder::States", "classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html", [

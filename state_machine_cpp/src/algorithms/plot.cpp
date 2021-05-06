@@ -14,17 +14,21 @@
 void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command) {
 
     const auto name = [](const State::Instance& t_x) {
-        std::string result = t_x.name();
+        std::string result = "node_" + std::to_string(hash<State::Instance>::get(t_x));
         std::replace(result.begin(), result.end(), '[', '_');
         std::replace(result.begin(), result.end(), ']', ' ');
         return result;
     };
 
-    const auto node_style = [](bool t_is_trivial_transition) {
+    const auto node_style = [](const State::Instance& t_x, bool t_is_trivial_transition) {
+        std::stringstream style;
+        style << "[label=\"" << t_x.name() << "\"";
         if (t_is_trivial_transition) {
-            return "[shape=\"oval\"]";
+            style << ",shape=\"oval\"]";
+        } else {
+            style << ",shape=\"diamond\"]";
         }
-        return "[shape=\"diamond\"]";
+        return style.str();
     };
 
     const auto transition_style = [](const Transition::Any& t_transition) {
@@ -49,7 +53,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
     for (const auto& transition : t_algorithm.transitions()) {
         file << "\t"
              << name(transition.initial_state())
-             << node_style(transition.next_states().size() <= 1)
+             << node_style(transition.initial_state(), transition.next_states().size() <= 1)
              << ";\n";
     }
 

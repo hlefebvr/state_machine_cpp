@@ -176,7 +176,7 @@ SimpleContext<ForLoopAttributes> context(for_loop_attributes_1);
 SimpleContext<ForLoopAttributes> context_2(for_loop_attributes_2);
 LayeredContext<2> layered_context(context, context_2);
 
-Algorithm::run(algorithm, layered_context, INITIAL_STATE, FINAL_STATE);
+Algorithm::run(algorithm, layered_context);
 ```
 
 Running our resulting algorithm outputs the following.

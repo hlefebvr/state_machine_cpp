@@ -132,7 +132,7 @@ PowerLoopAttributes power_loop_attributes(2);
 SimpleContext<ForLoopAttributes, PowerLoopAttributes> context(for_loop_attributes, power_loop_attributes);
 
 // Running algorithm
-Algorithm::run(algorithm, context, INITIAL_STATE, FINAL_STATE);
+Algorithm::run(algorithm, context);
 ```
 
 Executing the code will now print out the following:

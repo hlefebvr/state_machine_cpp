@@ -236,8 +236,8 @@ Well, now is time to run our algorithm!
 ## Running our first algorithm!
 
 Running an algorithm is done with the Algorithm::run function. Its argument are (1) the algorithm instance
-to execute, (2) the context object, (3) the initial state and (4) the final state. We therefore need to 
-create a context object. The context object creation is very simple and done as follows:
+to execute and (2) the context object. We therefore need to create a context object. 
+The context object creation is very simple and done as follows:
 ```cpp
 ForLoopAttributes attributes(10);
 SimpleContext<ForLoopAttributes> context(attributes);
@@ -245,7 +245,10 @@ SimpleContext<ForLoopAttributes> context(attributes);
 
 We can then run our algorithm as follows:
 ```cpp
-Algorithm::run(algorithm, context, INITIAL_STATE, FINAL_STATE);
+algorithm.set_initial_state(INITIAL_STATE);
+algorithm.set_final_state(FINAL_STATE);
+
+Algorithm::run(algorithm, context);
 ```
 
 And voilà! You have executed you're first algorithm using state_machine_cpp. You should get printed the

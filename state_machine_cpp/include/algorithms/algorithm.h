@@ -27,6 +27,8 @@ namespace state_machine_cpp {
 class state_machine_cpp::Algorithm::Instance {
 
     TransitionSet m_transitions;
+    const State::Id* m_initial_state = nullptr;
+    const State::Id* m_final_state = nullptr;
 
     bool has(const State::Instance& t_instance) const;
 
@@ -52,6 +54,38 @@ class state_machine_cpp::Algorithm::Instance {
     void set_as_final(const State::Instance& t_instance);
 public:
     const TransitionSet& transitions() const;
+
+    [[nodiscard]] inline const State::Id& initial_state() const;
+    [[nodiscard]] inline const State::Id& final_state() const;
+    [[nodiscard]] inline bool is_initial_state_set() const;
+    [[nodiscard]] inline bool is_final_state_set() const;
+    inline void set_initial_state(const State::Id& t_initial_state);
+    inline void set_final_state(const State::Id& t_final_state);
 };
+
+const state_machine_cpp::State::Id &state_machine_cpp::Algorithm::Instance::initial_state() const {
+    return *m_initial_state;
+}
+
+const state_machine_cpp::State::Id &state_machine_cpp::Algorithm::Instance::final_state() const {
+    return *m_final_state;
+}
+
+bool state_machine_cpp::Algorithm::Instance::is_initial_state_set() const {
+    return m_initial_state;
+}
+
+bool state_machine_cpp::Algorithm::Instance::is_final_state_set() const {
+    return m_final_state;
+}
+
+void state_machine_cpp::Algorithm::Instance::set_initial_state(const state_machine_cpp::State::Id &t_initial_state) {
+    m_initial_state = &t_initial_state;
+}
+
+void state_machine_cpp::Algorithm::Instance::set_final_state(const state_machine_cpp::State::Id &t_final_state) {
+    m_final_state = &t_final_state;
+}
+
 
 #endif //STATE_MACHINE_CPP_ALGORITHM_H

@@ -10,6 +10,14 @@ bool state_machine_cpp::Algorithm::sanity_check(const Algorithm::Instance& t_alg
     bool result = true;
     const auto& transitions = t_algorithm.transitions();
 
+    if (!t_algorithm.is_initial_state_set()) {
+        std::cout << "WARNING(UNSET_INITIAL_STATE), the algorithm has no initial state configure" << std::endl;
+    }
+
+    if (!t_algorithm.is_final_state_set()) {
+        std::cout << "WARNING(UNSET_FINAL_STATE), the algorithm has no final state configure" << std::endl;
+    }
+
     if (transitions.empty()) {
         std::cout << "WARNING(EMPTY_ALGORITHM), the algorithm instance is empty" << std::endl;
         result = false;

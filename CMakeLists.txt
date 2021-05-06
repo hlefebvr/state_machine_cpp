@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 # Define project
 project(
         state_machine_cpp
-        VERSION         1.0.4
+        VERSION         1.0.5
         LANGUAGES       CXX
         DESCRIPTION     "State machine library written in C++"
 )

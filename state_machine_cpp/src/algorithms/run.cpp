@@ -6,6 +6,26 @@
 #include "algorithms/algorithm.h"
 #include "context/context.h"
 
+namespace state_machine_cpp::Algorithm::Impl {
+    void throw_if_is_not_configured(const ::state_machine_cpp::Algorithm::Instance& t_algorithm) {
+        if (!t_algorithm.is_initial_state_set()) {
+            throw std::runtime_error("Trying to run an algorithm without initial state begin configure.\n\n"
+                                     "-> If you are a user of the algorithm, use set_initial_state to configure it.\n\n"
+                                     "-> If you are the creator of the algorithm builder, you should add a public static "
+                                     "const State::Id attribute (or const State::Id& attribute) called INITIAL_STATE "
+                                     "to allow for automatic detection of initial state.");
+        }
+
+        if (!t_algorithm.is_final_state_set()) {
+            throw std::runtime_error("Trying to run an algorithm without final state begin configured.\n\n"
+                                     "-> If you are a user of the algorithm, use set_final_state to configure it.\n\n"
+                                     "-> If you are the creator of the algorithm builder, you should add a public static "
+                                     "const State::Id attribute (or const State::Id& attribute) called FINAL_STATE "
+                                     "to allow for automatic detection of final state.");
+        }
+    }
+}
+
 void ::state_machine_cpp::Algorithm::Impl::run(::state_machine_cpp::Context& t_context,
                                          const ::state_machine_cpp::State::Id& t_initial_state,
                                          const ::state_machine_cpp::State::Id& t_final_state,
@@ -22,9 +42,9 @@ void ::state_machine_cpp::Algorithm::Impl::run(::state_machine_cpp::Context& t_c
 }
 
 void ::state_machine_cpp::Algorithm::run(const ::state_machine_cpp::Algorithm::Instance& t_algorithm,
-                                       ::state_machine_cpp::Context& t_context,
-                                       const ::state_machine_cpp::State::Id& t_initial_state,
-                                       const ::state_machine_cpp::State::Id& t_final_state) {
+                                       ::state_machine_cpp::Context& t_context) {
+
+    Impl::throw_if_is_not_configured(t_algorithm);
 
     const auto& transitions = t_algorithm.transitions();
 
@@ -32,14 +52,14 @@ void ::state_machine_cpp::Algorithm::run(const ::state_machine_cpp::Algorithm::I
         return transitions[t_instance](t_context);
     };
 
-    Impl::run(t_context, t_initial_state, t_final_state, apply_transition);
+    Impl::run(t_context, t_algorithm.initial_state(), t_algorithm.final_state(), apply_transition);
 
 }
 
 void ::state_machine_cpp::Algorithm::run_with_logs(const ::state_machine_cpp::Algorithm::Instance& t_algorithm,
-                                         ::state_machine_cpp::Context& t_context,
-                                         const ::state_machine_cpp::State::Id& t_initial_state,
-                                         const ::state_machine_cpp::State::Id& t_final_state) {
+                                         ::state_machine_cpp::Context& t_context) {
+
+    Impl::throw_if_is_not_configured(t_algorithm);
 
     const auto& transitions = t_algorithm.transitions();
 
@@ -48,6 +68,6 @@ void ::state_machine_cpp::Algorithm::run_with_logs(const ::state_machine_cpp::Al
         return transitions[t_instance](t_context);
     };
 
-    Impl::run(t_context, t_initial_state, t_final_state, apply_transition);
+    Impl::run(t_context, t_algorithm.initial_state(), t_algorithm.final_state(), apply_transition);
 
 }

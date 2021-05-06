@@ -23,7 +23,7 @@ bool state_machine_cpp::Algorithm::sanity_check(const Algorithm::Instance& t_alg
         if (successors.empty()) {
             std::cout << "WARNING(STATE_WITHOUT_ANY_SUCCESSOR), " << state << " has no successor" << std::endl;
             result = false;
-        } else if (!transition.has_handler()) {
+        } else if (transition.is_virtual()) {
             std::cout << "WARNING(VIRTUAL_TRANSITION), " << state << " has a virtual transition" << std::endl;
             result = false;
         }

@@ -32,7 +32,7 @@ const state_machine_cpp::Transition::Any &
 state_machine_cpp::TransitionSet::operator[](const state_machine_cpp::State::Instance &t_instance) const {
     auto it = m_transitions.find(hash<State::Instance>::get(t_instance));
     if (it == m_transitions.end()) {
-        throw std::runtime_error("Cannot access non-existing transition.");
+        throw std::runtime_error("Trying to access non-existing transition.");
     }
     return it->second;
 }

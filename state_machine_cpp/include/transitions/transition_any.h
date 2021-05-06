@@ -36,6 +36,7 @@ public:
     void set_as_final();
     bool has_handler() const;
     bool is_final() const;
+    bool is_virtual() const;
 
     struct by_hash {
 

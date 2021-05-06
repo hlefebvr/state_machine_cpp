@@ -12,7 +12,14 @@ state_machine_cpp::Transition::Any::Any(const State::Instance &t_initial_state) 
 }
 
 const state_machine_cpp::State::Instance &state_machine_cpp::Transition::Any::operator()(Context &t_context) const {
-    assert(bool(m_function));
+
+    if (!m_function) {
+        if (!m_next_states.empty()) {
+            throw std::runtime_error("Calling a virtual transition. Initial state: " + m_initial_state.name());
+        }
+        throw std::runtime_error("Calling a non-existing transition. Initial state: " + m_initial_state.name());
+    }
+
     int result = m_function(t_context);
     assert(result < m_next_states.size());
     return m_next_states[result];
@@ -43,4 +50,8 @@ void state_machine_cpp::Transition::Any::set_as_final() {
 
 bool state_machine_cpp::Transition::Any::is_final() const {
     return m_is_final;
+}
+
+bool state_machine_cpp::Transition::Any::is_virtual() const {
+    return !has_handler() && !m_next_states.empty();
 }

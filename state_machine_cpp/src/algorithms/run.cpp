@@ -29,9 +29,6 @@ void ::state_machine_cpp::Algorithm::run(const ::state_machine_cpp::Algorithm::I
     const auto& transitions = t_algorithm.transitions();
 
     const auto apply_transition = [&](const State::Instance &t_instance, Context &t_context) {
-        if (!transitions.has(t_instance)) {
-            throw std::runtime_error("Algorithm execution failed: called an undefined transition.");
-        }
         return transitions[t_instance](t_context);
     };
 
@@ -48,9 +45,6 @@ void ::state_machine_cpp::Algorithm::run_with_logs(const ::state_machine_cpp::Al
 
     const auto apply_transition = [&](const State::Instance &t_instance, Context &t_context) {
         std::cout << "-- state: " << t_instance << std::endl;
-        if (!transitions.has(t_instance)) {
-            throw std::runtime_error("Algorithm execution failed: called an undefined transition.");
-        }
         return transitions[t_instance](t_context);
     };
 

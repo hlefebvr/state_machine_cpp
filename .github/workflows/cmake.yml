@@ -1,10 +1,10 @@
-name: github_actions_gtest_example-Debug
+name: test-state_machine_cpp
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:

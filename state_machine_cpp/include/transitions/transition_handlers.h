@@ -15,6 +15,8 @@ namespace state_machine_cpp {
         using ConditionalHandler = bool(const Context &);
 
         void DO_NOTHING(Context &);
+
+        enum struct Type : char { Undefined, Direct, Conditional, Parallelized };
     }
 }
 

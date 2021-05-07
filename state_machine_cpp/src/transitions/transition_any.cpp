@@ -39,7 +39,10 @@ void state_machine_cpp::Transition::Any::reset_handler() {
 }
 
 void
-state_machine_cpp::Transition::Any::set_handler(std::vector<State::Instance> &&t_next_states, std::function<int(Context &)> &&t_handler) {
+state_machine_cpp::Transition::Any::set_handler(Transition::Type t_transition_type,
+                                                std::vector<State::Instance> &&t_next_states,
+                                                std::function<int(Context &)> &&t_handler) {
+    m_type = t_transition_type;
     m_next_states = std::move(t_next_states);
     m_function = std::move(t_handler);
 }
@@ -54,4 +57,8 @@ bool state_machine_cpp::Transition::Any::is_final() const {
 
 bool state_machine_cpp::Transition::Any::is_virtual() const {
     return !has_handler() && !m_next_states.empty();
+}
+
+state_machine_cpp::Transition::Type state_machine_cpp::Transition::Any::type() const {
+    return m_type;
 }

@@ -20,25 +20,48 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
         return result;
     };
 
-    const auto node_style = [](const State::Instance& t_x, bool t_is_trivial_transition) {
+    const auto node_style = [](const Transition::Any& t_x) {
         std::stringstream style;
-        style << "[label=\"" << t_x.name() << "\"";
-        if (t_is_trivial_transition) {
-            style << ",shape=\"oval\"]";
-        } else {
-            style << ",shape=\"diamond\"]";
+        style << "[label=\"" << t_x.initial_state().name() << "\"";
+        switch (t_x.type()) {
+            case Transition::Type::Conditional:
+                style << ",shape=\"diamond\"]";
+                break;
+            case Transition::Type::Parallelized: [[fallthrough]];
+            case Transition::Type::Undefined: [[fallthrough]];
+            case Transition::Type::Direct:
+                style << ",shape=\"oval\"";
+                break;
         }
+        style << ']';
         return style.str();
     };
 
-    const auto transition_style = [](const Transition::Any& t_transition) {
-        if (!t_transition.has_handler()) {
-            return "[color=\"blue\",label=\"virtual\"]";
+    const auto transition_style = [](const Transition::Any& t_transition, unsigned int t_index) {
+        std::string color = "black";
+        std::string label;
+        std::string style = "solid";
+        switch (t_transition.type()) {
+            case Transition::Type::Undefined:
+                throw std::runtime_error("Unexpected undefined transition when plotting.");
+            case Transition::Type::Parallelized:
+                color = "green";
+                label = t_index != 0 ? "async" : "";
+                style = t_index == 0 ? "dashed" : style;
+                break;
+            case Transition::Type::Direct: break;
+            case Transition::Type::Conditional:
+                label = t_index == 0 ? "false" : "true";
+                break;
+        }
+        if (t_transition.is_virtual()) {
+            color = "blue";
+            label = "virtual";
         }
         if (t_transition.is_final()) {
-            return "[color=\"red\"]";
+            color = "red";
         }
-        return "";
+        return "[style=\"" + style + "\",label=\"" + label + "\", color=\"" + color + "\"]";
     };
 
     std::ofstream file(t_filename + ".dot");
@@ -53,18 +76,19 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
     for (const auto& transition : t_algorithm.transitions()) {
         file << "\t"
              << name(transition.initial_state())
-             << node_style(transition.initial_state(), transition.next_states().size() <= 1)
+             << node_style(transition)
              << ";\n";
     }
 
     file << "\n\n\t// transition definition\n";
     for (const auto& transition : t_algorithm.transitions()) {
-        for (const auto& next_state : transition.next_states()) {
+        const std::vector<State::Instance>& next_states = transition.next_states();
+        for (unsigned int i = 0, n = next_states.size() ; i < n ; ++i) {
             file << "\t"
                  << name(transition.initial_state())
                  << " -> "
-                 << name(next_state)
-                 << transition_style(transition)
+                 << name(next_states[i])
+                 << transition_style(transition, i)
                  << ";\n";
         }
     }

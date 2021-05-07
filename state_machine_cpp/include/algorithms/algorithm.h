@@ -38,22 +38,23 @@ class state_machine_cpp::Algorithm::Instance {
 
     friend class Algorithm::Impl::Build::Transitions;
     void create_any_transition(const State::Instance& t_initial_instance,
+                               Transition::Type t_transition_type,
                                std::vector<State::Instance> &&t_next_states,
                                std::function<int(Context&)>&& t_handler,
                                bool t_is_override);
     void create_transition(const State::Instance& t_initial_instance,
                            const State::Instance& t_next_instance,
                            Transition::TrivialHandler* t_handler,
-                           bool t_should_already_exist);
+                           bool t_is_override);
     void create_transition_if(const State::Instance& t_initial_instance,
                            const State::Instance& t_if_instance,
                            const State::Instance& t_else_instance,
                            Transition::ConditionalHandler* t_handler,
-                           bool t_should_already_exist);
+                           bool t_is_override);
     void remove_transition(const State::Instance& t_instance);
     void set_as_final(const State::Instance& t_instance);
 public:
-    const TransitionSet& transitions() const;
+    [[nodiscard]] const TransitionSet& transitions() const;
 
     [[nodiscard]] inline const State::Id& initial_state() const;
     [[nodiscard]] inline const State::Id& final_state() const;

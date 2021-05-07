@@ -26,6 +26,9 @@ public:
     void create_if_virtual(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else);
     void override_if(const State::Any& t_initial_state, const State::Any& t_if_true, const State::Any& t_else, Transition::ConditionalHandler& t_handler);
 
+    // Parallel transitions
+    virtual void create_parallelized(const State::Any& t_initial_state, std::initializer_list<State::Any> t_next_states, const State::Any& t_final_state) = 0;
+
     // All
     virtual void remove(const State::Any& t_state) = 0;
     virtual void declare_as_final(const State::Any& t_state) = 0;

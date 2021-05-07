@@ -108,7 +108,7 @@ Defining an algorithm builder</h1>
 <p>In <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>, algorithms are built dynamically by means of an algorithm builder. To create your own algorithm, you therefore need to create a child class of the Algorithm::Builder class. Let's see: </p><div class="fragment"><div class="line"><span class="keyword">class </span>Builder1 final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    </div>
-<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
 <div class="line">        <span class="comment">// define your algorithm here        </span></div>
 <div class="line">    }</div>
 <div class="line">    </div>
@@ -121,7 +121,7 @@ Adding states</h1>
 <p>Adding a state to an algorithm is rather easy and is done as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>Builder1 final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    </div>
-<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
 <div class="line">        </div>
 <div class="line">        states.create(INITIAL_STATE);        </div>
 <div class="line">        states.create(FINAL_STATE);        </div>
@@ -182,7 +182,7 @@ Defining all our transition handlers</h2>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
 Adding transitions</h2>
-<p>Now is time to add all our transitions to define our algorithm. This can be done with <code>transitions.create</code> to create trivial transitions from one to another and <code>transitions.create_if</code> to create conditional transitions. The algorithm builder's build method will then look like the following: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
+<p>Now is time to add all our transitions to define our algorithm. This can be done with <code>transitions.create</code> to create trivial transitions from one to another and <code>transitions.create_if</code> to create conditional transitions. The algorithm builder's build method will then look like the following: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers)<span class="keyword"> override </span>{</div>
 <div class="line"> </div>
 <div class="line">    states.create(INITIAL_STATE);</div>
 <div class="line">    states.create(FINAL_STATE);</div>
@@ -209,7 +209,7 @@ Running our first algorithm!</h1>
 </div><!-- fragment --><p>We can then run our algorithm as follows: </p><div class="fragment"><div class="line">algorithm.set_initial_state(INITIAL_STATE);</div>
 <div class="line">algorithm.set_final_state(FINAL_STATE);</div>
 <div class="line"> </div>
-<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6">Algorithm::run</a>(algorithm, context);</div>
+<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">Algorithm::run</a>(algorithm, context);</div>
 </div><!-- fragment --><p>And voilà! You have executed you're first algorithm using <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>. You should get printed the following: </p><div class="fragment"><div class="line">0</div>
 <div class="line">1</div>
 <div class="line">2</div>
@@ -225,9 +225,9 @@ Running our first algorithm!</h1>
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_afcfafb9a0586f5d4530ad3a24e287179"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#afcfafb9a0586f5d4530ad3a24e287179">state_machine_cpp::Algorithm::plot</a></div><div class="ttdeci">void plot(const Algorithm::Instance &amp;t_algorithm, const std::string &amp;t_filename, bool t_run_command=true)</div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_ac1e565dffdf5bbfe13afb2c9988e409f"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00042">build.h:42</a></div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_1_1Impl_html_a882597b42e60f4c46cee1580611249d6"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6">state_machine_cpp::Algorithm::Impl::run</a></div><div class="ttdeci">void run(Context &amp;t_context, const State::Id &amp;t_initial_state, const State::Id &amp;t_final_state, const std::function&lt; State::Instance(const State::Instance &amp;t_state, Context &amp;t_context)&gt; &amp;t_apply_transition)</div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a14b70d0b3e7c803e462319b0be2f1393"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">state_machine_cpp::Algorithm::run</a></div><div class="ttdeci">void run(const Algorithm::Instance &amp;t_instance, Context &amp;t_context)</div></div>
 <div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_aaad835bb89148ae5557bd849e5ec5c03"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#aaad835bb89148ae5557bd849e5ec5c03">state_machine_cpp::Algorithm::sanity_check</a></div><div class="ttdeci">bool sanity_check(const Algorithm::Instance &amp;t_algorithm)</div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00041">build.h:41</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

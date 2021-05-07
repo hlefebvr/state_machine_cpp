@@ -97,7 +97,7 @@ Introduction</h1>
 New algorithm = new builder</h1>
 <p>Just like we did in the previous tutorial, in order to create a new algorithm, even though built upon other algorithms, we need to create a new Algorithm::Builder. This is done as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>PowerLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">        <span class="comment">// Define our new algorithm here</span></div>
 <div class="line">    }</div>
 <div class="line">};</div>
@@ -107,7 +107,7 @@ New algorithm = new builder</h1>
 <p>In the next section, we will be "importing" or "inheriting" all the states from the ForLoop algorithm builder to our new builder. Let's see how it's done!</p>
 <h1><a class="anchor" id="autotoc_md14"></a>
 Inheriting states and transitions</h1>
-<p>Importing the states and transitions from another algorithm is done with the template method Algorithm::Builder::inherit&lt;T&gt;. See how it is easily used: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<p>Importing the states and transitions from another algorithm is done with the template method Algorithm::Builder::inherit&lt;T&gt;. See how it is easily used: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>At this stage, the sanity check should not complain anymore. Why? Simply because we have imported the ForLoop algorithm and because the ForLoop algorithm itself is well-defined. Thus, the obtained algorithm is well-defined. Note that you can also visualize it by using the Algorithm::plot function like we did in the previous tutorial. Doing so trivially yields the following image.</p>
@@ -132,7 +132,7 @@ Applying modifications</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>PowerLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">        </div>
 <div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">        </div>
@@ -158,7 +158,7 @@ Applying modifications</h1>
 <div class="line">SimpleContext&lt;ForLoopAttributes, PowerLoopAttributes&gt; context(for_loop_attributes, power_loop_attributes);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Running algorithm</span></div>
-<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6">Algorithm::run</a>(algorithm, context);</div>
+<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">Algorithm::run</a>(algorithm, context);</div>
 </div><!-- fragment --><p>Executing the code will now print out the following: </p><div class="fragment"><div class="line">0^2 = 0</div>
 <div class="line">1^2 = 1</div>
 <div class="line">2^2 = 4</div>
@@ -171,9 +171,9 @@ Advanced notions regarding inheritance</h1>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_ac1e565dffdf5bbfe13afb2c9988e409f"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00042">build.h:42</a></div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_1_1Impl_html_a882597b42e60f4c46cee1580611249d6"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm_1_1Impl.html#a882597b42e60f4c46cee1580611249d6">state_machine_cpp::Algorithm::Impl::run</a></div><div class="ttdeci">void run(Context &amp;t_context, const State::Id &amp;t_initial_state, const State::Id &amp;t_final_state, const std::function&lt; State::Instance(const State::Instance &amp;t_state, Context &amp;t_context)&gt; &amp;t_apply_transition)</div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a14b70d0b3e7c803e462319b0be2f1393"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">state_machine_cpp::Algorithm::run</a></div><div class="ttdeci">void run(const Algorithm::Instance &amp;t_instance, Context &amp;t_context)</div></div>
 <div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_aaad835bb89148ae5557bd849e5ec5c03"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#aaad835bb89148ae5557bd849e5ec5c03">state_machine_cpp::Algorithm::sanity_check</a></div><div class="ttdeci">bool sanity_check(const Algorithm::Instance &amp;t_algorithm)</div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00041">build.h:41</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

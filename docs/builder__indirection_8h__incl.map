@@ -1,8 +1,11 @@
 <map id="state_machine_cpp/include/builder/builder_indirection.h" name="state_machine_cpp/include/builder/builder_indirection.h">
-<area shape="rect" id="node1" title=" " alt="" coords="8,5,216,47"/>
-<area shape="rect" id="node2" href="$builder_8h.html" title=" " alt="" coords="6,95,85,121"/>
-<area shape="rect" id="node6" href="$state__any_8h.html" title=" " alt="" coords="109,95,249,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,244,85,271"/>
-<area shape="rect" id="node4" href="$state__instance_8h.html" title=" " alt="" coords="87,169,260,196"/>
-<area shape="rect" id="node5" href="$____comparable_8h.html" title=" " alt="" coords="110,244,269,271"/>
+<area shape="rect" id="node1" title=" " alt="" coords="47,5,255,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,48,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="73,95,135,121"/>
+<area shape="rect" id="node4" href="$builder_8h.html" title=" " alt="" coords="159,95,238,121"/>
+<area shape="rect" id="node9" href="$state__any_8h.html" title=" " alt="" coords="293,95,433,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="108,244,188,271"/>
+<area shape="rect" id="node6" href="$state__instance_8h.html" title=" " alt="" coords="292,169,465,196"/>
+<area shape="rect" id="node8" href="$builder__types_8h.html" title=" " alt="" coords="97,169,268,196"/>
+<area shape="rect" id="node7" href="$____comparable_8h.html" title=" " alt="" coords="299,244,458,271"/>
 </map>

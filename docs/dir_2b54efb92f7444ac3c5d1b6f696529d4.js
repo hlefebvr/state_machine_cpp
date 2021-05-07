@@ -21,5 +21,6 @@ var dir_2b54efb92f7444ac3c5d1b6f696529d4 =
     ] ],
     [ "builder_transitions.h", "builder__transitions_8h.html", [
       [ "Transitions", "classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Transitions.html", "classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Transitions" ]
-    ] ]
+    ] ],
+    [ "builder_types.h", "builder__types_8h.html", "builder__types_8h" ]
 ];

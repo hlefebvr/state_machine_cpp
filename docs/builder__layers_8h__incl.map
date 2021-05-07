@@ -1,7 +1,8 @@
 <map id="state_machine_cpp/include/builder/builder_layers.h" name="state_machine_cpp/include/builder/builder_layers.h">
-<area shape="rect" id="node1" title=" " alt="" coords="7,5,206,47"/>
-<area shape="rect" id="node2" href="$builder_8h.html" title=" " alt="" coords="67,95,146,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="70,5,269,47"/>
+<area shape="rect" id="node2" href="$builder_8h.html" title=" " alt="" coords="130,95,209,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,244,85,271"/>
 <area shape="rect" id="node4" href="$state__instance_8h.html" title=" " alt="" coords="83,169,256,196"/>
+<area shape="rect" id="node6" href="$builder__types_8h.html" title=" " alt="" coords="280,169,451,196"/>
 <area shape="rect" id="node5" href="$____comparable_8h.html" title=" " alt="" coords="110,244,269,271"/>
 </map>

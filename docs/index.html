@@ -107,9 +107,9 @@ Installation</h1>
 <h2><a class="anchor" id="autotoc_md26"></a>
 Dependencies</h2>
 <ul>
-<li>C++17 (at least)</li>
-<li>cmake (&gt;= 3.19) and make (for installation)</li>
-<li>doxygen (to build the documentation)</li>
+<li>For compiling: C++ (&gt;=17), cmake (&gt;=3.19), pthread</li>
+<li>For building the documentation: doxygen</li>
+<li>For compiling unitary tests: GoogleTest</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md27"></a>
 Map implementation</h3>
@@ -132,6 +132,11 @@ Linking with cmake</h2>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
 Building the documentation</h2>
 <p>To build the documentation, use doxygen from the root folder: </p><div class="fragment"><div class="line">doxygen</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
+Comiling and running unit tests</h2>
+<p>To compile the tests, in your <code>build</code> directory: </p><div class="fragment"><div class="line">cmake -DCOMPILE_TESTS=ON ..</div>
+<div class="line">make</div>
+</div><!-- fragment --><p>Then run with </p><div class="fragment"><div class="line">./tests/test_state_machine_cpp</div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

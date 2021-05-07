@@ -10,5 +10,6 @@ var classstate__machine__cpp_1_1Transition_1_1Any =
     [ "operator()", "classstate__machine__cpp_1_1Transition_1_1Any.html#a0aff824b35e5fb72fc3a5876761ac11b", null ],
     [ "reset_handler", "classstate__machine__cpp_1_1Transition_1_1Any.html#a531d42bc2e3cdd3438f1e3ed02547db6", null ],
     [ "set_as_final", "classstate__machine__cpp_1_1Transition_1_1Any.html#a31eabb64eb0e92151c9c785f449d10f4", null ],
-    [ "set_handler", "classstate__machine__cpp_1_1Transition_1_1Any.html#a90e6a9f98ff795dc05b3fd942ab2691b", null ]
+    [ "set_handler", "classstate__machine__cpp_1_1Transition_1_1Any.html#aeef1d35f80dd6e09e94431c2d89d3046", null ],
+    [ "type", "classstate__machine__cpp_1_1Transition_1_1Any.html#a170d055aa2ca60175d1ea0b29a8655f4", null ]
 ];

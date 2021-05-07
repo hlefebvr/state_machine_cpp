@@ -31,7 +31,8 @@ var NAVTREE =
         ] ],
         [ "Installation", "index.html#autotoc_md28", null ],
         [ "Linking with cmake", "index.html#autotoc_md29", null ],
-        [ "Building the documentation", "index.html#autotoc_md30", null ]
+        [ "Building the documentation", "index.html#autotoc_md30", null ],
+        [ "Comiling and running unit tests", "index.html#autotoc_md31", null ]
       ] ]
     ] ],
     [ "[Tutorial] ForLoop: Your first state machine", "md_src_tutorials_1_ForLoop.html", [
@@ -66,7 +67,8 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ]
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -94,7 +96,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"md_src_tutorials_3_DoubleLoop.html#autotoc_md19"
+"md_src_tutorials_1_ForLoop.html#autotoc_md2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

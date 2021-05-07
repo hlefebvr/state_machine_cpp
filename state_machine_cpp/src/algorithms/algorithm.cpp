@@ -32,8 +32,15 @@ void state_machine_cpp::Algorithm::Instance::create_any_transition(
     auto it = m_transitions.find(t_initial_instance);
 
     if (it == m_transitions.end()) {
-        throw std::runtime_error("Cannot create a transition from a non-existing state."
+        throw std::runtime_error("Cannot create or override a transition from a non-existing state. "
                                  "Initial state: " + t_initial_instance.name());
+    }
+
+    for (const auto& next_state : t_next_states) {
+        if (!m_transitions.has(next_state)) {
+            throw std::runtime_error("Cannot create or override a transition to a non-existing state. "
+                                     "Next state: " + next_state.name());
+        }
     }
 
     if (!it->has_handler()) {
@@ -114,10 +121,10 @@ const state_machine_cpp::TransitionSet &state_machine_cpp::Algorithm::Instance::
 
 void state_machine_cpp::Algorithm::Instance::set_as_final(const State::Instance &t_instance) {
     auto it = m_transitions.find(t_instance);
-    if (it == m_transitions.end()) {
+    if (it == m_transitions.end() || !it->has_handler()) {
         throw std::runtime_error("Cannot declare a non-existing transition as final.");
     }
-    if (!it->has_handler()) {
+    if (it->is_virtual()) {
         throw std::runtime_error("Cannot declare a virtual transition as final.");
     }
     it->set_as_final();

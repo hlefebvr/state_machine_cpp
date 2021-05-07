@@ -85,7 +85,7 @@ set(PRIVATE_FILES
 add_library(state_machine_cpp ${PRIVATE_FILES} ${PUBLIC_FILES})
 
 # Define c++ version
-target_compile_features(state_machine_cpp PRIVATE cxx_std_17)
+target_compile_features(state_machine_cpp PUBLIC cxx_std_17)
 
 # Define include directories
 target_include_directories(state_machine_cpp
@@ -134,3 +134,10 @@ install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/state_machine_cpp-config.cmake
         DESTINATION ${CMAKE_INSTALL_DATADIR}/state_machine_cpp/cmake
         )
+
+# Add tests
+option(COMPILE_TESTS "ON if the tests should be compiled" OFF)
+if (COMPILE_TESTS)
+    add_subdirectory(tests)
+endif()
+#unset(COMPILE_TESTS CACHE)

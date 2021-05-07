@@ -38,6 +38,8 @@ public:
 
     void create_parallelized(const State::Any &t_initial_state, std::initializer_list<State::Any> t_next_states,
                              const State::Any &t_final_state) override;
+    void override_parallelized(const State::Any &t_initial_state, std::initializer_list<State::Any> t_next_states,
+                             const State::Any &t_final_state) override;
 
     void declare_as_final(const State::Any &t_state) override;
 };

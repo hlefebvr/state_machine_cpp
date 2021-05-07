@@ -94,3 +94,49 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_parallelized
                                     );
 
 }
+
+void state_machine_cpp::Algorithm::Impl::Build::Transitions::override_parallelized(
+        const state_machine_cpp::State::Any &t_initial_state, std::initializer_list<State::Any> t_next_states,
+        const state_machine_cpp::State::Any &t_final_state) {
+
+    // Create next states (instantiate)
+    std::vector<State::Instance> next_states;
+    next_states.reserve(t_next_states.size() + 1);
+    next_states.emplace_back(as_instance(t_final_state));
+    for (const auto& any_state : t_next_states) {
+        next_states.emplace_back(as_instance(any_state));
+    }
+
+    auto *destination = &m_destination;
+
+    // Create handler
+    auto handler = [t_final_state, next_states, destination](Context& t_context) -> int {
+
+        std::list<std::thread> threads;
+
+        auto final_state = next_states.front();
+
+        for (const auto& initial_state : next_states) {
+            threads.emplace_back([initial_state, final_state, &t_context, destination](){
+                auto current_state = initial_state;
+                while (current_state != final_state) {
+                    current_state = destination->transitions()[current_state](t_context);
+                }
+            });
+        }
+
+        for (auto& thread : threads) {
+            thread.join();
+        }
+
+        return 0;
+    };
+
+    m_destination.create_any_transition(as_instance(t_initial_state),
+                                        Transition::Type::Parallelized,
+                                        std::move(next_states),
+                                        handler,
+                                        true
+    );
+
+}

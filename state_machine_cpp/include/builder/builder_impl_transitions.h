@@ -20,8 +20,6 @@ namespace state_machine_cpp::Algorithm {
 
 class state_machine_cpp::Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitions {
 protected:
-    Algorithm::Instance& m_destination;
-
     // HANDLER CREATORS
     std::function<int(Context&)> create_parallelized_handler(const State::Any &t_initial_state,
                                                               const std::vector<State::Instance>& t_next_states,
@@ -45,7 +43,9 @@ protected:
                                          const State::Any &t_final_state) override;
 
 public:
-    Transitions(Algorithm::Instance& t_destination, const state_machine_cpp::Algorithm::Builder::Layers* t_layer);
+    Transitions(Algorithm::Instance& t_destination,
+                const state_machine_cpp::Algorithm::Builder::Layers* t_layer,
+                Algorithm::Mode t_build_mode);
 
     void remove(const State::Any &t_state) override;
     void declare_as_final(const State::Any &t_state) override;

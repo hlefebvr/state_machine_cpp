@@ -9,7 +9,7 @@
 
 class state_machine_cpp::Algorithm::Builder::Layers {
 public:
-    virtual unsigned int current() const = 0;
+    [[nodiscard]] virtual unsigned int current() const = 0;
     virtual unsigned int create() = 0;
     virtual unsigned int use(unsigned int t_layer) = 0;
     virtual void close() = 0;

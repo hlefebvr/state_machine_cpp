@@ -7,13 +7,12 @@
 
 #include <iostream>
 #include "states/state_instance.h"
+#include "builder/builder_types.h"
 
-namespace state_machine_cpp {
-    namespace Algorithm {
-        class Builder;
-        class Instance;
-        template<class T> void build(Algorithm::Instance& t_destination);
-    }
+namespace state_machine_cpp::Algorithm {
+    class Builder;
+    class Instance;
+    template<class T> void build(Algorithm::Instance& t_destination, Algorithm::Mode t_build_mode = Algorithm::Mode::Release);
 }
 
 class state_machine_cpp::Algorithm::Builder {
@@ -22,7 +21,10 @@ public:
     class Transitions;
     class Layers;
 
-    template<class T> friend void ::state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination);
+    template<class T> friend void ::state_machine_cpp::Algorithm::build(
+        Algorithm::Instance& t_destination,
+        Algorithm::Mode t_build_mode
+    );
 
     virtual void build(States& states, Transitions& transitions, Layers& layers) = 0;
 protected:

@@ -4,7 +4,8 @@
 
 #include "builder/builder_transitions.h"
 
-state_machine_cpp::Algorithm::Builder::Transitions::Transitions(const Layers* t_layer) : Indirection(t_layer) {
+state_machine_cpp::Algorithm::Builder::Transitions::Transitions(Algorithm::Instance& t_destination, const Layers* t_layer, Algorithm::Mode t_build_mode)
+    : Indirection(t_destination, t_layer, t_build_mode) {
 
 }
 

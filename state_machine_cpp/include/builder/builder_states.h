@@ -9,7 +9,7 @@
 
 class state_machine_cpp::Algorithm::Builder::States : public Indirection {
 public:
-    explicit States(const Layers* t_layer);
+    explicit States(Algorithm::Instance& t_destination, const Layers* t_layer, Algorithm::Mode t_build_mode);
 
     virtual void create(const State::Any& t_state) = 0;
     virtual void remove(const State::Any& t_state) = 0;

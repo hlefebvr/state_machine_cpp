@@ -7,21 +7,16 @@
 
 #include "builder_states.h"
 
-namespace state_machine_cpp {
-    namespace Algorithm {
-        class Instance;
-        namespace Impl {
-            namespace Build {
-                class States;
-            }
-        }
+namespace state_machine_cpp::Algorithm {
+    class Instance;
+    namespace Impl::Build {
+        class States;
     }
 }
 
 class state_machine_cpp::Algorithm::Impl::Build::States : public state_machine_cpp::Algorithm::Builder::States {
-    Algorithm::Instance& m_destination;
 public:
-    States(Algorithm::Instance& t_destination, const state_machine_cpp::Algorithm::Builder::Layers* t_layer);
+    States(Algorithm::Instance& t_destination, const state_machine_cpp::Algorithm::Builder::Layers* t_layer, Algorithm::Mode t_build_mode);
 
     void create(const State::Any& t_state) override;
     void remove(const State::Any& t_state) override;

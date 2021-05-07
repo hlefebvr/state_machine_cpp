@@ -28,6 +28,7 @@ set(PUBLIC_FILES
         state_machine_cpp/include/algorithms/algorithm.h
 
         state_machine_cpp/include/builder/builder.h
+        state_machine_cpp/include/builder/builder_types.h
         state_machine_cpp/include/builder/builder_layers.h
         state_machine_cpp/include/builder/builder_indirection.h
         state_machine_cpp/include/builder/builder_states.h

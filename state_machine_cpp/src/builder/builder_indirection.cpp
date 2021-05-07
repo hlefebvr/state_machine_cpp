@@ -5,7 +5,12 @@
 #include "builder/builder_indirection.h"
 #include "builder/builder_layers.h"
 
-state_machine_cpp::Algorithm::Builder::Indirection::Indirection(const Layers* t_layers) : m_layers(t_layers) {
+state_machine_cpp::Algorithm::Builder::Indirection::Indirection(Algorithm::Instance& t_destination,
+                                                                const Layers* t_layers,
+                                                                Algorithm::Mode t_build_mode)
+    : m_destination(t_destination),
+      m_layers(t_layers),
+      m_build_mode(t_build_mode) {
 
 }
 

@@ -8,6 +8,7 @@
 #include "builder/builder_impl_states.h"
 #include "builder/builder_impl_transitions.h"
 #include "builder/builder_impl_layers.h"
+#include "builder/builder_types.h"
 
 namespace state_machine_cpp::Algorithm {
     namespace Impl {
@@ -37,11 +38,11 @@ struct state_machine_cpp::Algorithm::Impl::has_FINAL_STATE {
 };
 
 template<class T>
-void state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination) {
+void state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination, Algorithm::Mode t_build_mode) {
 
     Impl::Build::Layers layers;
-    Impl::Build::States states(t_destination, &layers);
-    Impl::Build::Transitions transitions(t_destination, &layers);
+    Impl::Build::States states(t_destination, &layers, t_build_mode);
+    Impl::Build::Transitions transitions(t_destination, &layers, t_build_mode);
 
     Algorithm::Builder::inherit<T>(states, transitions, layers);
 

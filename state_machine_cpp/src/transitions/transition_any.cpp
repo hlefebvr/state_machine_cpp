@@ -34,6 +34,7 @@ std::vector<state_machine_cpp::State::Instance> state_machine_cpp::Transition::A
 }
 
 void state_machine_cpp::Transition::Any::reset_handler() {
+    m_type = Type::Undefined;
     m_function = std::function<int(Context&)>();
     m_next_states.clear();
 }

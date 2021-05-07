@@ -16,9 +16,25 @@ void state_machine_cpp::Algorithm::Instance::create_state(const State::Instance&
 }
 
 void state_machine_cpp::Algorithm::Instance::remove_state(const State::Instance& t_instance) {
-    if (!has(t_instance)) {
+
+    auto it = m_transitions.find(t_instance);
+
+    if (it == m_transitions.end()) {
         throw std::runtime_error("Cannot remove a non-existing state instance");
     }
+
+    if (it->has_handler()) {
+        throw std::runtime_error("Cannot remove state " + t_instance.name() + " because other transitions depend on it.");
+    }
+
+    for (const auto& transition : m_transitions) {
+        for (const auto& next_state : transition.next_states()) {
+            if (next_state == t_instance) {
+                throw std::runtime_error("Cannot remove state " + t_instance.name() + " because other transitions depend on it.");
+            }
+        }
+    }
+
     m_transitions.remove(t_instance);
 }
 

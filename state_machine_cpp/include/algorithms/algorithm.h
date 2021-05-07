@@ -65,10 +65,16 @@ public:
 };
 
 const state_machine_cpp::State::Id &state_machine_cpp::Algorithm::Instance::initial_state() const {
+    if (!m_initial_state) {
+        throw std::runtime_error("No initial state configure. Use set_initial_state.");
+    }
     return *m_initial_state;
 }
 
 const state_machine_cpp::State::Id &state_machine_cpp::Algorithm::Instance::final_state() const {
+    if (!m_final_state) {
+        throw std::runtime_error("No initial state configure. Use set_initial_state.");
+    }
     return *m_final_state;
 }
 

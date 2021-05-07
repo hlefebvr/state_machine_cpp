@@ -51,10 +51,18 @@ void state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination) {
     }
 
     if constexpr(Impl::has_INITIAL_STATE<T>::value) {
+        if (!t_destination.transitions().has(T::INITIAL_STATE)) {
+            throw std::runtime_error("INITIAL_STATE have been auto-detected yet the state is not created within the algorithm."
+                                     "Call states.create.");
+        }
         t_destination.set_initial_state(T::INITIAL_STATE);
     }
 
     if constexpr(Impl::has_FINAL_STATE<T>::value) {
+        if (!t_destination.transitions().has(T::FINAL_STATE)) {
+            throw std::runtime_error("FINAL_STATE have been auto-detected yet the state is not created within the algorithm."
+                                     "Call states.create.");
+        }
         t_destination.set_final_state(T::FINAL_STATE);
     }
 

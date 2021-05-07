@@ -5,7 +5,7 @@
 #ifndef STATE_MACHINE_CPP_TEST_TRANSITION_OVERRIDE_H
 #define STATE_MACHINE_CPP_TEST_TRANSITION_OVERRIDE_H
 
-TEST(test_transition_override, should_throw_if_override_non_existing) {
+TEST(transition_override, should_throw_if_override_non_existing) {
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {
         states.create(A);
         states.create(B);
@@ -17,7 +17,7 @@ TEST(test_transition_override, should_throw_if_override_non_existing) {
     ASSERT_ANY_THROW(Algorithm::build<TestAlgorithm>(algorithm));
 }
 
-TEST(test_transition_override, should_override) {
+TEST(transition_override, should_override) {
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {
         states.create(A);
         states.create(B);
@@ -31,7 +31,7 @@ TEST(test_transition_override, should_override) {
     TEST_UTIL_ASSERT_DIRECT_TRANSITION(algorithm.transitions()[A], A, B);
 }
 
-TEST(test_transition_override, should_override_if) {
+TEST(transition_override, should_override_if) {
 
     TEST_UTIL_CREATE_HANDLER_IF(test, f, { return true; });
 
@@ -49,7 +49,7 @@ TEST(test_transition_override, should_override_if) {
     TEST_UTIL_ASSERT_CONDITIONAL_TRANSITION(algorithm.transitions()[A], A, B, C);
 }
 
-TEST(test_transition_override, should_override_parallelized) {
+TEST(transition_override, should_override_parallelized) {
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {
         states.create(A);
         states.create(B);
@@ -67,7 +67,7 @@ TEST(test_transition_override, should_override_parallelized) {
     TEST_UTIL_ASSERT_PARALLELIZED_TRANSITION_2(algorithm.transitions()[A], A, B, C, D);
 }
 
-TEST(test_transition_override, should_override_change) {
+TEST(transition_override, should_override_change) {
     TEST_UTIL_CREATE_HANDLER_IF(test, f, { return true; });
 
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {
@@ -84,7 +84,7 @@ TEST(test_transition_override, should_override_change) {
     TEST_UTIL_ASSERT_CONDITIONAL_TRANSITION(algorithm.transitions()[A], A, B, C);
 }
 
-TEST(test_transition_override, should_throw_if_override_final) {
+TEST(transition_override, should_throw_if_override_final) {
     TEST_UTIL_CREATE_HANDLER_IF(test, f, { return true; });
 
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {
@@ -103,7 +103,7 @@ TEST(test_transition_override, should_throw_if_override_final) {
 
 // Same functions with virtual
 
-TEST(test_transition_override, should_override_virtual) {
+TEST(transition_override, should_override_virtual) {
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {
         states.create(A);
         states.create(B);
@@ -117,7 +117,7 @@ TEST(test_transition_override, should_override_virtual) {
     TEST_UTIL_ASSERT_DIRECT_TRANSITION(algorithm.transitions()[A], A, B);
 }
 
-TEST(test_transition_override, should_override_virtual_if) {
+TEST(transition_override, should_override_virtual_if) {
 
     TEST_UTIL_CREATE_HANDLER_IF(test, f, { return true; });
 
@@ -135,7 +135,7 @@ TEST(test_transition_override, should_override_virtual_if) {
     TEST_UTIL_ASSERT_CONDITIONAL_TRANSITION(algorithm.transitions()[A], A, B, C);
 }
 
-TEST(test_transition_override, should_override_virtual_change) {
+TEST(transition_override, should_override_virtual_change) {
     TEST_UTIL_CREATE_HANDLER_IF(test, f, { return true; });
 
     TEST_UTIL_CREATE_ALGORITHM_BUILDER(TestAlgorithm, {

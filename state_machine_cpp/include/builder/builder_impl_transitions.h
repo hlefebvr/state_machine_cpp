@@ -19,13 +19,18 @@ namespace state_machine_cpp::Algorithm {
 }
 
 class state_machine_cpp::Algorithm::Impl::Build::Transitions : public Algorithm::Builder::Transitions {
-protected:
+
     // HANDLER CREATORS
-    std::function<int(Context&)> create_parallelized_handler(const State::Any &t_initial_state,
-                                                              const std::vector<State::Instance>& t_next_states,
-                                                              const State::Any &t_final_state);
-    std::function<int(Context&)> create_direct_handler(Transition::TrivialHandler *t_handler);
-    std::function<int(Context&)> create_conditional_handler(Transition::ConditionalHandler *t_handler);
+    std::function<int(Context&)> create_parallelized_handler(const State::Instance &t_initial_state,
+                                                             const std::vector<State::Instance>& t_next_states,
+                                                             const State::Any &t_final_state);
+    std::function<int(Context&)> create_direct_handler(const State::Instance &t_initial_state,
+                                                       Transition::TrivialHandler *t_handler);
+    std::function<int(Context&)> create_conditional_handler(const State::Instance &t_initial_state,
+                                                            Transition::ConditionalHandler *t_handler);
+
+    std::function<int(Context&)> wrap_with_logs(const State::Instance& t_initial_state,
+                                                std::function<int(Context&)>&& t_function);
 
     // TRANSITION CREATORS
     void create_or_override(bool t_is_override,

@@ -8,21 +8,15 @@
 #include <stack>
 #include "builder_layers.h"
 
-namespace state_machine_cpp {
-    namespace Algorithm {
-        namespace Impl {
-            namespace Build {
-                class Layers;
-            }
-        }
-    }
+namespace state_machine_cpp::Algorithm::Impl::Build {
+    class Layers;
 }
 
 class state_machine_cpp::Algorithm::Impl::Build::Layers : public Algorithm::Builder::Layers {
     std::stack<unsigned int> m_layers;
     unsigned int m_max_layer = 0;
 public:
-    unsigned int current() const override;
+    [[nodiscard]] unsigned int current() const override;
     unsigned int create() override;
     unsigned int use(unsigned int t_layer) override;
     void close() override;

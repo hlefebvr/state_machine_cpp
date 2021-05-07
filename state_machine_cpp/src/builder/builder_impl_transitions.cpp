@@ -17,30 +17,60 @@ state_machine_cpp::Algorithm::Impl::Build::Transitions::Transitions(state_machin
 
 // HANDLER CREATORS
 
+std::function<int(state_machine_cpp::Context & )> state_machine_cpp::Algorithm::Impl::Build::Transitions::wrap_with_logs(
+        const state_machine_cpp::State::Instance &t_initial_state,
+        std::function<int(Context &)> &&t_function) {
+
+    return [t_function, t_initial_state](Context& t_context){
+        std::cout << "-- state: " << t_initial_state << std::endl;
+        return t_function(t_context);
+    };
+
+}
+
 std::function<int(state_machine_cpp::Context & )>
 state_machine_cpp::Algorithm::Impl::Build::Transitions::create_direct_handler(
+        const State::Instance &t_initial_state,
         state_machine_cpp::Transition::TrivialHandler *t_handler) {
 
-    auto result = t_handler ?
-                  [t_handler](Context& t_context){ (*t_handler)(t_context); return 0; } :
-                  std::function<int(Context&)>();
+    if (!t_handler) {
+        return {};
+    }
+
+    auto result = [t_handler](Context& t_context){
+        (*t_handler)(t_context);
+        return 0;
+    };
+
+    if (build_mode() == Mode::Debug) {
+        return wrap_with_logs(t_initial_state, std::move(result));
+    }
 
     return result;
 }
 
 std::function<int(state_machine_cpp::Context & )> state_machine_cpp::Algorithm::Impl::Build::Transitions::create_conditional_handler(
+        const State::Instance &t_initial_state,
         state_machine_cpp::Transition::ConditionalHandler *t_handler) {
 
-    auto result = t_handler ?
-                  [t_handler](Context& t_context){ return (*t_handler)(t_context); } :
-                  std::function<int(Context&)>();
+    if (!t_handler) {
+        return {};
+    }
+
+    auto result = [t_handler](Context& t_context) {
+        return (*t_handler)(t_context);
+    };
+
+    if (build_mode() == Mode::Debug) {
+        return wrap_with_logs(t_initial_state, std::move(result));
+    }
 
     return result;
 }
 
 std::function<int(state_machine_cpp::Context & )>
 state_machine_cpp::Algorithm::Impl::Build::Transitions::create_parallelized_handler(
-        const state_machine_cpp::State::Any &t_initial_state,
+        const state_machine_cpp::State::Instance &t_initial_state,
         const std::vector<state_machine_cpp::State::Instance>& t_next_states,
         const state_machine_cpp::State::Any &t_final_state) {
 
@@ -80,7 +110,7 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override(
                                                                                 Transition::TrivialHandler *t_handler) {
 
     auto initial_state = as_instance(t_initial_state);
-    auto handler = create_direct_handler(t_handler);
+    auto handler = create_direct_handler(initial_state, t_handler);
     std::vector<State::Instance> next_instance = { as_instance(t_next_state) };
 
     destination().create_any_transition(
@@ -99,7 +129,7 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_
                                                                                    Transition::ConditionalHandler *t_handler) {
 
     auto initial_state = as_instance(t_initial_state);
-    auto handler = create_conditional_handler(t_handler);
+    auto handler = create_conditional_handler(initial_state, t_handler);
     std::vector<State::Instance> next_states = {as_instance(t_else), as_instance(t_if_true) };
 
     destination().create_any_transition(
@@ -119,7 +149,7 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_
     auto initial_state = as_instance(t_initial_state);
     auto next_states = as_instance(t_next_states);
     next_states.emplace_back(as_instance(t_final_state));
-    auto handler = create_parallelized_handler(t_initial_state, next_states, t_final_state);
+    auto handler = create_parallelized_handler(initial_state, next_states, t_final_state);
 
     destination().create_any_transition(initial_state,
                                         Transition::Type::Parallelized,

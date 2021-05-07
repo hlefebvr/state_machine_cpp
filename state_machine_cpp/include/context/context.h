@@ -14,24 +14,15 @@ namespace state_machine_cpp {
     class Context;
     namespace Algorithm {
         class Instance;
-        namespace Impl {
-            void run(::state_machine_cpp::Context &t_context,
-                     const ::state_machine_cpp::State::Id &t_initial_state,
-                     const ::state_machine_cpp::State::Id &t_final_state,
-                     const std::function<State::Instance(const State::Instance &t_state,
-                                                         Context &t_context)> &t_apply_transition);
-        }
+        void run(const Algorithm::Instance& t_instance, Context& t_context);
     }
 }
 
 class state_machine_cpp::Context {
     State::Instance m_state;
 
-    friend void ::state_machine_cpp::Algorithm::Impl::run(::state_machine_cpp::Context& t_context,
-                                                     const ::state_machine_cpp::State::Id& t_initial_state,
-                                                     const ::state_machine_cpp::State::Id& t_final_state,
-                                                     const std::function<State::Instance(const State::Instance &t_state, Context &t_context)>& t_apply_transition);
-    void set_state(State::Any t_state) { m_state = t_state.as_instance(0); }
+    friend void ::state_machine_cpp::Algorithm::run(const Algorithm::Instance& t_instance, Context& t_context);
+    void set_state(const State::Any& t_state) { m_state = t_state.as_instance(0); }
 protected:
     virtual Context* operator[](unsigned int t_index) = 0;
     virtual const Context* operator[](unsigned int t_index) const = 0;

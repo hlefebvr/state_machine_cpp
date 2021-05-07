@@ -47,7 +47,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
             case Transition::Type::Parallelized:
                 color = "green";
                 label = t_index != 0 ? "async" : "";
-                style = t_index == 0 ? "dashed" : style;
+                style = t_index == t_transition.next_states().size() - 1 ? "dashed" : style;
                 break;
             case Transition::Type::Direct: break;
             case Transition::Type::Conditional:

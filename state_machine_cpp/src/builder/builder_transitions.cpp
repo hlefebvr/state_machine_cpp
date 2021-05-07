@@ -44,3 +44,11 @@ void state_machine_cpp::Algorithm::Builder::Transitions::create_if_virtual(const
 void state_machine_cpp::Algorithm::Builder::Transitions::create(const State::Any &t_initial_state, const State::Any &t_next_state) {
     create_or_override(false, t_initial_state, t_next_state, &Transition::DO_NOTHING);
 }
+
+void state_machine_cpp::Algorithm::Builder::Transitions::create_parallelized(const state_machine_cpp::State::Any &t_initial_state, std::initializer_list<State::Any> t_next_states, const state_machine_cpp::State::Any &t_final_state) {
+    create_or_override_parallelized(false, t_initial_state, t_next_states, t_final_state);
+}
+
+void state_machine_cpp::Algorithm::Builder::Transitions::override_parallelized(const state_machine_cpp::State::Any &t_initial_state, std::initializer_list<State::Any> t_next_states, const state_machine_cpp::State::Any &t_final_state) {
+    create_or_override_parallelized(true, t_initial_state, t_next_states, t_final_state);
+}

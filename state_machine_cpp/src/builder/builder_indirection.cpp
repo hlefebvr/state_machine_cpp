@@ -12,3 +12,15 @@ state_machine_cpp::Algorithm::Builder::Indirection::Indirection(const Layers* t_
 state_machine_cpp::State::Instance state_machine_cpp::Algorithm::Builder::Indirection::as_instance(const State::Any &t_any) const {
     return t_any.as_instance(m_layers->current());
 }
+
+std::vector<state_machine_cpp::State::Instance>
+state_machine_cpp::Algorithm::Builder::Indirection::as_instance(const std::list<state_machine_cpp::State::Any> &t_states) const {
+
+    std::vector<State::Instance> result;
+    result.reserve(t_states.size());
+    for (const auto& any_state : t_states) {
+        result.emplace_back(as_instance(any_state));
+    }
+
+    return result;
+}

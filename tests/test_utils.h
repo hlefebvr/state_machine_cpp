@@ -49,9 +49,9 @@ ASSERT_TRUE(transition.has_handler()); \
 ASSERT_EQ(transition.type(), Transition::Type::Parallelized); \
 ASSERT_EQ(transition.initial_state(), from);    \
 ASSERT_EQ(transition.next_states().size(), 3); \
-ASSERT_EQ(transition.next_states()[0], to); \
-ASSERT_EQ(transition.next_states()[1], then_1); \
-ASSERT_EQ(transition.next_states()[2], then_2); \
+ASSERT_EQ(transition.next_states()[0], then_1); \
+ASSERT_EQ(transition.next_states()[1], then_2); \
+ASSERT_EQ(transition.next_states()[2], to); \
 ASSERT_FALSE(transition.is_final()); \
 ASSERT_FALSE(transition.is_virtual()); \
 

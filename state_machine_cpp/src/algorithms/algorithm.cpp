@@ -88,38 +88,6 @@ void state_machine_cpp::Algorithm::Instance::create_any_transition(
     it->set_handler(t_transition_type, std::move(t_next_states), std::move(t_handler));
 }
 
-
-void state_machine_cpp::Algorithm::Instance::create_transition(const State::Instance &t_initial_instance,
-                                            const State::Instance &t_next_instance,
-                                            Transition::TrivialHandler *t_handler,
-                                            bool t_is_override) {
-
-    auto handler = t_handler ?
-            [t_handler](Context& t_context){ (*t_handler)(t_context); return 0; } :
-            std::function<int(Context&)>();
-
-    create_any_transition(t_initial_instance,
-                          Transition::Type::Direct,
-                          { t_next_instance },
-                          std::move(handler),
-                          t_is_override);
-
-}
-
-void state_machine_cpp::Algorithm::Instance::create_transition_if(const State::Instance &t_initial_instance,
-                                               const State::Instance &t_if_instance,
-                                               const State::Instance &t_else_instance,
-                                               Transition::ConditionalHandler *t_handler,
-                                               bool t_is_override) {
-
-    auto handler = t_handler ?
-            [t_handler](Context& t_context){ return (*t_handler)(t_context); } :
-            std::function<int(Context&)>();
-
-    create_any_transition(t_initial_instance, Transition::Type::Conditional, { t_else_instance, t_if_instance }, std::move(handler), t_is_override);
-
-}
-
 void state_machine_cpp::Algorithm::Instance::remove_transition(const State::Instance &t_instance) {
     auto it = m_transitions.find(t_instance);
     if (it == m_transitions.end() || !it->has_handler()) {

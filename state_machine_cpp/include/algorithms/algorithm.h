@@ -11,18 +11,14 @@
 #include "transitions/transition_handlers.h"
 #include "impl/__map.h"
 
-namespace state_machine_cpp {
-    namespace Algorithm {
-        class Instance;
-        namespace Impl {
-            namespace Build {
-                class States;
-                class Transitions;
-                class Layers;
-            }
+namespace state_machine_cpp::Algorithm {
+    class Instance;
+    namespace Impl::Build {
+            class States;
+            class Transitions;
+            class Layers;
         }
     }
-}
 
 class state_machine_cpp::Algorithm::Instance {
 
@@ -30,7 +26,7 @@ class state_machine_cpp::Algorithm::Instance {
     const State::Id* m_initial_state = nullptr;
     const State::Id* m_final_state = nullptr;
 
-    bool has(const State::Instance& t_instance) const;
+    [[nodiscard]] bool has(const State::Instance& t_instance) const;
 
     friend class Algorithm::Impl::Build::States;
     void create_state(const State::Instance& t_instance);
@@ -42,15 +38,6 @@ class state_machine_cpp::Algorithm::Instance {
                                std::vector<State::Instance> &&t_next_states,
                                std::function<int(Context&)>&& t_handler,
                                bool t_is_override);
-    void create_transition(const State::Instance& t_initial_instance,
-                           const State::Instance& t_next_instance,
-                           Transition::TrivialHandler* t_handler,
-                           bool t_is_override);
-    void create_transition_if(const State::Instance& t_initial_instance,
-                           const State::Instance& t_if_instance,
-                           const State::Instance& t_else_instance,
-                           Transition::ConditionalHandler* t_handler,
-                           bool t_is_override);
     void remove_transition(const State::Instance& t_instance);
     void set_as_final(const State::Instance& t_instance);
 public:

@@ -33,9 +33,9 @@ You may also check our [documentation](https://hlefebvr.github.io/state_machine_
 
 ### Dependencies
 
-- C++17 (at least)
-- cmake (>= 3.19) and make (for installation)
-- doxygen (to build the documentation)
+- For compiling: C++ (>=17), cmake (>=3.19), pthread
+- For building the documentation: doxygen
+- For compiling unitary tests: GoogleTest
 
 #### Map implementation
 
@@ -74,4 +74,17 @@ target_link_libraries(<MY_TARGET> state_machine_cpp::state_machine_cpp)
 To build the documentation, use doxygen from the root folder:
 ```shell
 doxygen
+```
+
+### Comiling and running unit tests
+
+To compile the tests, in your `build` directory:
+```shell
+cmake -DCOMPILE_TESTS=ON ..
+make
+```
+
+Then run with
+```shell
+./tests/test_state_machine_cpp
 ```

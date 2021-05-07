@@ -96,6 +96,9 @@ target_include_directories(state_machine_cpp
         PRIVATE state_machine_cpp/src
         )
 
+# Adds pthread as dependency
+target_link_libraries(state_machine_cpp PRIVATE pthread)
+
 # Imports some variables
 include(GNUInstallDirs)
 

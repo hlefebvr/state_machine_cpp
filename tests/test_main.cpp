@@ -13,8 +13,6 @@ static const State::Id A("A");
 static const State::Id B("B");
 static const State::Id C("C");
 static const State::Id D("D");
-static const State::Id E("E");
-static const State::Id F("F");
 
 #include "./test_utils.h"
 #include "./test_state_create.h"

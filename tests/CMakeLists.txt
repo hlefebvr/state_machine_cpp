@@ -1,3 +1,5 @@
+message(STATUS "Compiling unit tests")
+
 enable_testing()
 
 add_executable(test_state_machine_cpp
@@ -16,3 +18,5 @@ add_executable(test_state_machine_cpp
 
 find_package(GTest REQUIRED)
 target_link_libraries(test_state_machine_cpp GTest::GTest GTest::Main pthread state_machine_cpp)
+
+add_test(state_machine_cpp test_state_machine_cpp)

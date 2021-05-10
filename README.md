@@ -18,7 +18,7 @@ transition action overriding, transition flow overriding, algorithmic combinatio
 
 Here is an example of the implementation of a for loop within the state-machine-like framework:
 
-![for_loop](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/ForLoop.png)
+![for_loop](src/images/ForLoop.png)
 
 ## Tutorials
 

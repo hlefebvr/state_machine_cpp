@@ -266,3 +266,18 @@ following:
 9
 the loop is over
 ```
+
+## Debug mode
+
+We have successfully executed our algorithm. The execution start from the INITIAL_STATE, then goes to AFTER_LOOP_ITERATION,
+and so on. Note that it is possible to see each state that our algorithm traverses so as, for instance, to
+debug it when developping new algorithms! To do that, simply build the algorithm in Debug mode, which is done
+as follow:
+```cpp
+Algorithm::buil<ForLoop>(algorithm, Algorithm::Mode::Debug);
+```
+
+Thus, running the algorithm by calling `Algorithm::run` now outputs the following,
+```shell
+
+```

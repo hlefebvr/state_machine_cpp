@@ -1,1 +1,3 @@
 add_subdirectory(1_ForLoop)
+add_subdirectory(2_PowerLoop)
+add_subdirectory(3_DoubleLoop)

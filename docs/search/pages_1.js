@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['state_5fmachine_5fcpp_20library_249',['state_machine_cpp library',['../index.html',1,'']]]
+  ['inheritance_3a_20modifying_20existing_20algorithms_383',['Inheritance: modifying existing algorithms',['../t2_PowerLoop.html',1,'Tutorial']]]
 ];

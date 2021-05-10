@@ -16,6 +16,13 @@ public:
         explicit Attributes(int max_iteration) : max_iteration(max_iteration) {}
     };
 
+    static AutoContext handle_standard_arguments(int max_iteration) {
+        auto* attributes = new ForLoop::Attributes(max_iteration);
+        auto* context = new SimpleContext<ForLoop::Attributes>(*attributes);
+
+        return AutoContext(context, attributes);
+    }
+
     static const State::Id INITIAL_STATE;
     static const State::Id LOOP_CONDITION_EVALUATION;
     static const State::Id BEGIN_OF_ITERATION;
@@ -68,19 +75,20 @@ const State::Id ForLoop::BEGIN_OF_ITERATION = State::Id("ForLoop::BEGIN_OF_ITERA
 const State::Id ForLoop::END_OF_ITERATION = State::Id("ForLoop::END_OF_ITERATION");
 const State::Id ForLoop::FINAL_STATE = State::Id("ForLoop::FINAL_STATE");
 
-int main() {
+#ifndef STATE_MACHINE_CPP_EXAMPLE_FORLOOP_H
 
-    using namespace state_machine_cpp;
+int main() {
 
     Algorithm::Instance algorithm;
     Algorithm::build<ForLoop>(algorithm);
     Algorithm::plot(algorithm, "my_algorithm", false);
     Algorithm::sanity_check(algorithm);
 
-    ForLoop::Attributes attributes(10);
-    SimpleContext<ForLoop::Attributes> context(attributes);
+    auto context = ForLoop::handle_standard_arguments(10);
 
     Algorithm::run(algorithm, context);
 
     return 0;
 }
+
+#endif // STATE_MACHINE_CPP_EXAMPLE_FORLOOP_H

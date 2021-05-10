@@ -1,4 +1,4 @@
-# [Tutorial] ForLoop: Your first state machine
+# Basics: creating your first algorithm {#t1_ForLoop}
 
 Hey! Ready to implement your first algorithm with state_machine_cpp ? Great! I hope 
 you have already installed it, if not, please check the [README.md](https://github.com/hlefebvr/state_machine_cpp) file
@@ -10,7 +10,7 @@ In this tutorial we'll be implementing a very simple example. It consists in a f
 iteration number. As you know, every thing here is nothing but states and transitions between states.
 In fact, I'll give you right away the overall shape of the algorithm we are trying to implement:
 
-![For loop](../images/ForLoop.png)
+![For loop](src/images/ForLoop.png)
 
 Simply put, the algorithm execution will start at the INITIAL_STATE and the corresponding transition
 will apply a baby step to go from INITIAL_STATE to the LOOP_CONDITION_EVALUATION state. The corresponding transition,
@@ -119,7 +119,7 @@ Indeed, if you set the last parameter to true, the function will also automatica
 by calling graphviz (this works on UNIX-based system by calling graphviz through a system call to `dot -Tpng`).
 The expected output is as follows:
 
-![my_algorithm.png](../images/my_algorithm.png)
+![my_algorithm.png](src/images/my_algorithm.png)
 
 As you can see, all our states have been added. Yet they are not connected. Trying to run this algorithm
 will result in an exception to be thrown. For the time being, you may also want to analyze the sanity
@@ -130,6 +130,8 @@ Algorihtm::sanity_check(algorithm);
 ```
 Doing so and executing your code will print out the following report:
 ```
+WARNING(UNSET_INITIAL_STATE), the algorithm has no initial state configure
+WARNING(UNSET_FINAL_STATE), the algorithm has no final state configure
 WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::BEGIN_OF_ITERATION[0] has no successor
 WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::INITIAL_STATE[0] has no successor
 WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::LOOP_CONDITION_EVALUATION[0] has no successor
@@ -137,6 +139,9 @@ WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::FINAL_STATE[0] has no successor
 WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::END_OF_ITERATION[0] has no successor
 ```
 Clearly, the sanity check tells us that we have to add some transitions. Let's do this!
+
+> Note that the sanity check also reports `UNSET_INITIAL_STATE` and `UNSET_FINAL_STATE`, check out the [Organize your code](@ref t4_Organize)
+> tutorial to learn more about this!
 
 ## Defining transition handlers
 
@@ -233,7 +238,7 @@ from the first argument to the second argument if the handler returns true and t
 
 Trying to visualize our algorithm will yield the following:
 
-![my_algorithm.png](../images/my_algorithm_tx.png)
+![my_algorithm.png](src/images/my_algorithm_tx.png)
 
 The sanity check should also not complain anymore as our algorithm is well-defined.
 

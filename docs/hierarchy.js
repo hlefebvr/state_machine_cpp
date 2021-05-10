@@ -2,7 +2,13 @@ var hierarchy =
 [
     [ "state_machine_cpp::State::Any", "classstate__machine__cpp_1_1State_1_1Any.html", null ],
     [ "state_machine_cpp::Transition::Any", "classstate__machine__cpp_1_1Transition_1_1Any.html", null ],
-    [ "state_machine_cpp::Algorithm::Builder", "classstate__machine__cpp_1_1Algorithm_1_1Builder.html", null ],
+    [ "ForLoop::Attributes", "structForLoop_1_1Attributes.html", null ],
+    [ "PowerLoop::Attributes", "structPowerLoop_1_1Attributes.html", null ],
+    [ "state_machine_cpp::Algorithm::Builder", "classstate__machine__cpp_1_1Algorithm_1_1Builder.html", [
+      [ "DoubleLoop", "classDoubleLoop.html", null ],
+      [ "ForLoop", "classForLoop.html", null ],
+      [ "PowerLoop", "classPowerLoop.html", null ]
+    ] ],
     [ "state_machine_cpp::Transition::Any::by_hash", "structstate__machine__cpp_1_1Transition_1_1Any_1_1by__hash.html", null ],
     [ "state_machine_cpp::Algorithm::Impl::has_FINAL_STATE< T >::checker< class, class >", "classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__FINAL__STATE_1_1checker.html", null ],
     [ "state_machine_cpp::Algorithm::Impl::has_INITIAL_STATE< T >::checker< class, class >", "classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__INITIAL__STATE_1_1checker.html", null ],

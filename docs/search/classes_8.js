@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['transitions_173',['Transitions',['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1Transitions.html',1,'state_machine_cpp::Algorithm::Impl::Build::Transitions'],['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Transitions.html',1,'state_machine_cpp::Algorithm::Builder::Transitions']]],
-  ['transitionset_174',['TransitionSet',['../classstate__machine__cpp_1_1TransitionSet.html',1,'state_machine_cpp']]]
+  ['pointer_207',['Pointer',['../classstate__machine__cpp_1_1Pointer.html',1,'state_machine_cpp']]],
+  ['powerloop_208',['PowerLoop',['../classPowerLoop.html',1,'']]]
 ];

@@ -97,27 +97,27 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <img src="ForLoop.png" alt=""/>
 <div class="caption">
 for_loop</div></div>
-   <h1><a class="anchor" id="autotoc_md25"></a>
+   <h1><a class="anchor" id="autotoc_md22"></a>
 Tutorials</h1>
 <p>Be sure to check out our amazing tutorials!</p><ul>
-<li><a class="el" href="md_src_tutorials_1_ForLoop.html">Creating algorithms, states and transitions - creating a for loop</a></li>
-<li><a class="el" href="md_src_tutorials_2_PowerLoop.html">Inheriting and modifying algorithms - creating a power loop based on for loop</a></li>
-<li><a class="el" href="md_src_tutorials_3_DoubleLoop.html">Inheriting multiple times from an algorithm and the concept of layers - creating a double loop</a></li>
+<li><a class="el" href="1__ForLoop_8md.html">Creating algorithms, states and transitions - creating a for loop</a></li>
+<li><a class="el" href="2__PowerLoop_8md.html">Inheriting and modifying algorithms - creating a power loop based on for loop</a></li>
+<li><a class="el" href="3__DoubleLoop_8md.html">Inheriting multiple times from an algorithm and the concept of layers - creating a double loop</a></li>
 </ul>
 <p>You may also check our <a href="https://hlefebvr.github.io/state_machine_cpp/">documentation</a>!</p>
-<h1><a class="anchor" id="autotoc_md26"></a>
+<h1><a class="anchor" id="autotoc_md23"></a>
 Installation</h1>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 Dependencies</h2>
 <ul>
 <li>For compiling: C++ (&gt;=17), cmake (&gt;=3.19), pthread</li>
 <li>For building the documentation: doxygen</li>
 <li>For compiling unitary tests: GoogleTest</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md28"></a>
+<h3><a class="anchor" id="autotoc_md25"></a>
 Map implementation</h3>
 <p>When installing the library (see below), the compiler will evaluate the directive <code>#if __has_include(&lt;robin_hood/robin_hood.h&gt;)</code>. If it evaluates to true, then the <a href="https://github.com/martinus/robin-hood-hashing">robin hood</a> implementation of unordered_map will be used. Otherwise, the STL will be used (i.e., <code>std::unordered_map</code>). (robin_hood is a header-only library that provides a fast implementation of hash tables.)</p>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 Installation</h2>
 <p>The following commands will install the library as a shared library.</p>
 <div class="fragment"><div class="line">mkdir build</div>
@@ -126,16 +126,16 @@ Installation</h2>
 <div class="line">make</div>
 <div class="line">sudo make install</div>
 <div class="line">cat install_manifest.txt</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md27"></a>
 Linking with cmake</h2>
 <p>The <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a> installs a cmake configuration file so that it can be easily imported. Simply use the cmake function <code>find_package</code> to retrieve all imported targets. Thus, you can use the following code to import <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>: </p><div class="fragment"><div class="line">add_executable(&lt;MY_TARGET&gt; main.cpp)</div>
 <div class="line"> </div>
 <div class="line">find_package(state_machine_cpp REQUIRED)</div>
 <div class="line">target_link_libraries(&lt;MY_TARGET&gt; state_machine_cpp::state_machine_cpp)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Building the documentation</h2>
 <p>To build the documentation, use doxygen from the root folder: </p><div class="fragment"><div class="line">doxygen</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
 Comiling and running unit tests</h2>
 <p>To compile the tests, in your <code>build</code> directory: </p><div class="fragment"><div class="line">cmake -DCOMPILE_TESTS=ON ..</div>
 <div class="line">make</div>

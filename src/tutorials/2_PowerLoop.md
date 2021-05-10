@@ -1,6 +1,6 @@
-# [Tutorial] PowerLoop: Inheriting algorithms
+# Inheritance: modifying existing algorithms {#t2_PowerLoop}
 
-Hey! This tutorial is built upon the [ForLoop tutorial](1_ForLoop.md), if you haven't followed
+Hey! This tutorial is built upon the [ForLoop tutorial](@ref t1_ForLoop), if you haven't followed
 it yet, be sure to check it out first! Otherwise, let's dive in!
 
 ## Introduction
@@ -11,9 +11,9 @@ but to modify the action which is executed at each loop iteration. Indeed, we wa
 iteration, to print out powers of the current iteration. For instance, if the power is set
 to 2 and the max_iteration is set to 3, we should obtain the following output:
 ```cpp
-0 // 0^2
-1 // 1^2
-4 // 2^2
+0^2 = 0
+1^2 = 1
+2^2 = 4
 ```
 
 Let's first create an empty algorithm in the next section!
@@ -37,9 +37,11 @@ Up to this point, nothing new!
 Note that calling `Algorithm::sanity_check` at this point will print the following
 warning message:
 ```shell
+WARNING(UNSET_INITIAL_STATE), the algorithm has no initial state configure
+WARNING(UNSET_FINAL_STATE), the algorithm has no final state configure
 WARNING(EMPTY_ALGORITHM), the algorithm instance is empty
 ```
-Indeed, our algorithm, at this statge, is empty. No states have been added and no transitions
+Indeed, our algorithm, at this stage, is empty. No states have been added and no transitions
 have been defined. 
 
 In the next section, we will be "importing" or "inheriting" all the states from the ForLoop
@@ -61,7 +63,7 @@ Thus, the obtained algorithm is well-defined. Note that you can also visualize i
 the Algorithm::plot function like we did in the previous tutorial. Doing so trivially yields
 the following image.
 
-![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm_tx.png)
+![my_algorithm.png](src/images/my_algorithm_tx.png)
 
 > IMPORTANT: note that to inherit from an algorithm, we did not use C++ inheritance. The
 > use of C++ inheritance is heavily discourage regarding algorithm builders.
@@ -76,8 +78,8 @@ to add new states or `transitions.create_if` to create a new conditional transit
 we can totally re-route the whole algorithm and modify its flow!
 
 For our purpose though, we only need to change the action associated to the transition
-LOOP_ITERATION -> AFTER_LOOP_ITERATION since this is where the message is being printed.
-Note that we cannot use `transitions.create(LOOP_ITERATION, AFTER_LOOP_ITERATION, ...`
+BEGIN_OF_ITERATION -> END_OF_ITERATION since this is where the message is being printed.
+Note that we cannot use `transitions.create(BEGIN_OF_ITERATION, END_OF_ITERATION, ...`
 anymore since a transition of this kind already exists. Though it is possible to remove a
 state or a transition and to re-create it in another form, it is more convenient to simply
 override it. To do so, simply use the function `transitions.override`. This is done as follows:
@@ -87,10 +89,12 @@ struct PowerLoopAttributes {
     explicit PowerLoopAttributes(unsigned int t_power) : power(t_power) {}
 };
 
-void handle_LOOP_ITERATION_with_power(Context& context) {
-    auto& power_loop_attribtues = context.get<PowerLoopAttributes>();
-    auto& for_loop_attributes = context.get<ForLoopAttributes>();
-    std::cout << for_loop_attributes.iteration << " = " << std::pow(for_loop_attributes.iteration, power_loop_attributes.power) << std::endl;
+void print_power_of_iteration(Context& context) {
+    auto& power_loop_attributes = context.get<PowerLoop::Attributes>();
+    auto& for_loop_attributes = context.get<ForLoop::Attributes>();
+    std::cout << for_loop_attributes.iteration << '^' << power_loop_attributes.power
+        << " = " << std::pow(for_loop_attributes.iteration, power_loop_attributes.power)
+        << std::endl;
 }
 
 class PowerLoop final : public Algorithm::Builder {
@@ -99,7 +103,7 @@ public:
         
         inherit<ForLoop>(states, transitions, layers);
         
-        transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, handle_LOOP_ITERATION_with_power);
+        transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, print_power_of_iteration);
         
     }
 };
@@ -108,7 +112,7 @@ public:
 This code should be easy to understand. Briefly though, we create a struct containing the new attributes 
 which were needed by our new algorithm. Note that we did not define "iteration" and "max_iteration" as those
 are part of the "ForLoop" algorithm from which we inherit. Then, we defined the new handler for the transition
-which comes from LOOP_ITERATION and goes to AFTER_LOOP_ITERATION. Finally, we used `transitions.override` to
+which comes from BEGIN_OF_ITERATION and goes to END_OF_ITERATION. Finally, we used `transitions.override` to
 re-write the transition behaviour.
 
 And that's it! You have successfully modified an algorithm and created a new one!
@@ -140,6 +144,7 @@ Executing the code will now print out the following:
 0^2 = 0
 1^2 = 1
 2^2 = 4
+The loop is over
 ```
 
 ## Advanced notions regarding inheritance

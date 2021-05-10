@@ -1,4 +1,4 @@
-# [Tutorial] DoubleLoop: The layer concept
+# Layers: handling complex inheritance schemes  {#t3_DoubleLoop}
 
 Hey there! This tutorial introduces somehow advanced features of the state_machine_cpp library.
 Be sure to have checked out previous tutorials before reading this one. Otherwise, let's dive in!
@@ -51,7 +51,7 @@ class DoubleLoop final : public Algorithm::Builder {
 ```
 Up to there, nothing new. Visualizing our algorithm yields the expected followng result:
 
-![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm_tx.png)
+![my_algorithm.png](src/images/my_algorithm_tx.png)
 
 Now let's try to inherit twice algorithm ForLoop, as follows:
 ```cpp
@@ -90,7 +90,7 @@ void build(States& states, Transitions& transitions, Layers& layers) {
 
 Now, building this algorithm works! Let's visualize it so that it becomes clear what happened.
 
-![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm_copied.png)
+![my_algorithm.png](src/images/my_algorithm_copied.png)
 
 You can see that our ForLoop algorithm has been imported twice! Yet, it has been "instantiated"
 on two different layers: 0 and 1. Note that, at any time, it is possible to know the current
@@ -142,8 +142,8 @@ of "more modular" to act upon layers using variables rather than explicit values
 ## Routing between layers
 
 Back to our double for loop example! We now want to insert one algorithm inside the other.
-In other words, we want to override the transition from `LOOP_ITERATION[0]` to `INITIAL_STATE[1]`
-and to override the transition from `FINAL_STATE[1]` to `AFTER_LOOP_ITERATION[1]`.
+In other words, we want to override the transition from `BEGIN_OF_ITERATION[0]` to `INITIAL_STATE[1]`
+and to override the transition from `FINAL_STATE[1]` to `END_OF_ITERATION[1]`.
 
 This can be done as follows.
 ```cpp
@@ -151,23 +151,23 @@ void build(States& states, Transitions& transitions, Layers& layers) {
     
     inherit<ForLoop>(states, transitions, layers);
     
-    unsigned int A = layers.create();
+    auto A = layers.create();
         inherit<ForLoop>(states, transitions, layers);
     layers.close();
 
-    transitions.override(LOOP_ITERATION, INITIAL_STATE[A]);
-    transitions.override(FINAL_STATE[A], AFTER_LOOP_ITERATION);
+    transitions.override(BEGIN_OF_ITERATION, INITIAL_STATE[A]);
+    transitions.override(FINAL_STATE[A], END_OF_ITERATION);
     
 }
 ```
 
 Visualizing the resulting algorithm, one obtains the following.
 
-![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm_merged.png)
+![my_algorithm.png](src/images/my_algorithm_merged.png)
 
 We therefore have successfully inserted our copied version of ForLoop inside another copied version of ForLoop.
 
-To run our algorithm though, we need to define a new context called `LayredContext`. The following piece of
+To run our algorithm though, we need to define a new context called `LayeredContext`. The following piece of
 code speaks for iteself.
 ```cpp
 ForLoopAttributes for_loop_attributes_1(3);
@@ -203,7 +203,7 @@ it is possible to access the attributes of another layer throughout the context 
 
 ## Accessing layered context
 
-In this last section, we will override the transition between `SHOW_COUNTER[A]` and `INCREMENT_COUNTER[A]`
+In this last section, we will override the transition between `BEGIN_OF_ITERATION[A]` and `END_OF_ITERATION[A]`
 in order to print `i, j`. To do this, we need to access the context's attribute of a different layer than
 the one which triggered the transition. This can be done by using the `context.get_relative<T>` template function.
 This function takes an argument which is the offset from which to access the attributes. Thus, we have
@@ -212,9 +212,9 @@ accesses the attribute of type `T` as used by the previous layer. See rather how
 can write our new handler.
 ```cpp
 void show_double_counter(Context& context) {
-    std::cout << context.get_relative<CounterAttributes>(-1).iteration
+    std::cout << context.get_relative<ForLoopAttributes>(-1).iteration
               << ", "
-              << context.get<CounterAttributes>().iteration
+              << context.get<ForLoopAttributes>().iteration
               << std::endl;
 }
 ```
@@ -229,12 +229,12 @@ void build(States &states, Transitions &transitions, Layers &layers) override {
     unsigned int A = layers.create();
         inherit<Counter>(states, transitions, layers);
         
-        transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, show_double_counter);
+        transitions.override(BEGIN_OF_ITERATION, END_OF_ITERATION, show_double_counter);
         
     layers.close();
 
-    transitions.override(SHOW_COUNTER, INITIAL_STATE[A]);
-    transitions.override(FINAL_STATE[A], INCREMENT_COUNTER);
+    transitions.override(BEGIN_OF_ITERATION, INITIAL_STATE[A]);
+    transitions.override(FINAL_STATE[A], END_OF_ITERATION);
 
 }
 ```

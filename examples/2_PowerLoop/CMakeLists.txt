@@ -1,0 +1,2 @@
+add_executable(2_PowerLoop example_PowerLoop_main.cpp example_PowerLoop_description.h)
+target_link_libraries(2_PowerLoop state_machine_cpp)

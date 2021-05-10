@@ -1,4 +1,4 @@
-# Organize your code!
+# Organize your code! {#t4_Organize}
 
 - namespaces
 - attributes nested class

@@ -25,6 +25,7 @@ class state_machine_cpp::AutoContext : public state_machine_cpp::Context {
     std::vector<AbstractPointer*> m_attributes;
     std::unique_ptr<Context> m_context;
 public:
+    AutoContext() = default;
     template<class ...T> explicit AutoContext(Context* t_context, T*... t_attributes);
     ~AutoContext() override;
 protected:

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 # Define project
 project(
         state_machine_cpp
-        VERSION         1.0.6
+        VERSION         1.0.7
         LANGUAGES       CXX
         DESCRIPTION     "State machine library written in C++"
 )
@@ -15,6 +15,7 @@ set(PUBLIC_FILES
         state_machine_cpp/include/impl/__pointer.h
         state_machine_cpp/include/impl/__unordered_map.h
         state_machine_cpp/include/impl/__map.h
+        state_machine_cpp/include/impl/__timer.h
 
         state_machine_cpp/include/states/state.h
         state_machine_cpp/include/states/state_id.h
@@ -53,6 +54,7 @@ set(PUBLIC_FILES
 # Define private files
 set(PRIVATE_FILES
         state_machine_cpp/src/impl/__map.cpp
+        state_machine_cpp/src/impl/__timer.cpp
 
         state_machine_cpp/src/states/state.cpp
         state_machine_cpp/src/states/state_any.cpp

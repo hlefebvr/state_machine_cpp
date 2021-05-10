@@ -25,6 +25,7 @@ class state_machine_cpp::Algorithm::Instance {
     TransitionSet m_transitions;
     const State::Id* m_initial_state = nullptr;
     const State::Id* m_final_state = nullptr;
+    const State::Id* m_time_limit_state = nullptr;
 
     [[nodiscard]] bool has(const State::Instance& t_instance) const;
 
@@ -45,10 +46,12 @@ public:
 
     [[nodiscard]] inline const State::Id& initial_state() const;
     [[nodiscard]] inline const State::Id& final_state() const;
+    [[nodiscard]] inline const State::Id& time_limit_reached_state() const;
     [[nodiscard]] inline bool is_initial_state_set() const;
     [[nodiscard]] inline bool is_final_state_set() const;
     inline void set_initial_state(const State::Id& t_initial_state);
     inline void set_final_state(const State::Id& t_final_state);
+    inline void set_time_limit_reached_state(const State::Id& t_time_limit_reached);
 };
 
 const state_machine_cpp::State::Id &state_machine_cpp::Algorithm::Instance::initial_state() const {
@@ -79,6 +82,15 @@ void state_machine_cpp::Algorithm::Instance::set_initial_state(const state_machi
 
 void state_machine_cpp::Algorithm::Instance::set_final_state(const state_machine_cpp::State::Id &t_final_state) {
     m_final_state = &t_final_state;
+}
+
+void state_machine_cpp::Algorithm::Instance::set_time_limit_reached_state(
+        const state_machine_cpp::State::Id &t_time_limit_reached) {
+    m_time_limit_state = &t_time_limit_reached;
+}
+
+const state_machine_cpp::State::Id &state_machine_cpp::Algorithm::Instance::time_limit_reached_state() const {
+    return m_time_limit_state ? *m_time_limit_state : *m_final_state;
 }
 
 

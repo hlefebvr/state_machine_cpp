@@ -10,14 +10,14 @@ In this tutorial we'll be implementing a very simple example. It consists in a f
 iteration number. As you know, every thing here is nothing but states and transitions between states.
 In fact, I'll give you right away the overall shape of the algorithm we are trying to implement:
 
-![For loop](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/ForLoop.png)
+![For loop](../images/ForLoop.png)
 
 Simply put, the algorithm execution will start at the INITIAL_STATE and the corresponding transition
-will apply a baby step to go from INITIAL_STATE to the LOOP_HAS_STARTED state. The corresponding transition,
-in this case, will simply initialize the counter to 0. Then the algorithm will be in the LOOP_HAS_STARTED state.
+will apply a baby step to go from INITIAL_STATE to the LOOP_CONDITION_EVALUATION state. The corresponding transition,
+in this case, will simply initialize the counter to 0. Then the algorithm will be in the LOOP_CONDITION_EVALUATION state.
 Again, the corresponding transition will be applied! This transition can be viewed as an "if" in C++. The
 action associated to this transition is therefore only to evaluate whether the iteration counter is less or
-greater than the maximum iteration count. If it is less then the LOOP_ITERATION state will be the next state
+greater than the maximum iteration count. If it is less then the BEGIN_OF_ITERATION state will be the next state
 of the algorithm. If not, FINAL_STATE will be the next state. I believe you can understand what follows
 in our story. Let's rather go straight on implementing it!
 
@@ -29,21 +29,24 @@ The first thing to define when you implement an algorithm in forms of a state ma
 you will consider. Let us therefore create a state ID for each state of the algorithm. This can be done
 with the class State::Id as follows:
 ```cpp
-static const State::Id INITIAL_STATE("INITIAL_STATE");
+static const State::Id INITIAL_STATE("ForLoop::INITIAL_STATE");
 ```
 We make this variable both const and static since we do not expect the state id to change throughout the 
-execution of the algorithm and we want it to be globally accessible so that other developpers can use 
+execution of the algorithm and we want it to be globally accessible so that other developers can use 
 those state ids for their own purpose (this will become more clear in the following tutorials). Note that
 the name of the state is repeated. Indeed, INITIAL_STATE corresponds to the C++ variable name while
-"INITIAL_STATE" corresponds to the name of the state within the state_machine_cpp library. We advise you
-to make them consistent as it will be easier to debug your code and easier to share, though it is necessary.
+"ForLoop::INITIAL_STATE" corresponds to the name of the state within the state_machine_cpp library. We advise you
+to make them consistent as it will be easier to debug your code and easier to share, though it is not necessary.
+Moreover, and this will be discussed more in details in the "Organize your code" tutorial, we advise you to
+prefix your state name with a sort of "namespace" equal to the name (or an acronym) of your algorithm builder. Here,
+we therefore chose "ForLoop::INITIAL_STATE" to name the INITIAL_STATE state;
 
 All the other states must be defined as well, see how it's done:
 ```cpp
-static const State::Id LOOP_HAS_STARTED("LOOP_HAS_STARTED");
-static const State::Id FINAL_STATE("FINAL_STATE");
-static const State::Id LOOP_ITERATION("LOOP_ITERATION");
-static const State::Id AFTER_LOOP_ITERATION("AFTER_LOOP_ITERATION");
+static const State::Id LOOP_CONDITION_EVALUATION("ForLoop::LOOP_CONDITION_EVALUATION");
+static const State::Id BEGIN_OF_ITERATION("ForLoop::BEGIN_OF_ITERATION");
+static const State::Id END_OF_ITERATION("ForLoop::END_OF_ITERATION");
+static const State::Id FINAL_STATE("ForLoop::FINAL_STATE");
 ```
 
 ## Defining an algorithm builder
@@ -51,7 +54,7 @@ static const State::Id AFTER_LOOP_ITERATION("AFTER_LOOP_ITERATION");
 In state_machine_cpp, algorithms are built dynamically by means of an algorithm builder. To create your own
 algorithm, you therefore need to create a child class of the Algorithm::Builder class. Let's see:
 ```cpp
-class Builder1 final : public Algorithm::Builder {
+class ForLoop final : public Algorithm::Builder {
 public:
     
     void build(States& states, Transitions& transitions, Layers& layers) override {
@@ -75,16 +78,16 @@ Now let's add our new states to our algorithm.
 
 Adding a state to an algorithm is rather easy and is done as follows:
 ```cpp
-class Builder1 final : public Algorithm::Builder {
+class ForLoop final : public Algorithm::Builder {
 public:
     
     void build(States& states, Transitions& transitions, Layers& layers) override {
-        
-        states.create(INITIAL_STATE);        
-        states.create(FINAL_STATE);        
-        states.create(LOOP_HAS_STARTED);        
-        states.create(LOOP_ITERATION);        
-        states.create(AFTER_LOOP_ITERATION);        
+
+        states.create(INITIAL_STATE);
+        states.create(LOOP_CONDITION_EVALUATION);
+        states.create(BEGIN_OF_ITERATION);
+        states.create(END_OF_ITERATION);
+        states.create(FINAL_STATE);   
         
     }
     
@@ -113,9 +116,10 @@ Algorithm::plot(algorithm, "my_algorithm", false);
 This function will create a file entitled "my_algorithm.dot" which contains a representation of the 
 algorithm you are building. DOT files can be rendered as PNG images using [graphviz](https://graphviz.org/).
 Indeed, if you set the last parameter to true, the function will also automatically generate a PNG image
-by calling graphviz. The expected output is as follows:
+by calling graphviz (this works on UNIX-based system by calling graphviz through a system call to `dot -Tpng`).
+The expected output is as follows:
 
-![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm.png)
+![my_algorithm.png](../images/my_algorithm.png)
 
 As you can see, all our states have been added. Yet they are not connected. Trying to run this algorithm
 will result in an exception to be thrown. For the time being, you may also want to analyze the sanity
@@ -126,10 +130,11 @@ Algorihtm::sanity_check(algorithm);
 ```
 Doing so and executing your code will print out the following report:
 ```
-WARNING(STATE_WITHOUT_ANY_SUCCESSOR), AFTER_LOOP_ITERATION[0] has no successor
-WARNING(STATE_WITHOUT_ANY_SUCCESSOR), LOOP_HAS_STARTED[0] has no successor
-WARNING(STATE_WITHOUT_ANY_SUCCESSOR), INITIAL_STATE[0] has no successor
-WARNING(STATE_WITHOUT_ANY_SUCCESSOR), FINAL_STATE[0] has no successor
+WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::BEGIN_OF_ITERATION[0] has no successor
+WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::INITIAL_STATE[0] has no successor
+WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::LOOP_CONDITION_EVALUATION[0] has no successor
+WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::FINAL_STATE[0] has no successor
+WARNING(STATE_WITHOUT_ANY_SUCCESSOR), ForLoop::END_OF_ITERATION[0] has no successor
 ```
 Clearly, the sanity check tells us that we have to add some transitions. Let's do this!
 
@@ -139,9 +144,10 @@ Clearly, the sanity check tells us that we have to add some transitions. Let's d
 
 Transitions are made of two things: first, they consist in going from one state to another. Moreover, they
 correspond to a given action. Actions are handled by so-called transition handlers and are normal C++ functions.
-For instance, the following handler will handle the FINAL_STATE:
+For instance, the following handler will handle the transition from the FINAL_STATE to itself and simply
+displays a message saying that the loop is over:
 ```cpp
-void handle_FINAL_STATE(Context& context) {
+void print_end_of_loop(Context& context) {
     std::cout << "the loop is over" << std::endl;
 }
 ```
@@ -159,7 +165,7 @@ contains them:
 struct ForLoopAttributes {
     int iteration = 0;
     int max_iteration;
-    explicit ForLoopAttributes(int t_max_iteration) : max_iteration(t_max_iteration) {}
+    explicit Attributes(int max_iteration) : max_iteration(max_iteration) {}
 };
 ```
 Rather simple right ? Let's see how we can access it from the context!
@@ -167,21 +173,21 @@ Rather simple right ? Let's see how we can access it from the context!
 ### Defining all our transition handlers
 
 To show how we can use our attributes through the Context object, let's create a handler for the INITIAL_STATE.
-The transition from INITIAL_STATE goes to LOOP_HAS_STARTED and sets the iteration counter to 0. See how
+The transition from INITIAL_STATE goes to LOOP_CONDITION_EVALUATION and sets the iteration counter to 0. See how
 it's done:
 ```cpp
-void handle_INITIAL_STATE(Context& context) {
+void initialize_counter(Context& context) {
     auto& for_loop_attributes = context.get<ForLoopAttributes>();
     for_loop_attributes.iteration = 0;
 }
 ```
-Very simple, right? All the other transition handlers are defined in a similar way. One special 
-transition handler however is the one handling the LOOP_HAS_STARTED state. Indeed, this transition is
-conditional, i.e., if the counter is less than the threshold the algorithm should move to LOOP_ITERATION, otherwise,
+Very simple, right? All the other transition handlers are defined similarly. One special 
+transition handler however is the one handling the LOOP_CONDITION_EVALUATION state. Indeed, this transition is
+conditional, i.e., if the counter is less than the threshold the algorithm should move to BEGIN_OF_ITERATION, otherwise,
 it should move to FINAL_STATE. Its handler is therefore particular and must return a boolean which will
 be evaluated to route the algorithm. 
 ```cpp
-bool handle_LOOP_HAS_STARTED(const Context& context) {
+bool evaluate_loop_condition(const Context& context) {
     auto& for_loop_attributes = context.get<ForLoopAttributes>();
     return for_loop_attributes.iteration < for_loop_attributes.max_iteration;
 }
@@ -191,11 +197,11 @@ Indeed, here, we are only defining orphan functions for now.
 
 All the other transitions are as follows:
 ```cpp
-void handle_LOOP_ITERATION(Context& context) {
+void apply_loop_effect(Context& context) {
     std::cout << context.get<ForLoopAttributes>().iteration << std::endl;
 }
 
-void handle_AFTER_LOOP_ITERATION(Context& context) {
+void increment_counter(Context& context) {
     context.get<ForLoopAttributes>().iteration++;
 }
 ```
@@ -227,7 +233,7 @@ from the first argument to the second argument if the handler returns true and t
 
 Trying to visualize our algorithm will yield the following:
 
-![my_algorithm.png](https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm_tx.png)
+![my_algorithm.png](../images/my_algorithm_tx.png)
 
 The sanity check should also not complain anymore as our algorithm is well-defined.
 
@@ -264,12 +270,12 @@ following:
 7
 8
 9
-the loop is over
+The loop is over
 ```
 
 ## Debug mode
 
-We have successfully executed our algorithm. The execution start from the INITIAL_STATE, then goes to AFTER_LOOP_ITERATION,
+We have successfully executed our algorithm. The execution start from the INITIAL_STATE, then goes to LOOP_CONDITION_EVALUATION,
 and so on. Note that it is possible to see each state that our algorithm traverses so as, for instance, to
 debug it when developping new algorithms! To do that, simply build the algorithm in Debug mode, which is done
 as follow:
@@ -279,5 +285,49 @@ Algorithm::buil<ForLoop>(algorithm, Algorithm::Mode::Debug);
 
 Thus, running the algorithm by calling `Algorithm::run` now outputs the following,
 ```shell
-
+-- state: ForLoop::INITIAL_STATE[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+0
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+1
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+2
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+3
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+4
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+5
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+6
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+7
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+8
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::BEGIN_OF_ITERATION[0]
+9
+-- state: ForLoop::END_OF_ITERATION[0]
+-- state: ForLoop::LOOP_CONDITION_EVALUATION[0]
+-- state: ForLoop::FINAL_STATE[0]
+The loop is over
 ```
+That's it for now! Let meet in the next tutorial!

@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('md_src_tutorials_3_DoubleLoop.html',''
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Hey there! This tutorial introduces somehow advanced features of the <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a> library. Be sure to have checked out previous tutorials before reading this one. Otherwise, let's dive in!</p>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 Introduction</h1>
 <p>In this tutorial we will be creating a double for loop based on our ForLoop algorithm. Thus, our algorithm will use twice the same algorithm and use two different ForLoopAttributes to manage its internal state. The objective of this tutorial is therefore to use the ForLoop algorithm so as to get the following input: </p><div class="fragment"><div class="line">0, 0</div>
 <div class="line">0, 1</div>
@@ -110,7 +110,7 @@ Introduction</h1>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>Let's see how it's done!</p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md20"></a>
 Inheriting twice</h1>
 <p>We have seen, in the previous tutorial, how one algorithm could import all the states and transitions from another. Let's start by doing this once! </p><div class="fragment"><div class="line"><span class="keyword">class </span>DoubleLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
@@ -139,7 +139,7 @@ Inheriting twice</h1>
 <p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/src/images/my_algorithm_copied.png" alt="my_algorithm.png" class="inline"/></p>
 <p>You can see that our ForLoop algorithm has been imported twice! Yet, it has been "instantiated" on two different layers: 0 and 1. Note that, at any time, it is possible to know the current layer by calling the <code>layers.current</code> method.</p>
 <p>Now that we have copied our algorithm twice, let's insert it to obtain one single algorithmic flow!</p>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Playing with layers</h1>
 <p>Inside the build function, every use of a State::Id, in fact, refers to the state with the corresponding State::Id associated to the current layer id. Thus, when calling, for instance, <code>states.create(INITIAL_STATE);</code>, we in fact created the state <code>INITIAL_STATE[0]</code>, i.e., <code>INITIAL_STATE</code> on layer 0. So far, we did not even mention it since it was not relevant to our case, here, it becomes crucial to understand it.</p>
 <p>To be even more specific, observe the following piece of code (which is independent of the double-loop project). </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> State::Id MY_STATE(<span class="stringliteral">&quot;MY_STATE&quot;</span>);</div>
@@ -165,7 +165,7 @@ Playing with layers</h1>
 <li>First, note that every time <code>layers.create</code> or <code>layers.use</code> is being called, a corresponding <code>layers.close</code> should be called. If this fails to be done then an exception will be thrown.</li>
 <li>Then, <code>layers.create</code> in fact returns the id of the layer and it is better - in the sense of "more modular" to act upon layers using variables rather than explicit values. Why? Simply because your algorithm may further be inherited by another algorithm and that layer 1 may well be something else. Using a variable allows your code to be more general and context independent.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md22"></a>
 Routing between layers</h1>
 <p>Back to our double for loop example! We now want to insert one algorithm inside the other. In other words, we want to override the transition from <code>LOOP_ITERATION[0]</code> to <code>INITIAL_STATE[1]</code> and to override the transition from <code>FINAL_STATE[1]</code> to <code>AFTER_LOOP_ITERATION[1]</code>.</p>
 <p>This can be done as follows. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
@@ -206,7 +206,7 @@ Routing between layers</h1>
 <div class="line">3</div>
 <div class="line">4</div>
 </div><!-- fragment --><p>We can see here that the algorithm does, indeed, perform a double for loop! However, the goal of this tutorial was to print <code>i, j</code> at each iteration, and not only <code>i</code> or <code>j</code>. In the following section, we will see how it is possible to access the attributes of another layer throughout the context object.</p>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md23"></a>
 Accessing layered context</h1>
 <p>In this last section, we will override the transition between <code>SHOW_COUNTER[A]</code> and <code>INCREMENT_COUNTER[A]</code> in order to print <code>i, j</code>. To do this, we need to access the context's attribute of a different layer than the one which triggered the transition. This can be done by using the <code>context.get_relative&lt;T&gt;</code> template function. This function takes an argument which is the offset from which to access the attributes. Thus, we have <code>context.get&lt;T&gt;()</code> which is equivalent to <code>context.get_relative&lt;T&gt;(0)</code>. And <code>context.get_relative&lt;T&gt;(-1)</code> which accesses the attribute of type <code>T</code> as used by the previous layer. See rather how we can write our new handler. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> show_double_counter(Context&amp; context) {</div>
 <div class="line">    std::cout &lt;&lt; context.get_relative&lt;CounterAttributes&gt;(-1).iteration</div>

@@ -14,10 +14,7 @@
 void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, const std::string& t_filename, bool t_run_command) {
 
     const auto name = [](const State::Instance& t_x) {
-        std::string result = "node_" + std::to_string(hash<State::Instance>::get(t_x));
-        std::replace(result.begin(), result.end(), '[', '_');
-        std::replace(result.begin(), result.end(), ']', ' ');
-        return result;
+        return "node_" + std::to_string(hash<State::Instance>::get(t_x));
     };
 
     const auto node_style = [](const Transition::Any& t_x) {
@@ -25,7 +22,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
         style << "[label=\"" << t_x.initial_state().name() << "\"";
         switch (t_x.type()) {
             case Transition::Type::Conditional:
-                style << ",shape=\"diamond\"]";
+                style << ",shape=\"diamond\"";
                 break;
             case Transition::Type::Parallelized: [[fallthrough]];
             case Transition::Type::Undefined: [[fallthrough]];

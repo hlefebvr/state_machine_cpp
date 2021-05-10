@@ -24,15 +24,15 @@ var NAVTREE =
 [
   [ "state_machine_cpp", "index.html", [
     [ "state_machine_cpp library", "index.html", [
-      [ "Tutorials", "index.html#autotoc_md24", null ],
-      [ "Installation", "index.html#autotoc_md25", [
-        [ "Dependencies", "index.html#autotoc_md26", [
-          [ "Map implementation", "index.html#autotoc_md27", null ]
+      [ "Tutorials", "index.html#autotoc_md25", null ],
+      [ "Installation", "index.html#autotoc_md26", [
+        [ "Dependencies", "index.html#autotoc_md27", [
+          [ "Map implementation", "index.html#autotoc_md28", null ]
         ] ],
-        [ "Installation", "index.html#autotoc_md28", null ],
-        [ "Linking with cmake", "index.html#autotoc_md29", null ],
-        [ "Building the documentation", "index.html#autotoc_md30", null ],
-        [ "Comiling and running unit tests", "index.html#autotoc_md31", null ]
+        [ "Installation", "index.html#autotoc_md29", null ],
+        [ "Linking with cmake", "index.html#autotoc_md30", null ],
+        [ "Building the documentation", "index.html#autotoc_md31", null ],
+        [ "Comiling and running unit tests", "index.html#autotoc_md32", null ]
       ] ]
     ] ],
     [ "[Tutorial] ForLoop: Your first state machine", "md_src_tutorials_1_ForLoop.html", [
@@ -46,21 +46,22 @@ var NAVTREE =
         [ "Defining all our transition handlers", "md_src_tutorials_1_ForLoop.html#autotoc_md8", null ],
         [ "Adding transitions", "md_src_tutorials_1_ForLoop.html#autotoc_md9", null ]
       ] ],
-      [ "Running our first algorithm!", "md_src_tutorials_1_ForLoop.html#autotoc_md10", null ]
+      [ "Running our first algorithm!", "md_src_tutorials_1_ForLoop.html#autotoc_md10", null ],
+      [ "Debug mode", "md_src_tutorials_1_ForLoop.html#autotoc_md11", null ]
     ] ],
     [ "[Tutorial] PowerLoop: Inheriting algorithms", "md_src_tutorials_2_PowerLoop.html", [
-      [ "Introduction", "md_src_tutorials_2_PowerLoop.html#autotoc_md12", null ],
-      [ "New algorithm = new builder", "md_src_tutorials_2_PowerLoop.html#autotoc_md13", null ],
-      [ "Inheriting states and transitions", "md_src_tutorials_2_PowerLoop.html#autotoc_md14", null ],
-      [ "Applying modifications", "md_src_tutorials_2_PowerLoop.html#autotoc_md15", null ],
-      [ "Advanced notions regarding inheritance", "md_src_tutorials_2_PowerLoop.html#autotoc_md16", null ]
+      [ "Introduction", "md_src_tutorials_2_PowerLoop.html#autotoc_md13", null ],
+      [ "New algorithm = new builder", "md_src_tutorials_2_PowerLoop.html#autotoc_md14", null ],
+      [ "Inheriting states and transitions", "md_src_tutorials_2_PowerLoop.html#autotoc_md15", null ],
+      [ "Applying modifications", "md_src_tutorials_2_PowerLoop.html#autotoc_md16", null ],
+      [ "Advanced notions regarding inheritance", "md_src_tutorials_2_PowerLoop.html#autotoc_md17", null ]
     ] ],
     [ "[Tutorial] DoubleLoop: The layer concept", "md_src_tutorials_3_DoubleLoop.html", [
-      [ "Introduction", "md_src_tutorials_3_DoubleLoop.html#autotoc_md18", null ],
-      [ "Inheriting twice", "md_src_tutorials_3_DoubleLoop.html#autotoc_md19", null ],
-      [ "Playing with layers", "md_src_tutorials_3_DoubleLoop.html#autotoc_md20", null ],
-      [ "Routing between layers", "md_src_tutorials_3_DoubleLoop.html#autotoc_md21", null ],
-      [ "Accessing layered context", "md_src_tutorials_3_DoubleLoop.html#autotoc_md22", null ]
+      [ "Introduction", "md_src_tutorials_3_DoubleLoop.html#autotoc_md19", null ],
+      [ "Inheriting twice", "md_src_tutorials_3_DoubleLoop.html#autotoc_md20", null ],
+      [ "Playing with layers", "md_src_tutorials_3_DoubleLoop.html#autotoc_md21", null ],
+      [ "Routing between layers", "md_src_tutorials_3_DoubleLoop.html#autotoc_md22", null ],
+      [ "Accessing layered context", "md_src_tutorials_3_DoubleLoop.html#autotoc_md23", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -96,7 +97,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____comparable_8h.html",
-"md_src_tutorials_1_ForLoop.html#autotoc_md2"
+"md_src_tutorials_1_ForLoop.html#autotoc_md11"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

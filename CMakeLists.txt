@@ -144,4 +144,5 @@ option(COMPILE_TESTS "ON if the tests should be compiled" OFF)
 if (COMPILE_TESTS)
     add_subdirectory(tests)
 endif()
-#unset(COMPILE_TESTS CACHE)
+
+add_subdirectory(examples)

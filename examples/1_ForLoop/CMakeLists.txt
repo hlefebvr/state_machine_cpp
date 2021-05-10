@@ -1,0 +1,2 @@
+add_executable(1_ForLoop example_ForLoop_main.cpp)
+target_link_libraries(1_ForLoop state_machine_cpp)

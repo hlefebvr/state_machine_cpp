@@ -23,9 +23,10 @@ Here is an example of the implementation of a for loop within the state-machine-
 ## Tutorials
 
 Be sure to check out our amazing tutorials!
-- [Creating algorithms, states and transitions - creating a for loop](src/tutorials/1_ForLoop.md)
-- [Inheriting and modifying algorithms - creating a power loop based on for loop](src/tutorials/2_PowerLoop.md)
-- [Inheriting multiple times from an algorithm and the concept of layers - creating a double loop](src/tutorials/3_DoubleLoop.md)
+- [Basics: creating your first algorithm](https://hlefebvr.github.io/state_machine_cpp/t1_ForLoop.html)
+- [Inheritance: modifying existing algorithms](https://hlefebvr.github.io/state_machine_cpp/t2_PowerLoop.html)
+- [Layers: handling complex inheritance schemes](https://hlefebvr.github.io/state_machine_cpp/t3_DoubleLoop.html)
+- [Organize your code!](https://hlefebvr.github.io/state_machine_cpp/t4_Organize.html)
 
 You may also check our [documentation](https://hlefebvr.github.io/state_machine_cpp/)!
 

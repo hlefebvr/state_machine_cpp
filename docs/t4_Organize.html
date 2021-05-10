@@ -86,16 +86,171 @@ $(document).ready(function(){initNavTree('t4_Organize.html',''); initResizable()
 <div class="title">Organize your code! </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><ul>
-<li>namespaces</li>
-<li>attributes nested class</li>
-<li>static methods</li>
-<li>final builder</li>
-<li>AutoContext and handle_standard_arguments </li>
-</ul>
+<div class="textblock"><p>Hi there! I hope you enjoyed the first three tutorials! Now is time to give you some guidelines on how to structure your code when using <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>. Let's dive in with our list of guidelines and good practise!</p>
+<h1><a class="anchor" id="autotoc_md21"></a>
+#1 Define your states as static attributes of your builder</h1>
+<p>As a first guideline, it is highly suggested defining everything which is related to your algorithm inside your algorithm builder. This applies for states, in particular. Thus, rather than having the following code: </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> State::Id INITIAL_STATE(<span class="stringliteral">&quot;ExampleAlgorithm::INITIAL_STATE&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>ExampleAlgorithm final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        states.create(INITIAL_STATE);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>You should prefer having the following: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ExampleAlgorithm final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id INITIAL_STATE;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        states.create(INITIAL_STATE);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> State::Id ExampleAlgorithm::INITIAL_STATE = State::Id(<span class="stringliteral">&quot;ExampleAlgorithm::INITIAL_STATE&quot;</span>);</div>
+</div><!-- fragment --><p>Why ? Simply because it is more natural to relate to the INITIAL_STATE of the ExampleAlgorithm algorithm by calling <code>ExampleAlgorithm::INITIAL_STATE</code> rather than <code>INITIAL_STATE</code>. Moreover, you therefore prevent other developers to name their state C++ variable <code>INITIAL_STATE</code>. Finally, this also allows for auto-detection of states as described in point #7 of this page.</p>
+<h1><a class="anchor" id="autotoc_md22"></a>
+#2 Use namespaces for your State::Id</h1>
+<p>Using namespaces for State::Id names is also a good idea. Why? Imagine having two algorithms having an <code>INITIAL_STATE</code> whose name are defined as <code>INITIAL_STATE</code> and `<code>INITIAL_STATE</code> as shown in the following code: </p><div class="fragment"><div class="line"><span class="keyword">class </span>A final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    </div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id INITIAL_STATE; </div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        <span class="comment">// ...</span></div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>B final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    </div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id INITIAL_STATE;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        <span class="comment">// ...</span></div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> State::Id A::INITIAL_STATE = State::Id(<span class="stringliteral">&quot;INITIAL_STATE&quot;</span>);</div>
+<div class="line"><span class="keyword">const</span> State::Id B::INITIAL_STATE = State::Id(<span class="stringliteral">&quot;INITIAL_STATE&quot;</span>);</div>
+</div><!-- fragment --><p>If this situation happens, then other developers cannot directly inherit their algorithm from both <code>A</code> and <code>B</code>. Rather, they need to use two different layers. Why? Because when adding <code>A::INITIAL_STATE</code> and <code>B::INITIAL_STATE</code> ont the same layer, an exception will be throw saying that a state is being added twice. Indeed, they both have the same name! It would be possible to inherit from both algorithms by doing the following: </p><div class="fragment"><div class="line"><span class="keyword">class </span>C final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        inherit&lt;A&gt;(states, transitions, layers);</div>
+<div class="line">        </div>
+<div class="line">        <span class="keyword">auto</span> layer_id = layers.create();</div>
+<div class="line">            inherit&lt;B&gt;(states, transitions, layers);        </div>
+<div class="line">        layers.close();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>However, this code has a sort of useless complexity. Consider using namespaces for state names, i.e., having, </p><div class="fragment"><div class="line"><span class="keyword">const</span> State::Id A::INITIAL_STATE = State::Id(<span class="stringliteral">&quot;A::INITIAL_STATE&quot;</span>);</div>
+<div class="line"><span class="keyword">const</span> State::Id B::INITIAL_STATE = State::Id(<span class="stringliteral">&quot;B::INITIAL_STATE&quot;</span>);</div>
+</div><!-- fragment --><p>And the previous code can be conceptually simplified as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>C final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        inherit&lt;A&gt;(states, transitions, layers);</div>
+<div class="line">        inherit&lt;B&gt;(states, transitions, layers);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md23"></a>
+#3 Define your transitions handlers as static methods</h1>
+<p>In the same spirit as #1, you should also define your transitions handlers as static methods of your algorithm builder. Again, this is done for clarity and maintainability reasons. This also provides symbols to being overridden.</p>
+<h1><a class="anchor" id="autotoc_md24"></a>
+#4 Define your attributes as nested class</h1>
+<p>Defining your attributes as nested class, again, improves readability. For instance, think back again about* our <a class="el" href="classForLoop.html">ForLoop</a> algorithm. To make this algorithm work, we created a <code>ForLoopAttributes</code> class. Defining it inside the <a class="el" href="classForLoop.html">ForLoop</a> class allows us to use the more readable <code><a class="el" href="structForLoop_1_1Attributes.html">ForLoop::Attributes</a></code> expression! Moreover, our handlers can now embed the following code: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> some_example_handler(Context&amp; context) {</div>
+<div class="line">    <span class="keyword">auto</span>&amp; attributes = context.get&lt;Attributes&gt;();</div>
+<div class="line">    <span class="comment">// ...</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>which is much more clear! Moreover, you end up with multiple inheritances which would result in codes like the following one: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> some_other_example_handler(Context&amp; context) {</div>
+<div class="line">    <span class="keyword">auto</span>&amp; a_attributes = context.get&lt;A::Attributes&gt;();</div>
+<div class="line">    <span class="keyword">auto</span>&amp; b_attributes = context.get&lt;B::Attributes&gt;();</div>
+<div class="line">    <span class="keyword">auto</span>&amp; c_attributes = context.get&lt;C::Attributes&gt;();</div>
+<div class="line">    <span class="comment">// ...</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>This way of managing attributes is therefore generic!</p>
+<p>Moreover, we encourage you to always define an <code>Attribute</code> nested class, even in cases where you are reusing an existing class! See the following: </p><div class="fragment"><div class="line"><span class="keyword">class </span>B final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">using</span> Attributes = A::Attributes;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(<span class="comment">// ...</span></div>
+<div class="line">};</div>
+</div><!-- fragment --><p>This simplifies and generalizes the approach to every algorithm.</p>
+<h1><a class="anchor" id="autotoc_md25"></a>
+#5 Create final builders</h1>
+<p>As a general guideline, inheritance of algorithms should be done through the <code>Algorithm::Builder::inherit</code> template method. To ensure that, we recommend that every algorithm builder be declared as a <code>final</code> class.</p>
+<h1><a class="anchor" id="autotoc_md26"></a>
+#6 Define a handle_standard_argument static method</h1>
+<p>Creating algorithm's context may become complex. See, for instance, the following code used to create our <a class="el" href="classDoubleLoop.html">DoubleLoop</a>'s context: </p><div class="fragment"><div class="line">ForLoopAttributes for_loop_attributes_1(3);</div>
+<div class="line">ForLoopAttributes for_loop_attributes_2(5);</div>
+<div class="line">SimpleContext&lt;ForLoopAttributes&gt; context(for_loop_attributes_1);</div>
+<div class="line">SimpleContext&lt;ForLoopAttributes&gt; context_2(for_loop_attributes_2);</div>
+<div class="line">LayeredContext&lt;2&gt; layered_context(context, context_2);</div>
+</div><!-- fragment --><p>Quite embarrassing right? Also, note that each ForLoopAttributes are given to a <code>SimpleContext&lt;ForLoopAttributes&gt;</code> by non-const reference! Which means that each <code>ForLoopAttributes</code> has to be kept alive as long as each corresponding <code>SimpleContext&lt;ForLoopAttributes&gt;</code> is being used. And the same is true for each <code>SimpleContext&lt;ForLoopAttributes&gt;</code> and <code>LayeredContext&lt;2&gt;</code>.</p>
+<p>To ease the creation of algorithmic context, we recommend to developers to define a static method called <code>handle_standard_arguments</code> returning an object of the class <code>AutoContext</code>. An <code>AutoContext</code> object simply is a type of <code>Context</code> which holds its arguments as <code>std::unique_ptr</code>. In that sense, the attributes and other contexts used to create the final context will be kept alive as long as the <code>AutoContext</code> lives. See how it can be create: </p><div class="fragment"><div class="line"><span class="keyword">auto</span>* for_loop_attributes_1 = <span class="keyword">new</span> <a class="code" href="structForLoop_1_1Attributes.html">ForLoop::Attributes</a>(3);</div>
+<div class="line"><span class="keyword">auto</span>* for_loop_attributes_2 = <span class="keyword">new</span> <a class="code" href="structForLoop_1_1Attributes.html">ForLoop::Attributes</a>(5);</div>
+<div class="line"><span class="keyword">auto</span>* context = <span class="keyword">new</span> SimpleContext&lt;ForLoop::Attributes&gt;(*for_loop_attributes_1);</div>
+<div class="line"><span class="keyword">auto</span>* context_2 = <span class="keyword">new</span> SimpleContext&lt;ForLoop::Attributes&gt;(*for_loop_attributes_2);</div>
+<div class="line"><span class="keyword">auto</span>* layered_context = <span class="keyword">new</span> LayeredContext&lt;2&gt;(*context, *context_2);</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">auto</span> context = AutoContext(layered_context, context, context_2, for_loop_attributes_1, for_loop_attributes_2);</div>
+</div><!-- fragment --><p>Note that the first argument IS the real context designed to be used in the algorithm. Here, it is therefore <code>layered_context</code>.</p>
+<p>The recommendation is as follows: declare a static method returning an <code>AutoContext</code> inside your algorithm builder. See, for instance, the following piece of code: </p><div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="classDoubleLoop.html">DoubleLoop</a> final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">build</a>(States &amp;states, Transitions &amp;transitions, Layers &amp;layers)<span class="keyword"> override </span>{</div>
+<div class="line">        <span class="comment">// ...</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">static</span> AutoContext <a class="code" href="classDoubleLoop.html#a57a6fefa30df17f638938f0bc92048fd">handle_standard_arguments</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> m) {</div>
+<div class="line">        <span class="keyword">auto</span>* for_loop_attributes_1 = <span class="keyword">new</span> <a class="code" href="structForLoop_1_1Attributes.html">ForLoop::Attributes</a>(n);</div>
+<div class="line">        <span class="keyword">auto</span>* for_loop_attributes_2 = <span class="keyword">new</span> <a class="code" href="structForLoop_1_1Attributes.html">ForLoop::Attributes</a>(m);</div>
+<div class="line">        <span class="keyword">auto</span>* context = <span class="keyword">new</span> SimpleContext&lt;ForLoop::Attributes&gt;(*for_loop_attributes_1);</div>
+<div class="line">        <span class="keyword">auto</span>* context_2 = <span class="keyword">new</span> SimpleContext&lt;ForLoop::Attributes&gt;(*for_loop_attributes_2);</div>
+<div class="line">        <span class="keyword">auto</span>* layered_context = <span class="keyword">new</span> LayeredContext&lt;2&gt;(*context, *context_2);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">return</span> AutoContext(layered_context, context, context_2, for_loop_attributes_1, for_loop_attributes_2);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>This allows us to run our algorithm as follows: </p><div class="fragment"><div class="line">Algorithm::Instance algorithm;</div>
+<div class="line">Algorithm::build&lt;DoubleLoop&gt;(algorithm);</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">auto</span> context = <a class="code" href="classDoubleLoop.html#a57a6fefa30df17f638938f0bc92048fd">DoubleLoop::handle_standard_arguments</a>(3, 5);</div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">Algorithm::run</a>(algorithm, context);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md27"></a>
+#7 Define an INITIAL_STATE and a FINAL_STATE</h1>
+<p>You probably noticed from our previous tutorial the necessity of the following lines before running an algorithm: </p><div class="fragment"><div class="line">algorithm.set_initial_state(MY_INITIAL_STATE);</div>
+<div class="line">algorithm.set_final_state(MY_FINAL_STATE);</div>
+</div><!-- fragment --><p>Note that these lines can be made optional by defining a static attribute inside your algorithm builder with the C++ symbol names <code>INITIAL_STATE</code> and <code>FINAL_STATE</code> as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ExampleAlgorithm final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id INITIAL_STATE;</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id FINAL_STATE;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">        states.create(INITIAL_STATE);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> State::Id ExampleAlgorithm::INITIAL_STATE = State::Id(<span class="stringliteral">&quot;ExampleAlgorithm::INITIAL_STATE&quot;</span>);</div>
+<div class="line"><span class="keyword">const</span> State::Id ExampleAlgorithm::FINAL_STATE = State::Id(<span class="stringliteral">&quot;ExampleAlgorithm::FINAL_STATE&quot;</span>);</div>
+</div><!-- fragment --><p>By doing so, <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a> will automatically set the initial state and final state for you! You, therefore, won't have to define your initial and final state manually each time you want to run your algorithm. For genericity reasons, we advise doing so for every algorithm you create.</p>
+<p>Note that when algorithm do not define their own <code>INITIAL_STATE</code> because they use another algorithm's state as initial state, it is still possible to apply this guideline as follows: </p><div class="fragment"><div class="line"><span class="keyword">class </span>B final : <span class="keyword">public</span> Algorithm::Builder {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id&amp; INITIAL_STATE;</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> State::Id&amp; FINAL_STATE;</div>
+<div class="line">    <span class="comment">// ...</span></div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> State::Id&amp; B::INITIAL_STATE = A::INITIAL_STATE;</div>
+<div class="line"><span class="keyword">const</span> State::Id&amp; B::FINAL_STATE = A::FINAL_STATE;</div>
+</div><!-- fragment --><p>That's it for our guidelines! You know now how to organize a clean code using state_machine_cpp! </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a14b70d0b3e7c803e462319b0be2f1393"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">state_machine_cpp::Algorithm::run</a></div><div class="ttdeci">void run(const Algorithm::Instance &amp;t_instance, Context &amp;t_context)</div></div>
+<div class="ttc" id="aclassDoubleLoop_html_afd8d00de36a248a79716fb41cd05fd99"><div class="ttname"><a href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">DoubleLoop::build</a></div><div class="ttdeci">void build(States &amp;states, Transitions &amp;transitions, Layers &amp;layers) override</div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00021">example_DoubleLoop_main.cpp:21</a></div></div>
+<div class="ttc" id="astructForLoop_1_1Attributes_html"><div class="ttname"><a href="structForLoop_1_1Attributes.html">ForLoop::Attributes</a></div><div class="ttdef"><b>Definition:</b> <a href="example__ForLoop__main_8cpp_source.html#l00013">example_ForLoop_main.cpp:13</a></div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00041">build.h:41</a></div></div>
+<div class="ttc" id="aclassDoubleLoop_html"><div class="ttname"><a href="classDoubleLoop.html">DoubleLoop</a></div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00008">example_DoubleLoop_main.cpp:8</a></div></div>
+<div class="ttc" id="aclassDoubleLoop_html_a57a6fefa30df17f638938f0bc92048fd"><div class="ttname"><a href="classDoubleLoop.html#a57a6fefa30df17f638938f0bc92048fd">DoubleLoop::handle_standard_arguments</a></div><div class="ttdeci">static AutoContext handle_standard_arguments(int n, int m)</div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00033">example_DoubleLoop_main.cpp:33</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

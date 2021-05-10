@@ -24,15 +24,15 @@ var NAVTREE =
 [
   [ "state_machine_cpp", "index.html", [
     [ "state_machine_cpp library", "index.html", [
-      [ "Tutorials", "index.html#autotoc_md22", null ],
-      [ "Installation", "index.html#autotoc_md23", [
-        [ "Dependencies", "index.html#autotoc_md24", [
-          [ "Map implementation", "index.html#autotoc_md25", null ]
+      [ "Tutorials", "index.html#autotoc_md29", null ],
+      [ "Installation", "index.html#autotoc_md30", [
+        [ "Dependencies", "index.html#autotoc_md31", [
+          [ "Map implementation", "index.html#autotoc_md32", null ]
         ] ],
-        [ "Installation", "index.html#autotoc_md26", null ],
-        [ "Linking with cmake", "index.html#autotoc_md27", null ],
-        [ "Building the documentation", "index.html#autotoc_md28", null ],
-        [ "Comiling and running unit tests", "index.html#autotoc_md29", null ]
+        [ "Installation", "index.html#autotoc_md33", null ],
+        [ "Linking with cmake", "index.html#autotoc_md34", null ],
+        [ "Building the documentation", "index.html#autotoc_md35", null ],
+        [ "Comiling and running unit tests", "index.html#autotoc_md36", null ]
       ] ]
     ] ],
     [ "Tutorials", "Tutorial.html", "Tutorial" ],

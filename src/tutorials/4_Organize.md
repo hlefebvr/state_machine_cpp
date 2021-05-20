@@ -63,18 +63,18 @@ public:
 const State::Id A::INITIAL_STATE = State::Id("INITIAL_STATE");
 const State::Id B::INITIAL_STATE = State::Id("INITIAL_STATE");
 ```
-If this situation happens, then other developers cannot directly inherit their algorithm from both `A` and `B`.
+If this situation happens, then other developers cannot directly import their algorithm from both `A` and `B`.
 Rather, they need to use two different layers. Why? Because when adding `A::INITIAL_STATE` and `B::INITIAL_STATE`
 ont the same layer, an exception will be throw saying that a state is being added twice. Indeed, they both
-have the same name! It would be possible to inherit from both algorithms by doing the following:
+have the same name! It would be possible to import from both algorithms by doing the following:
 ```cpp
 class C final : public Algorithm::Builder {
 public:
     void build(States& states, Transitions& transitions, Layers& layers) {
-        inherit<A>(states, transitions, layers);
+        import<A>(states, transitions, layers);
         
         auto layer_id = layers.create();
-            inherit<B>(states, transitions, layers);        
+            import<B>(states, transitions, layers);        
         layers.close();
     }
 };
@@ -89,8 +89,8 @@ And the previous code can be conceptually simplified as follows:
 class C final : public Algorithm::Builder {
 public:
     void build(States& states, Transitions& transitions, Layers& layers) {
-        inherit<A>(states, transitions, layers);
-        inherit<B>(states, transitions, layers);
+        import<A>(states, transitions, layers);
+        import<B>(states, transitions, layers);
     }
 };
 ```
@@ -113,7 +113,7 @@ void some_example_handler(Context& context) {
     // ...
 }
 ```
-which is much more clear! Moreover, you end up with multiple inheritances which would result in codes like
+which is much more clear! Moreover, you end up with multiple imports which would result in codes like
 the following one:
 ```cpp
 void some_other_example_handler(Context& context) {
@@ -139,7 +139,7 @@ This simplifies and generalizes the approach to every algorithm.
 
 ## #5 Create final builders
 
-As a general guideline, inheritance of algorithms should be done through the `Algorithm::Builder::inherit`
+As a general guideline, importing algorithms should be done through the `Algorithm::Builder::import`
 template method. To ensure that, we recommend that every algorithm builder be declared as a `final` class.
 
 ## #6 Define a handle_standard_argument static method

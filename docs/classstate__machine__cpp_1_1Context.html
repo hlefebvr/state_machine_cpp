@@ -109,6 +109,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a35f06aeee315fbb19ad3f05ff64f9097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a426a73ba89ae44b9eb647578e5460143"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a426a73ba89ae44b9eb647578e5460143">layer</a> () const</td></tr>
 <tr class="separator:a426a73ba89ae44b9eb647578e5460143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2211e93a5bc0b373bc84545d7af45e30"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classstate__machine__cpp_1_1State_1_1Instance.html">State::Instance</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a2211e93a5bc0b373bc84545d7af45e30">state</a> () const</td></tr>
+<tr class="separator:a2211e93a5bc0b373bc84545d7af45e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e23f8f714aa4228601ebcbfe3925eb3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a5e23f8f714aa4228601ebcbfe3925eb3">execution_time_in_seconds</a> () const</td></tr>
+<tr class="separator:a5e23f8f714aa4228601ebcbfe3925eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d04a6dc06e4ebeda1c2c1595bb2f4dc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a6d04a6dc06e4ebeda1c2c1595bb2f4dc">remaining_time_in_seconds</a> () const</td></tr>
+<tr class="separator:a6d04a6dc06e4ebeda1c2c1595bb2f4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a342952227b22d0986c0184c67a68f5b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a342952227b22d0986c0184c67a68f5b4">has_reached_time_limit</a> () const</td></tr>
+<tr class="separator:a342952227b22d0986c0184c67a68f5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513233dda2f0562fa83af72005ac4dab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a513233dda2f0562fa83af72005ac4dab">set_time_limit_in_seconds</a> (double t_time_limit)</td></tr>
+<tr class="separator:a513233dda2f0562fa83af72005ac4dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b9ee1a24d5abe136ab55ce3cff2b4cb"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a6b9ee1a24d5abe136ab55ce3cff2b4cb"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classstate__machine__cpp_1_1Context.html#a6b9ee1a24d5abe136ab55ce3cff2b4cb">get</a> (int t_index=-1)</td></tr>
 <tr class="separator:a6b9ee1a24d5abe136ab55ce3cff2b4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,7 +150,7 @@ Static Protected Member Functions</h2></td></tr>
 <div class="textblock"><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example_ForLoop_main_8cpp-example.html#_a6">example_ForLoop_main.cpp</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00021">21</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00022">22</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a35f06aeee315fbb19ad3f05ff64f9097"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35f06aeee315fbb19ad3f05ff64f9097">&#9670;&nbsp;</a></span>~Context()</h2>
@@ -202,7 +212,7 @@ Static Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00031">31</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00037">37</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -240,7 +250,34 @@ Static Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00030">30</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00036">36</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+
+</div>
+</div>
+<a id="a5e23f8f714aa4228601ebcbfe3925eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e23f8f714aa4228601ebcbfe3925eb3">&#9670;&nbsp;</a></span>execution_time_in_seconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double state_machine_cpp::Context::execution_time_in_seconds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00043">43</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +309,7 @@ template&lt;class T &gt; </div>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example_ForLoop_main_8cpp-example.html#a7">example_ForLoop_main.cpp</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00037">37</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00048">48</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +339,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00046">46</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00057">57</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -332,7 +369,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00055">55</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00066">66</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +399,34 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00056">56</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00067">67</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+
+</div>
+</div>
+<a id="a342952227b22d0986c0184c67a68f5b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a342952227b22d0986c0184c67a68f5b4">&#9670;&nbsp;</a></span>has_reached_time_limit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool state_machine_cpp::Context::has_reached_time_limit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00045">45</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -389,7 +453,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00035">35</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00041">41</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>
@@ -446,6 +510,88 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="classstate__machine__cpp_1_1AutoContext.html#a558dbaefd34a4b6e509257b795bcd963">state_machine_cpp::AutoContext</a>.</p>
+
+</div>
+</div>
+<a id="a6d04a6dc06e4ebeda1c2c1595bb2f4dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d04a6dc06e4ebeda1c2c1595bb2f4dc">&#9670;&nbsp;</a></span>remaining_time_in_seconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double state_machine_cpp::Context::remaining_time_in_seconds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00044">44</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+
+</div>
+</div>
+<a id="a513233dda2f0562fa83af72005ac4dab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513233dda2f0562fa83af72005ac4dab">&#9670;&nbsp;</a></span>set_time_limit_in_seconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void state_machine_cpp::Context::set_time_limit_in_seconds </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t_time_limit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00046">46</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
+
+</div>
+</div>
+<a id="a2211e93a5bc0b373bc84545d7af45e30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2211e93a5bc0b373bc84545d7af45e30">&#9670;&nbsp;</a></span>state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classstate__machine__cpp_1_1State_1_1Instance.html">State::Instance</a>&amp; state_machine_cpp::Context::state </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="context_8h_source.html#l00042">42</a> of file <a class="el" href="context_8h_source.html">context.h</a>.</p>
 
 </div>
 </div>

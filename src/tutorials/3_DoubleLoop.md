@@ -1,4 +1,4 @@
-# Layers: handling complex inheritance schemes  {#t3_DoubleLoop}
+# Layers: handling complex import schemes  {#t3_DoubleLoop}
 
 Hey there! This tutorial introduces somehow advanced features of the state_machine_cpp library.
 Be sure to have checked out previous tutorials before reading this one. Otherwise, let's dive in!
@@ -38,35 +38,35 @@ for (unsigned int i = 0 ; i < 3 ; ++i) {
 
 Let's see how it's done!
 
-## Inheriting twice
+## Importing twice
 
 We have seen, in the previous tutorial, how one algorithm could import all the states and 
 transitions from another. Let's start by doing this once!
 ```cpp
 class DoubleLoop final : public Algorithm::Builder {
     void build(States& states, Transitions& transitions, Layers& layers) {
-        inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
     }
 };
 ```
-Up to there, nothing new. Visualizing our algorithm yields the expected followng result:
+Up to there, nothing new. Visualizing our algorithm yields the expected following result:
 
 ![my_algorithm.png](src/images/my_algorithm_tx.png)
 
-Now let's try to inherit twice algorithm ForLoop, as follows:
+Now let's try to import twice algorithm ForLoop, as follows:
 ```cpp
 void build(States& states, Transitions& transitions, Layers& layers) {
-    inherit<ForLoop>(states, transitions, layers);
-    inherit<ForLoop>(states, transitions, layers);
+    import<ForLoop>(states, transitions, layers);
+    import<ForLoop>(states, transitions, layers);
 }
 ```
 And let's build our algorithm! 
 
 Unfortunately, we were thrown with an exception saying "Cannot create twice the same state instance.".
-Indeed, inheritance does nothing but import all the states from an algorithm to the current one.
-The same is done for each transition. We therefore cannot inherit twice from the same
+Indeed, Algorithm::Builder::import<> does nothing but to import all the states from an algorithm to the current one.
+The same is done for each transition. We therefore cannot import twice from the same
 algorithm as this would create, indeed, twice the same states. Moreover, both ForLoop (the first)
-and ForLoop (the secondly inherited) use the same kind of attributes. How would one know
+and ForLoop (the secondly imported) use the same kind of attributes. How would one know
 which attribute to consider when running the algorithm ? This situation is solved by the
 concept of layers. 
 
@@ -79,10 +79,10 @@ See rather the following code.
 ```cpp
 void build(States& states, Transitions& transitions, Layers& layers) {
     
-    inherit<ForLoop>(states, transitions, layers);
+    import<ForLoop>(states, transitions, layers);
     
     layers.create();
-        inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
     layers.close();
     
 }
@@ -135,7 +135,7 @@ Things should be more clear now. However, two important remarks should be made a
 `layers.close` should be called. If this fails to be done then an exception will be thrown.
 - Then, `layers.create` in fact returns the id of the layer and it is better - in the sense
 of "more modular" to act upon layers using variables rather than explicit values. Why? 
-  Simply because your algorithm may further be inherited by another algorithm and that layer 1
+  Simply because your algorithm may further be imported by another algorithm and that layer 1
   may well be something else. Using a variable allows your code to be more general and context
   independent.
   
@@ -149,10 +149,10 @@ This can be done as follows.
 ```cpp
 void build(States& states, Transitions& transitions, Layers& layers) {
     
-    inherit<ForLoop>(states, transitions, layers);
+    import<ForLoop>(states, transitions, layers);
     
     auto A = layers.create();
-        inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
     layers.close();
 
     transitions.override(BEGIN_OF_ITERATION, INITIAL_STATE[A]);
@@ -224,10 +224,10 @@ the current layer.
 We can then override our transition as follows.
 ```cpp
 void build(States &states, Transitions &transitions, Layers &layers) override {
-    inherit<Counter>(states, transitions, layers);
+    import<Counter>(states, transitions, layers);
 
     unsigned int A = layers.create();
-        inherit<Counter>(states, transitions, layers);
+        import<Counter>(states, transitions, layers);
         
         transitions.override(BEGIN_OF_ITERATION, END_OF_ITERATION, show_double_counter);
         

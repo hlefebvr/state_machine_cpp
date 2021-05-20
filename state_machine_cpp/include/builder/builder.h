@@ -28,13 +28,13 @@ public:
 
     virtual void build(States& states, Transitions& transitions, Layers& layers) = 0;
 protected:
-    template<class T> static void inherit(States& states, Transitions& transitions, Layers& layers);
+    template<class T> static void import(States& states, Transitions& transitions, Layers& layers);
 private:
     class Indirection;
 };
 
 template<class T>
-void state_machine_cpp::Algorithm::Builder::inherit(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions, Layers& layers) {
+void state_machine_cpp::Algorithm::Builder::import(Algorithm::Builder::States &states, Algorithm::Builder::Transitions &transitions, Layers& layers) {
     T builder;
     builder.build(states, transitions, layers);
 }

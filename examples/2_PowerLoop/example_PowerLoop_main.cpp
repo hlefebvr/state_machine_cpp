@@ -35,7 +35,7 @@ public:
     }
 
     void build(States &states, Transitions &transitions, Layers &layers) override {
-        inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
 
         transitions.override(ForLoop::BEGIN_OF_ITERATION, ForLoop::END_OF_ITERATION, print_power_of_iteration);
     }

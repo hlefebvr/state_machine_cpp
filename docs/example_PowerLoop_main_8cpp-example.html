@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('example_PowerLoop_main_8cpp-example.ht
 <div class="title">example_PowerLoop_main.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<p>This example shows how to inherit from an existing algorithm</p>
+<p>This example shows how to import from an existing algorithm</p>
 <div class="fragment"><div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Created by henri on 10/05/21.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('example_PowerLoop_main_8cpp-example.ht
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> <a name="a9"></a><a class="code" href="classPowerLoop.html#a422a65d6194d8b80315ff3f32eedd965">build</a>(States &amp;states, Transitions &amp;transitions, Layers &amp;layers)<span class="keyword"> override </span>{</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line"> </div>
 <div class="line">        transitions.override(<a name="a10"></a><a class="code" href="classForLoop.html#a3ac8c26a92134f2a7aad48ee7f65335b">ForLoop::BEGIN_OF_ITERATION</a>, <a name="a11"></a><a class="code" href="classForLoop.html#a5bfef0d52c2130637e9d8cc6c1294dbb">ForLoop::END_OF_ITERATION</a>, <a class="code" href="classPowerLoop.html#a61c2865c768716295588dce95e46ad4c">print_power_of_iteration</a>);</div>
 <div class="line">    }</div>

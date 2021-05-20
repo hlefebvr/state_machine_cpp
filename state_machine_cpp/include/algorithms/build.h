@@ -54,7 +54,7 @@ void state_machine_cpp::Algorithm::build(Algorithm::Instance& t_destination, Alg
     Impl::Build::States states(t_destination, &layers, t_build_mode);
     Impl::Build::Transitions transitions(t_destination, &layers, t_build_mode);
 
-    Algorithm::Builder::inherit<T>(states, transitions, layers);
+    Algorithm::Builder::import<T>(states, transitions, layers);
 
     if (layers.current() != 0) {
         throw std::runtime_error("There were some opened layers which failed to be closed.");

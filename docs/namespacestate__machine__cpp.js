@@ -10,5 +10,6 @@ var namespacestate__machine__cpp =
     [ "LayeredContext", "classstate__machine__cpp_1_1LayeredContext.html", "classstate__machine__cpp_1_1LayeredContext" ],
     [ "Pointer", "classstate__machine__cpp_1_1Pointer.html", "classstate__machine__cpp_1_1Pointer" ],
     [ "SimpleContext", "classstate__machine__cpp_1_1SimpleContext.html", "classstate__machine__cpp_1_1SimpleContext" ],
+    [ "Timer", "classstate__machine__cpp_1_1Timer.html", "classstate__machine__cpp_1_1Timer" ],
     [ "TransitionSet", "classstate__machine__cpp_1_1TransitionSet.html", "classstate__machine__cpp_1_1TransitionSet" ]
 ];

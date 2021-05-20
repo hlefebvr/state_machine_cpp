@@ -16,5 +16,8 @@ var dir_eddb6bf850fc64c0ff6a6dad32c0d1c2 =
       [ "Pointer", "classstate__machine__cpp_1_1Pointer.html", "classstate__machine__cpp_1_1Pointer" ],
       [ "Pointer", "classstate__machine__cpp_1_1Pointer.html", "classstate__machine__cpp_1_1Pointer" ]
     ] ],
+    [ "__timer.h", "____timer_8h.html", [
+      [ "Timer", "classstate__machine__cpp_1_1Timer.html", "classstate__machine__cpp_1_1Timer" ]
+    ] ],
     [ "__unordered_map.h", "____unordered__map_8h.html", null ]
 ];

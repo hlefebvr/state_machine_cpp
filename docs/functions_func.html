@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="classForLoop.html#a9817b5fc15fc5f7e72a06055ff7ed98c">ForLoop</a>
 </li>
 <li>as_instance()
-: <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Indirection.html#a7aaf661a2a8fbbf4b00d0d4da66bc8aa">state_machine_cpp::Algorithm::Builder::Indirection</a>
+: <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Indirection.html#ae8535de24e823a85c7062351408f6758">state_machine_cpp::Algorithm::Builder::Indirection</a>
 , <a class="el" href="classstate__machine__cpp_1_1State_1_1Any.html#ae45eb4a777a3a7bef38df326bedc90e0">state_machine_cpp::State::Any</a>
 </li>
 <li>Attributes()
@@ -200,6 +200,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>evaluate_loop_condition()
 : <a class="el" href="classForLoop.html#ab0a2fd17fde05eaa66177d490949808f">ForLoop</a>
 </li>
+<li>execution_time_in_seconds()
+: <a class="el" href="classstate__machine__cpp_1_1Context.html#a5e23f8f714aa4228601ebcbfe3925eb3">state_machine_cpp::Context</a>
+</li>
 </ul>
 
 
@@ -236,6 +239,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>has_handler()
 : <a class="el" href="classstate__machine__cpp_1_1Transition_1_1Any.html#a95e8bcb694424761b0fca78f89a705f4">state_machine_cpp::Transition::Any</a>
 </li>
+<li>has_reached_time_limit()
+: <a class="el" href="classstate__machine__cpp_1_1Context.html#a342952227b22d0986c0184c67a68f5b4">state_machine_cpp::Context</a>
+</li>
 </ul>
 
 
@@ -246,14 +252,14 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>id()
 : <a class="el" href="classstate__machine__cpp_1_1State_1_1Instance.html#ad03f581a643eea043c220126a321fd65">state_machine_cpp::State::Instance</a>
 </li>
+<li>import()
+: <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder.html#a09c3091a71ba05a83a86f494dca0973d">state_machine_cpp::Algorithm::Builder</a>
+</li>
 <li>increment_counter()
 : <a class="el" href="classForLoop.html#af444ba15b762c1b9b6ad5f10a5ca131b">ForLoop</a>
 </li>
 <li>Indirection()
 : <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Indirection.html#ad9d11373c7c2b3f9543b61ff612e7911">state_machine_cpp::Algorithm::Builder::Indirection</a>
-</li>
-<li>inherit()
-: <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder.html#a5f3c310cebb1ac47459a820bb6a5b760">state_machine_cpp::Algorithm::Builder</a>
 </li>
 <li>initial_state()
 : <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Instance.html#a581a449a1ac26a8eff125dc976457ecd">state_machine_cpp::Algorithm::Instance</a>
@@ -373,6 +379,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
+<li>remaining_time_in_seconds()
+: <a class="el" href="classstate__machine__cpp_1_1Context.html#a6d04a6dc06e4ebeda1c2c1595bb2f4dc">state_machine_cpp::Context</a>
+</li>
 <li>remove()
 : <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html#aec00d068771524122c0e979a06da9d11">state_machine_cpp::Algorithm::Builder::States</a>
 , <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Transitions.html#a6dd8fd73fb0bf5eb205bbe43a45c4f57">state_machine_cpp::Algorithm::Builder::Transitions</a>
@@ -403,15 +412,30 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>set_initial_state()
 : <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Instance.html#ab96c52529733ef17a1b41ae082cd1f62">state_machine_cpp::Algorithm::Instance</a>
 </li>
+<li>set_time_limit_in_seconds()
+: <a class="el" href="classstate__machine__cpp_1_1Context.html#a513233dda2f0562fa83af72005ac4dab">state_machine_cpp::Context</a>
+</li>
+<li>set_time_limit_reached_state()
+: <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Instance.html#a12a449806843299c3da1de68b07247b1">state_machine_cpp::Algorithm::Instance</a>
+</li>
 <li>show_double_counter()
 : <a class="el" href="classDoubleLoop.html#aeb33e2ac5f429426b649e14a69fd57e5">DoubleLoop</a>
 </li>
 <li>SimpleContext()
-: <a class="el" href="classstate__machine__cpp_1_1SimpleContext.html#a6e862903062fce5053b0d1214c3ac383">state_machine_cpp::SimpleContext&lt; Args &gt;</a>
+: <a class="el" href="classstate__machine__cpp_1_1SimpleContext.html#a0668c2308929c585dda89eac3d32cefa">state_machine_cpp::SimpleContext&lt; Args &gt;</a>
+</li>
+<li>start()
+: <a class="el" href="classstate__machine__cpp_1_1Timer.html#a6f129e76d1e31a598d05fd4772169f6d">state_machine_cpp::Timer</a>
+</li>
+<li>state()
+: <a class="el" href="classstate__machine__cpp_1_1Context.html#a2211e93a5bc0b373bc84545d7af45e30">state_machine_cpp::Context</a>
 </li>
 <li>States()
 : <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html#a96fb3123287986271dfdd4473dccf46e">state_machine_cpp::Algorithm::Builder::States</a>
 , <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1States.html#aaf10ed175d5c0e4347620a73d01cecb9">state_machine_cpp::Algorithm::Impl::Build::States</a>
+</li>
+<li>stop()
+: <a class="el" href="classstate__machine__cpp_1_1Timer.html#a6080c4966fa2688e6a3949b5a25c3dc4">state_machine_cpp::Timer</a>
 </li>
 </ul>
 
@@ -420,6 +444,13 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>test()
 : <a class="el" href="structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__FINAL__STATE.html#ae575d82b6e52c031033f83b350e6bb19">state_machine_cpp::Algorithm::Impl::has_FINAL_STATE&lt; T &gt;</a>
 , <a class="el" href="structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__INITIAL__STATE.html#a7b1da75cf1a579a1c14285b4d64f9dfe">state_machine_cpp::Algorithm::Impl::has_INITIAL_STATE&lt; T &gt;</a>
+, <a class="el" href="structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__TIME__LIMIT__REACHED__STATE.html#a6a54dfedbf802e85df0899f364adea45">state_machine_cpp::Algorithm::Impl::has_TIME_LIMIT_REACHED_STATE&lt; T &gt;</a>
+</li>
+<li>time_in_seconds()
+: <a class="el" href="classstate__machine__cpp_1_1Timer.html#a19289ddc115bcc25f898db51f0cd3880">state_machine_cpp::Timer</a>
+</li>
+<li>time_limit_reached_state()
+: <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Instance.html#a27eb15a48296eec77c0ed1718ccd4b36">state_machine_cpp::Algorithm::Instance</a>
 </li>
 <li>Transitions()
 : <a class="el" href="classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Transitions.html#a6035d180b1c68253f5c6165b062f9dd9">state_machine_cpp::Algorithm::Builder::Transitions</a>

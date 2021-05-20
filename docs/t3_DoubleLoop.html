@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>state_machine_cpp: Layers: handling complex inheritance schemes</title>
+<title>state_machine_cpp: Layers: handling complex import schemes</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('t3_DoubleLoop.html',''); initResizable
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Layers: handling complex inheritance schemes </div>  </div>
+<div class="title">Layers: handling complex import schemes </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Hey there! This tutorial introduces somehow advanced features of the <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a> library. Be sure to have checked out previous tutorials before reading this one. Otherwise, let's dive in!</p>
@@ -111,30 +111,30 @@ Introduction</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>Let's see how it's done!</p>
 <h1><a class="anchor" id="autotoc_md17"></a>
-Inheriting twice</h1>
+Importing twice</h1>
 <p>We have seen, in the previous tutorial, how one algorithm could import all the states and transitions from another. Let's start by doing this once! </p><div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="classDoubleLoop.html">DoubleLoop</a> final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code" href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-</div><!-- fragment --><p>Up to there, nothing new. Visualizing our algorithm yields the expected followng result:</p>
+</div><!-- fragment --><p>Up to there, nothing new. Visualizing our algorithm yields the expected following result:</p>
 <div class="image">
 <img src="my_algorithm_tx.png" alt=""/>
 <div class="caption">
 my_algorithm.png</div></div>
-   <p>Now let's try to inherit twice algorithm <a class="el" href="classForLoop.html">ForLoop</a>, as follows: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+   <p>Now let's try to import twice algorithm <a class="el" href="classForLoop.html">ForLoop</a>, as follows: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>And let's build our algorithm!</p>
-<p>Unfortunately, we were thrown with an exception saying "Cannot create twice the same state instance.". Indeed, inheritance does nothing but import all the states from an algorithm to the current one. The same is done for each transition. We therefore cannot inherit twice from the same algorithm as this would create, indeed, twice the same states. Moreover, both <a class="el" href="classForLoop.html">ForLoop</a> (the first) and <a class="el" href="classForLoop.html">ForLoop</a> (the secondly inherited) use the same kind of attributes. How would one know which attribute to consider when running the algorithm ? This situation is solved by the concept of layers.</p>
+<p>Unfortunately, we were thrown with an exception saying "Cannot create twice the same state instance.". Indeed, Algorithm::Builder::import&lt;&gt; does nothing but to import all the states from an algorithm to the current one. The same is done for each transition. We therefore cannot import twice from the same algorithm as this would create, indeed, twice the same states. Moreover, both <a class="el" href="classForLoop.html">ForLoop</a> (the first) and <a class="el" href="classForLoop.html">ForLoop</a> (the secondly imported) use the same kind of attributes. How would one know which attribute to consider when running the algorithm ? This situation is solved by the concept of layers.</p>
 <p>So far, our algorithms were made out of only one layer since they were rather simple and always used different attribute classes. However, it is possible to create a new layer inside the algorithm so that two state of the same kind coexist within the same algorithm (but on different "levels", i.e., on different layers).</p>
 <p>See rather the following code. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    </div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    </div>
 <div class="line">    layers.create();</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    layers.close();</div>
 <div class="line">    </div>
 <div class="line">}</div>
@@ -169,17 +169,17 @@ Playing with layers</h1>
 <div class="line">};</div>
 </div><!-- fragment --><p>Things should be more clear now. However, two important remarks should be made at this point.</p><ul>
 <li>First, note that every time <code>layers.create</code> or <code>layers.use</code> is being called, a corresponding <code>layers.close</code> should be called. If this fails to be done then an exception will be thrown.</li>
-<li>Then, <code>layers.create</code> in fact returns the id of the layer and it is better - in the sense of "more modular" to act upon layers using variables rather than explicit values. Why? Simply because your algorithm may further be inherited by another algorithm and that layer 1 may well be something else. Using a variable allows your code to be more general and context independent.</li>
+<li>Then, <code>layers.create</code> in fact returns the id of the layer and it is better - in the sense of "more modular" to act upon layers using variables rather than explicit values. Why? Simply because your algorithm may further be imported by another algorithm and that layer 1 may well be something else. Using a variable allows your code to be more general and context independent.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md19"></a>
 Routing between layers</h1>
 <p>Back to our double for loop example! We now want to insert one algorithm inside the other. In other words, we want to override the transition from <code>BEGIN_OF_ITERATION[0]</code> to <code>INITIAL_STATE[1]</code> and to override the transition from <code>FINAL_STATE[1]</code> to <code>END_OF_ITERATION[1]</code>.</p>
 <p>This can be done as follows. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    </div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    </div>
 <div class="line">    <span class="keyword">auto</span> A = layers.create();</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    layers.close();</div>
 <div class="line"> </div>
 <div class="line">    transitions.override(BEGIN_OF_ITERATION, INITIAL_STATE[A]);</div>
@@ -225,10 +225,10 @@ Accessing layered context</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>Here, we are printing the iteration counter of the previous layer, then, print out the iteration counter of the current layer.</p>
 <p>We can then override our transition as follows. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States &amp;states, Transitions &amp;transitions, Layers &amp;layers)<span class="keyword"> override </span>{</div>
-<div class="line">    inherit&lt;Counter&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;Counter&gt;(states, transitions, layers);</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> A = layers.create();</div>
-<div class="line">        inherit&lt;Counter&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;Counter&gt;(states, transitions, layers);</div>
 <div class="line">        </div>
 <div class="line">        transitions.override(BEGIN_OF_ITERATION, END_OF_ITERATION, show_double_counter);</div>
 <div class="line">        </div>
@@ -259,7 +259,7 @@ Accessing layered context</h1>
 </div><!-- doc-content -->
 <div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a14b70d0b3e7c803e462319b0be2f1393"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">state_machine_cpp::Algorithm::run</a></div><div class="ttdeci">void run(const Algorithm::Instance &amp;t_instance, Context &amp;t_context)</div></div>
 <div class="ttc" id="aclassDoubleLoop_html_afd8d00de36a248a79716fb41cd05fd99"><div class="ttname"><a href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">DoubleLoop::build</a></div><div class="ttdeci">void build(States &amp;states, Transitions &amp;transitions, Layers &amp;layers) override</div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00021">example_DoubleLoop_main.cpp:21</a></div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00041">build.h:41</a></div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00051">build.h:51</a></div></div>
 <div class="ttc" id="aclassDoubleLoop_html"><div class="ttname"><a href="classDoubleLoop.html">DoubleLoop</a></div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00008">example_DoubleLoop_main.cpp:8</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

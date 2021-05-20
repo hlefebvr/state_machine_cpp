@@ -19,10 +19,10 @@ public:
     }
 
     void build(States &states, Transitions &transitions, Layers &layers) override {
-        inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
 
         auto A = layers.create();
-            inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
             transitions.override(ForLoop::BEGIN_OF_ITERATION, ForLoop::END_OF_ITERATION, show_double_counter);
         layers.close();
 

@@ -113,24 +113,24 @@ Introduction</h1>
 Inheriting twice</h1>
 <p>We have seen, in the previous tutorial, how one algorithm could import all the states and transitions from another. Let's start by doing this once! </p><div class="fragment"><div class="line"><span class="keyword">class </span>DoubleLoop final : <span class="keyword">public</span> Algorithm::Builder {</div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 </div><!-- fragment --><p>Up to there, nothing new. Visualizing our algorithm yields the expected followng result:</p>
 <p><img src="https://raw.githubusercontent.com/hlefebvr/state_machine_cpp/main/images/my_algorithm_tx.png" alt="my_algorithm.png" class="inline"/></p>
-<p>Now let's try to inherit twice algorithm ForLoop, as follows: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<p>Now let's try to import twice algorithm ForLoop, as follows: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>And let's build our algorithm!</p>
-<p>Unfortunately, we were thrown with an exception saying "Cannot create twice the same state instance.". Indeed, inheritance does nothing but import all the states from an algorithm to the current one. The same is done for each transition. We therefore cannot inherit twice from the same algorithm as this would create, indeed, twice the same states. Moreover, both ForLoop (the first) and ForLoop (the secondly inherited) use the same kind of attributes. How would one know which attribute to consider when running the algorithm ? This situation is solved by the concept of layers.</p>
+<p>Unfortunately, we were thrown with an exception saying "Cannot create twice the same state instance.". Indeed, inheritance does nothing but import all the states from an algorithm to the current one. The same is done for each transition. We therefore cannot import twice from the same algorithm as this would create, indeed, twice the same states. Moreover, both ForLoop (the first) and ForLoop (the secondly inherited) use the same kind of attributes. How would one know which attribute to consider when running the algorithm ? This situation is solved by the concept of layers.</p>
 <p>So far, our algorithms were made out of only one layer since they were rather simple and always used different attribute classes. However, it is possible to create a new layer inside the algorithm so that two state of the same kind coexist within the same algorithm (but on different "levels", i.e., on different layers).</p>
 <p>See rather the following code. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    </div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    </div>
 <div class="line">    layers.create();</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    layers.close();</div>
 <div class="line">    </div>
 <div class="line">}</div>
@@ -169,10 +169,10 @@ Routing between layers</h1>
 <p>Back to our double for loop example! We now want to insert one algorithm inside the other. In other words, if we want to override the transition from <code>LOOP_ITERATION[0]</code> to <code>INITIAL_STATE[1]</code> and to override the transition from <code>FINAL_STATE[1]</code> to <code>AFTER_LOOP_ITERATION[1]</code>.</p>
 <p>This can be done as follows. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">    </div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    </div>
 <div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> A = layers.create();</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">    layers.close();</div>
 <div class="line"> </div>
 <div class="line">    transitions.override(LOOP_ITERATION, INITIAL_STATE[A]);</div>
@@ -215,10 +215,10 @@ Accessing layered context</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>Here, we are printing the iteration counter of the previous layer, then, print out the iteration counter of the current layer.</p>
 <p>We can then override our transition as follows. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#ac1e565dffdf5bbfe13afb2c9988e409f">build</a>(States &amp;states, Transitions &amp;transitions, Layers &amp;layers)<span class="keyword"> override </span>{</div>
-<div class="line">    inherit&lt;Counter&gt;(states, transitions, layers);</div>
+<div class="line">    import&lt;Counter&gt;(states, transitions, layers);</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> A = layers.create();</div>
-<div class="line">        inherit&lt;Counter&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;Counter&gt;(states, transitions, layers);</div>
 <div class="line">        </div>
 <div class="line">        transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, show_double_counter);</div>
 <div class="line">        </div>

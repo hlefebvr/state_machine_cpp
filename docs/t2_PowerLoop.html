@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>state_machine_cpp: Inheritance: modifying existing algorithms</title>
+<title>state_machine_cpp: Imports: modifying existing algorithms</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('t2_PowerLoop.html',''); initResizable(
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Inheritance: modifying existing algorithms </div>  </div>
+<div class="title">Imports: modifying existing algorithms </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Hey! This tutorial is built upon the <a class="el" href="t1_ForLoop.html">ForLoop tutorial</a>, if you haven't followed it yet, be sure to check it out first! Otherwise, let's dive in!</p>
@@ -108,9 +108,9 @@ New algorithm = new builder</h1>
 </div><!-- fragment --><p>Indeed, our algorithm, at this stage, is empty. No states have been added and no transitions have been defined.</p>
 <p>In the next section, we will be "importing" or "inheriting" all the states from the <a class="el" href="classForLoop.html">ForLoop</a> algorithm builder to our new builder. Let's see how it's done!</p>
 <h1><a class="anchor" id="autotoc_md13"></a>
-Inheriting states and transitions</h1>
-<p>Importing the states and transitions from another algorithm is done with the template method Algorithm::Builder::inherit&lt;T&gt;. See how it is easily used: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
-<div class="line">    inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+Importing states and transitions</h1>
+<p>Importing the states and transitions from another algorithm is done with the template method Algorithm::Builder::import&lt;T&gt;. See how it is easily used: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
+<div class="line">    import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>At this stage, the sanity check should not complain anymore. Why? Simply because we have imported the <a class="el" href="classForLoop.html">ForLoop</a> algorithm and because the <a class="el" href="classForLoop.html">ForLoop</a> algorithm itself is well-defined. Thus, the obtained algorithm is well-defined. Note that you can also visualize it by using the Algorithm::plot function like we did in the previous tutorial. Doing so trivially yields the following image.</p>
 <div class="image">
@@ -118,7 +118,7 @@ Inheriting states and transitions</h1>
 <div class="caption">
 my_algorithm.png</div></div>
    <blockquote class="doxtable">
-<p>IMPORTANT: note that to inherit from an algorithm, we did not use C++ inheritance. The use of C++ inheritance is heavily discourage regarding algorithm builders. </p>
+<p>IMPORTANT: note that to "inherit" from an algorithm, we did not use C++ inheritance. The use of C++ inheritance is heavily discourage regarding algorithm builders. </p>
 </blockquote>
 <p>Now let's apply our modifications!</p>
 <h1><a class="anchor" id="autotoc_md14"></a>
@@ -141,13 +141,13 @@ Applying modifications</h1>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code" href="classPowerLoop.html#a422a65d6194d8b80315ff3f32eedd965">build</a>(States&amp; states, Transitions&amp; transitions, Layers&amp; layers) {</div>
 <div class="line">        </div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">        </div>
 <div class="line">        transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, <a class="code" href="classPowerLoop.html#a61c2865c768716295588dce95e46ad4c">print_power_of_iteration</a>);</div>
 <div class="line">        </div>
 <div class="line">    }</div>
 <div class="line">};</div>
-</div><!-- fragment --><p>This code should be easy to understand. Briefly though, we create a struct containing the new attributes which were needed by our new algorithm. Note that we did not define "iteration" and "max_iteration" as those are part of the "ForLoop" algorithm from which we inherit. Then, we defined the new handler for the transition which comes from BEGIN_OF_ITERATION and goes to END_OF_ITERATION. Finally, we used <code>transitions.override</code> to re-write the transition behaviour.</p>
+</div><!-- fragment --><p>This code should be easy to understand. Briefly though, we create a struct containing the new attributes which were needed by our new algorithm. Note that we did not define "iteration" and "max_iteration" as those are part of the "ForLoop" algorithm from which we import. Then, we defined the new handler for the transition which comes from BEGIN_OF_ITERATION and goes to END_OF_ITERATION. Finally, we used <code>transitions.override</code> to re-write the transition behaviour.</p>
 <p>And that's it! You have successfully modified an algorithm and created a new one!</p>
 <blockquote class="doxtable">
 <p>Note that it is possible to override a conditional transition with <code>transitions.override_if</code> as well. You may also change the transition type. </p>
@@ -171,9 +171,9 @@ Applying modifications</h1>
 <div class="line">2^2 = 4</div>
 <div class="line">The loop is over</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
-Advanced notions regarding inheritance</h1>
-<p>In the next tutorial, we'll be diving into the concept of layers which solves the issue of inheriting multiple times from the same algorithm or simply inheriting from algorithms which use the same attribute class. For now, let us simply mention two advanced notions which are virtual transitions and final transitions.</p>
-<p>Just like in C++, within <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>, it is possible to leave transitions intentionally empty. The goal of such transitions are clearly to be defined later when the algorithm is being inherited to form another algorithm. Such transitions are created with the functions <code>transitions.create_virtual</code> and <code>transitions.create_if_virtual</code>. Visualizing an algorithm with <code>Algorithm::plot</code> will print out such transitions in blue and with the keyword "virtual". Moreover, calling <code>Algorithm::sanity_check</code> will report the presence of virtual transitions. Finally, running an algorithm in which some transitions are intentionally left empty will throw an exception to report what happened.</p>
+Advanced notions regarding imports</h1>
+<p>In the next tutorial, we'll be diving into the concept of layers which solves the issue of importing multiple times the same algorithm or simply importing algorithms which use the same attribute class. For now, let us simply mention two advanced notions which are virtual transitions and final transitions.</p>
+<p>Just like in C++, within <a class="el" href="namespacestate__machine__cpp.html">state_machine_cpp</a>, it is possible to leave transitions intentionally empty. The goal of such transitions are clearly to be defined later when the algorithm is being imported to form another algorithm. Such transitions are created with the functions <code>transitions.create_virtual</code> and <code>transitions.create_if_virtual</code>. Visualizing an algorithm with <code>Algorithm::plot</code> will print out such transitions in blue and with the keyword "virtual". Moreover, calling <code>Algorithm::sanity_check</code> will report the presence of virtual transitions. Finally, running an algorithm in which some transitions are intentionally left empty will throw an exception to report what happened.</p>
 <p>We've just seen how one can create a special transition which has to be defined later. Note that it is also possible, to the contrary, to declare some transitions as "final". Final transitions are transitions which cannot be overridden. Declaring a transition as final is done with the <code>transitions.declare_as_final</code> and by giving the state which starts the transition as argument.</p>
 <p>That's it for now! In the next tutorial, we'll dive into the concept of layers! </p>
 </div></div><!-- contents -->
@@ -187,7 +187,7 @@ Advanced notions regarding inheritance</h1>
 <div class="ttc" id="astructPowerLoop_1_1Attributes_html"><div class="ttname"><a href="structPowerLoop_1_1Attributes.html">PowerLoop::Attributes</a></div><div class="ttdef"><b>Definition:</b> <a href="example__PowerLoop__main_8cpp_source.html#l00013">example_PowerLoop_main.cpp:13</a></div></div>
 <div class="ttc" id="aclassPowerLoop_html"><div class="ttname"><a href="classPowerLoop.html">PowerLoop</a></div><div class="ttdef"><b>Definition:</b> <a href="example__PowerLoop__main_8cpp_source.html#l00010">example_PowerLoop_main.cpp:10</a></div></div>
 <div class="ttc" id="aclassPowerLoop_html_a422a65d6194d8b80315ff3f32eedd965"><div class="ttname"><a href="classPowerLoop.html#a422a65d6194d8b80315ff3f32eedd965">PowerLoop::build</a></div><div class="ttdeci">void build(States &amp;states, Transitions &amp;transitions, Layers &amp;layers) override</div><div class="ttdef"><b>Definition:</b> <a href="example__PowerLoop__main_8cpp_source.html#l00037">example_PowerLoop_main.cpp:37</a></div></div>
-<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00041">build.h:41</a></div></div>
+<div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00051">build.h:51</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

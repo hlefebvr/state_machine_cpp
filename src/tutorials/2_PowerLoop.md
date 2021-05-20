@@ -1,4 +1,4 @@
-# Inheritance: modifying existing algorithms {#t2_PowerLoop}
+# Imports: modifying existing algorithms {#t2_PowerLoop}
 
 Hey! This tutorial is built upon the [ForLoop tutorial](@ref t1_ForLoop), if you haven't followed
 it yet, be sure to check it out first! Otherwise, let's dive in!
@@ -47,13 +47,13 @@ have been defined.
 In the next section, we will be "importing" or "inheriting" all the states from the ForLoop
 algorithm builder to our new builder. Let's see how it's done!
 
-## Inheriting states and transitions
+## Importing states and transitions
 
 Importing the states and transitions from another algorithm is done with the template
-method Algorithm::Builder::inherit<T>. See how it is easily used:
+method Algorithm::Builder::import<T>. See how it is easily used:
 ```cpp
 void build(States& states, Transitions& transitions, Layers& layers) {
-    inherit<ForLoop>(states, transitions, layers);
+    import<ForLoop>(states, transitions, layers);
 }
 ```
 
@@ -65,7 +65,7 @@ the following image.
 
 ![my_algorithm.png](src/images/my_algorithm_tx.png)
 
-> IMPORTANT: note that to inherit from an algorithm, we did not use C++ inheritance. The
+> IMPORTANT: note that to "inherit" from an algorithm, we did not use C++ inheritance. The
 > use of C++ inheritance is heavily discourage regarding algorithm builders.
 
 Now let's apply our modifications!
@@ -101,7 +101,7 @@ class PowerLoop final : public Algorithm::Builder {
 public:
     void build(States& states, Transitions& transitions, Layers& layers) {
         
-        inherit<ForLoop>(states, transitions, layers);
+        import<ForLoop>(states, transitions, layers);
         
         transitions.override(SHOW_COUNTER, INCREMENT_COUNTER, print_power_of_iteration);
         
@@ -111,7 +111,7 @@ public:
 
 This code should be easy to understand. Briefly though, we create a struct containing the new attributes 
 which were needed by our new algorithm. Note that we did not define "iteration" and "max_iteration" as those
-are part of the "ForLoop" algorithm from which we inherit. Then, we defined the new handler for the transition
+are part of the "ForLoop" algorithm from which we import. Then, we defined the new handler for the transition
 which comes from BEGIN_OF_ITERATION and goes to END_OF_ITERATION. Finally, we used `transitions.override` to
 re-write the transition behaviour.
 
@@ -147,14 +147,14 @@ Executing the code will now print out the following:
 The loop is over
 ```
 
-## Advanced notions regarding inheritance
+## Advanced notions regarding imports
 
-In the next tutorial, we'll be diving into the concept of layers which solves the issue of inheriting multiple
-times from the same algorithm or simply inheriting from algorithms which use the same attribute class.
+In the next tutorial, we'll be diving into the concept of layers which solves the issue of importing multiple
+times the same algorithm or simply importing algorithms which use the same attribute class.
 For now, let us simply mention two advanced notions which are virtual transitions and final transitions.
 
 Just like in C++, within state_machine_cpp, it is possible to leave transitions intentionally empty. The goal
-of such transitions are clearly to be defined later when the algorithm is being inherited to form another algorithm.
+of such transitions are clearly to be defined later when the algorithm is being imported to form another algorithm.
 Such transitions are created with the functions `transitions.create_virtual` and `transitions.create_if_virtual`.
 Visualizing an algorithm with `Algorithm::plot` will print out such transitions in blue and with the keyword
 "virtual". Moreover, calling `Algorithm::sanity_check` will report the presence of virtual transitions. Finally, 

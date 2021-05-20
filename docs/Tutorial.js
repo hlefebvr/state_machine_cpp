@@ -14,16 +14,16 @@ var Tutorial =
       [ "Running our first algorithm!", "t1_ForLoop.html#autotoc_md9", null ],
       [ "Debug mode", "t1_ForLoop.html#autotoc_md10", null ]
     ] ],
-    [ "Inheritance: modifying existing algorithms", "t2_PowerLoop.html", [
+    [ "Imports: modifying existing algorithms", "t2_PowerLoop.html", [
       [ "Introduction", "t2_PowerLoop.html#autotoc_md11", null ],
       [ "New algorithm = new builder", "t2_PowerLoop.html#autotoc_md12", null ],
-      [ "Inheriting states and transitions", "t2_PowerLoop.html#autotoc_md13", null ],
+      [ "Importing states and transitions", "t2_PowerLoop.html#autotoc_md13", null ],
       [ "Applying modifications", "t2_PowerLoop.html#autotoc_md14", null ],
-      [ "Advanced notions regarding inheritance", "t2_PowerLoop.html#autotoc_md15", null ]
+      [ "Advanced notions regarding imports", "t2_PowerLoop.html#autotoc_md15", null ]
     ] ],
-    [ "Layers: handling complex inheritance schemes", "t3_DoubleLoop.html", [
+    [ "Layers: handling complex import schemes", "t3_DoubleLoop.html", [
       [ "Introduction", "t3_DoubleLoop.html#autotoc_md16", null ],
-      [ "Inheriting twice", "t3_DoubleLoop.html#autotoc_md17", null ],
+      [ "Importing twice", "t3_DoubleLoop.html#autotoc_md17", null ],
       [ "Playing with layers", "t3_DoubleLoop.html#autotoc_md18", null ],
       [ "Routing between layers", "t3_DoubleLoop.html#autotoc_md19", null ],
       [ "Accessing layered context", "t3_DoubleLoop.html#autotoc_md20", null ]

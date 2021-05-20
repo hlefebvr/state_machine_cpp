@@ -108,10 +108,10 @@ $(document).ready(function(){initNavTree('example_DoubleLoop_main_8cpp-example.h
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> <a name="a6"></a><a class="code" href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">build</a>(States &amp;states, Transitions &amp;transitions, Layers &amp;layers)<span class="keyword"> override </span>{</div>
-<div class="line">        inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">auto</span> A = layers.create();</div>
-<div class="line">            inherit&lt;ForLoop&gt;(states, transitions, layers);</div>
+<div class="line">        import&lt;ForLoop&gt;(states, transitions, layers);</div>
 <div class="line">            transitions.override(<a name="a7"></a><a class="code" href="classForLoop.html#a3ac8c26a92134f2a7aad48ee7f65335b">ForLoop::BEGIN_OF_ITERATION</a>, <a name="a8"></a><a class="code" href="classForLoop.html#a5bfef0d52c2130637e9d8cc6c1294dbb">ForLoop::END_OF_ITERATION</a>, <a class="code" href="classDoubleLoop.html#aeb33e2ac5f429426b649e14a69fd57e5">show_double_counter</a>);</div>
 <div class="line">        layers.close();</div>
 <div class="line"> </div>

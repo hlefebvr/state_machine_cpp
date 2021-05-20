@@ -30,7 +30,8 @@ void state_machine_cpp::Algorithm::Instance::remove_state(const State::Instance&
     for (const auto& transition : m_transitions) {
         for (const auto& next_state : transition.next_states()) {
             if (next_state == t_instance) {
-                throw std::runtime_error("Cannot remove state " + t_instance.name() + " because other transitions depend on it.");
+                throw std::runtime_error("Cannot remove state " + t_instance.name() + " because other transitions depend on it. "
+                                              "Transition: " + transition.initial_state().name() + " -- " + next_state.name());
             }
         }
     }

@@ -6,11 +6,6 @@
 #include <stdexcept>
 
 void state_machine_cpp::Timer::start() {
-
-    if (m_has_started) {
-        throw std::runtime_error("Timer has already been started.");
-    }
-
     m_starting_clock = std::chrono::high_resolution_clock::now();
     m_has_started = true;
     m_has_stopped = false;

@@ -24,6 +24,7 @@ static const State::Id D("D");
 #include "./test_transition_override.h"
 #include "./test_transition_remove.h"
 #include "./test_auto_detect.h"
+#include "./test_context.h"
 
 int main(int argc, char **argv)
 {

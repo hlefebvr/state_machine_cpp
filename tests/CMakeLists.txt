@@ -14,7 +14,7 @@ add_executable(test_state_machine_cpp
         test_state_remove.h
         test_transition_remove.h
         test_auto_detect.h
-)
+        test_context.h)
 
 find_package(GTest REQUIRED)
 target_link_libraries(test_state_machine_cpp GTest::GTest GTest::Main pthread state_machine_cpp)

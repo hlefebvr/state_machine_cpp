@@ -82,7 +82,7 @@ set(PRIVATE_FILES
         state_machine_cpp/src/algorithms/plot.cpp
 
         state_machine_cpp/src/algorithms/sanity_check.cpp
-)
+        state_machine_cpp/include/context/context_2.h state_machine_cpp/include/context/context_tree.h state_machine_cpp/include/context/layer.h state_machine_cpp/include/context/abstract_layer.h state_machine_cpp/include/context/abstract_context_tree.h state_machine_cpp/include/context/merge.h)
 
 # Define Library
 add_library(state_machine_cpp ${PRIVATE_FILES} ${PUBLIC_FILES})

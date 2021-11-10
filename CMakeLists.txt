@@ -38,11 +38,6 @@ set(PUBLIC_FILES
         state_machine_cpp/include/builder/builder_impl_states.h
         state_machine_cpp/include/builder/builder_impl_transitions.h
 
-        state_machine_cpp/include/context/context.h
-        state_machine_cpp/include/context/context_simple.h
-        state_machine_cpp/include/context/context_layered.h
-        state_machine_cpp/include/context/context_auto.h
-
         state_machine_cpp/include/algorithms/build.h
         state_machine_cpp/include/algorithms/plot.h
         state_machine_cpp/include/algorithms/sanity_check.h
@@ -74,8 +69,6 @@ set(PRIVATE_FILES
         state_machine_cpp/src/builder/builder_impl_layers.cpp
         state_machine_cpp/src/builder/builder_impl_states.cpp
         state_machine_cpp/src/builder/builder_impl_transitions.cpp
-
-        state_machine_cpp/src/context/context_auto.cpp
 
         state_machine_cpp/src/algorithms/run.cpp
 

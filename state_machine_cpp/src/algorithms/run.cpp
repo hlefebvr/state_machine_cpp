@@ -4,7 +4,7 @@
 
 #include "algorithms/run.h"
 #include "algorithms/algorithm.h"
-#include "context/context.h"
+
 #include "context/context_2.h"
 
 namespace state_machine_cpp::Algorithm::Impl {

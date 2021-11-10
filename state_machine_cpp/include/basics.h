@@ -13,10 +13,6 @@
 
 #include "states/state_id.h"
 
-#include "context/context_simple.h"
-#include "context/context_layered.h"
-#include "context/context_auto.h"
-
 #include "context/context_2.h"
 #include "context/context_tree.h"
 

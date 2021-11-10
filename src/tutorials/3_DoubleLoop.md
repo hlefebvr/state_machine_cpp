@@ -167,16 +167,22 @@ Visualizing the resulting algorithm, one obtains the following.
 
 We therefore have successfully inserted our copied version of ForLoop inside another copied version of ForLoop.
 
-To run our algorithm though, we need to define a new context called `LayeredContext`. The following piece of
-code speaks for iteself.
-```cpp
-ForLoopAttributes for_loop_attributes_1(3);
-ForLoopAttributes for_loop_attributes_2(5);
-SimpleContext<ForLoopAttributes> context(for_loop_attributes_1);
-SimpleContext<ForLoopAttributes> context_2(for_loop_attributes_2);
-LayeredContext<2> layered_context(context, context_2);
+To run our algorithm though, we need to define a new context with two different layers! Indeed, if we tried
+to put two `ForLoopAttributes` on the same layer, then calling `Context::get<ForLoopAttributes>` would be
+ambiguous: how to know which object should be returned?
 
-Algorithm::run(algorithm, layered_context);
+The following piece of code speaks for itself.
+```cpp
+auto attribute_tree = AttributeTree<
+                        Layer<ForLoopAttributes>,  
+                        Layer<ForLoopAttributes>
+                    >(
+                        new Layer(new ForLoopAttributes(3)),
+                        new Layer(new ForLoopAttributes(5))
+                    );
+auto context = Context(attribute_tree);
+
+Algorithm::run(algorithm, context);
 ```
 
 Running our resulting algorithm outputs the following.
@@ -201,7 +207,7 @@ We can see here that the algorithm does, indeed, perform a double for loop! Howe
 was to print `i, j` at each iteration, and not only `i` or `j`. In the following section, we will see how
 it is possible to access the attributes of another layer throughout the context object.
 
-## Accessing layered context
+## Accessing a multiple-layer context
 
 In this last section, we will override the transition between `BEGIN_OF_ITERATION[A]` and `END_OF_ITERATION[A]`
 in order to print `i, j`. To do this, we need to access the context's attribute of a different layer than

@@ -248,10 +248,24 @@ Well, now is time to run our algorithm!
 
 Running an algorithm is done with the Algorithm::run function. Its argument are (1) the algorithm instance
 to execute and (2) the context object. We therefore need to create a context object. 
-The context object creation is very simple and done as follows:
+
+The Context object creation is done in two steps. Firstly, we need to describe what will the context look like, 
+in terms of structure (e.g., what will be the class(es) forming its attributes).
+Indeed, state_machine_cpp can handle very complex contexts with multiple layers and multiple attribute classes. 
+This is a subject for future tutorials. For now, we will create the simplest context consisting in one attribute
+class on a single layer. This is done as follows.
 ```cpp
-ForLoopAttributes attributes(10);
-SimpleContext<ForLoopAttributes> context(attributes);
+auto attribute_tree = AttributeTree<Layer<ForLoopAttributes>>(
+                        new Layer<ForLoopAttributes>( new ForLoopAttributes(10) )
+                      );
+```
+With this object, we are literally describing the internal structure of our context. Put simply, our context
+will consist of one Layer, on which there will be one ForLoopAttributes object (created with parameter 10).
+For now, you can ignore this "Layer story". We will dive into this concept in a dedicated tutorial
+
+Then, a Context object can be created as follows.
+```cpp
+auto context = Context(attribute_tree);
 ```
 
 We can then run our algorithm as follows:
@@ -262,7 +276,7 @@ algorithm.set_final_state(FINAL_STATE);
 Algorithm::run(algorithm, context);
 ```
 
-And voilà! You have executed you're first algorithm using state_machine_cpp. You should get printed the
+And voilà! You have executed your first algorithm using state_machine_cpp. You should get printed the
 following:
 ```
 0

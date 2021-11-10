@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['simplecontext_222',['SimpleContext',['../classstate__machine__cpp_1_1SimpleContext.html',1,'state_machine_cpp']]],
-  ['states_223',['States',['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1States.html',1,'state_machine_cpp::Algorithm::Builder::States'],['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1States.html',1,'state_machine_cpp::Algorithm::Impl::Build::States']]]
+  ['pointer_258',['Pointer',['../classstate__machine__cpp_1_1Pointer.html',1,'state_machine_cpp']]],
+  ['powerloop_259',['PowerLoop',['../classPowerLoop.html',1,'']]]
 ];

@@ -192,13 +192,17 @@ Routing between layers</h1>
 <div class="caption">
 my_algorithm.png</div></div>
    <p>We therefore have successfully inserted our copied version of <a class="el" href="classForLoop.html">ForLoop</a> inside another copied version of <a class="el" href="classForLoop.html">ForLoop</a>.</p>
-<p>To run our algorithm though, we need to define a new context called <code>LayeredContext</code>. The following piece of code speaks for iteself. </p><div class="fragment"><div class="line">ForLoopAttributes for_loop_attributes_1(3);</div>
-<div class="line">ForLoopAttributes for_loop_attributes_2(5);</div>
-<div class="line">SimpleContext&lt;ForLoopAttributes&gt; context(for_loop_attributes_1);</div>
-<div class="line">SimpleContext&lt;ForLoopAttributes&gt; context_2(for_loop_attributes_2);</div>
-<div class="line">LayeredContext&lt;2&gt; layered_context(context, context_2);</div>
+<p>To run our algorithm though, we need to define a new context with two different layers! Indeed, if we tried to put two <code>ForLoopAttributes</code> on the same layer, then calling <code>Context::get&lt;ForLoopAttributes&gt;</code> would be ambiguous: how to know which object should be returned?</p>
+<p>The following piece of code speaks for itself. </p><div class="fragment"><div class="line"><span class="keyword">auto</span> attribute_tree = AttributeTree&lt;</div>
+<div class="line">                        Layer&lt;ForLoopAttributes&gt;,  </div>
+<div class="line">                        Layer&lt;ForLoopAttributes&gt;</div>
+<div class="line">                    &gt;(</div>
+<div class="line">                        <span class="keyword">new</span> Layer(<span class="keyword">new</span> ForLoopAttributes(3)),</div>
+<div class="line">                        <span class="keyword">new</span> Layer(<span class="keyword">new</span> ForLoopAttributes(5))</div>
+<div class="line">                    );</div>
+<div class="line"><span class="keyword">auto</span> context = Context(attribute_tree);</div>
 <div class="line"> </div>
-<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">Algorithm::run</a>(algorithm, layered_context);</div>
+<div class="line"><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">Algorithm::run</a>(algorithm, context);</div>
 </div><!-- fragment --><p>Running our resulting algorithm outputs the following. </p><div class="fragment"><div class="line">0</div>
 <div class="line">1</div>
 <div class="line">2</div>
@@ -216,7 +220,7 @@ my_algorithm.png</div></div>
 <div class="line">4</div>
 </div><!-- fragment --><p>We can see here that the algorithm does, indeed, perform a double for loop! However, the goal of this tutorial was to print <code>i, j</code> at each iteration, and not only <code>i</code> or <code>j</code>. In the following section, we will see how it is possible to access the attributes of another layer throughout the context object.</p>
 <h1><a class="anchor" id="autotoc_md20"></a>
-Accessing layered context</h1>
+Accessing a multiple-layer context</h1>
 <p>In this last section, we will override the transition between <code>BEGIN_OF_ITERATION[A]</code> and <code>END_OF_ITERATION[A]</code> in order to print <code>i, j</code>. To do this, we need to access the context's attribute of a different layer than the one which triggered the transition. This can be done by using the <code>context.get_relative&lt;T&gt;</code> template function. This function takes an argument which is the offset from which to access the attributes. Thus, we have <code>context.get&lt;T&gt;()</code> which is equivalent to <code>context.get_relative&lt;T&gt;(0)</code>. And <code>context.get_relative&lt;T&gt;(-1)</code> which accesses the attribute of type <code>T</code> as used by the previous layer. See rather how we can write our new handler. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> show_double_counter(Context&amp; context) {</div>
 <div class="line">    std::cout &lt;&lt; context.get_relative&lt;ForLoopAttributes&gt;(-1).iteration</div>
 <div class="line">              &lt;&lt; <span class="stringliteral">&quot;, &quot;</span></div>
@@ -258,7 +262,7 @@ Accessing layered context</h1>
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a14b70d0b3e7c803e462319b0be2f1393"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a14b70d0b3e7c803e462319b0be2f1393">state_machine_cpp::Algorithm::run</a></div><div class="ttdeci">void run(const Algorithm::Instance &amp;t_instance, Context &amp;t_context)</div></div>
-<div class="ttc" id="aclassDoubleLoop_html_afd8d00de36a248a79716fb41cd05fd99"><div class="ttname"><a href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">DoubleLoop::build</a></div><div class="ttdeci">void build(States &amp;states, Transitions &amp;transitions, Layers &amp;layers) override</div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00021">example_DoubleLoop_main.cpp:21</a></div></div>
+<div class="ttc" id="aclassDoubleLoop_html_afd8d00de36a248a79716fb41cd05fd99"><div class="ttname"><a href="classDoubleLoop.html#afd8d00de36a248a79716fb41cd05fd99">DoubleLoop::build</a></div><div class="ttdeci">void build(States &amp;states, Transitions &amp;transitions, Layers &amp;layers) override</div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00020">example_DoubleLoop_main.cpp:20</a></div></div>
 <div class="ttc" id="anamespacestate__machine__cpp_1_1Algorithm_html_a548ba4a6bcf678d2ad0618c99053e4a4"><div class="ttname"><a href="namespacestate__machine__cpp_1_1Algorithm.html#a548ba4a6bcf678d2ad0618c99053e4a4">state_machine_cpp::Algorithm::build</a></div><div class="ttdeci">void build(Algorithm::Instance &amp;t_destination, Algorithm::Mode t_build_mode=Algorithm::Mode::Release)</div><div class="ttdef"><b>Definition:</b> <a href="build_8h_source.html#l00051">build.h:51</a></div></div>
 <div class="ttc" id="aclassDoubleLoop_html"><div class="ttname"><a href="classDoubleLoop.html">DoubleLoop</a></div><div class="ttdef"><b>Definition:</b> <a href="example__DoubleLoop__main_8cpp_source.html#l00008">example_DoubleLoop_main.cpp:8</a></div></div>
 <!-- start footer part -->

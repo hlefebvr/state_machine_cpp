@@ -142,38 +142,35 @@ This simplifies and generalizes the approach to every algorithm.
 As a general guideline, importing algorithms should be done through the `Algorithm::Builder::import`
 template method. To ensure that, we recommend that every algorithm builder be declared as a `final` class.
 
-## #6 Define a handle_standard_argument static method
+## #6 Define a create_attributes static method
 
 Creating algorithm's context may become complex. See, for instance, the following code used to create our
 DoubleLoop's context:
 ```cpp
-ForLoopAttributes for_loop_attributes_1(3);
-ForLoopAttributes for_loop_attributes_2(5);
-SimpleContext<ForLoopAttributes> context(for_loop_attributes_1);
-SimpleContext<ForLoopAttributes> context_2(for_loop_attributes_2);
-LayeredContext<2> layered_context(context, context_2);
+auto attribute_tree = AttributeTree<
+                        Layer<ForLoopAttributes>,  
+                        Layer<ForLoopAttributes>
+                    >(
+                        new Layer(new ForLoopAttributes(3)),
+                        new Layer(new ForLoopAttributes(5))
+                    );
+auto context = Context(attribute_tree);
 ```
-Quite embarrassing right? Also, note that each ForLoopAttributes are given to a `SimpleContext<ForLoopAttributes>`
-by non-const reference! Which means that each `ForLoopAttributes` has to be kept alive as long as each corresponding
-`SimpleContext<ForLoopAttributes>` is being used. And the same is true for each `SimpleContext<ForLoopAttributes>`
-and `LayeredContext<2>`. 
 
-To ease the creation of algorithmic context, we recommend to developers to define a static method called
-`create_attributes` returning an object of the class `AutoContext`. An `AutoContext` object simply
-is a type of `Context` which holds its arguments as `std::unique_ptr`. In that sense, the attributes and
-other contexts used to create the final context will be kept alive as long as the `AutoContext` lives.
+To ease the creation of algorithmic contexts, we recommend to developers to define a static method called
+`create_attributes` returning a pointer to the according AttributeTree<...>. 
 See how it can be create:
 ```cpp
-auto* for_loop_attributes_1 = new ForLoop::Attributes(3);
-auto* for_loop_attributes_2 = new ForLoop::Attributes(5);
-auto* context = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_1);
-auto* context_2 = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_2);
-auto* layered_context = new LayeredContext<2>(*context, *context_2);
-
-auto context = AutoContext(layered_context, context, context_2, for_loop_attributes_1, for_loop_attributes_2);
+AttributeTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>*
+    create_attributes(int n, int m) {
+    
+        return new AttributeTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>(
+                    new Layer(new ForLoop::Attributes(n)),
+                    new Layer(new ForLoop::Attributes(m))
+                );
+        
+    }
 ```
-Note that the first argument IS the real context designed to be used in the algorithm. Here, it is therefore
-`layered_context`. 
 
 The recommendation is as follows: declare a static method returning an `AutoContext` inside your algorithm
 builder. See, for instance, the following piece of code:
@@ -184,14 +181,12 @@ public:
         // ...
     }
 
-    static AutoContext create_attributes(int n, int m) {
-        auto* for_loop_attributes_1 = new ForLoop::Attributes(n);
-        auto* for_loop_attributes_2 = new ForLoop::Attributes(m);
-        auto* context = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_1);
-        auto* context_2 = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_2);
-        auto* layered_context = new LayeredContext<2>(*context, *context_2);
-
-        return AutoContext(layered_context, context, context_2, for_loop_attributes_1, for_loop_attributes_2);
+    static AttributeTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>*
+    create_attributes(int n, int m) {
+        return new AttributeTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>(
+                    new Layer(new ForLoop::Attributes(n)),
+                    new Layer(new ForLoop::Attributes(m))
+                );
     }
 };
 ```
@@ -200,7 +195,7 @@ This allows us to run our algorithm as follows:
 Algorithm::Instance algorithm;
 Algorithm::build<DoubleLoop>(algorithm);
 
-auto context = DoubleLoop::create_attributes(3, 5);
+auto context = Context::create<DoubleLoop>(3, 5);
 
 Algorithm::run(algorithm, context);
 ```

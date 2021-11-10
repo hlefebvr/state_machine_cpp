@@ -26,7 +26,7 @@ var Tutorial =
       [ "Importing twice", "t3_DoubleLoop.html#autotoc_md17", null ],
       [ "Playing with layers", "t3_DoubleLoop.html#autotoc_md18", null ],
       [ "Routing between layers", "t3_DoubleLoop.html#autotoc_md19", null ],
-      [ "Accessing layered context", "t3_DoubleLoop.html#autotoc_md20", null ]
+      [ "Accessing a multiple-layer context", "t3_DoubleLoop.html#autotoc_md20", null ]
     ] ],
     [ "Organize your code!", "t4_Organize.html", [
       [ "#1 Define your states as static attributes of your builder", "t4_Organize.html#autotoc_md21", null ],
@@ -34,7 +34,7 @@ var Tutorial =
       [ "#3 Define your transitions handlers as static methods", "t4_Organize.html#autotoc_md23", null ],
       [ "#4 Define your attributes as nested class", "t4_Organize.html#autotoc_md24", null ],
       [ "#5 Create final builders", "t4_Organize.html#autotoc_md25", null ],
-      [ "#6 Define a handle_standard_argument static method", "t4_Organize.html#autotoc_md26", null ],
+      [ "#6 Define a create_attributes static method", "t4_Organize.html#autotoc_md26", null ],
       [ "#7 Define an INITIAL_STATE and a FINAL_STATE", "t4_Organize.html#autotoc_md27", null ]
     ] ]
 ];

@@ -131,13 +131,19 @@ Algorithm::build<PowerLoop>(algorithm);
 Algorithm::sanity_check(algorithm);
 
 // Creating the context
-ForLoopAttributes for_loop_attributes(3);
-PowerLoopAttributes power_loop_attributes(2);
-SimpleContext<ForLoopAttributes, PowerLoopAttributes> context(for_loop_attributes, power_loop_attributes);
+auto attribute_tree = AttributeTree<Layer<ForLoopAttributes, PowerLoopAttributes>>(
+                        new Layer(
+                                new ForLoopAttributes(10),
+                                new PowerLoopAttributes(2)
+                        )
+                      );
+auto context = Context(attribute_tree);
 
 // Running algorithm
 Algorithm::run(algorithm, context);
 ```
+
+Notice that, here, the context internal structure has been enhanced to incorporate an object of the class PowerLoopAttributes.
 
 Executing the code will now print out the following:
 ```

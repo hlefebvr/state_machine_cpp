@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['build_193',['build',['../classstate__machine__cpp_1_1Algorithm_1_1Builder.html#acdba941cb20cfc18dc1dd4d218080ecd',1,'state_machine_cpp::Algorithm::Builder']]],
-  ['value_194',['value',['../structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__INITIAL__STATE.html#a40dddfdf38146aa3d08c97e2a8f1efee',1,'state_machine_cpp::Algorithm::Impl::has_INITIAL_STATE::value()'],['../structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__FINAL__STATE.html#af9ad4cbdf69de63b6591380f84a21bc2',1,'state_machine_cpp::Algorithm::Impl::has_FINAL_STATE::value()'],['../structstate__machine__cpp_1_1Algorithm_1_1Impl_1_1has__TIME__LIMIT__REACHED__STATE.html#ae0a11943b6a6972a81cb5d7d080b7cc8',1,'state_machine_cpp::Algorithm::Impl::has_TIME_LIMIT_REACHED_STATE::value()']]]
+  ['undefined_212',['Undefined',['../namespacestate__machine__cpp_1_1Transition.html#a030349c896c0f724c4c3bf49b4da3f84aec0fc0100c4fc1ce4eea230c3dc10360',1,'state_machine_cpp::Transition']]],
+  ['use_213',['use',['../classstate__machine__cpp_1_1Algorithm_1_1Impl_1_1Build_1_1Layers.html#a1feaa8d920d2efb96f807ac27dbe569c',1,'state_machine_cpp::Algorithm::Impl::Build::Layers::use()'],['../classstate__machine__cpp_1_1Algorithm_1_1Builder_1_1Layers.html#a5c5a67b0e73235b83dd133ad5710aec8',1,'state_machine_cpp::Algorithm::Builder::Layers::use()']]]
 ];

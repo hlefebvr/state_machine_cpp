@@ -17,18 +17,18 @@ state_machine_cpp::Algorithm::Impl::Build::Transitions::Transitions(state_machin
 
 // HANDLER CREATORS
 
-std::function<int(state_machine_cpp::Context & )> state_machine_cpp::Algorithm::Impl::Build::Transitions::wrap_with_logs(
+std::function<int(state_machine_cpp::Context2 & )> state_machine_cpp::Algorithm::Impl::Build::Transitions::wrap_with_logs(
         const state_machine_cpp::State::Instance &t_initial_state,
-        std::function<int(Context &)> &&t_function) {
+        std::function<int(Context2 &)> &&t_function) {
 
-    return [t_function, t_initial_state](Context& t_context){
+    return [t_function, t_initial_state](Context2& t_context){
         std::cout << "-- state: " << t_initial_state << std::endl;
         return t_function(t_context);
     };
 
 }
 
-std::function<int(state_machine_cpp::Context & )>
+std::function<int(state_machine_cpp::Context2 & )>
 state_machine_cpp::Algorithm::Impl::Build::Transitions::create_direct_handler(
         const State::Instance &t_initial_state,
         state_machine_cpp::Transition::TrivialHandler *t_handler) {
@@ -37,7 +37,7 @@ state_machine_cpp::Algorithm::Impl::Build::Transitions::create_direct_handler(
         return {};
     }
 
-    auto result = [t_handler](Context& t_context){
+    auto result = [t_handler](Context2& t_context){
         (*t_handler)(t_context);
         return 0;
     };
@@ -49,7 +49,7 @@ state_machine_cpp::Algorithm::Impl::Build::Transitions::create_direct_handler(
     return result;
 }
 
-std::function<int(state_machine_cpp::Context & )> state_machine_cpp::Algorithm::Impl::Build::Transitions::create_conditional_handler(
+std::function<int(state_machine_cpp::Context2 & )> state_machine_cpp::Algorithm::Impl::Build::Transitions::create_conditional_handler(
         const State::Instance &t_initial_state,
         state_machine_cpp::Transition::ConditionalHandler *t_handler) {
 
@@ -57,7 +57,7 @@ std::function<int(state_machine_cpp::Context & )> state_machine_cpp::Algorithm::
         return {};
     }
 
-    auto result = [t_handler](Context& t_context) {
+    auto result = [t_handler](Context2& t_context) {
         return (*t_handler)(t_context);
     };
 
@@ -68,7 +68,7 @@ std::function<int(state_machine_cpp::Context & )> state_machine_cpp::Algorithm::
     return result;
 }
 
-std::function<int(state_machine_cpp::Context & )>
+std::function<int(state_machine_cpp::Context2 & )>
 state_machine_cpp::Algorithm::Impl::Build::Transitions::create_parallelized_handler(
         const state_machine_cpp::State::Instance &t_initial_state,
         const std::vector<state_machine_cpp::State::Instance>& t_next_states,
@@ -77,7 +77,7 @@ state_machine_cpp::Algorithm::Impl::Build::Transitions::create_parallelized_hand
     auto *ptr_destination = &destination();
 
     // Create handler
-    auto result = [t_final_state, t_next_states, ptr_destination](Context& t_context) -> int {
+    auto result = [t_final_state, t_next_states, ptr_destination](Context2& t_context) -> int {
 
         std::list<std::thread> threads;
 

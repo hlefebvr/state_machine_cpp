@@ -5,4 +5,4 @@
 #include <stdexcept>
 #include "transitions/transition_handlers.h"
 
-void state_machine_cpp::Transition::DO_NOTHING(Context &) {}
+void state_machine_cpp::Transition::DO_NOTHING(Context2 &) {}

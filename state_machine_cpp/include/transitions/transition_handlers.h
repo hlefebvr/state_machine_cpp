@@ -7,14 +7,14 @@
 
 
 namespace state_machine_cpp {
-    class Context;
+    class Context2;
 
     namespace Transition {
 
-        using TrivialHandler = void(Context &);
-        using ConditionalHandler = bool(const Context &);
+        using TrivialHandler = void(Context2 &);
+        using ConditionalHandler = bool(const Context2 &);
 
-        void DO_NOTHING(Context &);
+        void DO_NOTHING(Context2 &);
 
         enum struct Type : char { Undefined, Direct, Conditional, Parallelized };
     }

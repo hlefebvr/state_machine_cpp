@@ -5,6 +5,7 @@
 #include "algorithms/run.h"
 #include "algorithms/algorithm.h"
 #include "context/context.h"
+#include "context/context_2.h"
 
 namespace state_machine_cpp::Algorithm::Impl {
     void throw_if_is_not_configured(const ::state_machine_cpp::Algorithm::Instance& t_algorithm) {
@@ -27,7 +28,7 @@ namespace state_machine_cpp::Algorithm::Impl {
 }
 
 void ::state_machine_cpp::Algorithm::run(const ::state_machine_cpp::Algorithm::Instance& t_algorithm,
-                                       ::state_machine_cpp::Context& t_context) {
+                                         ::state_machine_cpp::Context2& t_context) {
 
     Impl::throw_if_is_not_configured(t_algorithm);
 

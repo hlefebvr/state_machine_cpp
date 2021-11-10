@@ -17,12 +17,12 @@ build_function \
 
 # define TEST_UTIL_CREATE_HANDLER(scope, name, impl) \
 struct scope { \
-static bool name(Context& context) impl \
+static bool name(Context2& context) impl \
 };
 
 # define TEST_UTIL_CREATE_HANDLER_IF(scope, name, impl) \
 struct scope { \
-static bool name(const Context& context) impl \
+static bool name(const Context2& context) impl \
 };
 
 #define TEST_UTIL_ASSERT_DIRECT_TRANSITION(transition, from, to) \

@@ -11,7 +11,7 @@ state_machine_cpp::Transition::Any::Any(const State::Instance &t_initial_state) 
 
 }
 
-const state_machine_cpp::State::Instance &state_machine_cpp::Transition::Any::operator()(Context &t_context) const {
+const state_machine_cpp::State::Instance &state_machine_cpp::Transition::Any::operator()(Context2 &t_context) const {
 
     if (!m_function) {
         if (!m_next_states.empty()) {
@@ -35,14 +35,14 @@ std::vector<state_machine_cpp::State::Instance> state_machine_cpp::Transition::A
 
 void state_machine_cpp::Transition::Any::reset_handler() {
     m_type = Type::Undefined;
-    m_function = std::function<int(Context&)>();
+    m_function = std::function<int(Context2&)>();
     m_next_states.clear();
 }
 
 void
 state_machine_cpp::Transition::Any::set_handler(Transition::Type t_transition_type,
                                                 std::vector<State::Instance> &&t_next_states,
-                                                std::function<int(Context &)> &&t_handler) {
+                                                std::function<int(Context2 &)> &&t_handler) {
     m_type = t_transition_type;
     m_next_states = std::move(t_next_states);
     m_function = std::move(t_handler);

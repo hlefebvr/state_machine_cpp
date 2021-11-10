@@ -37,7 +37,7 @@ class state_machine_cpp::Algorithm::Instance {
     void create_any_transition(const State::Instance& t_initial_instance,
                                Transition::Type t_transition_type,
                                std::vector<State::Instance> &&t_next_states,
-                               std::function<int(Context&)>&& t_handler,
+                               std::function<int(Context2&)>&& t_handler,
                                bool t_is_override);
     void remove_transition(const State::Instance& t_instance);
     void set_as_final(const State::Instance& t_instance);

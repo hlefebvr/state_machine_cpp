@@ -43,11 +43,12 @@ public:
     [[nodiscard]] bool has_reached_time_limit() const { return remaining_time_in_seconds() <= 0; }
     void set_time_limit_in_seconds(double t_time_limit) { m_time_limit_in_seconds = t_time_limit; }
 
-    template<class T> T& get(unsigned int t_layer = 0) {
-        return *dynamic_cast<std::shared_ptr<T>&>(m_underlying_context.layer(t_layer)).get();
+    template<class T> T& get(int t_layer = -1) {
+        const unsigned int index = t_layer == -1 ? layer() : t_layer;
+        return *dynamic_cast<std::shared_ptr<T>&>(m_underlying_context.layer(index)).get();
     }
 
-    template<class T> const T& get(unsigned int t_layer = 0) const {
+    template<class T> const T& get(int t_layer = -1) const {
         return const_cast<Context2&>(*this).get<T>(t_layer);
     }
 

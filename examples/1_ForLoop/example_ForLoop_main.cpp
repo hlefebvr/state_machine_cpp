@@ -16,7 +16,7 @@ public:
         explicit Attributes(int max_iteration) : max_iteration(max_iteration) {}
     };
 
-    static ContextTree<Layer<Attributes>> handle_standard_arguments(int max_iteration) {
+    static ContextTree<Layer<ForLoop::Attributes>> handle_standard_arguments(int max_iteration) {
         return {new Layer(new Attributes(max_iteration))};
     }
 

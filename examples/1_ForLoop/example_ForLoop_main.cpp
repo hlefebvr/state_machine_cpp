@@ -26,25 +26,25 @@ public:
     static const State::Id END_OF_ITERATION;
     static const State::Id FINAL_STATE;
 
-    static void print_end_of_loop(Context2& context) {
+    static void print_end_of_loop(Context& context) {
         std::cout << "The loop is over" << std::endl;
     }
 
-    static void initialize_counter(Context2& context) {
+    static void initialize_counter(Context& context) {
         auto& attributes = context.get<Attributes>();
         attributes.iteration = 0;
     }
 
-    static bool evaluate_loop_condition(const Context2& context) {
+    static bool evaluate_loop_condition(const Context& context) {
         auto& attributes = context.get<Attributes>();
         return attributes.iteration < attributes.max_iteration;
     }
 
-    static void apply_loop_effect(Context2& context) {
+    static void apply_loop_effect(Context& context) {
         std::cout << context.get<Attributes>().iteration << std::endl;
     }
 
-    static void increment_counter(Context2& context) {
+    static void increment_counter(Context& context) {
         context.get<Attributes>().iteration++;
     }
 
@@ -82,7 +82,7 @@ int main() {
     Algorithm::sanity_check(algorithm);
 
     auto context_tree = ForLoop::handle_standard_arguments(10);
-    Context2 context(context_tree);
+    Context context(context_tree);
 
     Algorithm::run(algorithm, context);
 

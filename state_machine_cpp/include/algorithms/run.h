@@ -10,13 +10,13 @@
 
 namespace state_machine_cpp {
     class Context;
-    class Context2;
+    class Context;
     namespace State {
         class Id;
     }
     namespace Algorithm {
         class Instance;
-        void run(const Algorithm::Instance &t_instance, Context2 &t_context);
+        void run(const Algorithm::Instance &t_instance, Context &t_context);
     }
 }
 

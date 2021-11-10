@@ -11,8 +11,8 @@ TEST(context, should_add__1__and__1__) {
     ContextTree<Layer<int>> tree_a(new Layer(new int(0)));
     ContextTree<Layer<double>> tree_b(new Layer(new double(.0)));
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<double>(), .0);
@@ -30,10 +30,10 @@ TEST(context, should_add__2_1__and__1__) {
 
     ContextTree<Layer<double>> ctx_b(new Layer(new double(.0)));
 
-    auto tree = Context2::join(std::move(ctx_a), std::move(ctx_b));
+    auto tree = Context::join(std::move(ctx_a), std::move(ctx_b));
 
-    Context2 ctx0(tree);
-    const Context2& ctx(ctx0);
+    Context ctx0(tree);
+    const Context& ctx(ctx0);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<float>(), .0);
@@ -52,10 +52,10 @@ TEST(context, should_add__1__and__2_1__) {
             new Layer(new int(1))
     );
 
-    auto tree = Context2::join(std::move(ctx_a), std::move(ctx_b));
+    auto tree = Context::join(std::move(ctx_a), std::move(ctx_b));
 
-    Context2 ctx0(tree);
-    const Context2& ctx(ctx0);
+    Context ctx0(tree);
+    const Context& ctx(ctx0);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<float>(), .0);
@@ -77,10 +77,10 @@ TEST(context, should_add__2_2__and__2_2__) {
             new Layer(new std::string("1"), new float(.1))
     );
 
-    auto tree = Context2::join(std::move(ctx_a), std::move(ctx_b));
+    auto tree = Context::join(std::move(ctx_a), std::move(ctx_b));
 
-    Context2 ctx0(tree);
-    const Context2& ctx(ctx0);
+    Context ctx0(tree);
+    const Context& ctx(ctx0);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<float>(), .0);
@@ -106,10 +106,10 @@ TEST(context, should_add__3_3__and__3_3__) {
             new Layer(new unsigned int (1), new std::string("1"), new float(.1))
     );
 
-    auto tree = Context2::join(std::move(ctx_a), std::move(ctx_b));
+    auto tree = Context::join(std::move(ctx_a), std::move(ctx_b));
 
-    Context2 ctx0(tree);
-    const Context2& ctx(ctx0);
+    Context ctx0(tree);
+    const Context& ctx(ctx0);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<float>(), .0);
@@ -133,8 +133,8 @@ TEST(context, should_add__3__and__2_3__) {
             new Layer(new bool(true), new int(1), new double(.1))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_FLOAT_EQ(ctx.get<bool>(), false);
     ASSERT_EQ(ctx.get<int>(), 0);
@@ -161,8 +161,8 @@ TEST(context, should_add__1_1_1__and__1_1_1__) {
             new Layer(new double(.2))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<double>(), .0);
@@ -184,8 +184,8 @@ TEST(context, should_add__1_2_3__and__1__) {
             new Layer(new double(.0))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<double>(), .0);
@@ -209,8 +209,8 @@ TEST(context, should_add__1__and__1_2_3__) {
             new Layer(new int(2), new double(.2), new float(.2))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_FLOAT_EQ(ctx.get<double>(), .0);
@@ -233,8 +233,8 @@ TEST(context, should_add__1__and__0_1__) {
             new Layer(new int(1))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_EQ(ctx.get<int>(1), 1);
@@ -252,8 +252,8 @@ TEST(context, should_add__0_1__and__1__) {
             new Layer(new int(0))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_EQ(ctx.get<int>(1), 1);
@@ -273,8 +273,8 @@ TEST(context, should_add__1_0_1__and__0_1__) {
             new Layer(new int(1))
     );
 
-    auto tree = Context2::join(std::move(tree_a), std::move(tree_b));
-    Context2 ctx(tree);
+    auto tree = Context::join(std::move(tree_a), std::move(tree_b));
+    Context ctx(tree);
 
     ASSERT_EQ(ctx.get<int>(), 0);
     ASSERT_EQ(ctx.get<int>(1), 1);

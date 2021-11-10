@@ -16,7 +16,7 @@ namespace state_machine_cpp {
 
 class state_machine_cpp::AbstractContextTree {
 protected:
-    friend class Context2;
+    friend class Context;
     template<class ...X> friend struct Impl::merge;
 
     virtual AbstractLayer& layer(unsigned int t_i) = 0;

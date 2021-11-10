@@ -11,7 +11,7 @@ public:
     static const State::Id& INITIAL_STATE;
     static const State::Id& FINAL_STATE;
 
-    static void show_double_counter(Context2& context) {
+    static void show_double_counter(Context& context) {
         const auto& i = context.get_relative<ForLoop::Attributes>(-1);
         const auto& j = context.get<ForLoop::Attributes>();
         std::cout << i.iteration << ", " << j.iteration << std::endl;
@@ -49,7 +49,7 @@ int main(int argc, const char** argv) {
     //Algorithm::plot(algorithm, "my_algorithm_merged");
 
     auto context_tree = DoubleLoop::handle_standard_arguments(3, 5);
-    Context2 context(context_tree);
+    Context context(context_tree);
 
     Algorithm::run(algorithm, context);
 

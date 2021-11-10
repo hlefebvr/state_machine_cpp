@@ -22,7 +22,7 @@ namespace state_machine_cpp {
 
 class state_machine_cpp::Transition::Any {
     const State::Instance m_initial_state;
-    std::function<int(Context2&)> m_function {};
+    std::function<int(Context&)> m_function {};
     std::vector<State::Instance> m_next_states;
     Type m_type = Transition::Type::Undefined;
     bool m_is_final = false;
@@ -31,9 +31,9 @@ public:
 
     [[nodiscard]] const State::Instance& initial_state() const { return m_initial_state; }
     [[nodiscard]] std::vector<State::Instance> next_states() const;
-    const State::Instance& operator()(Context2& t_context) const;
+    const State::Instance& operator()(Context& t_context) const;
 
-    void set_handler(Transition::Type t_transition_type, std::vector<State::Instance>&& t_next_states, std::function<int(Context2&)>&& t_handler);
+    void set_handler(Transition::Type t_transition_type, std::vector<State::Instance>&& t_next_states, std::function<int(Context&)>&& t_handler);
     void reset_handler();
     void set_as_final();
 

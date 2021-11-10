@@ -24,7 +24,7 @@ public:
     static const State::Id& INITIAL_STATE;
     static const State::Id& FINAL_STATE;
 
-    static void print_power_of_iteration(Context2& context) {
+    static void print_power_of_iteration(Context& context) {
         auto& power_loop_attributes = context.get<PowerLoop::Attributes>();
         auto& for_loop_attributes = context.get<ForLoop::Attributes>();
         std::cout << for_loop_attributes.iteration << '^' << power_loop_attributes.power
@@ -50,7 +50,7 @@ int main(int argc, const char** argv) {
     Algorithm::plot(algorithm, "my_algorithm");
 
     auto context_tree = PowerLoop::handle_standard_arguments(3, 2);
-    Context2 context(context_tree);
+    Context context(context_tree);
 
     Algorithm::run(algorithm, context);
 

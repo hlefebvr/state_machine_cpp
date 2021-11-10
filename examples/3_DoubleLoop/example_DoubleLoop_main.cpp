@@ -11,7 +11,7 @@ public:
     static const State::Id& INITIAL_STATE;
     static const State::Id& FINAL_STATE;
 
-    static void show_double_counter(Context& context) {
+    static void show_double_counter(Context2& context) {
         std::cout << context.get_relative<ForLoop::Attributes>(-1).iteration
                   << ", "
                   << context.get<ForLoop::Attributes>().iteration
@@ -30,14 +30,15 @@ public:
         transitions.override(FINAL_STATE[A], ForLoop::END_OF_ITERATION);
     }
 
-    static AutoContext handle_standard_arguments(int n, int m) {
+    static ContextTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>
+    handle_standard_arguments(int n, int m) {
         auto* for_loop_attributes_1 = new ForLoop::Attributes(n);
         auto* for_loop_attributes_2 = new ForLoop::Attributes(m);
-        auto* context = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_1);
-        auto* context_2 = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_2);
-        auto* layered_context = new LayeredContext<2>(*context, *context_2);
 
-        return AutoContext(layered_context, context, context_2, for_loop_attributes_1, for_loop_attributes_2);
+        return {
+            new Layer(for_loop_attributes_1),
+            new Layer(for_loop_attributes_2)
+        };
     }
 };
 
@@ -51,7 +52,8 @@ int main(int argc, const char** argv) {
     Algorithm::sanity_check(algorithm);
     Algorithm::plot(algorithm, "my_algorithm_merged");
 
-    auto context = DoubleLoop::handle_standard_arguments(3, 5);
+    auto context_tree = DoubleLoop::handle_standard_arguments(3, 5);
+    Context2 context(context_tree);
 
     Algorithm::run(algorithm, context);
 

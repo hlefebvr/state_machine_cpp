@@ -15,18 +15,16 @@ public:
         explicit Attributes(unsigned int power) : power(power) {}
     };
 
-    static AutoContext handle_standard_arguments(int max_iteration, unsigned int power) {
-        auto* for_loop_attributes = new ForLoop::Attributes(max_iteration);
-        auto* power_loop_attributes = new PowerLoop::Attributes(power);
-        auto* context = new SimpleContext<ForLoop::Attributes, PowerLoop::Attributes>(*for_loop_attributes, *power_loop_attributes);
-
-        return AutoContext(context, for_loop_attributes, power_loop_attributes);
+    static ContextTree<Layer<ForLoop::Attributes, PowerLoop::Attributes>> handle_standard_arguments(int max_iteration, unsigned int power) {
+        return {
+                new Layer(new ForLoop::Attributes(max_iteration), new PowerLoop::Attributes(power))
+            };
     }
 
     static const State::Id& INITIAL_STATE;
     static const State::Id& FINAL_STATE;
 
-    static void print_power_of_iteration(Context& context) {
+    static void print_power_of_iteration(Context2& context) {
         auto& power_loop_attributes = context.get<PowerLoop::Attributes>();
         auto& for_loop_attributes = context.get<ForLoop::Attributes>();
         std::cout << for_loop_attributes.iteration << '^' << power_loop_attributes.power
@@ -51,7 +49,8 @@ int main(int argc, const char** argv) {
     Algorithm::sanity_check(algorithm);
     Algorithm::plot(algorithm, "my_algorithm");
 
-    auto context = PowerLoop::handle_standard_arguments(3, 2);
+    auto context_tree = PowerLoop::handle_standard_arguments(3, 2);
+    Context2 context(context_tree);
 
     Algorithm::run(algorithm, context);
 

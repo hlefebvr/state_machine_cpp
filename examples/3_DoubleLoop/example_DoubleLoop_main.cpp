@@ -29,12 +29,12 @@ public:
         transitions.override(FINAL_STATE[A], ForLoop::END_OF_ITERATION);
     }
 
-    static ContextTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>
-    handle_standard_arguments(int n, int m) {
-        return {
-            new Layer(new ForLoop::Attributes(n)),
-            new Layer(new ForLoop::Attributes(m))
-        };
+    static AttributeTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>*
+    create_attributes(int n, int m) {
+        return new AttributeTree<Layer<ForLoop::Attributes>, Layer<ForLoop::Attributes>>(
+                    new Layer(new ForLoop::Attributes(n)),
+                    new Layer(new ForLoop::Attributes(m))
+                );
     }
 };
 
@@ -46,10 +46,9 @@ int main(int argc, const char** argv) {
     Algorithm::Instance algorithm;
     Algorithm::build<DoubleLoop>(algorithm);
     Algorithm::sanity_check(algorithm);
-    //Algorithm::plot(algorithm, "my_algorithm_merged");
+    Algorithm::plot(algorithm, "my_algorithm_merged");
 
-    auto context_tree = DoubleLoop::handle_standard_arguments(3, 5);
-    Context context(context_tree);
+    auto context = Context::create<DoubleLoop>(3, 5);
 
     Algorithm::run(algorithm, context);
 

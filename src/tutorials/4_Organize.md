@@ -159,7 +159,7 @@ by non-const reference! Which means that each `ForLoopAttributes` has to be kept
 and `LayeredContext<2>`. 
 
 To ease the creation of algorithmic context, we recommend to developers to define a static method called
-`handle_standard_arguments` returning an object of the class `AutoContext`. An `AutoContext` object simply
+`create_attributes` returning an object of the class `AutoContext`. An `AutoContext` object simply
 is a type of `Context` which holds its arguments as `std::unique_ptr`. In that sense, the attributes and
 other contexts used to create the final context will be kept alive as long as the `AutoContext` lives.
 See how it can be create:
@@ -184,7 +184,7 @@ public:
         // ...
     }
 
-    static AutoContext handle_standard_arguments(int n, int m) {
+    static AutoContext create_attributes(int n, int m) {
         auto* for_loop_attributes_1 = new ForLoop::Attributes(n);
         auto* for_loop_attributes_2 = new ForLoop::Attributes(m);
         auto* context = new SimpleContext<ForLoop::Attributes>(*for_loop_attributes_1);
@@ -200,7 +200,7 @@ This allows us to run our algorithm as follows:
 Algorithm::Instance algorithm;
 Algorithm::build<DoubleLoop>(algorithm);
 
-auto context = DoubleLoop::handle_standard_arguments(3, 5);
+auto context = DoubleLoop::create_attributes(3, 5);
 
 Algorithm::run(algorithm, context);
 ```

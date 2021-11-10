@@ -15,10 +15,10 @@ public:
         explicit Attributes(unsigned int power) : power(power) {}
     };
 
-    static ContextTree<Layer<ForLoop::Attributes, PowerLoop::Attributes>> handle_standard_arguments(int max_iteration, unsigned int power) {
-        return {
+    static AttributeTree<Layer<ForLoop::Attributes, PowerLoop::Attributes>>* create_attributes(int max_iteration, unsigned int power) {
+        return new AttributeTree<Layer<ForLoop::Attributes, PowerLoop::Attributes>>(
                 new Layer(new ForLoop::Attributes(max_iteration), new PowerLoop::Attributes(power))
-            };
+            );
     }
 
     static const State::Id& INITIAL_STATE;
@@ -49,8 +49,7 @@ int main(int argc, const char** argv) {
     Algorithm::sanity_check(algorithm);
     Algorithm::plot(algorithm, "my_algorithm");
 
-    auto context_tree = PowerLoop::handle_standard_arguments(3, 2);
-    Context context(context_tree);
+    auto context = Context::create<PowerLoop>(3, 2);
 
     Algorithm::run(algorithm, context);
 

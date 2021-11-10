@@ -7,12 +7,12 @@
 
 
 #include <cassert>
-#include "abstract_context_tree.h"
+#include "abstract_attribute_tree.h"
 
 namespace state_machine_cpp {
     class AbstractLayer;
 
-    template<class ...> class ContextTree;
+    template<class ...> class AttributeTree;
 
     template<class ...> class Layer;
 }
@@ -33,34 +33,34 @@ namespace state_machine_cpp::Impl {
     struct merge_t;
 
     template<class A>
-    struct merge_t<A, ContextTree<>, ContextTree<>> {
+    struct merge_t<A, AttributeTree<>, AttributeTree<>> {
         using type = A;
     };
 
     template<class ...A, class HX, class ...QX>
-    struct merge_t<ContextTree<A...>, ContextTree<HX, QX...>, ContextTree<>> {
+    struct merge_t<AttributeTree<A...>, AttributeTree<HX, QX...>, AttributeTree<>> {
         using type = typename merge_t<
-                ContextTree<A..., HX>,
-                ContextTree<QX...>,
-                ContextTree<>
+                AttributeTree<A..., HX>,
+                AttributeTree<QX...>,
+                AttributeTree<>
         >::type;
     };
 
     template<class ...A, class HY, class ...QY>
-    struct merge_t<ContextTree<A...>, ContextTree<>, ContextTree<HY, QY...>> {
+    struct merge_t<AttributeTree<A...>, AttributeTree<>, AttributeTree<HY, QY...>> {
         using type = typename merge_t<
-                ContextTree<A..., HY>,
-                ContextTree<>,
-                ContextTree<QY...>
+                AttributeTree<A..., HY>,
+                AttributeTree<>,
+                AttributeTree<QY...>
         >::type;
     };
 
     template<class ...A, class HX, class ...QX, class HY, class ...QY>
-    struct merge_t<ContextTree<A...>, ContextTree<HX, QX...>, ContextTree<HY, QY...>> {
+    struct merge_t<AttributeTree<A...>, AttributeTree<HX, QX...>, AttributeTree<HY, QY...>> {
         using type = typename merge_t<
-                ContextTree<A..., typename merge_layers<HX, HY>::type>,
-                ContextTree<QX...>,
-                ContextTree<QY...>
+                AttributeTree<A..., typename merge_layers<HX, HY>::type>,
+                AttributeTree<QX...>,
+                AttributeTree<QY...>
         >::type;
     };
 
@@ -84,21 +84,21 @@ namespace state_machine_cpp::Impl {
     };
 
     template<class ...X>
-    struct merge<std::tuple<>, ContextTree<X...>> {
+    struct merge<std::tuple<>, AttributeTree<X...>> {
 
-        static void to(ContextTree<X...>* t_source, AbstractContextTree& t_destination, unsigned int t_layer = 0) {}
+        static void to(AttributeTree<X...>* t_source, AbstractAttributeTree& t_destination, unsigned int t_layer = 0) {}
 
     };
 
     template<class HX, class ...QX, class ...X>
-    struct merge<std::tuple<HX, QX...>, ContextTree<X...>> {
+    struct merge<std::tuple<HX, QX...>, AttributeTree<X...>> {
 
-        static void to(ContextTree<X...>* t_source, AbstractContextTree& t_destination, unsigned int t_layer = 0) {
+        static void to(AttributeTree<X...>* t_source, AbstractAttributeTree& t_destination, unsigned int t_layer = 0) {
             if constexpr (!std::is_same_v<HX, Layer<>>) {
-                auto &layer = dynamic_cast<HX &>(((AbstractContextTree *) t_source)->layer(t_layer));
+                auto &layer = dynamic_cast<HX &>(((AbstractAttributeTree *) t_source)->layer(t_layer));
                 call_merge<HX>::on(&layer, t_destination.layer(t_layer));
             }
-            merge<std::tuple<QX...>, ContextTree<X...>>::to(t_source, t_destination, t_layer + 1);
+            merge<std::tuple<QX...>, AttributeTree<X...>>::to(t_source, t_destination, t_layer + 1);
         }
 
     };
@@ -124,7 +124,7 @@ namespace state_machine_cpp::Impl {
 
 namespace state_machine_cpp {
 
-    template<class ...T> using merge_t = typename Impl::merge_t<ContextTree<>, T...>::type;
+    template<class ...T> using merge_t = typename Impl::merge_t<AttributeTree<>, T...>::type;
 
 }
 

@@ -2,21 +2,21 @@
 // Created by henri on 10/11/21.
 //
 
-#ifndef STATE_MACHINE_CPP_CONTEXT_TREE_H
-#define STATE_MACHINE_CPP_CONTEXT_TREE_H
+#ifndef STATE_MACHINE_CPP_ATTRIBUTE_TREE_H
+#define STATE_MACHINE_CPP_ATTRIBUTE_TREE_H
 
 #include <array>
 #include <memory>
 
-#include "abstract_context_tree.h"
+#include "abstract_attribute_tree.h"
 #include "layer.h"
 
 namespace state_machine_cpp {
-    template<class ...T> class ContextTree;
+    template<class ...T> class AttributeTree;
 }
 
 template<class HT, class ...QT>
-class state_machine_cpp::ContextTree<HT, QT...> : public AbstractContextTree {
+class state_machine_cpp::AttributeTree<HT, QT...> : public AbstractAttributeTree {
 
     std::array<std::shared_ptr<AbstractLayer>, sizeof...(QT) + 1> m_layers;
 
@@ -35,13 +35,13 @@ protected:
     }
 
 public:
-    ContextTree() : m_layers({ std::make_shared<HT>(), std::make_shared<QT>()... }) {  }
+    AttributeTree() : m_layers({std::make_shared<HT>(), std::make_shared<QT>()... }) {  }
 
-    ContextTree(HT* t_head, QT* ...t_queue) {
+    AttributeTree(HT* t_head, QT* ...t_queue) {
         initialize<0>(t_head, t_queue...);
     }
 
 };
 
 
-#endif //STATE_MACHINE_CPP_CONTEXT_TREE_H
+#endif //STATE_MACHINE_CPP_ATTRIBUTE_TREE_H

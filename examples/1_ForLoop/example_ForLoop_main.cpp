@@ -16,8 +16,8 @@ public:
         explicit Attributes(int max_iteration) : max_iteration(max_iteration) {}
     };
 
-    static ContextTree<Layer<ForLoop::Attributes>> handle_standard_arguments(int max_iteration) {
-        return {new Layer(new Attributes(max_iteration))};
+    static AttributeTree<Layer<ForLoop::Attributes>>* create_attributes(int max_iteration) {
+        return new AttributeTree<Layer<ForLoop::Attributes>>(new Layer(new Attributes(max_iteration)));
     }
 
     static const State::Id INITIAL_STATE;
@@ -81,8 +81,9 @@ int main() {
     Algorithm::plot(algorithm, "my_algorithm", false);
     Algorithm::sanity_check(algorithm);
 
-    auto context_tree = ForLoop::handle_standard_arguments(10);
-    Context context(context_tree);
+    //auto context_tree = ForLoop::create_attributes(10);
+    //Context context(context_tree);
+    auto context = Context::create<ForLoop>(10);
 
     Algorithm::run(algorithm, context);
 

@@ -14,6 +14,6 @@
 #include "states/state_id.h"
 
 #include "context/context.h"
-#include "context/context_tree.h"
+#include "context/attribute_tree.h"
 
 #endif //STATE_MACHINE_CPP_BASICS_H

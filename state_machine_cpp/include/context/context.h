@@ -6,6 +6,7 @@
 #define STATE_MACHINE_CPP_CONTEXT_H
 
 #include <limits>
+#include <memory>
 #include "impl/__timer.h"
 #include "impl/__pointer.h"
 #include "states/state_instance.h"
@@ -21,7 +22,7 @@ namespace state_machine_cpp {
 }
 
 class state_machine_cpp::Context {
-    AbstractContextTree& m_underlying_context;
+    std::shared_ptr<AbstractAttributeTree> m_underlying_context;
 
     State::Instance m_state;
     double m_time_limit_in_seconds = std::numeric_limits<double>::max();
@@ -34,7 +35,7 @@ class state_machine_cpp::Context {
     void stop_timer() { m_timer.stop(); }
 public:
 
-    explicit Context(AbstractContextTree& t_underlying_context) : m_underlying_context(t_underlying_context) {}
+    explicit Context(AbstractAttributeTree* t_underlying_context) : m_underlying_context(t_underlying_context) {}
 
     [[nodiscard]] unsigned int layer() const { return m_state.layer(); }
     [[nodiscard]] const State::Instance& state() const { return m_state; }
@@ -45,7 +46,7 @@ public:
 
     template<class T> T& get(int t_layer = -1) {
         const unsigned int index = t_layer == -1 ? layer() : t_layer;
-        return *dynamic_cast<std::shared_ptr<T>&>(m_underlying_context.layer(index)).get();
+        return *dynamic_cast<std::shared_ptr<T>&>(m_underlying_context->layer(index)).get();
     }
 
     template<class T> const T& get(int t_layer = -1) const {
@@ -53,16 +54,19 @@ public:
     }
 
     template<class ...X, class ...Y>
-    static merge_t<ContextTree<X...>, ContextTree<Y...>> join(ContextTree<X...>&& t_x, ContextTree<Y...>&& t_y) {
-        merge_t<ContextTree<X...>, ContextTree<Y...>> result;
-        Impl::merge<std::tuple<X...>, ContextTree<X...>>::to(&t_x, result);
-        Impl::merge<std::tuple<Y...>, ContextTree<Y...>>::to(&t_y, result);
+    static merge_t<AttributeTree<X...>, AttributeTree<Y...>>* join(AttributeTree<X...>&& t_x, AttributeTree<Y...>&& t_y) {
+        auto* result = new merge_t<AttributeTree<X...>, AttributeTree<Y...>>();
+        Impl::merge<std::tuple<X...>, AttributeTree<X...>>::to(&t_x, *result);
+        Impl::merge<std::tuple<Y...>, AttributeTree<Y...>>::to(&t_y, *result);
         return result;
     }
 
     template<class T> T& get_relative(int t_offset) { return get<T>(layer() + t_offset); }
     template<class T> const T& get_relative(int t_offset) const { return get<T>(layer() + t_offset); }
 
+    template<class T, class ...X> static Context create(X... t_args) {
+        return Context(T::create_attributes(t_args...));
+    }
 
 };
 

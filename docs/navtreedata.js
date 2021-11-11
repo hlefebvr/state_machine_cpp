@@ -72,7 +72,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Tutorial.html",
-"classstate__machine__cpp_1_1Util_1_1comparable.html#a91c88428922492f2f699e6e9729751eb"
+"classstate__machine__cpp_1_1Util_1_1comparable.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

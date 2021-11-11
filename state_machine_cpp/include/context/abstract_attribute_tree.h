@@ -25,6 +25,10 @@ protected:
         return const_cast<AbstractAttributeTree&>(*this).layer(t_i);
     }
 
+public:
+
+    virtual ~AbstractAttributeTree() = default;
+
 };
 
 

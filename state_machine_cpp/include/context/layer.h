@@ -14,9 +14,11 @@ namespace state_machine_cpp {
 
 template<class ...Attributes>
 class state_machine_cpp::Layer : public state_machine_cpp::AbstractLayer, public std::shared_ptr<Attributes>... {
+
 public:
     Layer() = default;
     Layer(Attributes* ...t_ptr) : std::shared_ptr<Attributes>(t_ptr)... {}
+    Layer(std::shared_ptr<Attributes> ...t_ptr) : std::shared_ptr<Attributes>(t_ptr)... {}
 };
 
 template<>

@@ -22,7 +22,7 @@ class state_machine_cpp::AttributeTree<HT, QT...> : public AbstractAttributeTree
 
     template<unsigned int N, class ...HX, class ...QX>
     void initialize(Layer<HX...>* t_head, QX* ...t_queue) {
-        m_layers[N].reset(t_head);
+        m_layers[N] = std::shared_ptr<Layer<HX...>>(t_head);
         if constexpr (sizeof...(QX) > 0) {
             initialize<N + 1>(t_queue...);
         }

@@ -11,6 +11,7 @@
 #include "impl/__pointer.h"
 #include "states/state_instance.h"
 #include "states/state_any.h"
+#include "abstract_layer.h"
 #include "merge.h"
 
 namespace state_machine_cpp {
@@ -46,7 +47,8 @@ public:
 
     template<class T> T& get(int t_layer = -1) {
         const unsigned int index = t_layer == -1 ? layer() : t_layer;
-        return *dynamic_cast<std::shared_ptr<T>&>(m_underlying_context->layer(index)).get();
+        auto& layer = m_underlying_context->layer(index);
+        return *dynamic_cast<std::shared_ptr<T>&>(layer).get();
     }
 
     template<class T> const T& get(int t_layer = -1) const {

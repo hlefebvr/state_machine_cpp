@@ -44,7 +44,8 @@ void state_machine_cpp::Algorithm::Instance::create_any_transition(
                                                 Transition::Type t_transition_type,
                                                 std::vector<State::Instance> &&t_next_states,
                                                 std::function<int(Context&)>&& t_handler,
-                                                bool t_is_override) {
+                                                bool t_is_override,
+                                                std::string&& t_description) {
 
     auto it = m_transitions.find(t_initial_instance);
 
@@ -87,6 +88,7 @@ void state_machine_cpp::Algorithm::Instance::create_any_transition(
     }
 
     it->set_handler(t_transition_type, std::move(t_next_states), std::move(t_handler));
+    it->set_description(std::move(t_description));
 }
 
 void state_machine_cpp::Algorithm::Instance::remove_transition(const State::Instance &t_instance) {

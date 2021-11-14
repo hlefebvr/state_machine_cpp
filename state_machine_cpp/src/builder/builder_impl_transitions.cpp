@@ -107,7 +107,8 @@ state_machine_cpp::Algorithm::Impl::Build::Transitions::create_parallelized_hand
 void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override(bool t_is_override,
                                                                                 const State::Any &t_initial_state,
                                                                                 const State::Any &t_next_state,
-                                                                                Transition::TrivialHandler *t_handler) {
+                                                                                Transition::TrivialHandler *t_handler,
+                                                                                std::string&& t_description) {
 
     auto initial_state = as_instance(t_initial_state);
     auto handler = create_direct_handler(initial_state, t_handler);
@@ -118,7 +119,8 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override(
             Transition::Type::Direct,
             std::move(next_instance),
             std::move(handler),
-            t_is_override);
+            t_is_override,
+            std::move(t_description));
 
 }
 
@@ -126,7 +128,8 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_
                                                                                    const State::Any &t_initial_state,
                                                                                    const State::Any &t_if_true,
                                                                                    const State::Any &t_else,
-                                                                                   Transition::ConditionalHandler *t_handler) {
+                                                                                   Transition::ConditionalHandler *t_handler,
+                                                                                   std::string&& t_description) {
 
     auto initial_state = as_instance(t_initial_state);
     auto handler = create_conditional_handler(initial_state, t_handler);
@@ -137,14 +140,16 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_
             Transition::Type::Conditional,
             std::move(next_states),
             std::move(handler),
-            t_is_override);
+            t_is_override,
+            std::move(t_description));
 
 }
 
 void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_parallelized(bool t_is_override,
                                                                                              const state_machine_cpp::State::Any &t_initial_state,
                                                                                              std::initializer_list<State::Any> t_next_states,
-                                                                                             const state_machine_cpp::State::Any &t_final_state) {
+                                                                                             const state_machine_cpp::State::Any &t_final_state,
+                                                                                             std::string&& t_description) {
 
     auto initial_state = as_instance(t_initial_state);
     auto next_states = as_instance(t_next_states);
@@ -155,7 +160,8 @@ void state_machine_cpp::Algorithm::Impl::Build::Transitions::create_or_override_
                                         Transition::Type::Parallelized,
                                         std::move(next_states),
                                         std::move(handler),
-                                        t_is_override
+                                        t_is_override,
+                                        std::move(t_description)
     );
 
 }

@@ -56,10 +56,10 @@ public:
         states.create(END_OF_ITERATION);
         states.create(FINAL_STATE);
 
-        transitions.create(INITIAL_STATE, LOOP_CONDITION_EVALUATION, initialize_counter);
-        transitions.create_if(LOOP_CONDITION_EVALUATION, BEGIN_OF_ITERATION, FINAL_STATE,evaluate_loop_condition);
-        transitions.create(BEGIN_OF_ITERATION, END_OF_ITERATION, apply_loop_effect);
-        transitions.create(END_OF_ITERATION, LOOP_CONDITION_EVALUATION, increment_counter);
+        transitions.create(INITIAL_STATE, LOOP_CONDITION_EVALUATION, initialize_counter, "$iteration = 0");
+        transitions.create_if(LOOP_CONDITION_EVALUATION, BEGIN_OF_ITERATION, FINAL_STATE,evaluate_loop_condition, "$iteration < $max_iteration");
+        transitions.create(BEGIN_OF_ITERATION, END_OF_ITERATION, apply_loop_effect, "show $iteration");
+        transitions.create(END_OF_ITERATION, LOOP_CONDITION_EVALUATION, increment_counter, "$iteration++");
         transitions.create(FINAL_STATE, FINAL_STATE, print_end_of_loop);
 
     }
@@ -78,7 +78,7 @@ int main() {
 
     Algorithm::Instance algorithm;
     Algorithm::build<ForLoop>(algorithm);
-    Algorithm::plot(algorithm, "my_algorithm", false);
+    Algorithm::plot(algorithm, "my_algorithm", true);
     Algorithm::sanity_check(algorithm);
 
     //auto context_tree = ForLoop::create_attributes(10);

@@ -36,19 +36,19 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
 
     const auto transition_style = [](const Transition::Any& t_transition, unsigned int t_index) {
         std::string color = "black";
-        std::string label;
+        std::string label = t_transition.description();
         std::string style = "solid";
         switch (t_transition.type()) {
             case Transition::Type::Undefined:
                 throw std::runtime_error("Unexpected undefined transition when plotting.");
             case Transition::Type::Parallelized:
                 color = "green";
-                label = t_index != 0 ? "async" : "";
+                label += (t_index != 0 ? " async" : "");
                 style = t_index == t_transition.next_states().size() - 1 ? "dashed" : style;
                 break;
             case Transition::Type::Direct: break;
             case Transition::Type::Conditional:
-                label = t_index == 0 ? "false" : "true";
+                label += (t_index == 0 ? " = false" : " = true");
                 break;
         }
         if (t_transition.is_virtual()) {
@@ -69,11 +69,29 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
 
     file << "digraph G {";
 
+    file << "\n\trankdir=TB;";
+
     file << "\n\n\t// state definitions\n";
+    if (t_algorithm.is_initial_state_set()) {
+        file << "\t"
+             << name(t_algorithm.initial_state())
+             << node_style(t_algorithm.transitions()[t_algorithm.initial_state()])
+             << ";\n";
+    }
     for (const auto& transition : t_algorithm.transitions()) {
+        if ((t_algorithm.is_initial_state_set() && transition.initial_state() == t_algorithm.initial_state())
+            || (t_algorithm.is_final_state_set() && transition.initial_state() == t_algorithm.final_state())) {
+            continue;
+        }
         file << "\t"
              << name(transition.initial_state())
              << node_style(transition)
+             << ";\n";
+    }
+    if (t_algorithm.is_final_state_set()) {
+        file << "\t"
+             << name(t_algorithm.final_state())
+             << node_style(t_algorithm.transitions()[t_algorithm.final_state()])
              << ";\n";
     }
 

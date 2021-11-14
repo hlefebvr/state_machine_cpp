@@ -63,3 +63,11 @@ bool state_machine_cpp::Transition::Any::is_virtual() const {
 state_machine_cpp::Transition::Type state_machine_cpp::Transition::Any::type() const {
     return m_type;
 }
+
+void state_machine_cpp::Transition::Any::set_description(std::string t_description) {
+    m_description = std::move(t_description);
+}
+
+const std::string& state_machine_cpp::Transition::Any::description() const {
+    return m_description;
+}

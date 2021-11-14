@@ -8,6 +8,7 @@
 #include <list>
 #include <functional>
 #include <vector>
+#include <string>
 
 #include "states/state_any.h"
 #include "impl/__hash.h"
@@ -26,6 +27,7 @@ class state_machine_cpp::Transition::Any {
     std::vector<State::Instance> m_next_states;
     Type m_type = Transition::Type::Undefined;
     bool m_is_final = false;
+    std::string m_description;
 public:
     Any(const State::Instance& t_initial_state); // NOLINT(google-explicit-constructor)
 
@@ -36,11 +38,13 @@ public:
     void set_handler(Transition::Type t_transition_type, std::vector<State::Instance>&& t_next_states, std::function<int(Context&)>&& t_handler);
     void reset_handler();
     void set_as_final();
+    void set_description(std::string t_description);
 
     [[nodiscard]] bool has_handler() const;
     [[nodiscard]] bool is_final() const;
     [[nodiscard]] bool is_virtual() const;
     [[nodiscard]] Type type() const;
+    [[nodiscard]] const std::string& description() const;
 
     struct by_hash {
 

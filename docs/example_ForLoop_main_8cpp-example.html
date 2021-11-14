@@ -145,10 +145,10 @@ $(document).ready(function(){initNavTree('example_ForLoop_main_8cpp-example.html
 <div class="line">        states.create(END_OF_ITERATION);</div>
 <div class="line">        states.create(FINAL_STATE);</div>
 <div class="line"> </div>
-<div class="line">        transitions.create(INITIAL_STATE, LOOP_CONDITION_EVALUATION, initialize_counter);</div>
-<div class="line">        transitions.create_if(LOOP_CONDITION_EVALUATION, BEGIN_OF_ITERATION, FINAL_STATE,evaluate_loop_condition);</div>
-<div class="line">        transitions.create(BEGIN_OF_ITERATION, END_OF_ITERATION, apply_loop_effect);</div>
-<div class="line">        transitions.create(END_OF_ITERATION, LOOP_CONDITION_EVALUATION, increment_counter);</div>
+<div class="line">        transitions.create(INITIAL_STATE, LOOP_CONDITION_EVALUATION, initialize_counter, <span class="stringliteral">&quot;$iteration = 0&quot;</span>);</div>
+<div class="line">        transitions.create_if(LOOP_CONDITION_EVALUATION, BEGIN_OF_ITERATION, FINAL_STATE,evaluate_loop_condition, <span class="stringliteral">&quot;$iteration &lt; $max_iteration&quot;</span>);</div>
+<div class="line">        transitions.create(BEGIN_OF_ITERATION, END_OF_ITERATION, apply_loop_effect, <span class="stringliteral">&quot;show $iteration&quot;</span>);</div>
+<div class="line">        transitions.create(END_OF_ITERATION, LOOP_CONDITION_EVALUATION, increment_counter, <span class="stringliteral">&quot;$iteration++&quot;</span>);</div>
 <div class="line">        transitions.create(FINAL_STATE, FINAL_STATE, print_end_of_loop);</div>
 <div class="line"> </div>
 <div class="line">    }</div>
@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('example_ForLoop_main_8cpp-example.html
 <div class="line"> </div>
 <div class="line">    <a name="_a14"></a><a class="code" href="classstate__machine__cpp_1_1Algorithm_1_1Instance.html">Algorithm::Instance</a> algorithm;</div>
 <div class="line">    Algorithm::build&lt;ForLoop&gt;(algorithm);</div>
-<div class="line">    <a name="a15"></a><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#afcfafb9a0586f5d4530ad3a24e287179">Algorithm::plot</a>(algorithm, <span class="stringliteral">&quot;my_algorithm&quot;</span>, <span class="keyword">false</span>);</div>
+<div class="line">    <a name="a15"></a><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#afcfafb9a0586f5d4530ad3a24e287179">Algorithm::plot</a>(algorithm, <span class="stringliteral">&quot;my_algorithm&quot;</span>, <span class="keyword">true</span>);</div>
 <div class="line">    <a name="a16"></a><a class="code" href="namespacestate__machine__cpp_1_1Algorithm.html#aaad835bb89148ae5557bd849e5ec5c03">Algorithm::sanity_check</a>(algorithm);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">//auto context_tree = ForLoop::create_attributes(10);</span></div>

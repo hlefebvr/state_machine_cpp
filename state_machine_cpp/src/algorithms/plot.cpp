@@ -17,18 +17,24 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
         return "node_" + std::to_string(hash<State::Instance>::get(t_x));
     };
 
-    const auto node_style = [](const Transition::Any& t_x) {
+    const auto node_style = [&t_algorithm](const Transition::Any& t_x) {
         std::stringstream style;
-        style << "[label=\"" << t_x.initial_state().name() << "\"";
+        style << "[label=\"" << t_x.initial_state().name() << "\",style=filled";
         switch (t_x.type()) {
             case Transition::Type::Conditional:
-                style << ",shape=\"diamond\"";
+                style << ",shape=\"hexagon\",fillcolor=\"lightblue\"";
                 break;
             case Transition::Type::Parallelized: [[fallthrough]];
             case Transition::Type::Undefined: [[fallthrough]];
             case Transition::Type::Direct:
-                style << ",shape=\"oval\"";
+                style << ",shape=\"box\",fillcolor=\"aliceblue\"";
                 break;
+        }
+        if (t_algorithm.is_initial_state_set() && t_x.initial_state() == t_algorithm.initial_state()) {
+            style << ",fillcolor=\"greenyellow\"";
+        }
+        if (t_algorithm.is_final_state_set() && t_x.initial_state() == t_algorithm.final_state()) {
+            style << ",fillcolor=\"pink\"";
         }
         style << ']';
         return style.str();
@@ -36,7 +42,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
 
     const auto transition_style = [](const Transition::Any& t_transition, unsigned int t_index) {
         std::string color = "black";
-        std::string label = t_transition.description();
+        std::string label = " " + t_transition.description();
         std::string style = "solid";
         switch (t_transition.type()) {
             case Transition::Type::Undefined:
@@ -58,7 +64,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
         if (t_transition.is_final()) {
             color = "red";
         }
-        return "[style=\"" + style + "\",label=\"" + label + "\", color=\"" + color + "\"]";
+        return "[style=\"" + style + "\",label=\"" + label + "\", color=\"" + color + "\",fontsize=10,fontcolor=darkgreen]";
     };
 
     std::ofstream file(t_filename + ".dot");

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <regex>
 
 #include "algorithms/plot.h"
 #include "states/state_instance.h"
@@ -42,7 +43,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
 
     const auto transition_style = [](const Transition::Any& t_transition, unsigned int t_index) {
         std::string color = "black";
-        std::string label = " " + t_transition.description();
+        std::string label = " " + std::regex_replace(t_transition.description(), std::regex("\n"), "\\l ");
         std::string style = "solid";
         switch (t_transition.type()) {
             case Transition::Type::Undefined:
@@ -59,7 +60,7 @@ void state_machine_cpp::Algorithm::plot(const Algorithm::Instance& t_algorithm, 
         }
         if (t_transition.is_virtual()) {
             color = "blue";
-            label = "virtual";
+            label += " (to be defined)";
         }
         if (t_transition.is_final()) {
             color = "red";

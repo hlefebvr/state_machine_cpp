@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 void state_machine_cpp::Timer::start() {
+    m_cumulative += time_in_seconds();
     m_starting_clock = std::chrono::high_resolution_clock::now();
     m_has_started = true;
     m_has_stopped = false;
@@ -32,4 +33,8 @@ double state_machine_cpp::Timer::time_in_seconds() const {
     }
 
     return std::chrono::duration_cast<std::chrono::milliseconds>(m_ending_clock - m_starting_clock).count() * convert_factor;
+}
+
+double state_machine_cpp::Timer::cumulative_time_in_seconds() const {
+    return m_cumulative;
 }
